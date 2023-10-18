@@ -1,14 +1,6 @@
 
 
 ```{r}
-# if (!requireNamespace("BiocManager", quietly = TRUE))
-#     install.packages("BiocManager")
-# BiocManager::install("scDblFinder")
-#BiocManager::install("zellkonverter")
-#install.packages('zellkonverter')
-```
-
-```{r}
 library(scDblFinder)
 library(zellkonverter)
 library(SingleCellExperiment)
@@ -17,18 +9,23 @@ library(BiocParallel)
 ## Read data
 ```{r}
 dat=readH5AD('../data/data_RBC_removed.h5ad')
+assayNames(dat)
 ```
 
 ## Rename AssayName from 'X' to 'counts', as this is necessary for scDblFinder to run
 ```{r}
-names(dat@assays)='counts'
+names(dat@assays)[1]='counts'
 ```
 
-## Run scDblFinder
+## Run scDblFinder 
 
 ```{r}
+## Drop cells with low counts
+n_counts_thr=200
+dat_=dat[,colData(dat)$n_counts>n_counts_thr]
+
 ## Cluster data with fastcluster 
-dat$cluster <- fastcluster(dat)
+dat_$cluster <- fastcluster(dat_, iter.max=40)
 
 ## Setting BiocParallel parameters (num of parallel threads + set seed)
 bp<-MulticoreParam(3, RNGseed=1234)
@@ -38,14 +35,14 @@ bp<-MulticoreParam(3, RNGseed=1234)
 #  (see details: http://bioconductor.org/books/3.15/OSCA.advanced/doublet-detection.html
 #                https://bioconductor.org/packages/release/bioc/vignettes/scDblFinder/inst/doc/scDblFinder.html)
 
-sce <- scDblFinder(dat,samples='patient',cluster=TRUE,BPPARAM=bp)
+sce=scDblFinder(dat_,samples='batch',cluster=TRUE,BPPARAM=bp)
+  
 ```
 
-## Save file as .h5ad file
+## Save the data as .h5ad file
 ```{r}
-
 ## Set name of assay back to 'X' -> for scanpy analysis later
-names(sce@assays)='X'
+names(sce@assays)[1]='X'
 
 ## Save file
 writeH5AD(sce,file='../data/prelim_analysis_with_doublet_scores.h5ad')
