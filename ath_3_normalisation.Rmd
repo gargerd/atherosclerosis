@@ -1,0 +1,78 @@
+```{r}
+#BiocManager::install('scran')
+#BiocManager::install("transformGamPoi")
+```
+
+```{r}
+library(scran)
+library(transformGamPoi)
+library(SingleCellExperiment)
+library(zellkonverter)
+library(MatrixGenerics)
+library(BiocParallel)
+#library(usethis) 
+#usethis::edit_r_environ()
+```
+
+## Read data after QC
+```{r}
+dat=readH5AD('../data/data_QC.h5ad')
+```
+
+## Plot mean-variance plot + fit curve with manually set Gamma-Poisson overdispersion factor
+
+```{r fig.width=7,fig.height=4}
+sce=dat
+names(sce@assays)='counts'
+overdispersion=5
+# Exclude genes where all counts are zero
+#sce <- sce[rowMeans2(counts(sce)) > 0, ]
+
+gene_means <- rowMeans2(counts(sce))
+gene_var <- rowVars(counts(sce))
+plot(gene_means, gene_var, log = "xy", main = "Log-log scatter plot of mean vs variance")
+abline(a = 0, b = 1)
+sorted_means <- sort(gene_means)
+lines(sorted_means, sorted_means + overdispersion * sorted_means^2, col = "purple")
+```
+
+## Calculate size factors for all cells with scran -> use Fastcluster clusters for this
+
+```{r}
+input_groups=sce@colData[,'fastcluster',drop=T]
+data_mat=((assay(sce)))
+register(MulticoreParam(workers = 4))
+size_factors = calculateSumFactors(data_mat, clusters=input_groups)
+rm(data_mat)
+```
+
+## Apply acosh and shifted log transformation to the raw counts
+
+```{r}
+assay(sce, withDimnames=FALSE,"acosh")=acosh_transform(assay(sce, "counts"),size_factors=size_factors,overdispersion=TRUE,on_disk = TRUE)
+assay(sce, withDimnames=FALSE,"shifted_log")=shifted_log_transform(assay(sce, "counts"),size_factors=size_factors,overdispersion=TRUE,on_disk=TRUE)
+
+```
+
+## Plot mean-variance plot of normalised data
+
+```{r}
+acosh_var <- rowVars(assay(sce, "acosh"))
+plot(gene_means, acosh_var, log = "x", main = "Log expression vs variance of acosh stabilized values")
+abline(h = 1)
+
+shift_log_var <- rowVars(assay(sce, "shifted_log"))
+plot(gene_means, shift_log_var, log = "x", main = "Log expression vs variance of shifted log stabilized values")
+abline(h = 1)
+```
+## Save normalised data
+ 
+```{r}
+names(sce@assays)
+## Set name of 'counts' matrix back to 'X' in sce's assay layer -> for scanpy analysis later
+names(sce@assays)=c('X','acosh','shifted_log')
+
+## Save file
+writeH5AD(sce,file='../data/data_QC_norm.h5ad')
+```
+
