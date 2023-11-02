@@ -2,14 +2,29 @@
 
 set -euo pipefail
 
+### SETUP DATA FOLDER TO LOOP OVER
 data_dir="/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/"
 
 # Drop scratch folders that start with "._"
 panel_dir_list=($(find "$data_dir" -maxdepth 1 -type d -name '*Panel*' -a ! -name '._*' | sort))
 
 
-segment_expansion_sizes_um=('3' '5' '10')
-baysor_scale_arr=()
+### SEGMENTATION PARAMETERS
+# Size of cell expansion after cell segmentation (um) => has to be converted to pixels!
+segment_expansion_sizes_um=('4' '6' '10') 
+
+# Segmentation methods
+segment_methods=('cellpose')
+
+## Cellpose model types
+cellpose_model_types=('cyto' 'nuclei')
+
+
+### BAYSOR PARAMETERS
+# Values for 'scale' parameter in Baysor => ~ expected RADIUS of cells in um-s
+baysor_scale_arr_um=('3' '5' '8') 
+
+
 start=$(date +%s)
 
 for panel in "${panel_dir_list[@]}"; do
