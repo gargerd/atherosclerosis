@@ -1,14 +1,27 @@
 
+```{r}
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.3')
+.libPaths()
+```
+
+```{r}
+install.packages('anndata',version='0.7.5.5')
+BiocManager::install('anndata',lib='/data/gpfs/projects/punim2121/R_libs/4.1.3',force = TRUE)
+```
+
 
 ```{r}
 library(scDblFinder)
 library(zellkonverter)
 library(SingleCellExperiment)
 library(BiocParallel)
+library(anndata)
 ```
 ## Read data
 ```{r}
-dat=readH5AD('../data/data_RBC_removed.h5ad')
+dat=zellkonverter::readH5AD('../data/data_RBC_removed.h5ad',reader='python')
+dat=anndata::read_h5ad('../data/data_RBC_removed.h5ad')
+AnnData2SCE(dat)
 assayNames(dat)
 ```
 
