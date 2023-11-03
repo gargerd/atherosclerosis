@@ -11,6 +11,7 @@ import skimage.segmentation
 import numpy as np
 import argparse
 import os
+import torch 
 
 if __name__ == '__main__':
 
@@ -39,6 +40,8 @@ if __name__ == '__main__':
     hyperparams = eval(args.hyperparams)
     expand_nuclear_area = eval(args.expand)
     
+    #print('CUDA available:',torch.cuda.is_available())
+    
     #Create output folder if needed
     if not os.path.exists(output):
         os.makedirs(output)
@@ -47,7 +50,7 @@ if __name__ == '__main__':
     if(not binary):
         if(segmentation_method == 'binning'):
             #img = tifffile.imread(image_file)
-            reader=OMETIFFReader(fpath=fn)
+            reader=OMETIFFReader(fpath=image_file)
             img,metadata,xml_metadata=reader.read()
             if hyperparams is None or hyperparams['bin_size'] is None:
                 img_arr = segment_binning(img, 20)
@@ -55,7 +58,7 @@ if __name__ == '__main__':
                 img_arr = segment_binning(img, hyperparams['bin_size'])
         elif(segmentation_method=='cellpose'):
             #img = tifffile.imread(image_file)
-            reader=OMETIFFReader(fpath=fn)
+            reader=OMETIFFReader(fpath=image_file)
             img,metadata,xml_metadata=reader.read()
             img_arr=segment_cellpose(img, hyperparams)
         else:
@@ -88,3 +91,4 @@ if __name__ == '__main__':
     (unique, counts) = np.unique(img_arr, return_counts=True)
     areas = np.asarray((unique, counts)).T
     np.savetxt(f'{output}/areas_{segmentation_method}-{id_code}.csv', areas, delimiter=",")
+    
