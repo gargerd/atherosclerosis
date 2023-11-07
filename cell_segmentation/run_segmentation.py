@@ -40,27 +40,33 @@ if __name__ == '__main__':
     hyperparams = eval(args.hyperparams)
     expand_nuclear_area = eval(args.expand)
     
-    #print('CUDA available:',torch.cuda.is_available())
-    
+       
     #Create output folder if needed
     if not os.path.exists(output):
         os.makedirs(output)
 
     #If unsegmented, segment image
+    print('Running segmentation')
     if(not binary):
         if(segmentation_method == 'binning'):
             #img = tifffile.imread(image_file)
             reader=OMETIFFReader(fpath=image_file)
             img,metadata,xml_metadata=reader.read()
             if hyperparams is None or hyperparams['bin_size'] is None:
-                img_arr = segment_binning(img, 20)
+                img_arr=segment_binning(img, 20)
             else:
                 img_arr = segment_binning(img, hyperparams['bin_size'])
         elif(segmentation_method=='cellpose'):
-            #img = tifffile.imread(image_file)
+            img = tifffile.imread(image_file)
             reader=OMETIFFReader(fpath=image_file)
             img,metadata,xml_metadata=reader.read()
-            img_arr=segment_cellpose(img, hyperparams)
+
+            #from cellpose import models, io
+            #filename='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/at3_1m4_01.tif'
+            #img = io.imread(filename)
+            #print((img))
+
+            img_arr=segment_cellpose(img,hyperparams)
         else:
             img = sq.im.ImageContainer(image_file)
             if hyperparams is not None:
@@ -75,20 +81,24 @@ if __name__ == '__main__':
         img_arr = skimage.io.imread(image_file)
         img_arr = skimage.measure.label(img_arr, connectivity=1)
 
-    
+    del img
+
     # Convert micrometers to pixels using the DAPI image pixel_width information from the .ome.tif file
     pixel_width_um=np.float32(metadata['PhysicalSizeX'])
     expand_nuclear_area=np.float32(int(expand_nuclear_area)/pixel_width_um)
 
     #  Expand nuclear area to reflect whole cell area
+    print('Expanding nuclear area')
     if expand_nuclear_area is not None and expand_nuclear_area != 0:
         img_arr = skimage.segmentation.expand_labels(img_arr, distance=expand_nuclear_area)
 
     #Save as .tif file
+    print('Saving segmented image')
     skimage.io.imsave(f'{output}/segments_{segmentation_method}-{id_code}.tif', img_arr)
 
     #Calculate and save areas
     (unique, counts) = np.unique(img_arr, return_counts=True)
+    del img_arr
     areas = np.asarray((unique, counts)).T
     np.savetxt(f'{output}/areas_{segmentation_method}-{id_code}.csv', areas, delimiter=",")
     

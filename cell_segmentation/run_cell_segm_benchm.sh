@@ -49,6 +49,10 @@ baysor_scale_arr_um=('3' '5' '8')
 
 start=$(date +%s)
 
+#nvcc --version
+#nvidia-smi
+
+
 for panel in "${panel_dir_list[@]}"; do
     sample_name_list=($(find "$panel" -maxdepth 1 -type d -printf '%f\n' | sort))
    
@@ -67,6 +71,7 @@ for panel in "${panel_dir_list[@]}"; do
 
 	    sample_dirname="${panel_suffix}_${sample_suffix}"
 	    output_dir="${data_dir}processed_data/cell_segmentation/$sample_dirname"
+        echo $sample_dirname
 
         ## Loop over segmentation methods
         for segm_method in "${segment_methods[@]}"; do
@@ -79,18 +84,18 @@ for panel in "${panel_dir_list[@]}"; do
                     for cp_expans_size in "${segment_expansion_sizes_um[@]}"; do
 
                         ### Cell segmentation hyperparameter dictionary
-                        hyperparams='{"model_type":"'"$cp_model_type"'","batch_size":8,"channel_axis":None,"z_axis":None,"invert":False,"normalize":True,"diameter":30.0,"do_3D":False,"anisotropy":None,"net_avg":False,"augment":False,"tile":True,"tile_overlap":0.1,"resample":True,"interp":True,"flow_threshold":0,"cellprob_threshold":0.0,"min_size":15,"stitch_threshold":0.0,"rescale":None,"progress":None,"model_loaded":False}'
+                        hyperparams='{"model_type":"'"$cp_model_type"'","batch_size":1,"channel_axis":2,"z_axis":None,"invert":False,"normalize":True,"diameter":30.0,"do_3D":False,"anisotropy":None,"net_avg":False,"augment":False,"tile":True,"tile_overlap":0.1,"resample":True,"interp":True,"flow_threshold":0,"cellprob_threshold":0.0,"min_size":15,"stitch_threshold":0.0,"rescale":True,"progress":True,"model_loaded":False}'
                         id_code="CP${cp_model_type:0:1}_${cp_expans_size}"
     
                         segm_start=$(date +%s)
 
                         ## Run segmentation 
                         echo "Starting cell segmentation for model: ${id_code}"
-                        python run_segmentation.py -i $input_fn -o $output_dir -s $segm_method -id $id_code -p $hyperparams -e $cp_expans_size 
+                        #python run_segmentation.py -i $input_fn -o $output_dir -s $segm_method -id $id_code -p $hyperparams -e $cp_expans_size 
                                                    #-b \  => 'If the input image is a segmented, binary image (e.g. watershed via ImageJ)',then include -b ('binary' var in Python==True)
                                                    #          If input image is not segmented, comment -b out => sets 'binary' value in python script to False
 
-
+                        python -m cellpose --use_gpu --verbose --image_path $input_fn
                         segm_stop=$(date +%s)
                         elapsed_seconds=$((segm_stop - segm_start))
                         print_elapsed_time "$elapsed_seconds" "Segmentation time"
