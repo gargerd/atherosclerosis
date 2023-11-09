@@ -4,6 +4,12 @@ from squidpy.im._container import ImageContainer
 from squidpy.im._segment import SegmentationModel
 from typing import Union,  Optional, Any, Mapping, Callable, Sequence, TYPE_CHECKING, Tuple
 from squidpy._utils import NDArrayA
+import torch
+import logging
+#models_logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
+
+
 
 def segment_nuclei(
     img: ImageContainer,
@@ -89,7 +95,7 @@ def segment_cellpose(
     NDArray
         labelled image, where 0=no masks; 1,2,...=mask labels
     """
-    from cellpose import models
+    from cellpose import models,core
     
     # Set model type
     if (hyperparams is not None) and ("model_type" in hyperparams):
@@ -98,7 +104,13 @@ def segment_cellpose(
         model_type = 'nuclei'
     
     # Init model
-    model = models.Cellpose(model_type=model_type)
+    use_GPU = core.use_gpu()
+    print('torch.cuda.is_available()',torch.cuda.is_available())
+    print('>>> GPU activated? %d'%use_GPU)
+    model = models.CellposeModel(gpu=use_GPU,model_type=model_type)
+    img=np.array([img,img,img])
+    img=np.transpose(img, (1,2,0))
+    #print(img.shape)
     
     # Predict
     if hyperparams is not None:
