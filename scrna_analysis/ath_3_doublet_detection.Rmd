@@ -1,63 +1,133 @@
 
+#### RUN THIS WITH R-4.2.1, AS 4.1.2/4.1.3 THROWS ERROR WHIT ANNDATA'S READ5HD FUNCTION
+
+### Add proper R-version folder with installed packages to libPaths
 ```{r}
-.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.3')
+#.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.2')
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
 .libPaths()
 ```
 
 ```{r}
-install.packages('anndata',version='0.7.5.5')
-BiocManager::install('anndata',lib='/data/gpfs/projects/punim2121/R_libs/4.1.3',force = TRUE)
-```
-
-
-```{r}
-library(scDblFinder)
 library(zellkonverter)
+library(scDblFinder)
 library(SingleCellExperiment)
 library(BiocParallel)
-library(anndata)
-```
-## Read data
-```{r}
-dat=zellkonverter::readH5AD('../data/data_RBC_removed.h5ad',reader='python')
-dat=anndata::read_h5ad('../data/data_RBC_removed.h5ad')
-AnnData2SCE(dat)
-assayNames(dat)
+
 ```
 
-## Rename AssayName from 'X' to 'counts', as this is necessary for scDblFinder to run
-```{r}
-names(dat@assays)[1]='counts'
-```
-
-## Run scDblFinder 
+## RUN scDBLFinder for the 2 differently aligned datasets  
 
 ```{r}
-## Drop cells with low counts
-n_counts_thr=200
-dat_=dat[,colData(dat)$n_counts>n_counts_thr]
+## Init list with reference genome names that were used for the 2 alignments
+ref_genomes=c('GRCh38-p14-Gencode_v44','GRCh38-p13-Gencode_v33')
 
-## Cluster data with fastcluster 
-dat_$cluster <- fastcluster(dat_, iter.max=40)
 
-## Setting BiocParallel parameters (num of parallel threads + set seed)
-bp<-MulticoreParam(3, RNGseed=1234)
-
-## 1. Run scDblFinder -> as muliple batches were run, tell scDblFinder which samples were in one batch
-## 2. Set cluster to True 
-#  (see details: http://bioconductor.org/books/3.15/OSCA.advanced/doublet-detection.html
-#                https://bioconductor.org/packages/release/bioc/vignettes/scDblFinder/inst/doc/scDblFinder.html)
-
-sce=scDblFinder(dat_,samples='batch',cluster=TRUE,BPPARAM=bp)
+for (ref_genome in ref_genomes){
+  print(ref_genome)
+  fname=paste0('../../data/',ref_genome,'_data_RBC_removed.h5ad')
+  dat=zellkonverter::readH5AD(fname,reader='python')
   
+  ## Rename AssayName from 'X' to 'counts', as this is necessary for scDblFinder to run
+  assayNames(dat)[grepl('cellbender',assayNames(dat))]='counts'
+  
+  
+  ###### Run scDblFinder ########
+  ## Drop cells with low counts
+  n_counts_thr=50
+  dat_=dat[,colData(dat)$n_cellbender>n_counts_thr]
+
+  # Based on tutorials  (http://bioconductor.org/books/3.15/OSCA.advanced/doublet-detection.html,
+  #                https://bioconductor.org/packages/release/bioc/vignettes/scDblFinder/inst/doc/scDblFinder.html)
+  # the following code should susbet the data based on colData's 'batch' information and start scDblfinder for each
+  # batch on a parallel core: 
+  
+  ## dat_$cluster<-fastcluster(dat_, iter.max=100)
+  ## bp<-MulticoreParam(workers=2, progressbar=TRUE,RNGseed=1234)
+  ## sce=scDblFinder(dat_,samples='batch',cluster='cluster',BPPARAM=bp)
+  
+  
+  # However, when not all clusters are present in a batch (ie.from cluster 1,2,3,4,5 only 1,4,5 are in batch) there is 
+  #.an out of bounds error message. The workaround is to split the data based on batches, run the clustering per batch and 
+  # concatenate them back together.
+
+  l=list()
+  for (batch in (unique(dat_$batch))){
+    d=dat_[,dat_$batch==batch]
+    
+    ## Cluster data with fastcluster 
+    d$cluster<-fastcluster(d, iter.max=100)
+    
+    sce=scDblFinder(d,cluster='cluster')
+    
+    # scDblFinder.selected indicates if the gene was selected by scDblfinder or not. As these genes differ between batches, this will
+    # throw an error later at concatenation with cbind -> delete this column, as it is not relevant for later analysis
+    rowData(sce)$scDblFinder.selected<-NULL
+    
+    # Drop cluster column from colData, as the clustering was done for each batch seperately, it is not relevant for the whole dataset
+    colData(sce)$cluster<-NULL
+    
+    l[batch]=sce
+    }
+  
+  # Concatenate the sce objects of the batches back together
+  for (n in 1:length(l)){
+   
+    if (n==1){
+      sce_=l[[n]]}
+    
+    if (n!=1){
+      sce_=cbind(sce_,l[[n]])}
+  }
+  
+
+  ###### Save the data as .h5ad file #####
+  ## Rename AssayName from 'X' to 'counts', as this is necessary for scDblFinder to run
+  assayNames(sce_)[grepl('counts',assayNames(sce_))]='cellbender'
+  
+  ## Save file
+  fn=paste0('../../data/',ref_genome,'_data_with_doublet_scores.h5ad')
+  print('save .h5ad file')
+  writeH5AD(sce_,file=fn)
+
+}
+
 ```
 
-## Save the data as .h5ad file
 ```{r}
-## Set name of assay back to 'X' -> for scanpy analysis later
-names(sce@assays)[1]='X'
-
-## Save file
-writeH5AD(sce,file='../data/prelim_analysis_with_doublet_scores.h5ad')
+colData(sce_)
 ```
+
+```{r}
+for (n in 1:length(l)){
+    print(n)
+    print(l[[n]])
+    print(rownames(rowData((l[[n]]))))
+    print('')
+    if (n==1){
+      sce_=l[[n]]}
+    
+    if (n!=1){
+      sce_=cbind(sce_,l[[n]])}
+  }
+```
+
+```{r}
+print(sce_)
+a=rownames(rowData((l[[n]])))
+b=(rownames(rowData((sce_))))
+all(a==b)
+length(colnames(sce))
+length(colnames(l[[n]]))
+(colnames(sce)==colnames(l[[n]]))
+colnames(colData(l[[n]]))==colnames(colData(sce))
+```
+
+```{r}
+c=rowData((l[[n]]))$scDblFinder.selected
+d=rowData((sce_))$scDblFinder.selected
+all(c==d)
+```
+
+
 
