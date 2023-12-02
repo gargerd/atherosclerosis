@@ -40,7 +40,7 @@ if __name__ == '__main__':
         "scale" : -1,
         # Standard deviation of scale across cells. Can be either number, which means absolute value of the std, or string ended with "%" to set it relative to scale. Default: "25%"
         # "scale-std" : '"25%"',
-        "force_2d":false
+        
         # Not exactly sure if this one should be in [Data], therefore we don't provide it via the toml, so not possibl issues here.
         "prior-segmentation-confidence" : 0.2,
     }
@@ -95,7 +95,8 @@ if __name__ == '__main__':
             if key not in ["scale", "prior-segmentation-confidence"]:
                 file.write(f'{key} = {val}\n')
                 
-   
+    tt=pd.read_csv(molecules)
+    print(tt.head())
     # Note: we provide scale separately because when providing it via .toml baysor can complain that's it's not a float
     baysor_cli = f"run -s {hparams['scale']} -c {toml_file} -o {temp}/ {molecules}"
         
@@ -107,7 +108,7 @@ if __name__ == '__main__':
         print("Running Baysor without prior segmentation")
 
     #os.system(f'''/Baysor/bin/baysor {baysor_cli}''') # use in docker container: docker pull louisk92/txsim_baysor:latest
-    os.system(f'''baysor {baysor_cli}''') # use in docker container: docker pull louisk92/txsim_baysor:v0.6.2bin
+    os.system(f'''baysor {baysor_cli}''') # use in docker container: docker pull louisk92/txsim_baysor:latest
     print("Ran Baysor")
 
     df = pd.read_csv(baysor_seg)
