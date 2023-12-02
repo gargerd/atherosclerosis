@@ -122,10 +122,12 @@ for panel in "${panel_dir_list[@]}"; do
                             #dock_img_name='8f02118f6c19' #v0.6.2
                             #dock_img_name='ecab4cc3d386' # v0.6.2bin
                             dock_img_name='94ed89218e8d' # v0.6.2bin + pyometiff installed to read slide metadata for um=>pixel conversion
+
+                            bash ${ather_dir}/atherosclerosis/cell_segmentation/bays_stop_active_baysor_docker.sh
                             
                             ## Run docker with baysor image
                             sudo docker run -it --name baysor_docker -d \
-                                        --mount type=bind,source=$ather_dir,target=$ather_dir -w ${ather_dir}atherosclerosis/cell_segmentation \
+                                        --mount type=bind,source=$ather_dir,target=$ather_dir -w ${ather_dir}/atherosclerosis/cell_segmentation \
                                         $dock_img_name bash 
 
                             ## Convert transcript coordinates to pixels from micrometers

@@ -40,7 +40,7 @@ if __name__ == '__main__':
         "scale" : -1,
         # Standard deviation of scale across cells. Can be either number, which means absolute value of the std, or string ended with "%" to set it relative to scale. Default: "25%"
         # "scale-std" : '"25%"',
-        "force_2d":false
+        "force_2d":"false",
         # Not exactly sure if this one should be in [Data], therefore we don't provide it via the toml, so not possibl issues here.
         "prior-segmentation-confidence" : 0.2,
     }

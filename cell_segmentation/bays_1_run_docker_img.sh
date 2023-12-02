@@ -7,7 +7,7 @@ baysor_path='/Atherosclerosis/atherosclerosis/cell_segmentation/run_baysor.py'
 dock_img_name='94ed89218e8d' # v0.6.2bin + pyometiff installed to read slide metadata for um=>pixel conversion
 
 ## Run docker with baysor image
-sudo docker run -it --name baysor_docker -d \
+sudo docker run -it --name baysor_docker \
             --mount type=bind,source=$ather_dir,target=/Atherosclerosis -w /Atherosclerosis/atherosclerosis/cell_segmentation \
             $dock_img_name bash 
 
