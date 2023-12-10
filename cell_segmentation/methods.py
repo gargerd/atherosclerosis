@@ -6,8 +6,9 @@ from typing import Union,  Optional, Any, Mapping, Callable, Sequence, TYPE_CHEC
 from squidpy._utils import NDArrayA
 import torch
 import logging
+from cellpose import io
 #models_logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
+#logging.basicConfig(level=logging.DEBUG)
 
 
 
@@ -96,6 +97,7 @@ def segment_cellpose(
         labelled image, where 0=no masks; 1,2,...=mask labels
     """
     from cellpose import models,core
+    logger=io.logger_setup()
     
     # Set model type
     if (hyperparams is not None) and ("model_type" in hyperparams):
@@ -105,28 +107,35 @@ def segment_cellpose(
     
     # Init model
     use_GPU = core.use_gpu()
-    print('torch.cuda.is_available()',torch.cuda.is_available())
-    print('>>> GPU activated? %d'%use_GPU)
-    model = models.CellposeModel(gpu=use_GPU,model_type=model_type)
-    img=np.array([img,img,img])
-    img=np.transpose(img, (1,2,0))
-    #print(img.shape)
+    #print('torch.cuda.is_available()',torch.cuda.is_available())
+    #print('>>> GPU activated? %d'%use_GPU)
+    model=models.Cellpose(gpu=use_GPU,model_type=model_type)
+    #img=np.array([img,img,img])
+    #img=np.transpose(img, (1,2,0))
+    print('Slide shape:',img.shape)
     
     # Predict
     if hyperparams is not None:
+
         if "model_type" in hyperparams:
             del hyperparams["model_type"]
-        res, _, _, _ = model.eval(
-            img,
-            channels=[0, 0],
-            **hyperparams
-        )
-    else:
-        res, _, _, _ = model.eval(
-            img,
-            channels=[0, 0]
-        )
         
+        try:
+            res, _, _,_= model.eval(img,channels=[0, 0],**hyperparams)
+            
+        except torch.cuda.OutOfMemoryError:
+            print('GPU out of memory, running Cellpose with only CPU')
+            model=models.Cellpose(gpu=False,model_type=model_type)
+            res, _, _,_= model.eval(img,channels=[0, 0],**hyperparams)
+            
+    else:
+        try:
+            res, _, _,_= model.eval(img,channels=[0, 0])
+            
+        except torch.cuda.OutOfMemoryError:
+            print('GPU out of memory, running Cellpose with only CPU')
+            model=models.Cellpose(gpu=False,model_type=model_type)
+            res, _, _,_= model.eval(img,channels=[0, 0])
     return res
 
 def segment_binning(

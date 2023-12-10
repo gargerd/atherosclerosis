@@ -88,46 +88,13 @@ for (ref_genome in ref_genomes){
   ## Save file
   fn=paste0('../../data/',ref_genome,'_data_with_doublet_scores.h5ad')
   print('save .h5ad file')
-  writeH5AD(sce_,file=fn)
+  writeH5AD(sce_,file=fn,compression='gzip')
 
 }
 
 ```
 
-```{r}
-colData(sce_)
-```
 
-```{r}
-for (n in 1:length(l)){
-    print(n)
-    print(l[[n]])
-    print(rownames(rowData((l[[n]]))))
-    print('')
-    if (n==1){
-      sce_=l[[n]]}
-    
-    if (n!=1){
-      sce_=cbind(sce_,l[[n]])}
-  }
-```
-
-```{r}
-print(sce_)
-a=rownames(rowData((l[[n]])))
-b=(rownames(rowData((sce_))))
-all(a==b)
-length(colnames(sce))
-length(colnames(l[[n]]))
-(colnames(sce)==colnames(l[[n]]))
-colnames(colData(l[[n]]))==colnames(colData(sce))
-```
-
-```{r}
-c=rowData((l[[n]]))$scDblFinder.selected
-d=rowData((sce_))$scDblFinder.selected
-all(c==d)
-```
 
 
 

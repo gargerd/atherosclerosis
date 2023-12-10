@@ -1,0 +1,38 @@
+```{r}
+libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+#install.packages('arrow')
+library(sctransform)
+library(feather)
+
+#library(arrow)
+#mat <- t(as.matrix(arrow::read_feather("/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/ssam_analysis/test.feather"))) 
+mat <- t(as.matrix(read.csv("/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/ssam_analysis/test.csv"))) 
+colnames(mat) <- 1:ncol(mat); 
+res <- vst(mat, return_gene_attr=TRUE, return_cell_attr=TRUE,min_cells=0,method='glmGamPoi')
+write.csv(as.data.frame(t(res$y)), "/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/ssam_analysis/test_out.csv"); 
+write.csv(as.data.frame(res$model_pars_fit), "/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/ssam_analysis/test_fit_params.csv")
+
+```
+```{r}
+
+
+a=res$model_pars_fit
+b=(t(res$y))
+dim(b)
+t(a)
+```
+
+```{r}
+library(feather); 
+library(sctransform); 
+mat <- t(as.matrix(read_feather("/tmp/tmpiumyt_4y/in.csv"))); 
+colnames(mat) <- 1:ncol(mat); 
+res <- vst(mat, return_gene_attr=TRUE, return_cell_attr=TRUE); 
+write_feather(as.data.frame(t(res$y)), "/tmp/tmpiumyt_4y/out.csv"); 
+write_feather(as.data.frame(res$model_pars_fit), "/tmp/tmpiumyt_4y/fit_params.csv");
+```
+

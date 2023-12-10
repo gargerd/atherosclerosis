@@ -1,0 +1,185 @@
+
+
+```{r}
+library(DESeq2)
+library(muscat)
+library(SingleCellExperiment)
+library(zellkonverter)
+```
+
+```{r}
+dat=readH5AD('../data/data_scvi_batch_corrected.h5ad')
+meta=read.csv('../data/adata_obs_with_metadata.csv')
+```
+
+# Determine marker genes of Leiden-clusters of scVI-batch corrected data
+
+## 1. For each Leiden-cluster do:
+## 2. Calculate Pseudo-bulk counts (sum counts per each patient)
+## 3. Split __sce__ object into 2 datasets: cells in Leiden-clust vs. rest
+## 4. Merge the created datasets' counts and create a "coldata" dataframe for creating a design matrix later
+## 5. Perform DGE with DESeq2 between Leiden-cluster cells vs. rest, controlling for "patient" as batch effect
+
+```{r}
+
+## Create a coldata dataframe containing the batch effect descriptors
+coldata=aggregate(x=meta[,c('preparation_kit','batch','Age')],
+                             by=list(patient=meta$patient),FUN=unique)
+rownames(coldata)=coldata$patient
+
+
+## Function for searching cluster marker genes
+get_leiden_marker_genes=function(dat,leiden_clust_colname,coldata){
+  
+  ## Init list for collecting results
+  de_result_list=list()
+  
+  ## Loop over the Leiden-clusters
+  for (leiden_clust in unique(sort(dat@colData[,leiden_clust_colname]))){
+    print(leiden_clust)
+    
+    
+    ### Split SCE object into cells of Leiden-cluster vs. rest
+    leid_clust_dat=dat[,dat@colData[,leiden_clust_colname]==leiden_clust]
+    rest_dat=dat[,dat@colData[,leiden_clust_colname]!=leiden_clust]
+    
+    
+    ## Sum the cells per each patient, creating a pseudo-bulk dataset of num_genes x num_patients
+    leid_clust_pb=aggregateData(leid_clust_dat, assay="counts", fun='sum', by=c('patient'))
+    rest_pb=aggregateData(rest_dat, assay="counts", fun='sum', by=c('patient'))
+    
+    ## Add suffix to colnames, indicating where the data comes from (cluster or rest dataset)
+    leid_clust_pb_coln=paste(colnames(assay(leid_clust_pb)), "_clust", sep = "")
+    rest_pb_coln=paste(colnames(assay(rest_pb)), "_rest", sep = "")
+    
+    ## Reorder coldata to align with count data
+    coldata_clust=coldata[colnames(assay(leid_clust_pb)),]
+    coldata_rest=coldata[colnames(assay(rest_pb)),]
+    
+    
+    
+    ### Concatenate the two count datasets (cluster and rest) + update its colname
+    contr_data=cbind(assay(leid_clust_pb),assay(rest_pb))
+    contr_data_coln=c(leid_clust_pb_coln,rest_pb_coln)
+    colnames(contr_data)=contr_data_coln
+    
+    
+    
+    ### Concatenate the coldata as well fpr the clust and rest samples
+    contr_data_coldata=rbind(coldata_clust,coldata_rest)
+    rownames(contr_data_coldata)=contr_data_coln
+    
+    ## Add column indicating origin of data (clust or rest) + set rest as level 0
+    contr_data_coldata[,'contrast']=c(rep('clust',length(leid_clust_pb_coln)),
+                                          rep('rest',length(rest_pb_coln)))
+    contr_data_coldata$contrast=factor(contr_data_coldata$contrast, levels=c('rest','clust'))
+    
+    ## Convert character columns to factors
+    cols_to_factors=c('preparation_kit','batch','patient')
+    contr_data_coldata[, cols_to_factors] <- lapply(contr_data_coldata[, cols_to_factors], factor)
+    
+    ## Reorder coldata's rows to match the merged count matrix's columns (pre-requisite for DESeq2)
+    contr_data_coldata=contr_data_coldata[colnames(contr_data),]
+    
+    
+    
+    ### Perform DGE and extract results
+    dge=DESeqDataSetFromMatrix(contr_data, colData=contr_data_coldata, 
+                                #design=~1+batch+patient+preparation_kit+contrast)
+                               design=~1+patient+contrast)
+    dds=DESeq(dge)
+    res=results(dds, contrast=c("contrast","clust","rest"))
+    deseq_out=as.data.frame(res@listData, row.names = res@rownames)
+    
+    
+    df=deseq_out[,c("log2FoldChange","pvalue","padj")]
+    df$gene=rownames(deseq_out)
+    colnames(df)=c("log2FC","pvalue","padj","gene")
+    df[,'cluster']=leiden_clust
+    
+    ## Extract only significant genes (FDR<0.05) + sort by most significant
+    df=df[(df$padj<0.05)&(!is.na(df$padj)),]
+    df=df[order(df$padj),]
+    
+    ## Add result to result list
+    de_result_list[[leiden_clust]]=df
+  }
+  
+  return (de_result_list)  
+}
+```
+
+
+## Perform the marker gene search for all genes
+```{r}
+## Run marker gene function
+#colnames(dat@colData)
+leiden_clust_colname='leiden_scVI_batch_patient_corr_model'
+marker_df_list=get_leiden_marker_genes(dat,leiden_clust_colname,coldata)
+
+## Use do.call to apply rbind to the list of data frames
+concatenated_df <- do.call(rbind, marker_df_list)
+## Reset rownames
+rownames(concatenated_df) <- NULL
+
+## Save concatenated data frame
+deseq2_dirname='../data/dge_deseq2'
+fname='scvi_leiden_clust_marker_genes.csv'
+file_path=file.path(deseq2_dirname,fname)
+write.csv(concatenated_df,file=file_path)
+
+```
+
+
+## Perform the markers genes search for data that is subsetted to HVG (HVG previously calculated in scanpy)
+```{r}
+
+## Leiden resolutions (the higher number, the more clusters there are)
+leiden_resolutions=c(1)
+
+## List of HVG numbers to loop over
+hvg_num_list=c(500,800,1000,2000,4000)
+
+## Dirname for saving the results to
+deseq2_dirname='../data/dge_deseq2'
+
+
+for(leiden_resolution in leiden_resolutions){
+  
+  for (n_top_genes in hvg_num_list[5:5]){
+    
+    ## Extract column name containing HVG genes
+    hvg_genes_coln=(paste0('highly_variable_',n_top_genes))
+    
+    ## Extract column name containing Leiden-clusters
+    leiden_clust_colname=paste(c('leiden_hvg',n_top_genes,'scVI',leiden_resolution),collapse='_')
+    
+    ## Subset data to the HVG genes
+    dat_hvg=dat[dat@rowRanges@elementMetadata[,hvg_genes_coln],]
+    
+    ## Perform marker genes search for subsetted HVG data
+    marker_df_list=get_leiden_marker_genes(dat_hvg,leiden_clust_colname,coldata)
+    
+    ## Use do.call to apply rbind to the list of data frames
+    concatenated_df <- do.call(rbind, marker_df_list)
+    ## Reset rownames
+    rownames(concatenated_df) <- NULL
+    
+    
+    ## Save results
+    fn=paste(c('scvi_leiden_clust_marker_genes_hvg',n_top_genes,leiden_resolution),collapse='_')
+    file_path=file.path(deseq2_dirname, paste0(fn,'.csv'))
+    write.csv(concatenated_df,file=file_path)
+    
+  }
+}  
+```
+
+## Save list of DGE result dataframes
+
+```{r}
+unique(dat@colData[,'leiden_scVI'])
+
+unique(concatenated_df$cluster)
+```
+
