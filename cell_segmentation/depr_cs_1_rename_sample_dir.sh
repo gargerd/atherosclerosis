@@ -1,5 +1,10 @@
 #!/bin/bash
 
+### THIS SCRIPTT RENAMES THE ORIGINAL XENIUM OUTPUT FOLDERS FROM THIS:
+#    '20230808__140639__2311-01_Sachs_Panel1/output-XETG00050__0003370__P3_D__20230808__140759'
+#   TO THIS:
+#    20230808__140639__2311-01_Sachs_Panel1/Panel1_P3_D
+
 ## Set errors for bash script
 set -euo pipefail #o
 

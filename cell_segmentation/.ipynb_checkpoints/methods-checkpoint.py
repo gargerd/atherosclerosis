@@ -7,7 +7,6 @@ from squidpy._utils import NDArrayA
 import torch
 import logging
 from cellpose import io
-logger=io.logger_setup()
 #models_logger = logging.getLogger(__name__)
 #logging.basicConfig(level=logging.DEBUG)
 
@@ -98,6 +97,7 @@ def segment_cellpose(
         labelled image, where 0=no masks; 1,2,...=mask labels
     """
     from cellpose import models,core
+    logger=io.logger_setup()
     
     # Set model type
     if (hyperparams is not None) and ("model_type" in hyperparams):
