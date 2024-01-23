@@ -69,6 +69,8 @@ if __name__ == '__main__':
                 hparams[key] = DEFAULT_HYPERPARAMS[key]
     if args.hyperparams==None:  
         hparams=DEFAULT_HYPERPARAMS
+
+    print(hparams)
         
     id_code = args.id_code
     segment = True if args.segment!='no_segmentation'else False
@@ -77,7 +79,7 @@ if __name__ == '__main__':
     if segment:
         temp = os.path.join(temp,f"assignments_{segmentation_method}_baysor-{id_code}")
     else:
-        temp =os.path.join(temp,f"assignments_baysor-{id_code}")
+        temp =os.path.join(temp,f"assignments_no_segment_baysor-{id_code}")
     toml_file=os.path.join(temp,'config.toml')
 
     print('temp:    ', temp)
@@ -104,13 +106,13 @@ if __name__ == '__main__':
             if key not in ["scale", "prior-segmentation-confidence"]:
                 file.write(f'{key} = {val}\n')
                 
-   
+    
     # Note: we provide scale separately because when providing it via .toml baysor can complain that's it's not a float
     baysor_cli = f"run -s {hparams['scale']/pixel_width} -c {toml_file} -o {temp}/ {molecules} --save-polygons=geojson"
     if segment:
         print("Running Baysor with prior segmentation")
         baysor_cli += f" --prior-segmentation-confidence {hparams['prior-segmentation-confidence']}"
-        baysor_cli += f" {segment_dir}/segments_{segmentation_method}-{id_code}.tif"
+        baysor_cli += f" {segment_dir}/segments_{segmentation_method}-{id_code.split('scale_')[0]+id_code.split('exp_')[-1]}.tif"
     else:
         print("Running Baysor without prior segmentation")
 

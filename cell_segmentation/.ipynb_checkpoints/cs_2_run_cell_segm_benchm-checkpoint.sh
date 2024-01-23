@@ -38,10 +38,10 @@ sample_name_list=('P1_H' 'P1_D' 'P2_H' 'P2_D' 'P3_H' 'P3_D' 'P4_H' 'P4_D')
 
 ### SEGMENTATION PARAMETERS
 # Size of cell expansion after cell segmentation (um) => has to be converted to pixels!
-segment_expansion_sizes_um=('0' '4' '6' '10') 
+segment_expansion_sizes_um=('0') # '4' '6' '10') 
 
 # Segmentation methods
-segment_methods=('10x') #'cellpose' 
+segment_methods=('cellpose') #'' 10x
 
 ## Cellpose model types
 cellpose_model_types=('cyto' 'nuclei')
@@ -49,7 +49,7 @@ cellpose_model_types=('cyto' 'nuclei')
 
 ### BAYSOR PARAMETERS
 # Values for 'scale' parameter in Baysor => ~ expected RADIUS of cells in um-s
-baysor_scale_arr_um=('3' '5' '8') 
+#baysor_scale_arr_um=('3' '5' '8') 
 
 
 start=$(date +%s)
