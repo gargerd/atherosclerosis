@@ -1,0 +1,120 @@
+```{r}
+libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+#install.packages('arrow')
+library(sctransform)
+library(feather)
+
+
+mat <- t(as.matrix(read.csv("/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/ssam_analysis/test.csv"))) 
+colnames(mat) <- 1:ncol(mat); 
+res <- vst(mat, return_gene_attr=TRUE, return_cell_attr=TRUE,min_cells=1,method='poisson')
+
+res_mat=t(res$y)
+pars_fit=res$model_pars_fit
+low_genes=row.names(mat)[!(row.names(mat) %in% colnames(res_mat))]
+low_gene_res=data.frame(matrix(0, nrow=nrow(res_mat), ncol=length(low_genes),dimnames=list(Rows = row.names(res_mat),Cols=low_genes)))
+low_gene_pars_fit=data.frame(matrix(0, nrow=length(low_genes), ncol=ncol(pars_fit)),row.names=low_genes)
+colnames(low_gene_pars_fit)=colnames(pars_fit)
+
+if (length(low_genes>0))res_mat=cbind(res_mat,low_gene_res);pars_fit=rbind(pars_fit,low_gene_pars_fit)
+write.csv(as.data.frame(res_mat), "/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/ssam_analysis/test_out.csv"); 
+write.csv(as.data.frame(pars_fit), "/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/ssam_analysis/test_fit_params.csv")
+
+```
+### Script for acosh normalisation 
+
+```{r}
+library(scran)
+library(transformGamPoi)
+library(MatrixGenerics)
+library(BiocParallel)
+```
+
+```{r}
+
+sce=read.csv("/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/ssam_analysis/test.csv")
+sce=t(sce) #res_mat
+overdispersion=0.1
+# Exclude genes where all counts are zero
+#sce <- sce[rowMeans2(counts(sce)) > 0, ]
+
+gene_means <- rowMeans2(sce)
+gene_var <- rowVars(sce)
+plot(gene_means, gene_var, log = "xy", main=paste0(" - Log-log scatter plot of mean vs variance"))
+abline(a = 0, b = 1)
+sorted_means <- sort(gene_means)
+lines(sorted_means, sorted_means + overdispersion * sorted_means^2, col = "purple")
+
+
+#====== Calculate size factors for all cells with scran -> use Fastcluster clusters for this ===========
+input_groups <- quickCluster(sce)
+table(input_groups)
+data_mat=sce
+register(MulticoreParam(workers = 4))
+size_factors = calculateSumFactors(data_mat, clusters=input_groups,min.mean=0.00001)
+rm(data_mat)
+
+
+
+#====== Apply acosh and (shifted log) transformation to the raw counts ============
+## If memory is enough ~ >64GB, on_disk can be set to TRUE -> calculation is much faster using memory
+## If memory is sparse, set on_disk=TRUE, this way there is no out-of-memory error, in exchange for slower speed
+sce_acosh=acosh_transform(sce,size_factors=size_factors,overdispersion=FALSE,on_disk = TRUE)
+#assay(sce, withDimnames=FALSE,"shifted_log")=shifted_log_transform(assay(sce,"counts"),size_factors=size_factors,overdispersion=TRUE,on_disk=TRUE)
+
+## Plot mean-variance plot of normalised data
+acosh_var <- rowVars(sce_acosh)
+plot(gene_means, acosh_var, log = "x", main = "Log expression vs variance of acosh stabilized values")
+abline(h = 1)
+  
+help(pool_size_factors)
+
+```
+
+
+
+
+```{r}
+
+
+
+
+
+
+
+b=(t(res$y))
+
+low_genes=colnames(d)[!(colnames(d) %in% colnames(b))]
+high_genes=colnames(d)[(colnames(d) %in% colnames(b))]
+
+# Calculate the sums for low_genes and high_genes
+sum_low_genes = unlist(lapply(d[low_genes], 0, FUN = sum))
+sum_high_genes = unlist(lapply(d[high_genes], 0, FUN = sum))
+
+
+num_bins=30
+# Plot both histograms on the same plot
+hist(sum_low_genes, col = "blue", main = "Histogram of Gene Sums", xlab = "Sum", ylab = "Frequency", breaks = num_bins)
+hist(sum_high_genes, col = "red", add = F,breaks = num_bins*1000, xlim = c(0, 1)) #max(c(sum_low_genes, sum_high_genes))
+
+# Add legend
+legend("topright", legend = c("Low Genes", "High Genes"), fill = c("blue", "red"))
+
+
+
+```
+
+```{r}
+library(feather); 
+library(sctransform); 
+mat <- t(as.matrix(read_feather("/tmp/tmpiumyt_4y/in.csv"))); 
+colnames(mat) <- 1:ncol(mat); 
+res <- vst(mat, return_gene_attr=TRUE, return_cell_attr=TRUE); 
+write_feather(as.data.frame(t(res$y)), "/tmp/tmpiumyt_4y/out.csv"); 
+write_feather(as.data.frame(res$model_pars_fit), "/tmp/tmpiumyt_4y/fit_params.csv");
+```
+

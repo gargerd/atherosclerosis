@@ -1,0 +1,49 @@
+#### RUN THIS WITH R-4.2.1, AS 4.1.2/4.1.3 THROWS ERROR WHIT ANNDATA'S READ5HD FUNCTION
+
+### Add proper R-version folder with installed packages to libPaths
+```{r}
+#.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.2')
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+library(zellkonverter)
+library(scDblFinder)
+library(SingleCellExperiment)
+library(BiocParallel)
+
+```
+
+```{r}
+fname='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/true_cell_filtering/baysor/Panel1_P1_D/test.h5ad'
+dat=zellkonverter::readH5AD(fname,reader='python')
+```
+
+```{r}
+assayNames(dat)
+## Rename AssayName from 'X' to 'counts', as this is necessary for scDblFinder to run
+assayNames(dat)[grepl('raw_counts',assayNames(dat))]='counts'
+
+
+bp<-MulticoreParam(workers=2, progressbar=TRUE,RNGseed=1234)
+sce=scDblFinder(dat,samples='original_sample',cluster='leiden_merged',BPPARAM=bp)
+
+write.csv(colData(sce), file=gzfile("/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/true_cell_filtering/baysor/Panel1_P1_D/test_out.csv.gz"))
+###### Save the data as .h5ad file #####
+## Rename AssayName from 'X' to 'counts', as this is necessary for scDblFinder to run
+#assayNames(sce)[grepl('counts',assayNames(sce))]='raw_counts'
+
+## Save file
+#fn='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/true_cell_filtering/baysor/Panel1_P1_D/test_out.h5ad'
+#print('save .h5ad file')
+#writeH5AD(sce,file=fn,compression='gzip')
+```
+```{r}
+colData(tab)
+```
+
+```{r}
+reticulate::py_last_error()
+```
+
