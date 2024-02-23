@@ -14485,3 +14485,2504 @@ Parameters: n_neighbors:1500, max_radius:800
 12-Feb-24 20:36:49 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 12-Feb-24 20:36:49 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 12-Feb-24 20:36:49 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+20-Feb-24 22:04:25 - For sample Panel1_P1_D loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:04:26 - Generating background bins
+20-Feb-24 22:04:41 - Generating anndata from cells
+
+20-Feb-24 22:05:15 - For sample Panel1_P1_D loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:05:16 - Generating background bins
+20-Feb-24 22:05:30 - Generating anndata from cells
+
+20-Feb-24 22:05:33 - Dataset: Panel1_P1_D - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:05:33 - Number of raw transcripts: 427165
+20-Feb-24 22:05:33 - Number of transcripts deemed as noise: 81371 - 19.05%
+20-Feb-24 22:05:33 - Number of transcripts kept after filtering: 213655 - 50.02%
+20-Feb-24 22:05:33 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 9807
+20-Feb-24 22:05:34 - Panel1_P1_D - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:05:34 - =====================
+20-Feb-24 22:05:34 - For sample Panel1_P1_D loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:05:34 - Generating background bins
+20-Feb-24 22:05:47 - Generating anndata from cells
+
+20-Feb-24 22:05:50 - Dataset: Panel1_P1_D - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:05:50 - Number of raw transcripts: 427165
+20-Feb-24 22:05:50 - Number of transcripts deemed as noise: 76641 - 17.94%
+20-Feb-24 22:05:50 - Number of transcripts kept after filtering: 245155 - 57.39%
+20-Feb-24 22:05:50 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 7959
+20-Feb-24 22:05:50 - Panel1_P1_D - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:05:50 - =====================
+20-Feb-24 22:05:50 - For sample Panel1_P1_D loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:05:51 - Generating background bins
+20-Feb-24 22:06:04 - Generating anndata from cells
+
+20-Feb-24 22:06:07 - Dataset: Panel1_P1_D - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:06:07 - Number of raw transcripts: 427165
+20-Feb-24 22:06:07 - Number of transcripts deemed as noise: 79352 - 18.58%
+20-Feb-24 22:06:07 - Number of transcripts kept after filtering: 226436 - 53.01%
+20-Feb-24 22:06:07 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 7212
+20-Feb-24 22:06:07 - Panel1_P1_D - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:06:07 - =====================
+20-Feb-24 22:06:07 - For sample Panel1_P1_D loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:06:08 - Generating background bins
+20-Feb-24 22:06:21 - Generating anndata from cells
+
+20-Feb-24 22:06:25 - Dataset: Panel1_P1_D - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:06:25 - Number of raw transcripts: 427165
+20-Feb-24 22:06:25 - Number of transcripts deemed as noise: 79206 - 18.54%
+20-Feb-24 22:06:25 - Number of transcripts kept after filtering: 254740 - 59.64%
+20-Feb-24 22:06:25 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 10376
+20-Feb-24 22:06:25 - Panel1_P1_D - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:06:25 - =====================
+20-Feb-24 22:06:25 - For sample Panel1_P1_D loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:06:26 - Generating background bins
+20-Feb-24 22:06:39 - Generating anndata from cells
+
+20-Feb-24 22:06:43 - Dataset: Panel1_P1_D - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:06:43 - Number of raw transcripts: 427165
+20-Feb-24 22:06:43 - Number of transcripts deemed as noise: 81178 - 19.0%
+20-Feb-24 22:06:43 - Number of transcripts kept after filtering: 247759 - 58.0%
+20-Feb-24 22:06:43 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 9706
+20-Feb-24 22:06:44 - Panel1_P1_D - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:06:44 - =====================
+20-Feb-24 22:06:44 - For sample Panel1_P1_D loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:06:44 - Generating background bins
+20-Feb-24 22:06:57 - Generating anndata from cells
+
+20-Feb-24 22:07:00 - Dataset: Panel1_P1_D - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:07:00 - Number of raw transcripts: 427165
+20-Feb-24 22:07:00 - Number of transcripts deemed as noise: 77416 - 18.12%
+20-Feb-24 22:07:00 - Number of transcripts kept after filtering: 251559 - 58.89%
+20-Feb-24 22:07:00 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 7851
+20-Feb-24 22:07:00 - Panel1_P1_D - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:07:00 - =====================
+20-Feb-24 22:07:00 - For sample Panel1_P1_D loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:07:01 - Generating background bins
+20-Feb-24 22:07:14 - Generating anndata from cells
+
+20-Feb-24 22:07:19 - Dataset: Panel1_P1_D - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:07:19 - Number of raw transcripts: 427165
+20-Feb-24 22:07:19 - Number of transcripts deemed as noise: 78494 - 18.38%
+20-Feb-24 22:07:19 - Number of transcripts kept after filtering: 248576 - 58.19%
+20-Feb-24 22:07:19 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 10474
+20-Feb-24 22:07:19 - Panel1_P1_D - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:07:19 - =====================
+20-Feb-24 22:07:19 - For sample Panel1_P1_D loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:07:19 - Generating background bins
+20-Feb-24 22:07:35 - Generating anndata from cells
+
+20-Feb-24 22:07:41 - Dataset: Panel1_P1_D - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:07:41 - Number of raw transcripts: 427165
+20-Feb-24 22:07:41 - Number of transcripts deemed as noise: 88181 - 20.64%
+20-Feb-24 22:07:41 - Number of transcripts kept after filtering: 214489 - 50.21%
+20-Feb-24 22:07:41 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 17067
+20-Feb-24 22:07:42 - Panel1_P1_D - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:07:42 - =====================
+20-Feb-24 22:07:42 - For sample Panel1_P1_D loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:07:42 - Generating background bins
+20-Feb-24 22:07:58 - Generating anndata from cells
+
+20-Feb-24 22:08:04 - Dataset: Panel1_P1_D - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:08:04 - Number of raw transcripts: 427165
+20-Feb-24 22:08:04 - Number of transcripts deemed as noise: 88205 - 20.65%
+20-Feb-24 22:08:04 - Number of transcripts kept after filtering: 234544 - 54.91%
+20-Feb-24 22:08:04 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 16900
+20-Feb-24 22:08:04 - Panel1_P1_D - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:08:04 - =====================
+20-Feb-24 22:08:04 - For sample Panel1_P1_D loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:08:05 - Generating background bins
+20-Feb-24 22:08:21 - Generating anndata from cells
+
+20-Feb-24 22:08:27 - Dataset: Panel1_P1_D - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:08:27 - Number of raw transcripts: 427165
+20-Feb-24 22:08:27 - Number of transcripts deemed as noise: 86337 - 20.21%
+20-Feb-24 22:08:27 - Number of transcripts kept after filtering: 260838 - 61.06%
+20-Feb-24 22:08:27 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 17456
+20-Feb-24 22:08:27 - Panel1_P1_D - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:08:27 - =====================
+20-Feb-24 22:08:27 - For sample Panel1_P1_D loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:08:28 - Generating background bins
+20-Feb-24 22:08:41 - Generating anndata from cells
+
+20-Feb-24 22:08:44 - Dataset: Panel1_P1_D - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:08:44 - Number of raw transcripts: 427165
+20-Feb-24 22:08:44 - Number of transcripts deemed as noise: 79291 - 18.56%
+20-Feb-24 22:08:44 - Number of transcripts kept after filtering: 265578 - 62.17%
+20-Feb-24 22:08:44 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 6965
+20-Feb-24 22:08:44 - Panel1_P1_D - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:08:44 - =====================
+20-Feb-24 22:08:44 - For sample Panel1_P1_D loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:08:45 - Generating background bins
+20-Feb-24 22:09:00 - Generating anndata from cells
+
+20-Feb-24 22:09:07 - Dataset: Panel1_P1_D - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:09:07 - Number of raw transcripts: 427165
+20-Feb-24 22:09:07 - Number of transcripts deemed as noise: 85649 - 20.05%
+20-Feb-24 22:09:07 - Number of transcripts kept after filtering: 255682 - 59.86%
+20-Feb-24 22:09:07 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 17373
+20-Feb-24 22:09:07 - Panel1_P1_D - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:09:07 - =====================
+20-Feb-24 22:09:07 - For sample Panel1_P1_H loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:09:08 - Generating background bins
+20-Feb-24 22:09:13 - Generating anndata from cells
+
+20-Feb-24 22:09:17 - Dataset: Panel1_P1_H - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:09:17 - Number of raw transcripts: 423747
+20-Feb-24 22:09:17 - Number of transcripts deemed as noise: 21641 - 5.11%
+20-Feb-24 22:09:17 - Number of transcripts kept after filtering: 265205 - 62.59%
+20-Feb-24 22:09:17 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 8920
+20-Feb-24 22:09:17 - Panel1_P1_H - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:09:17 - =====================
+20-Feb-24 22:09:17 - For sample Panel1_P1_H loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:09:18 - Generating background bins
+20-Feb-24 22:09:22 - Generating anndata from cells
+
+20-Feb-24 22:09:25 - Dataset: Panel1_P1_H - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:09:25 - Number of raw transcripts: 423747
+20-Feb-24 22:09:25 - Number of transcripts deemed as noise: 19802 - 4.67%
+20-Feb-24 22:09:25 - Number of transcripts kept after filtering: 309073 - 72.94%
+20-Feb-24 22:09:25 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 6405
+20-Feb-24 22:09:25 - Panel1_P1_H - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:09:25 - =====================
+20-Feb-24 22:09:25 - For sample Panel1_P1_H loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:09:26 - Generating background bins
+20-Feb-24 22:09:31 - Generating anndata from cells
+
+20-Feb-24 22:09:33 - Dataset: Panel1_P1_H - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:09:33 - Number of raw transcripts: 423747
+20-Feb-24 22:09:33 - Number of transcripts deemed as noise: 20403 - 4.81%
+20-Feb-24 22:09:33 - Number of transcripts kept after filtering: 279295 - 65.91%
+20-Feb-24 22:09:33 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 6066
+20-Feb-24 22:09:33 - Panel1_P1_H - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:09:33 - =====================
+20-Feb-24 22:09:33 - For sample Panel1_P1_H loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:09:34 - Generating background bins
+20-Feb-24 22:09:39 - Generating anndata from cells
+
+20-Feb-24 22:09:43 - Dataset: Panel1_P1_H - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:09:43 - Number of raw transcripts: 423747
+20-Feb-24 22:09:43 - Number of transcripts deemed as noise: 20966 - 4.95%
+20-Feb-24 22:09:43 - Number of transcripts kept after filtering: 315969 - 74.57%
+20-Feb-24 22:09:43 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 8935
+20-Feb-24 22:09:43 - Panel1_P1_H - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:09:43 - =====================
+20-Feb-24 22:09:43 - For sample Panel1_P1_H loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:09:44 - Generating background bins
+20-Feb-24 22:09:49 - Generating anndata from cells
+
+20-Feb-24 22:09:52 - Dataset: Panel1_P1_H - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:09:52 - Number of raw transcripts: 423747
+20-Feb-24 22:09:52 - Number of transcripts deemed as noise: 21385 - 5.05%
+20-Feb-24 22:09:52 - Number of transcripts kept after filtering: 310385 - 73.25%
+20-Feb-24 22:09:52 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 8409
+20-Feb-24 22:09:52 - Panel1_P1_H - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:09:52 - =====================
+20-Feb-24 22:09:52 - For sample Panel1_P1_H loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:09:53 - Generating background bins
+20-Feb-24 22:09:58 - Generating anndata from cells
+
+20-Feb-24 22:10:00 - Dataset: Panel1_P1_H - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:10:00 - Number of raw transcripts: 423747
+20-Feb-24 22:10:00 - Number of transcripts deemed as noise: 19830 - 4.68%
+20-Feb-24 22:10:00 - Number of transcripts kept after filtering: 316076 - 74.59%
+20-Feb-24 22:10:01 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 6218
+20-Feb-24 22:10:01 - Panel1_P1_H - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:10:01 - =====================
+20-Feb-24 22:10:01 - For sample Panel1_P1_H loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:10:01 - Generating background bins
+20-Feb-24 22:10:07 - Generating anndata from cells
+
+20-Feb-24 22:10:10 - Dataset: Panel1_P1_H - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:10:10 - Number of raw transcripts: 423747
+20-Feb-24 22:10:10 - Number of transcripts deemed as noise: 20985 - 4.95%
+20-Feb-24 22:10:10 - Number of transcripts kept after filtering: 313508 - 73.98%
+20-Feb-24 22:10:10 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 9078
+20-Feb-24 22:10:10 - Panel1_P1_H - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:10:10 - =====================
+20-Feb-24 22:10:10 - For sample Panel1_P1_H loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:10:11 - Generating background bins
+20-Feb-24 22:10:17 - Generating anndata from cells
+
+20-Feb-24 22:10:24 - Dataset: Panel1_P1_H - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:10:24 - Number of raw transcripts: 423747
+20-Feb-24 22:10:24 - Number of transcripts deemed as noise: 24981 - 5.9%
+20-Feb-24 22:10:24 - Number of transcripts kept after filtering: 258381 - 60.98%
+20-Feb-24 22:10:24 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 16882
+20-Feb-24 22:10:24 - Panel1_P1_H - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:10:24 - =====================
+20-Feb-24 22:10:24 - For sample Panel1_P1_H loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:10:25 - Generating background bins
+20-Feb-24 22:10:31 - Generating anndata from cells
+
+20-Feb-24 22:10:37 - Dataset: Panel1_P1_H - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:10:37 - Number of raw transcripts: 423747
+20-Feb-24 22:10:37 - Number of transcripts deemed as noise: 24882 - 5.87%
+20-Feb-24 22:10:37 - Number of transcripts kept after filtering: 270073 - 63.73%
+20-Feb-24 22:10:37 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 16480
+20-Feb-24 22:10:37 - Panel1_P1_H - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:10:37 - =====================
+20-Feb-24 22:10:37 - For sample Panel1_P1_H loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:10:38 - Generating background bins
+20-Feb-24 22:10:44 - Generating anndata from cells
+
+20-Feb-24 22:10:51 - Dataset: Panel1_P1_H - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:10:51 - Number of raw transcripts: 423747
+20-Feb-24 22:10:51 - Number of transcripts deemed as noise: 24567 - 5.8%
+20-Feb-24 22:10:51 - Number of transcripts kept after filtering: 310221 - 73.21%
+20-Feb-24 22:10:51 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 16883
+20-Feb-24 22:10:51 - Panel1_P1_H - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:10:51 - =====================
+20-Feb-24 22:10:51 - For sample Panel1_P1_H loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:10:52 - Generating background bins
+20-Feb-24 22:10:57 - Generating anndata from cells
+
+20-Feb-24 22:10:59 - Dataset: Panel1_P1_H - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:10:59 - Number of raw transcripts: 423747
+20-Feb-24 22:10:59 - Number of transcripts deemed as noise: 20101 - 4.74%
+20-Feb-24 22:10:59 - Number of transcripts kept after filtering: 328314 - 77.48%
+20-Feb-24 22:10:59 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 5422
+20-Feb-24 22:10:59 - Panel1_P1_H - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:10:59 - =====================
+20-Feb-24 22:10:59 - For sample Panel1_P1_H loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:11:00 - Generating background bins
+20-Feb-24 22:11:06 - Generating anndata from cells
+
+20-Feb-24 22:11:12 - Dataset: Panel1_P1_H - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:11:12 - Number of raw transcripts: 423747
+20-Feb-24 22:11:12 - Number of transcripts deemed as noise: 24474 - 5.78%
+20-Feb-24 22:11:12 - Number of transcripts kept after filtering: 312176 - 73.67%
+20-Feb-24 22:11:12 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 16875
+20-Feb-24 22:11:12 - Panel1_P1_H - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:11:12 - =====================
+20-Feb-24 22:11:12 - For sample Panel1_P2_D loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:11:13 - Generating background bins
+20-Feb-24 22:11:20 - Generating anndata from cells
+
+20-Feb-24 22:11:23 - Dataset: Panel1_P2_D - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:11:23 - Number of raw transcripts: 154849
+20-Feb-24 22:11:23 - Number of transcripts deemed as noise: 15981 - 10.32%
+20-Feb-24 22:11:23 - Number of transcripts kept after filtering: 103758 - 67.01%
+20-Feb-24 22:11:23 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 9850
+20-Feb-24 22:11:23 - Panel1_P2_D - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:11:23 - =====================
+20-Feb-24 22:11:23 - For sample Panel1_P2_D loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:11:24 - Generating background bins
+20-Feb-24 22:11:30 - Generating anndata from cells
+
+20-Feb-24 22:11:33 - Dataset: Panel1_P2_D - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:11:33 - Number of raw transcripts: 154849
+20-Feb-24 22:11:33 - Number of transcripts deemed as noise: 13933 - 9.0%
+20-Feb-24 22:11:33 - Number of transcripts kept after filtering: 95991 - 61.99%
+20-Feb-24 22:11:33 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 7204
+20-Feb-24 22:11:33 - Panel1_P2_D - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:11:33 - =====================
+20-Feb-24 22:11:33 - For sample Panel1_P2_D loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:11:33 - Generating background bins
+20-Feb-24 22:11:39 - Generating anndata from cells
+
+20-Feb-24 22:11:42 - Dataset: Panel1_P2_D - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:11:42 - Number of raw transcripts: 154849
+20-Feb-24 22:11:42 - Number of transcripts deemed as noise: 14199 - 9.17%
+20-Feb-24 22:11:42 - Number of transcripts kept after filtering: 96969 - 62.62%
+20-Feb-24 22:11:42 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 7153
+20-Feb-24 22:11:42 - Panel1_P2_D - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:11:42 - =====================
+20-Feb-24 22:11:42 - For sample Panel1_P2_D loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:11:43 - Generating background bins
+20-Feb-24 22:11:49 - Generating anndata from cells
+
+20-Feb-24 22:11:53 - Dataset: Panel1_P2_D - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:11:53 - Number of raw transcripts: 154849
+20-Feb-24 22:11:53 - Number of transcripts deemed as noise: 16035 - 10.36%
+20-Feb-24 22:11:53 - Number of transcripts kept after filtering: 103787 - 67.02%
+20-Feb-24 22:11:53 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 9844
+20-Feb-24 22:11:53 - Panel1_P2_D - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:11:53 - =====================
+20-Feb-24 22:11:53 - For sample Panel1_P2_D loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:11:53 - Generating background bins
+20-Feb-24 22:12:00 - Generating anndata from cells
+
+20-Feb-24 22:12:04 - Dataset: Panel1_P2_D - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:12:04 - Number of raw transcripts: 154849
+20-Feb-24 22:12:04 - Number of transcripts deemed as noise: 16239 - 10.49%
+20-Feb-24 22:12:04 - Number of transcripts kept after filtering: 103202 - 66.65%
+20-Feb-24 22:12:04 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 9695
+20-Feb-24 22:12:04 - Panel1_P2_D - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:12:04 - =====================
+20-Feb-24 22:12:04 - For sample Panel1_P2_D loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:12:05 - Generating background bins
+20-Feb-24 22:12:10 - Generating anndata from cells
+
+20-Feb-24 22:12:13 - Dataset: Panel1_P2_D - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:12:13 - Number of raw transcripts: 154849
+20-Feb-24 22:12:13 - Number of transcripts deemed as noise: 14195 - 9.17%
+20-Feb-24 22:12:13 - Number of transcripts kept after filtering: 95808 - 61.87%
+20-Feb-24 22:12:13 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 7046
+20-Feb-24 22:12:13 - Panel1_P2_D - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:12:13 - =====================
+20-Feb-24 22:12:13 - For sample Panel1_P2_D loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:12:14 - Generating background bins
+20-Feb-24 22:12:20 - Generating anndata from cells
+
+20-Feb-24 22:12:24 - Dataset: Panel1_P2_D - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:12:24 - Number of raw transcripts: 154849
+20-Feb-24 22:12:24 - Number of transcripts deemed as noise: 15709 - 10.14%
+20-Feb-24 22:12:24 - Number of transcripts kept after filtering: 104565 - 67.53%
+20-Feb-24 22:12:24 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 9999
+20-Feb-24 22:12:24 - Panel1_P2_D - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:12:24 - =====================
+20-Feb-24 22:12:24 - For sample Panel1_P2_D loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:12:24 - Generating background bins
+20-Feb-24 22:12:33 - Generating anndata from cells
+
+20-Feb-24 22:12:38 - Dataset: Panel1_P2_D - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:12:38 - Number of raw transcripts: 154849
+20-Feb-24 22:12:38 - Number of transcripts deemed as noise: 22560 - 14.57%
+20-Feb-24 22:12:38 - Number of transcripts kept after filtering: 103572 - 66.89%
+20-Feb-24 22:12:38 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 15122
+20-Feb-24 22:12:38 - Panel1_P2_D - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:12:38 - =====================
+20-Feb-24 22:12:38 - For sample Panel1_P2_D loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:12:39 - Generating background bins
+20-Feb-24 22:12:48 - Generating anndata from cells
+
+20-Feb-24 22:12:53 - Dataset: Panel1_P2_D - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:12:53 - Number of raw transcripts: 154849
+20-Feb-24 22:12:53 - Number of transcripts deemed as noise: 22713 - 14.67%
+20-Feb-24 22:12:53 - Number of transcripts kept after filtering: 102845 - 66.42%
+20-Feb-24 22:12:53 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 15004
+20-Feb-24 22:12:53 - Panel1_P2_D - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:12:53 - =====================
+20-Feb-24 22:12:53 - For sample Panel1_P2_D loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:12:53 - Generating background bins
+20-Feb-24 22:13:02 - Generating anndata from cells
+
+20-Feb-24 22:13:08 - Dataset: Panel1_P2_D - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:13:08 - Number of raw transcripts: 154849
+20-Feb-24 22:13:08 - Number of transcripts deemed as noise: 22485 - 14.52%
+20-Feb-24 22:13:08 - Number of transcripts kept after filtering: 103360 - 66.75%
+20-Feb-24 22:13:08 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 15136
+20-Feb-24 22:13:08 - Panel1_P2_D - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:13:08 - =====================
+20-Feb-24 22:13:08 - For sample Panel1_P2_D loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:13:08 - Generating background bins
+20-Feb-24 22:13:14 - Generating anndata from cells
+
+20-Feb-24 22:13:17 - Dataset: Panel1_P2_D - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:13:17 - Number of raw transcripts: 154849
+20-Feb-24 22:13:17 - Number of transcripts deemed as noise: 14452 - 9.33%
+20-Feb-24 22:13:17 - Number of transcripts kept after filtering: 95772 - 61.85%
+20-Feb-24 22:13:17 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 6964
+20-Feb-24 22:13:17 - Panel1_P2_D - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:13:17 - =====================
+20-Feb-24 22:13:17 - For sample Panel1_P2_D loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:13:18 - Generating background bins
+20-Feb-24 22:13:26 - Generating anndata from cells
+
+20-Feb-24 22:13:32 - Dataset: Panel1_P2_D - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:13:32 - Number of raw transcripts: 154849
+20-Feb-24 22:13:32 - Number of transcripts deemed as noise: 22161 - 14.31%
+20-Feb-24 22:13:32 - Number of transcripts kept after filtering: 105036 - 67.83%
+20-Feb-24 22:13:32 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 15383
+20-Feb-24 22:13:32 - Panel1_P2_D - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:13:32 - =====================
+20-Feb-24 22:13:32 - For sample Panel1_P2_H loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:13:33 - Generating background bins
+20-Feb-24 22:13:37 - Generating anndata from cells
+
+20-Feb-24 22:13:43 - Dataset: Panel1_P2_H - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:13:43 - Number of raw transcripts: 329759
+20-Feb-24 22:13:43 - Number of transcripts deemed as noise: 8838 - 2.68%
+20-Feb-24 22:13:43 - Number of transcripts kept after filtering: 243531 - 73.85%
+20-Feb-24 22:13:43 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 17446
+20-Feb-24 22:13:44 - Panel1_P2_H - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:13:44 - =====================
+20-Feb-24 22:13:44 - For sample Panel1_P2_H loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:13:44 - Generating background bins
+20-Feb-24 22:13:48 - Generating anndata from cells
+
+20-Feb-24 22:13:53 - Dataset: Panel1_P2_H - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:13:53 - Number of raw transcripts: 329759
+20-Feb-24 22:13:53 - Number of transcripts deemed as noise: 7676 - 2.33%
+20-Feb-24 22:13:53 - Number of transcripts kept after filtering: 223658 - 67.82%
+20-Feb-24 22:13:53 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 13001
+20-Feb-24 22:13:53 - Panel1_P2_H - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:13:53 - =====================
+20-Feb-24 22:13:53 - For sample Panel1_P2_H loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:13:54 - Generating background bins
+20-Feb-24 22:13:57 - Generating anndata from cells
+
+20-Feb-24 22:14:02 - Dataset: Panel1_P2_H - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:14:02 - Number of raw transcripts: 329759
+20-Feb-24 22:14:02 - Number of transcripts deemed as noise: 7664 - 2.32%
+20-Feb-24 22:14:02 - Number of transcripts kept after filtering: 229250 - 69.52%
+20-Feb-24 22:14:02 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 12714
+20-Feb-24 22:14:02 - Panel1_P2_H - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:14:02 - =====================
+20-Feb-24 22:14:02 - For sample Panel1_P2_H loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:14:03 - Generating background bins
+20-Feb-24 22:14:07 - Generating anndata from cells
+
+20-Feb-24 22:14:13 - Dataset: Panel1_P2_H - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:14:13 - Number of raw transcripts: 329759
+20-Feb-24 22:14:13 - Number of transcripts deemed as noise: 8876 - 2.69%
+20-Feb-24 22:14:13 - Number of transcripts kept after filtering: 240320 - 72.88%
+20-Feb-24 22:14:14 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 17531
+20-Feb-24 22:14:14 - Panel1_P2_H - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:14:14 - =====================
+20-Feb-24 22:14:14 - For sample Panel1_P2_H loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:14:14 - Generating background bins
+20-Feb-24 22:14:18 - Generating anndata from cells
+
+20-Feb-24 22:14:25 - Dataset: Panel1_P2_H - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:14:25 - Number of raw transcripts: 329759
+20-Feb-24 22:14:25 - Number of transcripts deemed as noise: 8919 - 2.7%
+20-Feb-24 22:14:25 - Number of transcripts kept after filtering: 241218 - 73.15%
+20-Feb-24 22:14:25 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 17289
+20-Feb-24 22:14:25 - Panel1_P2_H - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:14:25 - =====================
+20-Feb-24 22:14:25 - For sample Panel1_P2_H loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:14:26 - Generating background bins
+20-Feb-24 22:14:29 - Generating anndata from cells
+
+20-Feb-24 22:14:34 - Dataset: Panel1_P2_H - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:14:34 - Number of raw transcripts: 329759
+20-Feb-24 22:14:34 - Number of transcripts deemed as noise: 7699 - 2.33%
+20-Feb-24 22:14:34 - Number of transcripts kept after filtering: 226916 - 68.81%
+20-Feb-24 22:14:34 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 12558
+20-Feb-24 22:14:34 - Panel1_P2_H - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:14:34 - =====================
+20-Feb-24 22:14:34 - For sample Panel1_P2_H loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:14:35 - Generating background bins
+20-Feb-24 22:14:39 - Generating anndata from cells
+
+20-Feb-24 22:14:46 - Dataset: Panel1_P2_H - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:14:46 - Number of raw transcripts: 329759
+20-Feb-24 22:14:46 - Number of transcripts deemed as noise: 8849 - 2.68%
+20-Feb-24 22:14:46 - Number of transcripts kept after filtering: 239277 - 72.56%
+20-Feb-24 22:14:46 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 17674
+20-Feb-24 22:14:46 - Panel1_P2_H - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:14:46 - =====================
+20-Feb-24 22:14:46 - For sample Panel1_P2_H loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:14:47 - Generating background bins
+20-Feb-24 22:14:52 - Generating anndata from cells
+
+20-Feb-24 22:15:03 - Dataset: Panel1_P2_H - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:15:03 - Number of raw transcripts: 329759
+20-Feb-24 22:15:03 - Number of transcripts deemed as noise: 13725 - 4.16%
+20-Feb-24 22:15:03 - Number of transcripts kept after filtering: 255277 - 77.41%
+20-Feb-24 22:15:03 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 28217
+20-Feb-24 22:15:03 - Panel1_P2_H - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:15:03 - =====================
+20-Feb-24 22:15:03 - For sample Panel1_P2_H loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:15:04 - Generating background bins
+20-Feb-24 22:15:09 - Generating anndata from cells
+
+20-Feb-24 22:15:20 - Dataset: Panel1_P2_H - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:15:20 - Number of raw transcripts: 329759
+20-Feb-24 22:15:20 - Number of transcripts deemed as noise: 13775 - 4.18%
+20-Feb-24 22:15:20 - Number of transcripts kept after filtering: 251094 - 76.14%
+20-Feb-24 22:15:20 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 28150
+20-Feb-24 22:15:20 - Panel1_P2_H - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:15:20 - =====================
+20-Feb-24 22:15:20 - For sample Panel1_P2_H loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:15:21 - Generating background bins
+20-Feb-24 22:15:26 - Generating anndata from cells
+
+20-Feb-24 22:15:37 - Dataset: Panel1_P2_H - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:15:37 - Number of raw transcripts: 329759
+20-Feb-24 22:15:37 - Number of transcripts deemed as noise: 13703 - 4.16%
+20-Feb-24 22:15:37 - Number of transcripts kept after filtering: 254099 - 77.06%
+20-Feb-24 22:15:37 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 28280
+20-Feb-24 22:15:37 - Panel1_P2_H - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:15:37 - =====================
+20-Feb-24 22:15:37 - For sample Panel1_P2_H loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:15:38 - Generating background bins
+20-Feb-24 22:15:41 - Generating anndata from cells
+
+20-Feb-24 22:15:46 - Dataset: Panel1_P2_H - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:15:46 - Number of raw transcripts: 329759
+20-Feb-24 22:15:46 - Number of transcripts deemed as noise: 7702 - 2.34%
+20-Feb-24 22:15:46 - Number of transcripts kept after filtering: 227856 - 69.1%
+20-Feb-24 22:15:46 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 12338
+20-Feb-24 22:15:46 - Panel1_P2_H - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:15:46 - =====================
+20-Feb-24 22:15:46 - For sample Panel1_P2_H loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:15:47 - Generating background bins
+20-Feb-24 22:15:53 - Generating anndata from cells
+
+20-Feb-24 22:16:03 - Dataset: Panel1_P2_H - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:16:03 - Number of raw transcripts: 329759
+20-Feb-24 22:16:03 - Number of transcripts deemed as noise: 13638 - 4.14%
+20-Feb-24 22:16:03 - Number of transcripts kept after filtering: 254996 - 77.33%
+20-Feb-24 22:16:04 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 28444
+20-Feb-24 22:16:04 - Panel1_P2_H - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:16:04 - =====================
+20-Feb-24 22:16:04 - For sample Panel1_P3_D loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:16:04 - Generating background bins
+20-Feb-24 22:16:18 - Generating anndata from cells
+
+20-Feb-24 22:16:22 - Dataset: Panel1_P3_D - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:16:22 - Number of raw transcripts: 351778
+20-Feb-24 22:16:22 - Number of transcripts deemed as noise: 55060 - 15.65%
+20-Feb-24 22:16:22 - Number of transcripts kept after filtering: 177746 - 50.53%
+20-Feb-24 22:16:22 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 11621
+20-Feb-24 22:16:22 - Panel1_P3_D - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:16:22 - =====================
+20-Feb-24 22:16:22 - For sample Panel1_P3_D loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:16:23 - Generating background bins
+20-Feb-24 22:16:35 - Generating anndata from cells
+
+20-Feb-24 22:16:39 - Dataset: Panel1_P3_D - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:16:39 - Number of raw transcripts: 351778
+20-Feb-24 22:16:39 - Number of transcripts deemed as noise: 48404 - 13.76%
+20-Feb-24 22:16:39 - Number of transcripts kept after filtering: 212728 - 60.47%
+20-Feb-24 22:16:39 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 9932
+20-Feb-24 22:16:39 - Panel1_P3_D - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:16:39 - =====================
+20-Feb-24 22:16:39 - For sample Panel1_P3_D loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:16:40 - Generating background bins
+20-Feb-24 22:16:52 - Generating anndata from cells
+
+20-Feb-24 22:16:56 - Dataset: Panel1_P3_D - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:16:56 - Number of raw transcripts: 351778
+20-Feb-24 22:16:56 - Number of transcripts deemed as noise: 52092 - 14.81%
+20-Feb-24 22:16:56 - Number of transcripts kept after filtering: 164242 - 46.69%
+20-Feb-24 22:16:56 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 8796
+20-Feb-24 22:16:56 - Panel1_P3_D - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:16:56 - =====================
+20-Feb-24 22:16:56 - For sample Panel1_P3_D loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:16:57 - Generating background bins
+20-Feb-24 22:17:10 - Generating anndata from cells
+
+20-Feb-24 22:17:15 - Dataset: Panel1_P3_D - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:17:15 - Number of raw transcripts: 351778
+20-Feb-24 22:17:15 - Number of transcripts deemed as noise: 52897 - 15.04%
+20-Feb-24 22:17:15 - Number of transcripts kept after filtering: 224871 - 63.92%
+20-Feb-24 22:17:15 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 12557
+20-Feb-24 22:17:15 - Panel1_P3_D - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:17:15 - =====================
+20-Feb-24 22:17:15 - For sample Panel1_P3_D loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:17:15 - Generating background bins
+20-Feb-24 22:17:29 - Generating anndata from cells
+
+20-Feb-24 22:17:33 - Dataset: Panel1_P3_D - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:17:33 - Number of raw transcripts: 351778
+20-Feb-24 22:17:33 - Number of transcripts deemed as noise: 55657 - 15.82%
+20-Feb-24 22:17:33 - Number of transcripts kept after filtering: 203926 - 57.97%
+20-Feb-24 22:17:33 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 11585
+20-Feb-24 22:17:34 - Panel1_P3_D - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:17:34 - =====================
+20-Feb-24 22:17:34 - For sample Panel1_P3_D loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:17:34 - Generating background bins
+20-Feb-24 22:17:47 - Generating anndata from cells
+
+20-Feb-24 22:17:50 - Dataset: Panel1_P3_D - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:17:50 - Number of raw transcripts: 351778
+20-Feb-24 22:17:50 - Number of transcripts deemed as noise: 49816 - 14.16%
+20-Feb-24 22:17:50 - Number of transcripts kept after filtering: 208989 - 59.41%
+20-Feb-24 22:17:50 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 9773
+20-Feb-24 22:17:51 - Panel1_P3_D - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:17:51 - =====================
+20-Feb-24 22:17:51 - For sample Panel1_P3_D loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:17:51 - Generating background bins
+20-Feb-24 22:18:04 - Generating anndata from cells
+
+20-Feb-24 22:18:09 - Dataset: Panel1_P3_D - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:18:09 - Number of raw transcripts: 351778
+20-Feb-24 22:18:09 - Number of transcripts deemed as noise: 51640 - 14.68%
+20-Feb-24 22:18:09 - Number of transcripts kept after filtering: 227958 - 64.8%
+20-Feb-24 22:18:09 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 12693
+20-Feb-24 22:18:10 - Panel1_P3_D - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:18:10 - =====================
+20-Feb-24 22:18:10 - For sample Panel1_P3_D loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:18:10 - Generating background bins
+20-Feb-24 22:18:27 - Generating anndata from cells
+
+20-Feb-24 22:18:34 - Dataset: Panel1_P3_D - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:18:34 - Number of raw transcripts: 351778
+20-Feb-24 22:18:34 - Number of transcripts deemed as noise: 66158 - 18.81%
+20-Feb-24 22:18:34 - Number of transcripts kept after filtering: 191947 - 54.56%
+20-Feb-24 22:18:34 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 17927
+20-Feb-24 22:18:34 - Panel1_P3_D - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:18:34 - =====================
+20-Feb-24 22:18:34 - For sample Panel1_P3_D loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:18:35 - Generating background bins
+20-Feb-24 22:18:51 - Generating anndata from cells
+
+20-Feb-24 22:18:58 - Dataset: Panel1_P3_D - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:18:58 - Number of raw transcripts: 351778
+20-Feb-24 22:18:58 - Number of transcripts deemed as noise: 66887 - 19.01%
+20-Feb-24 22:18:58 - Number of transcripts kept after filtering: 202090 - 57.45%
+20-Feb-24 22:18:58 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 17657
+20-Feb-24 22:18:58 - Panel1_P3_D - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:18:58 - =====================
+20-Feb-24 22:18:58 - For sample Panel1_P3_D loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:18:59 - Generating background bins
+20-Feb-24 22:19:15 - Generating anndata from cells
+
+20-Feb-24 22:19:22 - Dataset: Panel1_P3_D - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:19:22 - Number of raw transcripts: 351778
+20-Feb-24 22:19:22 - Number of transcripts deemed as noise: 64546 - 18.35%
+20-Feb-24 22:19:22 - Number of transcripts kept after filtering: 235273 - 66.88%
+20-Feb-24 22:19:22 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 18469
+20-Feb-24 22:19:22 - Panel1_P3_D - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:19:22 - =====================
+20-Feb-24 22:19:22 - For sample Panel1_P3_D loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:19:23 - Generating background bins
+20-Feb-24 22:19:35 - Generating anndata from cells
+
+20-Feb-24 22:19:39 - Dataset: Panel1_P3_D - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:19:39 - Number of raw transcripts: 351778
+20-Feb-24 22:19:39 - Number of transcripts deemed as noise: 52659 - 14.97%
+20-Feb-24 22:19:39 - Number of transcripts kept after filtering: 194645 - 55.33%
+20-Feb-24 22:19:39 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 8663
+20-Feb-24 22:19:39 - Panel1_P3_D - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:19:39 - =====================
+20-Feb-24 22:19:39 - For sample Panel1_P3_D loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:19:40 - Generating background bins
+20-Feb-24 22:19:56 - Generating anndata from cells
+
+20-Feb-24 22:20:03 - Dataset: Panel1_P3_D - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:20:03 - Number of raw transcripts: 351778
+20-Feb-24 22:20:03 - Number of transcripts deemed as noise: 63519 - 18.06%
+20-Feb-24 22:20:03 - Number of transcripts kept after filtering: 237349 - 67.47%
+20-Feb-24 22:20:03 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 18449
+20-Feb-24 22:20:03 - Panel1_P3_D - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:20:03 - =====================
+20-Feb-24 22:20:03 - For sample Panel1_P3_H loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:20:04 - Generating background bins
+20-Feb-24 22:20:11 - Generating anndata from cells
+
+20-Feb-24 22:20:17 - Dataset: Panel1_P3_H - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:20:17 - Number of raw transcripts: 544624
+20-Feb-24 22:20:17 - Number of transcripts deemed as noise: 27605 - 5.07%
+20-Feb-24 22:20:17 - Number of transcripts kept after filtering: 324375 - 59.56%
+20-Feb-24 22:20:17 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 15063
+20-Feb-24 22:20:17 - Panel1_P3_H - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:20:17 - =====================
+20-Feb-24 22:20:17 - For sample Panel1_P3_H loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:20:18 - Generating background bins
+20-Feb-24 22:20:24 - Generating anndata from cells
+
+20-Feb-24 22:20:28 - Dataset: Panel1_P3_H - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:20:28 - Number of raw transcripts: 544624
+20-Feb-24 22:20:28 - Number of transcripts deemed as noise: 25222 - 4.63%
+20-Feb-24 22:20:28 - Number of transcripts kept after filtering: 373594 - 68.6%
+20-Feb-24 22:20:28 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 11178
+20-Feb-24 22:20:29 - Panel1_P3_H - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:20:29 - =====================
+20-Feb-24 22:20:29 - For sample Panel1_P3_H loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:20:30 - Generating background bins
+20-Feb-24 22:20:36 - Generating anndata from cells
+
+20-Feb-24 22:20:40 - Dataset: Panel1_P3_H - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:20:40 - Number of raw transcripts: 544624
+20-Feb-24 22:20:40 - Number of transcripts deemed as noise: 25779 - 4.73%
+20-Feb-24 22:20:40 - Number of transcripts kept after filtering: 337431 - 61.96%
+20-Feb-24 22:20:40 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 10462
+20-Feb-24 22:20:40 - Panel1_P3_H - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:20:40 - =====================
+20-Feb-24 22:20:40 - For sample Panel1_P3_H loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:20:41 - Generating background bins
+20-Feb-24 22:20:47 - Generating anndata from cells
+
+20-Feb-24 22:20:53 - Dataset: Panel1_P3_H - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:20:53 - Number of raw transcripts: 544624
+20-Feb-24 22:20:53 - Number of transcripts deemed as noise: 27036 - 4.96%
+20-Feb-24 22:20:53 - Number of transcripts kept after filtering: 392612 - 72.09%
+20-Feb-24 22:20:53 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 15228
+20-Feb-24 22:20:53 - Panel1_P3_H - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:20:53 - =====================
+20-Feb-24 22:20:53 - For sample Panel1_P3_H loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:20:54 - Generating background bins
+20-Feb-24 22:21:01 - Generating anndata from cells
+
+20-Feb-24 22:21:06 - Dataset: Panel1_P3_H - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:21:06 - Number of raw transcripts: 544624
+20-Feb-24 22:21:06 - Number of transcripts deemed as noise: 27160 - 4.99%
+20-Feb-24 22:21:06 - Number of transcripts kept after filtering: 389847 - 71.58%
+20-Feb-24 22:21:06 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 14422
+20-Feb-24 22:21:07 - Panel1_P3_H - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:21:07 - =====================
+20-Feb-24 22:21:07 - For sample Panel1_P3_H loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:21:08 - Generating background bins
+20-Feb-24 22:21:14 - Generating anndata from cells
+
+20-Feb-24 22:21:18 - Dataset: Panel1_P3_H - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:21:18 - Number of raw transcripts: 544624
+20-Feb-24 22:21:18 - Number of transcripts deemed as noise: 25238 - 4.63%
+20-Feb-24 22:21:18 - Number of transcripts kept after filtering: 381048 - 69.97%
+20-Feb-24 22:21:18 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 11001
+20-Feb-24 22:21:18 - Panel1_P3_H - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:21:18 - =====================
+20-Feb-24 22:21:18 - For sample Panel1_P3_H loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:21:19 - Generating background bins
+20-Feb-24 22:21:26 - Generating anndata from cells
+
+20-Feb-24 22:21:32 - Dataset: Panel1_P3_H - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:21:32 - Number of raw transcripts: 544624
+20-Feb-24 22:21:32 - Number of transcripts deemed as noise: 26931 - 4.94%
+20-Feb-24 22:21:32 - Number of transcripts kept after filtering: 387368 - 71.13%
+20-Feb-24 22:21:32 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 15327
+20-Feb-24 22:21:32 - Panel1_P3_H - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:21:32 - =====================
+20-Feb-24 22:21:32 - For sample Panel1_P3_H loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:21:33 - Generating background bins
+20-Feb-24 22:21:41 - Generating anndata from cells
+
+20-Feb-24 22:21:51 - Dataset: Panel1_P3_H - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:21:51 - Number of raw transcripts: 544624
+20-Feb-24 22:21:51 - Number of transcripts deemed as noise: 32836 - 6.03%
+20-Feb-24 22:21:51 - Number of transcripts kept after filtering: 334689 - 61.45%
+20-Feb-24 22:21:51 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 26641
+20-Feb-24 22:21:51 - Panel1_P3_H - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:21:51 - =====================
+20-Feb-24 22:21:51 - For sample Panel1_P3_H loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:21:52 - Generating background bins
+20-Feb-24 22:22:00 - Generating anndata from cells
+
+20-Feb-24 22:22:10 - Dataset: Panel1_P3_H - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:22:10 - Number of raw transcripts: 544624
+20-Feb-24 22:22:10 - Number of transcripts deemed as noise: 32661 - 6.0%
+20-Feb-24 22:22:10 - Number of transcripts kept after filtering: 366711 - 67.33%
+20-Feb-24 22:22:11 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 26286
+20-Feb-24 22:22:11 - Panel1_P3_H - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:22:11 - =====================
+20-Feb-24 22:22:11 - For sample Panel1_P3_H loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:22:12 - Generating background bins
+20-Feb-24 22:22:20 - Generating anndata from cells
+
+20-Feb-24 22:22:30 - Dataset: Panel1_P3_H - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:22:30 - Number of raw transcripts: 544624
+20-Feb-24 22:22:30 - Number of transcripts deemed as noise: 32462 - 5.96%
+20-Feb-24 22:22:30 - Number of transcripts kept after filtering: 403514 - 74.09%
+20-Feb-24 22:22:30 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 26588
+20-Feb-24 22:22:30 - Panel1_P3_H - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:22:30 - =====================
+20-Feb-24 22:22:30 - For sample Panel1_P3_H loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:22:31 - Generating background bins
+20-Feb-24 22:22:37 - Generating anndata from cells
+
+20-Feb-24 22:22:41 - Dataset: Panel1_P3_H - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:22:41 - Number of raw transcripts: 544624
+20-Feb-24 22:22:41 - Number of transcripts deemed as noise: 25209 - 4.63%
+20-Feb-24 22:22:41 - Number of transcripts kept after filtering: 404379 - 74.25%
+20-Feb-24 22:22:41 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 9587
+20-Feb-24 22:22:41 - Panel1_P3_H - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:22:41 - =====================
+20-Feb-24 22:22:41 - For sample Panel1_P3_H loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:22:42 - Generating background bins
+20-Feb-24 22:22:50 - Generating anndata from cells
+
+20-Feb-24 22:23:00 - Dataset: Panel1_P3_H - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:23:00 - Number of raw transcripts: 544624
+20-Feb-24 22:23:00 - Number of transcripts deemed as noise: 32436 - 5.96%
+20-Feb-24 22:23:00 - Number of transcripts kept after filtering: 401800 - 73.78%
+20-Feb-24 22:23:01 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 26413
+20-Feb-24 22:23:01 - Panel1_P3_H - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:23:01 - =====================
+20-Feb-24 22:23:01 - For sample Panel1_P4_D loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:23:04 - Generating background bins
+20-Feb-24 22:23:43 - Generating anndata from cells
+
+20-Feb-24 22:23:56 - Dataset: Panel1_P4_D - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:23:56 - Number of raw transcripts: 2256976
+20-Feb-24 22:23:56 - Number of transcripts deemed as noise: 217258 - 9.63%
+20-Feb-24 22:23:56 - Number of transcripts kept after filtering: 1646122 - 72.93%
+20-Feb-24 22:23:56 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 32096
+20-Feb-24 22:23:57 - Panel1_P4_D - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:23:57 - =====================
+20-Feb-24 22:23:57 - For sample Panel1_P4_D loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:24:00 - Generating background bins
+20-Feb-24 22:24:37 - Generating anndata from cells
+
+20-Feb-24 22:24:48 - Dataset: Panel1_P4_D - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:24:48 - Number of raw transcripts: 2256976
+20-Feb-24 22:24:48 - Number of transcripts deemed as noise: 207374 - 9.19%
+20-Feb-24 22:24:48 - Number of transcripts kept after filtering: 1674723 - 74.2%
+20-Feb-24 22:24:48 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 26685
+20-Feb-24 22:24:49 - Panel1_P4_D - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:24:49 - =====================
+20-Feb-24 22:24:49 - For sample Panel1_P4_D loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:24:52 - Generating background bins
+20-Feb-24 22:25:29 - Generating anndata from cells
+
+20-Feb-24 22:25:40 - Dataset: Panel1_P4_D - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:25:40 - Number of raw transcripts: 2256976
+20-Feb-24 22:25:40 - Number of transcripts deemed as noise: 208822 - 9.25%
+20-Feb-24 22:25:40 - Number of transcripts kept after filtering: 1649508 - 73.08%
+20-Feb-24 22:25:40 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 25862
+20-Feb-24 22:25:41 - Panel1_P4_D - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:25:41 - =====================
+20-Feb-24 22:25:41 - For sample Panel1_P4_D loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:25:44 - Generating background bins
+20-Feb-24 22:26:24 - Generating anndata from cells
+
+20-Feb-24 22:26:37 - Dataset: Panel1_P4_D - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:26:37 - Number of raw transcripts: 2256976
+20-Feb-24 22:26:37 - Number of transcripts deemed as noise: 217089 - 9.62%
+20-Feb-24 22:26:37 - Number of transcripts kept after filtering: 1690752 - 74.91%
+20-Feb-24 22:26:37 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 32064
+20-Feb-24 22:26:38 - Panel1_P4_D - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:26:38 - =====================
+20-Feb-24 22:26:38 - For sample Panel1_P4_D loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:26:41 - Generating background bins
+20-Feb-24 22:27:22 - Generating anndata from cells
+
+20-Feb-24 22:27:34 - Dataset: Panel1_P4_D - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:27:34 - Number of raw transcripts: 2256976
+20-Feb-24 22:27:34 - Number of transcripts deemed as noise: 221582 - 9.82%
+20-Feb-24 22:27:34 - Number of transcripts kept after filtering: 1644362 - 72.86%
+20-Feb-24 22:27:34 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 29246
+20-Feb-24 22:27:35 - Panel1_P4_D - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:27:35 - =====================
+20-Feb-24 22:27:35 - For sample Panel1_P4_D loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:27:40 - Generating background bins
+20-Feb-24 22:28:18 - Generating anndata from cells
+
+20-Feb-24 22:28:29 - Dataset: Panel1_P4_D - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:28:29 - Number of raw transcripts: 2256976
+20-Feb-24 22:28:29 - Number of transcripts deemed as noise: 208634 - 9.24%
+20-Feb-24 22:28:29 - Number of transcripts kept after filtering: 1688364 - 74.81%
+20-Feb-24 22:28:29 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 25685
+20-Feb-24 22:28:30 - Panel1_P4_D - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:28:30 - =====================
+20-Feb-24 22:28:30 - For sample Panel1_P4_D loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:28:33 - Generating background bins
+20-Feb-24 22:29:13 - Generating anndata from cells
+
+20-Feb-24 22:29:26 - Dataset: Panel1_P4_D - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:29:26 - Number of raw transcripts: 2256976
+20-Feb-24 22:29:26 - Number of transcripts deemed as noise: 215803 - 9.56%
+20-Feb-24 22:29:26 - Number of transcripts kept after filtering: 1686324 - 74.72%
+20-Feb-24 22:29:27 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 32705
+20-Feb-24 22:29:27 - Panel1_P4_D - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:29:27 - =====================
+20-Feb-24 22:29:27 - For sample Panel1_P4_D loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:29:31 - Generating background bins
+20-Feb-24 22:30:17 - Generating anndata from cells
+
+20-Feb-24 22:30:38 - Dataset: Panel1_P4_D - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:30:38 - Number of raw transcripts: 2256976
+20-Feb-24 22:30:38 - Number of transcripts deemed as noise: 240130 - 10.64%
+20-Feb-24 22:30:38 - Number of transcripts kept after filtering: 1581377 - 70.07%
+20-Feb-24 22:30:39 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 54625
+20-Feb-24 22:30:39 - Panel1_P4_D - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:30:39 - =====================
+20-Feb-24 22:30:39 - For sample Panel1_P4_D loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:30:43 - Generating background bins
+20-Feb-24 22:31:29 - Generating anndata from cells
+
+20-Feb-24 22:31:50 - Dataset: Panel1_P4_D - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:31:50 - Number of raw transcripts: 2256976
+20-Feb-24 22:31:50 - Number of transcripts deemed as noise: 244988 - 10.85%
+20-Feb-24 22:31:50 - Number of transcripts kept after filtering: 1495242 - 66.25%
+20-Feb-24 22:31:50 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 53039
+20-Feb-24 22:31:51 - Panel1_P4_D - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:31:51 - =====================
+20-Feb-24 22:31:51 - For sample Panel1_P4_D loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:31:54 - Generating background bins
+20-Feb-24 22:32:41 - Generating anndata from cells
+
+20-Feb-24 22:33:03 - Dataset: Panel1_P4_D - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:33:03 - Number of raw transcripts: 2256976
+20-Feb-24 22:33:03 - Number of transcripts deemed as noise: 240402 - 10.65%
+20-Feb-24 22:33:03 - Number of transcripts kept after filtering: 1618490 - 71.71%
+20-Feb-24 22:33:03 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 54486
+20-Feb-24 22:33:04 - Panel1_P4_D - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:33:04 - =====================
+20-Feb-24 22:33:04 - For sample Panel1_P4_D loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:33:07 - Generating background bins
+20-Feb-24 22:33:45 - Generating anndata from cells
+
+20-Feb-24 22:33:54 - Dataset: Panel1_P4_D - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:33:54 - Number of raw transcripts: 2256976
+20-Feb-24 22:33:54 - Number of transcripts deemed as noise: 213280 - 9.45%
+20-Feb-24 22:33:54 - Number of transcripts kept after filtering: 1679787 - 74.43%
+20-Feb-24 22:33:55 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 21996
+20-Feb-24 22:33:55 - Panel1_P4_D - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:33:55 - =====================
+20-Feb-24 22:33:55 - For sample Panel1_P4_D loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:33:59 - Generating background bins
+20-Feb-24 22:34:46 - Generating anndata from cells
+
+20-Feb-24 22:35:07 - Dataset: Panel1_P4_D - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:35:07 - Number of raw transcripts: 2256976
+20-Feb-24 22:35:07 - Number of transcripts deemed as noise: 238769 - 10.58%
+20-Feb-24 22:35:07 - Number of transcripts kept after filtering: 1644304 - 72.85%
+20-Feb-24 22:35:07 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 54294
+20-Feb-24 22:35:08 - Panel1_P4_D - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:35:08 - =====================
+20-Feb-24 22:35:08 - For sample Panel1_P4_H loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:35:10 - Generating background bins
+20-Feb-24 22:35:19 - Generating anndata from cells
+
+20-Feb-24 22:35:28 - Dataset: Panel1_P4_H - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:35:28 - Number of raw transcripts: 1223703
+20-Feb-24 22:35:28 - Number of transcripts deemed as noise: 40434 - 3.3%
+20-Feb-24 22:35:28 - Number of transcripts kept after filtering: 789374 - 64.51%
+20-Feb-24 22:35:28 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 21894
+20-Feb-24 22:35:29 - Panel1_P4_H - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:35:29 - =====================
+20-Feb-24 22:35:29 - For sample Panel1_P4_H loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:35:31 - Generating background bins
+20-Feb-24 22:35:41 - Generating anndata from cells
+
+20-Feb-24 22:35:48 - Dataset: Panel1_P4_H - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:35:48 - Number of raw transcripts: 1223703
+20-Feb-24 22:35:48 - Number of transcripts deemed as noise: 36383 - 2.97%
+20-Feb-24 22:35:48 - Number of transcripts kept after filtering: 905363 - 73.99%
+20-Feb-24 22:35:49 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 16881
+20-Feb-24 22:35:49 - Panel1_P4_H - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:35:49 - =====================
+20-Feb-24 22:35:49 - For sample Panel1_P4_H loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:35:51 - Generating background bins
+20-Feb-24 22:35:59 - Generating anndata from cells
+
+20-Feb-24 22:36:05 - Dataset: Panel1_P4_H - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:36:05 - Number of raw transcripts: 1223703
+20-Feb-24 22:36:05 - Number of transcripts deemed as noise: 37639 - 3.08%
+20-Feb-24 22:36:05 - Number of transcripts kept after filtering: 825847 - 67.49%
+20-Feb-24 22:36:06 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 15712
+20-Feb-24 22:36:06 - Panel1_P4_H - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:36:06 - =====================
+20-Feb-24 22:36:06 - For sample Panel1_P4_H loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:36:08 - Generating background bins
+20-Feb-24 22:36:17 - Generating anndata from cells
+
+20-Feb-24 22:36:29 - Dataset: Panel1_P4_H - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:36:29 - Number of raw transcripts: 1223703
+20-Feb-24 22:36:29 - Number of transcripts deemed as noise: 39067 - 3.19%
+20-Feb-24 22:36:29 - Number of transcripts kept after filtering: 914652 - 74.74%
+20-Feb-24 22:36:29 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 22238
+20-Feb-24 22:36:29 - Panel1_P4_H - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:36:29 - =====================
+20-Feb-24 22:36:29 - For sample Panel1_P4_H loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:36:31 - Generating background bins
+20-Feb-24 22:36:40 - Generating anndata from cells
+
+20-Feb-24 22:36:48 - Dataset: Panel1_P4_H - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:36:48 - Number of raw transcripts: 1223703
+20-Feb-24 22:36:48 - Number of transcripts deemed as noise: 40212 - 3.29%
+20-Feb-24 22:36:48 - Number of transcripts kept after filtering: 894799 - 73.12%
+20-Feb-24 22:36:48 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 20102
+20-Feb-24 22:36:49 - Panel1_P4_H - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:36:49 - =====================
+20-Feb-24 22:36:49 - For sample Panel1_P4_H loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:36:51 - Generating background bins
+20-Feb-24 22:36:59 - Generating anndata from cells
+
+20-Feb-24 22:37:06 - Dataset: Panel1_P4_H - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:37:06 - Number of raw transcripts: 1223703
+20-Feb-24 22:37:06 - Number of transcripts deemed as noise: 36725 - 3.0%
+20-Feb-24 22:37:06 - Number of transcripts kept after filtering: 917178 - 74.95%
+20-Feb-24 22:37:06 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 16307
+20-Feb-24 22:37:06 - Panel1_P4_H - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:37:06 - =====================
+20-Feb-24 22:37:06 - For sample Panel1_P4_H loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:37:08 - Generating background bins
+20-Feb-24 22:37:18 - Generating anndata from cells
+
+20-Feb-24 22:37:27 - Dataset: Panel1_P4_H - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:37:27 - Number of raw transcripts: 1223703
+20-Feb-24 22:37:27 - Number of transcripts deemed as noise: 38717 - 3.16%
+20-Feb-24 22:37:27 - Number of transcripts kept after filtering: 919773 - 75.16%
+20-Feb-24 22:37:28 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 22703
+20-Feb-24 22:37:28 - Panel1_P4_H - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:37:28 - =====================
+20-Feb-24 22:37:28 - For sample Panel1_P4_H loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:37:30 - Generating background bins
+20-Feb-24 22:37:41 - Generating anndata from cells
+
+20-Feb-24 22:37:58 - Dataset: Panel1_P4_H - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:37:58 - Number of raw transcripts: 1223703
+20-Feb-24 22:37:58 - Number of transcripts deemed as noise: 49330 - 4.03%
+20-Feb-24 22:37:58 - Number of transcripts kept after filtering: 774714 - 63.31%
+20-Feb-24 22:37:58 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 41634
+20-Feb-24 22:37:59 - Panel1_P4_H - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:37:59 - =====================
+20-Feb-24 22:37:59 - For sample Panel1_P4_H loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:38:01 - Generating background bins
+20-Feb-24 22:38:12 - Generating anndata from cells
+
+20-Feb-24 22:38:28 - Dataset: Panel1_P4_H - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:38:28 - Number of raw transcripts: 1223703
+20-Feb-24 22:38:28 - Number of transcripts deemed as noise: 49719 - 4.06%
+20-Feb-24 22:38:28 - Number of transcripts kept after filtering: 783661 - 64.04%
+20-Feb-24 22:38:28 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 40366
+20-Feb-24 22:38:29 - Panel1_P4_H - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:38:29 - =====================
+20-Feb-24 22:38:29 - For sample Panel1_P4_H loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:38:31 - Generating background bins
+20-Feb-24 22:38:42 - Generating anndata from cells
+
+20-Feb-24 22:38:59 - Dataset: Panel1_P4_H - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:38:59 - Number of raw transcripts: 1223703
+20-Feb-24 22:38:59 - Number of transcripts deemed as noise: 48679 - 3.98%
+20-Feb-24 22:38:59 - Number of transcripts kept after filtering: 893656 - 73.03%
+20-Feb-24 22:38:59 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 41382
+20-Feb-24 22:38:59 - Panel1_P4_H - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:38:59 - =====================
+20-Feb-24 22:38:59 - For sample Panel1_P4_H loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:39:01 - Generating background bins
+20-Feb-24 22:39:09 - Generating anndata from cells
+
+20-Feb-24 22:39:15 - Dataset: Panel1_P4_H - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:39:15 - Number of raw transcripts: 1223703
+20-Feb-24 22:39:15 - Number of transcripts deemed as noise: 37391 - 3.06%
+20-Feb-24 22:39:15 - Number of transcripts kept after filtering: 955296 - 78.07%
+20-Feb-24 22:39:15 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 13071
+20-Feb-24 22:39:15 - Panel1_P4_H - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:39:15 - =====================
+20-Feb-24 22:39:15 - For sample Panel1_P4_H loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:39:17 - Generating background bins
+20-Feb-24 22:39:29 - Generating anndata from cells
+
+20-Feb-24 22:39:45 - Dataset: Panel1_P4_H - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:39:45 - Number of raw transcripts: 1223703
+20-Feb-24 22:39:45 - Number of transcripts deemed as noise: 48226 - 3.94%
+20-Feb-24 22:39:45 - Number of transcripts kept after filtering: 912133 - 74.54%
+20-Feb-24 22:39:45 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 41244
+20-Feb-24 22:39:45 - Panel1_P4_H - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:39:45 - =====================
+20-Feb-24 22:39:45 - For sample Panel2_P1_D loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:39:46 - Generating background bins
+20-Feb-24 22:40:01 - Generating anndata from cells
+
+20-Feb-24 22:40:05 - Dataset: Panel2_P1_D - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:40:05 - Number of raw transcripts: 339924
+20-Feb-24 22:40:05 - Number of transcripts deemed as noise: 62403 - 18.36%
+20-Feb-24 22:40:05 - Number of transcripts kept after filtering: 176107 - 51.81%
+20-Feb-24 22:40:05 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 10183
+20-Feb-24 22:40:05 - Panel2_P1_D - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:40:05 - =====================
+20-Feb-24 22:40:05 - For sample Panel2_P1_D loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:40:06 - Generating background bins
+20-Feb-24 22:40:19 - Generating anndata from cells
+
+20-Feb-24 22:40:22 - Dataset: Panel2_P1_D - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:40:22 - Number of raw transcripts: 339924
+20-Feb-24 22:40:22 - Number of transcripts deemed as noise: 54894 - 16.15%
+20-Feb-24 22:40:22 - Number of transcripts kept after filtering: 181345 - 53.35%
+20-Feb-24 22:40:22 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 8197
+20-Feb-24 22:40:22 - Panel2_P1_D - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:40:22 - =====================
+20-Feb-24 22:40:22 - For sample Panel2_P1_D loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:40:23 - Generating background bins
+20-Feb-24 22:40:36 - Generating anndata from cells
+
+20-Feb-24 22:40:39 - Dataset: Panel2_P1_D - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:40:39 - Number of raw transcripts: 339924
+20-Feb-24 22:40:39 - Number of transcripts deemed as noise: 59502 - 17.5%
+20-Feb-24 22:40:39 - Number of transcripts kept after filtering: 176571 - 51.94%
+20-Feb-24 22:40:39 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 7382
+20-Feb-24 22:40:39 - Panel2_P1_D - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:40:39 - =====================
+20-Feb-24 22:40:39 - For sample Panel2_P1_D loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:40:40 - Generating background bins
+20-Feb-24 22:40:54 - Generating anndata from cells
+
+20-Feb-24 22:40:58 - Dataset: Panel2_P1_D - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:40:58 - Number of raw transcripts: 339924
+20-Feb-24 22:40:58 - Number of transcripts deemed as noise: 59372 - 17.47%
+20-Feb-24 22:40:58 - Number of transcripts kept after filtering: 196947 - 57.94%
+20-Feb-24 22:40:58 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 10945
+20-Feb-24 22:40:58 - Panel2_P1_D - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:40:58 - =====================
+20-Feb-24 22:40:58 - For sample Panel2_P1_D loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:40:59 - Generating background bins
+20-Feb-24 22:41:14 - Generating anndata from cells
+
+20-Feb-24 22:41:17 - Dataset: Panel2_P1_D - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:41:17 - Number of raw transcripts: 339924
+20-Feb-24 22:41:17 - Number of transcripts deemed as noise: 66513 - 19.57%
+20-Feb-24 22:41:17 - Number of transcripts kept after filtering: 188291 - 55.39%
+20-Feb-24 22:41:17 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 9755
+20-Feb-24 22:41:18 - Panel2_P1_D - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:41:18 - =====================
+20-Feb-24 22:41:18 - For sample Panel2_P1_D loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:41:18 - Generating background bins
+20-Feb-24 22:41:31 - Generating anndata from cells
+
+20-Feb-24 22:41:35 - Dataset: Panel2_P1_D - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:41:35 - Number of raw transcripts: 339924
+20-Feb-24 22:41:35 - Number of transcripts deemed as noise: 56386 - 16.59%
+20-Feb-24 22:41:35 - Number of transcripts kept after filtering: 185035 - 54.43%
+20-Feb-24 22:41:35 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 8231
+20-Feb-24 22:41:35 - Panel2_P1_D - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:41:35 - =====================
+20-Feb-24 22:41:35 - For sample Panel2_P1_D loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:41:35 - Generating background bins
+20-Feb-24 22:41:49 - Generating anndata from cells
+
+20-Feb-24 22:41:54 - Dataset: Panel2_P1_D - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:41:54 - Number of raw transcripts: 339924
+20-Feb-24 22:41:54 - Number of transcripts deemed as noise: 57864 - 17.02%
+20-Feb-24 22:41:54 - Number of transcripts kept after filtering: 190546 - 56.06%
+20-Feb-24 22:41:54 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 10995
+20-Feb-24 22:41:54 - Panel2_P1_D - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:41:54 - =====================
+20-Feb-24 22:41:54 - For sample Panel2_P1_D loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:41:54 - Generating background bins
+20-Feb-24 22:42:12 - Generating anndata from cells
+
+20-Feb-24 22:42:18 - Dataset: Panel2_P1_D - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:42:18 - Number of raw transcripts: 339924
+20-Feb-24 22:42:18 - Number of transcripts deemed as noise: 73365 - 21.58%
+20-Feb-24 22:42:18 - Number of transcripts kept after filtering: 178202 - 52.42%
+20-Feb-24 22:42:18 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 16440
+20-Feb-24 22:42:18 - Panel2_P1_D - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:42:18 - =====================
+20-Feb-24 22:42:18 - For sample Panel2_P1_D loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:42:19 - Generating background bins
+20-Feb-24 22:42:36 - Generating anndata from cells
+
+20-Feb-24 22:42:42 - Dataset: Panel2_P1_D - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:42:42 - Number of raw transcripts: 339924
+20-Feb-24 22:42:42 - Number of transcripts deemed as noise: 77093 - 22.68%
+20-Feb-24 22:42:42 - Number of transcripts kept after filtering: 185049 - 54.44%
+20-Feb-24 22:42:42 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 15879
+20-Feb-24 22:42:42 - Panel2_P1_D - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:42:42 - =====================
+20-Feb-24 22:42:42 - For sample Panel2_P1_D loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:42:43 - Generating background bins
+20-Feb-24 22:43:00 - Generating anndata from cells
+
+20-Feb-24 22:43:06 - Dataset: Panel2_P1_D - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:43:06 - Number of raw transcripts: 339924
+20-Feb-24 22:43:06 - Number of transcripts deemed as noise: 70618 - 20.77%
+20-Feb-24 22:43:06 - Number of transcripts kept after filtering: 208710 - 61.4%
+20-Feb-24 22:43:07 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 17034
+20-Feb-24 22:43:07 - Panel2_P1_D - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:43:07 - =====================
+20-Feb-24 22:43:07 - For sample Panel2_P1_D loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:43:07 - Generating background bins
+20-Feb-24 22:43:22 - Generating anndata from cells
+
+20-Feb-24 22:43:25 - Dataset: Panel2_P1_D - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:43:25 - Number of raw transcripts: 339924
+20-Feb-24 22:43:25 - Number of transcripts deemed as noise: 63530 - 18.69%
+20-Feb-24 22:43:25 - Number of transcripts kept after filtering: 191848 - 56.44%
+20-Feb-24 22:43:25 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 7065
+20-Feb-24 22:43:25 - Panel2_P1_D - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:43:25 - =====================
+20-Feb-24 22:43:25 - For sample Panel2_P1_D loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:43:25 - Generating background bins
+20-Feb-24 22:43:42 - Generating anndata from cells
+
+20-Feb-24 22:43:49 - Dataset: Panel2_P1_D - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:43:49 - Number of raw transcripts: 339924
+20-Feb-24 22:43:49 - Number of transcripts deemed as noise: 69028 - 20.31%
+20-Feb-24 22:43:49 - Number of transcripts kept after filtering: 203556 - 59.88%
+20-Feb-24 22:43:49 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 17301
+20-Feb-24 22:43:49 - Panel2_P1_D - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:43:49 - =====================
+20-Feb-24 22:43:49 - For sample Panel2_P1_H loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:43:49 - Generating background bins
+20-Feb-24 22:43:55 - Generating anndata from cells
+
+20-Feb-24 22:43:58 - Dataset: Panel2_P1_H - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:43:58 - Number of raw transcripts: 288016
+20-Feb-24 22:43:58 - Number of transcripts deemed as noise: 23094 - 8.02%
+20-Feb-24 22:43:58 - Number of transcripts kept after filtering: 162726 - 56.5%
+20-Feb-24 22:43:58 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 7433
+20-Feb-24 22:43:58 - Panel2_P1_H - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:43:58 - =====================
+20-Feb-24 22:43:58 - For sample Panel2_P1_H loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:43:59 - Generating background bins
+20-Feb-24 22:44:03 - Generating anndata from cells
+
+20-Feb-24 22:44:06 - Dataset: Panel2_P1_H - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:44:06 - Number of raw transcripts: 288016
+20-Feb-24 22:44:06 - Number of transcripts deemed as noise: 21625 - 7.51%
+20-Feb-24 22:44:06 - Number of transcripts kept after filtering: 194658 - 67.59%
+20-Feb-24 22:44:06 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 5859
+20-Feb-24 22:44:06 - Panel2_P1_H - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:44:06 - =====================
+20-Feb-24 22:44:06 - For sample Panel2_P1_H loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:44:07 - Generating background bins
+20-Feb-24 22:44:12 - Generating anndata from cells
+
+20-Feb-24 22:44:14 - Dataset: Panel2_P1_H - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:44:14 - Number of raw transcripts: 288016
+20-Feb-24 22:44:14 - Number of transcripts deemed as noise: 22233 - 7.72%
+20-Feb-24 22:44:14 - Number of transcripts kept after filtering: 164753 - 57.2%
+20-Feb-24 22:44:14 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 5409
+20-Feb-24 22:44:14 - Panel2_P1_H - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:44:14 - =====================
+20-Feb-24 22:44:14 - For sample Panel2_P1_H loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:44:14 - Generating background bins
+20-Feb-24 22:44:20 - Generating anndata from cells
+
+20-Feb-24 22:44:23 - Dataset: Panel2_P1_H - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:44:23 - Number of raw transcripts: 288016
+20-Feb-24 22:44:23 - Number of transcripts deemed as noise: 22476 - 7.8%
+20-Feb-24 22:44:23 - Number of transcripts kept after filtering: 207017 - 71.88%
+20-Feb-24 22:44:23 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 7726
+20-Feb-24 22:44:23 - Panel2_P1_H - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:44:23 - =====================
+20-Feb-24 22:44:23 - For sample Panel2_P1_H loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:44:23 - Generating background bins
+20-Feb-24 22:44:29 - Generating anndata from cells
+
+20-Feb-24 22:44:31 - Dataset: Panel2_P1_H - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:44:31 - Number of raw transcripts: 288016
+20-Feb-24 22:44:31 - Number of transcripts deemed as noise: 22853 - 7.93%
+20-Feb-24 22:44:31 - Number of transcripts kept after filtering: 201796 - 70.06%
+20-Feb-24 22:44:31 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 7255
+20-Feb-24 22:44:32 - Panel2_P1_H - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:44:32 - =====================
+20-Feb-24 22:44:32 - For sample Panel2_P1_H loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:44:32 - Generating background bins
+20-Feb-24 22:44:37 - Generating anndata from cells
+
+20-Feb-24 22:44:39 - Dataset: Panel2_P1_H - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:44:39 - Number of raw transcripts: 288016
+20-Feb-24 22:44:39 - Number of transcripts deemed as noise: 21650 - 7.52%
+20-Feb-24 22:44:39 - Number of transcripts kept after filtering: 200619 - 69.66%
+20-Feb-24 22:44:39 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 5755
+20-Feb-24 22:44:39 - Panel2_P1_H - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:44:39 - =====================
+20-Feb-24 22:44:39 - For sample Panel2_P1_H loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:44:40 - Generating background bins
+20-Feb-24 22:44:45 - Generating anndata from cells
+
+20-Feb-24 22:44:48 - Dataset: Panel2_P1_H - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:44:48 - Number of raw transcripts: 288016
+20-Feb-24 22:44:48 - Number of transcripts deemed as noise: 22396 - 7.78%
+20-Feb-24 22:44:48 - Number of transcripts kept after filtering: 203345 - 70.6%
+20-Feb-24 22:44:48 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 7874
+20-Feb-24 22:44:49 - Panel2_P1_H - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:44:49 - =====================
+20-Feb-24 22:44:49 - For sample Panel2_P1_H loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:44:49 - Generating background bins
+20-Feb-24 22:44:55 - Generating anndata from cells
+
+20-Feb-24 22:45:00 - Dataset: Panel2_P1_H - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:45:00 - Number of raw transcripts: 288016
+20-Feb-24 22:45:00 - Number of transcripts deemed as noise: 25825 - 8.97%
+20-Feb-24 22:45:00 - Number of transcripts kept after filtering: 170717 - 59.27%
+20-Feb-24 22:45:00 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 13263
+20-Feb-24 22:45:00 - Panel2_P1_H - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:45:00 - =====================
+20-Feb-24 22:45:00 - For sample Panel2_P1_H loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:45:01 - Generating background bins
+20-Feb-24 22:45:07 - Generating anndata from cells
+
+20-Feb-24 22:45:12 - Dataset: Panel2_P1_H - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:45:12 - Number of raw transcripts: 288016
+20-Feb-24 22:45:12 - Number of transcripts deemed as noise: 25850 - 8.98%
+20-Feb-24 22:45:12 - Number of transcripts kept after filtering: 187481 - 65.09%
+20-Feb-24 22:45:12 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 13006
+20-Feb-24 22:45:12 - Panel2_P1_H - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:45:12 - =====================
+20-Feb-24 22:45:12 - For sample Panel2_P1_H loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:45:13 - Generating background bins
+20-Feb-24 22:45:18 - Generating anndata from cells
+
+20-Feb-24 22:45:23 - Dataset: Panel2_P1_H - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:45:23 - Number of raw transcripts: 288016
+20-Feb-24 22:45:23 - Number of transcripts deemed as noise: 25436 - 8.83%
+20-Feb-24 22:45:23 - Number of transcripts kept after filtering: 211061 - 73.28%
+20-Feb-24 22:45:24 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 13205
+20-Feb-24 22:45:24 - Panel2_P1_H - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:45:24 - =====================
+20-Feb-24 22:45:24 - For sample Panel2_P1_H loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:45:24 - Generating background bins
+20-Feb-24 22:45:29 - Generating anndata from cells
+
+20-Feb-24 22:45:31 - Dataset: Panel2_P1_H - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:45:31 - Number of raw transcripts: 288016
+20-Feb-24 22:45:31 - Number of transcripts deemed as noise: 22177 - 7.7%
+20-Feb-24 22:45:31 - Number of transcripts kept after filtering: 205506 - 71.35%
+20-Feb-24 22:45:31 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 5065
+20-Feb-24 22:45:31 - Panel2_P1_H - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:45:31 - =====================
+20-Feb-24 22:45:31 - For sample Panel2_P1_H loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:45:32 - Generating background bins
+20-Feb-24 22:45:38 - Generating anndata from cells
+
+20-Feb-24 22:45:43 - Dataset: Panel2_P1_H - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:45:43 - Number of raw transcripts: 288016
+20-Feb-24 22:45:43 - Number of transcripts deemed as noise: 25393 - 8.82%
+20-Feb-24 22:45:43 - Number of transcripts kept after filtering: 208255 - 72.31%
+20-Feb-24 22:45:43 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 13262
+20-Feb-24 22:45:43 - Panel2_P1_H - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:45:43 - =====================
+20-Feb-24 22:45:43 - For sample Panel2_P2_D loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:45:44 - Generating background bins
+20-Feb-24 22:45:51 - Generating anndata from cells
+
+20-Feb-24 22:45:54 - Dataset: Panel2_P2_D - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:45:54 - Number of raw transcripts: 125838
+20-Feb-24 22:45:54 - Number of transcripts deemed as noise: 17628 - 14.01%
+20-Feb-24 22:45:54 - Number of transcripts kept after filtering: 83784 - 66.58%
+20-Feb-24 22:45:54 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 9078
+20-Feb-24 22:45:55 - Panel2_P2_D - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:45:55 - =====================
+20-Feb-24 22:45:55 - For sample Panel2_P2_D loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:45:55 - Generating background bins
+20-Feb-24 22:46:02 - Generating anndata from cells
+
+20-Feb-24 22:46:04 - Dataset: Panel2_P2_D - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:46:04 - Number of raw transcripts: 125838
+20-Feb-24 22:46:04 - Number of transcripts deemed as noise: 15041 - 11.95%
+20-Feb-24 22:46:04 - Number of transcripts kept after filtering: 77373 - 61.49%
+20-Feb-24 22:46:04 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 6921
+20-Feb-24 22:46:04 - Panel2_P2_D - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:46:04 - =====================
+20-Feb-24 22:46:04 - For sample Panel2_P2_D loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:46:05 - Generating background bins
+20-Feb-24 22:46:11 - Generating anndata from cells
+
+20-Feb-24 22:46:14 - Dataset: Panel2_P2_D - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:46:14 - Number of raw transcripts: 125838
+20-Feb-24 22:46:14 - Number of transcripts deemed as noise: 15413 - 12.25%
+20-Feb-24 22:46:14 - Number of transcripts kept after filtering: 77738 - 61.78%
+20-Feb-24 22:46:14 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 6813
+20-Feb-24 22:46:14 - Panel2_P2_D - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:46:14 - =====================
+20-Feb-24 22:46:14 - For sample Panel2_P2_D loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:46:15 - Generating background bins
+20-Feb-24 22:46:22 - Generating anndata from cells
+
+20-Feb-24 22:46:25 - Dataset: Panel2_P2_D - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:46:25 - Number of raw transcripts: 125838
+20-Feb-24 22:46:25 - Number of transcripts deemed as noise: 17562 - 13.96%
+20-Feb-24 22:46:25 - Number of transcripts kept after filtering: 83366 - 66.25%
+20-Feb-24 22:46:26 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 9043
+20-Feb-24 22:46:26 - Panel2_P2_D - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:46:26 - =====================
+20-Feb-24 22:46:26 - For sample Panel2_P2_D loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:46:26 - Generating background bins
+20-Feb-24 22:46:33 - Generating anndata from cells
+
+20-Feb-24 22:46:37 - Dataset: Panel2_P2_D - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:46:37 - Number of raw transcripts: 125838
+20-Feb-24 22:46:37 - Number of transcripts deemed as noise: 17930 - 14.25%
+20-Feb-24 22:46:37 - Number of transcripts kept after filtering: 83141 - 66.07%
+20-Feb-24 22:46:37 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 8902
+20-Feb-24 22:46:37 - Panel2_P2_D - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:46:37 - =====================
+20-Feb-24 22:46:37 - For sample Panel2_P2_D loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:46:37 - Generating background bins
+20-Feb-24 22:46:44 - Generating anndata from cells
+
+20-Feb-24 22:46:47 - Dataset: Panel2_P2_D - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:46:47 - Number of raw transcripts: 125838
+20-Feb-24 22:46:47 - Number of transcripts deemed as noise: 15263 - 12.13%
+20-Feb-24 22:46:47 - Number of transcripts kept after filtering: 78132 - 62.09%
+20-Feb-24 22:46:47 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 6811
+20-Feb-24 22:46:47 - Panel2_P2_D - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:46:47 - =====================
+20-Feb-24 22:46:47 - For sample Panel2_P2_D loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:46:47 - Generating background bins
+20-Feb-24 22:46:55 - Generating anndata from cells
+
+20-Feb-24 22:46:58 - Dataset: Panel2_P2_D - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:46:58 - Number of raw transcripts: 125838
+20-Feb-24 22:46:58 - Number of transcripts deemed as noise: 17352 - 13.79%
+20-Feb-24 22:46:58 - Number of transcripts kept after filtering: 82874 - 65.86%
+20-Feb-24 22:46:58 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 9157
+20-Feb-24 22:46:58 - Panel2_P2_D - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:46:58 - =====================
+20-Feb-24 22:46:58 - For sample Panel2_P2_D loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:46:59 - Generating background bins
+20-Feb-24 22:47:08 - Generating anndata from cells
+
+20-Feb-24 22:47:13 - Dataset: Panel2_P2_D - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:47:13 - Number of raw transcripts: 125838
+20-Feb-24 22:47:13 - Number of transcripts deemed as noise: 24800 - 19.71%
+20-Feb-24 22:47:13 - Number of transcripts kept after filtering: 81871 - 65.06%
+20-Feb-24 22:47:13 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 13109
+20-Feb-24 22:47:13 - Panel2_P2_D - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:47:13 - =====================
+20-Feb-24 22:47:13 - For sample Panel2_P2_D loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:47:13 - Generating background bins
+20-Feb-24 22:47:23 - Generating anndata from cells
+
+20-Feb-24 22:47:28 - Dataset: Panel2_P2_D - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:47:28 - Number of raw transcripts: 125838
+20-Feb-24 22:47:28 - Number of transcripts deemed as noise: 25121 - 19.96%
+20-Feb-24 22:47:28 - Number of transcripts kept after filtering: 80456 - 63.94%
+20-Feb-24 22:47:28 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 12847
+20-Feb-24 22:47:28 - Panel2_P2_D - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:47:28 - =====================
+20-Feb-24 22:47:28 - For sample Panel2_P2_D loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:47:28 - Generating background bins
+20-Feb-24 22:47:38 - Generating anndata from cells
+
+20-Feb-24 22:47:43 - Dataset: Panel2_P2_D - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:47:43 - Number of raw transcripts: 125838
+20-Feb-24 22:47:43 - Number of transcripts deemed as noise: 24828 - 19.73%
+20-Feb-24 22:47:43 - Number of transcripts kept after filtering: 81213 - 64.54%
+20-Feb-24 22:47:43 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 12976
+20-Feb-24 22:47:43 - Panel2_P2_D - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:47:43 - =====================
+20-Feb-24 22:47:43 - For sample Panel2_P2_D loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:47:43 - Generating background bins
+20-Feb-24 22:47:50 - Generating anndata from cells
+
+20-Feb-24 22:47:53 - Dataset: Panel2_P2_D - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:47:53 - Number of raw transcripts: 125838
+20-Feb-24 22:47:53 - Number of transcripts deemed as noise: 15719 - 12.49%
+20-Feb-24 22:47:53 - Number of transcripts kept after filtering: 77482 - 61.57%
+20-Feb-24 22:47:53 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 6648
+20-Feb-24 22:47:53 - Panel2_P2_D - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:47:53 - =====================
+20-Feb-24 22:47:53 - For sample Panel2_P2_D loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:47:53 - Generating background bins
+20-Feb-24 22:48:03 - Generating anndata from cells
+
+20-Feb-24 22:48:08 - Dataset: Panel2_P2_D - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:48:08 - Number of raw transcripts: 125838
+20-Feb-24 22:48:08 - Number of transcripts deemed as noise: 24514 - 19.48%
+20-Feb-24 22:48:08 - Number of transcripts kept after filtering: 82094 - 65.24%
+20-Feb-24 22:48:08 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 13194
+20-Feb-24 22:48:08 - Panel2_P2_D - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:48:08 - =====================
+20-Feb-24 22:48:08 - For sample Panel2_P2_H loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:48:09 - Generating background bins
+20-Feb-24 22:48:14 - Generating anndata from cells
+
+20-Feb-24 22:48:19 - Dataset: Panel2_P2_H - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:48:19 - Number of raw transcripts: 217180
+20-Feb-24 22:48:19 - Number of transcripts deemed as noise: 10498 - 4.83%
+20-Feb-24 22:48:19 - Number of transcripts kept after filtering: 159200 - 73.3%
+20-Feb-24 22:48:19 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 12542
+20-Feb-24 22:48:19 - Panel2_P2_H - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:48:19 - =====================
+20-Feb-24 22:48:19 - For sample Panel2_P2_H loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:48:20 - Generating background bins
+20-Feb-24 22:48:25 - Generating anndata from cells
+
+20-Feb-24 22:48:28 - Dataset: Panel2_P2_H - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:48:28 - Number of raw transcripts: 217180
+20-Feb-24 22:48:28 - Number of transcripts deemed as noise: 9545 - 4.39%
+20-Feb-24 22:48:28 - Number of transcripts kept after filtering: 142052 - 65.41%
+20-Feb-24 22:48:28 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 9322
+20-Feb-24 22:48:28 - Panel2_P2_H - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:48:28 - =====================
+20-Feb-24 22:48:28 - For sample Panel2_P2_H loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:48:29 - Generating background bins
+20-Feb-24 22:48:33 - Generating anndata from cells
+
+20-Feb-24 22:48:37 - Dataset: Panel2_P2_H - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:48:37 - Number of raw transcripts: 217180
+20-Feb-24 22:48:37 - Number of transcripts deemed as noise: 9489 - 4.37%
+20-Feb-24 22:48:37 - Number of transcripts kept after filtering: 145820 - 67.14%
+20-Feb-24 22:48:37 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 9152
+20-Feb-24 22:48:37 - Panel2_P2_H - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:48:37 - =====================
+20-Feb-24 22:48:37 - For sample Panel2_P2_H loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:48:37 - Generating background bins
+20-Feb-24 22:48:42 - Generating anndata from cells
+
+20-Feb-24 22:48:47 - Dataset: Panel2_P2_H - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:48:47 - Number of raw transcripts: 217180
+20-Feb-24 22:48:47 - Number of transcripts deemed as noise: 10538 - 4.85%
+20-Feb-24 22:48:47 - Number of transcripts kept after filtering: 158225 - 72.85%
+20-Feb-24 22:48:47 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 12465
+20-Feb-24 22:48:47 - Panel2_P2_H - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:48:47 - =====================
+20-Feb-24 22:48:47 - For sample Panel2_P2_H loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:48:48 - Generating background bins
+20-Feb-24 22:48:52 - Generating anndata from cells
+
+20-Feb-24 22:48:57 - Dataset: Panel2_P2_H - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:48:57 - Number of raw transcripts: 217180
+20-Feb-24 22:48:57 - Number of transcripts deemed as noise: 10567 - 4.87%
+20-Feb-24 22:48:57 - Number of transcripts kept after filtering: 159022 - 73.22%
+20-Feb-24 22:48:57 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 12345
+20-Feb-24 22:48:57 - Panel2_P2_H - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:48:57 - =====================
+20-Feb-24 22:48:57 - For sample Panel2_P2_H loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:48:58 - Generating background bins
+20-Feb-24 22:49:02 - Generating anndata from cells
+
+20-Feb-24 22:49:06 - Dataset: Panel2_P2_H - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:49:06 - Number of raw transcripts: 217180
+20-Feb-24 22:49:06 - Number of transcripts deemed as noise: 9551 - 4.4%
+20-Feb-24 22:49:06 - Number of transcripts kept after filtering: 144240 - 66.41%
+20-Feb-24 22:49:06 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 8851
+20-Feb-24 22:49:06 - Panel2_P2_H - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:49:06 - =====================
+20-Feb-24 22:49:06 - For sample Panel2_P2_H loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:49:07 - Generating background bins
+20-Feb-24 22:49:12 - Generating anndata from cells
+
+20-Feb-24 22:49:16 - Dataset: Panel2_P2_H - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:49:16 - Number of raw transcripts: 217180
+20-Feb-24 22:49:16 - Number of transcripts deemed as noise: 10582 - 4.87%
+20-Feb-24 22:49:16 - Number of transcripts kept after filtering: 156921 - 72.25%
+20-Feb-24 22:49:16 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 12711
+20-Feb-24 22:49:17 - Panel2_P2_H - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:49:17 - =====================
+20-Feb-24 22:49:17 - For sample Panel2_P2_H loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:49:17 - Generating background bins
+20-Feb-24 22:49:23 - Generating anndata from cells
+
+20-Feb-24 22:49:31 - Dataset: Panel2_P2_H - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:49:31 - Number of raw transcripts: 217180
+20-Feb-24 22:49:31 - Number of transcripts deemed as noise: 14487 - 6.67%
+20-Feb-24 22:49:31 - Number of transcripts kept after filtering: 164861 - 75.91%
+20-Feb-24 22:49:31 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 19910
+20-Feb-24 22:49:31 - Panel2_P2_H - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:49:31 - =====================
+20-Feb-24 22:49:31 - For sample Panel2_P2_H loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:49:32 - Generating background bins
+20-Feb-24 22:49:38 - Generating anndata from cells
+
+20-Feb-24 22:49:45 - Dataset: Panel2_P2_H - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:49:45 - Number of raw transcripts: 217180
+20-Feb-24 22:49:45 - Number of transcripts deemed as noise: 14568 - 6.71%
+20-Feb-24 22:49:45 - Number of transcripts kept after filtering: 162367 - 74.76%
+20-Feb-24 22:49:45 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 19748
+20-Feb-24 22:49:45 - Panel2_P2_H - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:49:45 - =====================
+20-Feb-24 22:49:45 - For sample Panel2_P2_H loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:49:46 - Generating background bins
+20-Feb-24 22:49:52 - Generating anndata from cells
+
+20-Feb-24 22:49:59 - Dataset: Panel2_P2_H - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:49:59 - Number of raw transcripts: 217180
+20-Feb-24 22:49:59 - Number of transcripts deemed as noise: 14610 - 6.73%
+20-Feb-24 22:49:59 - Number of transcripts kept after filtering: 164601 - 75.79%
+20-Feb-24 22:49:59 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 19976
+20-Feb-24 22:50:00 - Panel2_P2_H - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:50:00 - =====================
+20-Feb-24 22:50:00 - For sample Panel2_P2_H loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:50:00 - Generating background bins
+20-Feb-24 22:50:05 - Generating anndata from cells
+
+20-Feb-24 22:50:09 - Dataset: Panel2_P2_H - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:50:09 - Number of raw transcripts: 217180
+20-Feb-24 22:50:09 - Number of transcripts deemed as noise: 9559 - 4.4%
+20-Feb-24 22:50:09 - Number of transcripts kept after filtering: 146274 - 67.35%
+20-Feb-24 22:50:09 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 8761
+20-Feb-24 22:50:09 - Panel2_P2_H - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:50:09 - =====================
+20-Feb-24 22:50:09 - For sample Panel2_P2_H loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:50:09 - Generating background bins
+20-Feb-24 22:50:15 - Generating anndata from cells
+
+20-Feb-24 22:50:23 - Dataset: Panel2_P2_H - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:50:23 - Number of raw transcripts: 217180
+20-Feb-24 22:50:23 - Number of transcripts deemed as noise: 14524 - 6.69%
+20-Feb-24 22:50:23 - Number of transcripts kept after filtering: 165654 - 76.27%
+20-Feb-24 22:50:23 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 20094
+20-Feb-24 22:50:23 - Panel2_P2_H - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:50:23 - =====================
+20-Feb-24 22:50:23 - For sample Panel2_P3_D loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:50:24 - Generating background bins
+20-Feb-24 22:50:36 - Generating anndata from cells
+
+20-Feb-24 22:50:41 - Dataset: Panel2_P3_D - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:50:41 - Number of raw transcripts: 340203
+20-Feb-24 22:50:41 - Number of transcripts deemed as noise: 39225 - 11.53%
+20-Feb-24 22:50:41 - Number of transcripts kept after filtering: 186606 - 54.85%
+20-Feb-24 22:50:41 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 14653
+20-Feb-24 22:50:41 - Panel2_P3_D - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:50:41 - =====================
+20-Feb-24 22:50:41 - For sample Panel2_P3_D loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:50:42 - Generating background bins
+20-Feb-24 22:50:54 - Generating anndata from cells
+
+20-Feb-24 22:50:58 - Dataset: Panel2_P3_D - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:50:58 - Number of raw transcripts: 340203
+20-Feb-24 22:50:58 - Number of transcripts deemed as noise: 34366 - 10.1%
+20-Feb-24 22:50:58 - Number of transcripts kept after filtering: 209355 - 61.54%
+20-Feb-24 22:50:58 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 12336
+20-Feb-24 22:50:58 - Panel2_P3_D - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:50:58 - =====================
+20-Feb-24 22:50:58 - For sample Panel2_P3_D loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:50:59 - Generating background bins
+20-Feb-24 22:51:11 - Generating anndata from cells
+
+20-Feb-24 22:51:15 - Dataset: Panel2_P3_D - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:51:15 - Number of raw transcripts: 340203
+20-Feb-24 22:51:15 - Number of transcripts deemed as noise: 35649 - 10.48%
+20-Feb-24 22:51:15 - Number of transcripts kept after filtering: 168644 - 49.57%
+20-Feb-24 22:51:15 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 11097
+20-Feb-24 22:51:15 - Panel2_P3_D - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:51:15 - =====================
+20-Feb-24 22:51:15 - For sample Panel2_P3_D loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:51:16 - Generating background bins
+20-Feb-24 22:51:28 - Generating anndata from cells
+
+20-Feb-24 22:51:34 - Dataset: Panel2_P3_D - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:51:34 - Number of raw transcripts: 340203
+20-Feb-24 22:51:34 - Number of transcripts deemed as noise: 38517 - 11.32%
+20-Feb-24 22:51:34 - Number of transcripts kept after filtering: 227170 - 66.77%
+20-Feb-24 22:51:34 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 15678
+20-Feb-24 22:51:34 - Panel2_P3_D - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:51:34 - =====================
+20-Feb-24 22:51:34 - For sample Panel2_P3_D loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:51:35 - Generating background bins
+20-Feb-24 22:51:47 - Generating anndata from cells
+
+20-Feb-24 22:51:53 - Dataset: Panel2_P3_D - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:51:53 - Number of raw transcripts: 340203
+20-Feb-24 22:51:53 - Number of transcripts deemed as noise: 39477 - 11.6%
+20-Feb-24 22:51:53 - Number of transcripts kept after filtering: 209963 - 61.72%
+20-Feb-24 22:51:53 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 14610
+20-Feb-24 22:51:53 - Panel2_P3_D - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:51:53 - =====================
+20-Feb-24 22:51:53 - For sample Panel2_P3_D loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:51:55 - Generating background bins
+20-Feb-24 22:52:06 - Generating anndata from cells
+
+20-Feb-24 22:52:13 - Dataset: Panel2_P3_D - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:52:13 - Number of raw transcripts: 340203
+20-Feb-24 22:52:13 - Number of transcripts deemed as noise: 34673 - 10.19%
+20-Feb-24 22:52:13 - Number of transcripts kept after filtering: 208337 - 61.24%
+20-Feb-24 22:52:13 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 12351
+20-Feb-24 22:52:13 - Panel2_P3_D - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:52:13 - =====================
+20-Feb-24 22:52:13 - For sample Panel2_P3_D loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:52:14 - Generating background bins
+20-Feb-24 22:52:29 - Generating anndata from cells
+
+20-Feb-24 22:52:35 - Dataset: Panel2_P3_D - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:52:35 - Number of raw transcripts: 340203
+20-Feb-24 22:52:35 - Number of transcripts deemed as noise: 38101 - 11.2%
+20-Feb-24 22:52:35 - Number of transcripts kept after filtering: 227712 - 66.93%
+20-Feb-24 22:52:35 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 15659
+20-Feb-24 22:52:35 - Panel2_P3_D - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:52:35 - =====================
+20-Feb-24 22:52:35 - For sample Panel2_P3_D loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:52:36 - Generating background bins
+20-Feb-24 22:52:57 - Generating anndata from cells
+
+20-Feb-24 22:53:06 - Dataset: Panel2_P3_D - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:53:06 - Number of raw transcripts: 340203
+20-Feb-24 22:53:06 - Number of transcripts deemed as noise: 51636 - 15.18%
+20-Feb-24 22:53:06 - Number of transcripts kept after filtering: 202991 - 59.67%
+20-Feb-24 22:53:06 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 22178
+20-Feb-24 22:53:07 - Panel2_P3_D - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:53:07 - =====================
+20-Feb-24 22:53:07 - For sample Panel2_P3_D loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:53:08 - Generating background bins
+20-Feb-24 22:53:28 - Generating anndata from cells
+
+20-Feb-24 22:53:36 - Dataset: Panel2_P3_D - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:53:36 - Number of raw transcripts: 340203
+20-Feb-24 22:53:36 - Number of transcripts deemed as noise: 52268 - 15.36%
+20-Feb-24 22:53:36 - Number of transcripts kept after filtering: 212170 - 62.37%
+20-Feb-24 22:53:36 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 21734
+20-Feb-24 22:53:37 - Panel2_P3_D - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:53:37 - =====================
+20-Feb-24 22:53:37 - For sample Panel2_P3_D loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:53:38 - Generating background bins
+20-Feb-24 22:53:56 - Generating anndata from cells
+
+20-Feb-24 22:54:06 - Dataset: Panel2_P3_D - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:54:06 - Number of raw transcripts: 340203
+20-Feb-24 22:54:06 - Number of transcripts deemed as noise: 51432 - 15.12%
+20-Feb-24 22:54:06 - Number of transcripts kept after filtering: 240301 - 70.63%
+20-Feb-24 22:54:06 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 22554
+20-Feb-24 22:54:06 - Panel2_P3_D - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:54:06 - =====================
+20-Feb-24 22:54:06 - For sample Panel2_P3_D loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:54:07 - Generating background bins
+20-Feb-24 22:54:20 - Generating anndata from cells
+
+20-Feb-24 22:54:25 - Dataset: Panel2_P3_D - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:54:25 - Number of raw transcripts: 340203
+20-Feb-24 22:54:25 - Number of transcripts deemed as noise: 35683 - 10.49%
+20-Feb-24 22:54:25 - Number of transcripts kept after filtering: 194551 - 57.19%
+20-Feb-24 22:54:25 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 11034
+20-Feb-24 22:54:25 - Panel2_P3_D - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:54:25 - =====================
+20-Feb-24 22:54:25 - For sample Panel2_P3_D loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:54:26 - Generating background bins
+20-Feb-24 22:54:45 - Generating anndata from cells
+
+20-Feb-24 22:54:56 - Dataset: Panel2_P3_D - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:54:56 - Number of raw transcripts: 340203
+20-Feb-24 22:54:56 - Number of transcripts deemed as noise: 51126 - 15.03%
+20-Feb-24 22:54:56 - Number of transcripts kept after filtering: 239941 - 70.53%
+20-Feb-24 22:54:56 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 22500
+20-Feb-24 22:54:56 - Panel2_P3_D - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:54:56 - =====================
+20-Feb-24 22:54:56 - For sample Panel2_P3_H loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:54:57 - Generating background bins
+20-Feb-24 22:55:06 - Generating anndata from cells
+
+20-Feb-24 22:55:10 - Dataset: Panel2_P3_H - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:55:10 - Number of raw transcripts: 383691
+20-Feb-24 22:55:11 - Number of transcripts deemed as noise: 27238 - 7.1%
+20-Feb-24 22:55:11 - Number of transcripts kept after filtering: 222877 - 58.09%
+20-Feb-24 22:55:11 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 11716
+20-Feb-24 22:55:11 - Panel2_P3_H - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:55:11 - =====================
+20-Feb-24 22:55:11 - For sample Panel2_P3_H loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:55:12 - Generating background bins
+20-Feb-24 22:55:20 - Generating anndata from cells
+
+20-Feb-24 22:55:24 - Dataset: Panel2_P3_H - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:55:24 - Number of raw transcripts: 383691
+20-Feb-24 22:55:24 - Number of transcripts deemed as noise: 25564 - 6.66%
+20-Feb-24 22:55:24 - Number of transcripts kept after filtering: 247717 - 64.56%
+20-Feb-24 22:55:24 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 9273
+20-Feb-24 22:55:24 - Panel2_P3_H - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:55:24 - =====================
+20-Feb-24 22:55:24 - For sample Panel2_P3_H loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:55:25 - Generating background bins
+20-Feb-24 22:55:33 - Generating anndata from cells
+
+20-Feb-24 22:55:36 - Dataset: Panel2_P3_H - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:55:36 - Number of raw transcripts: 383691
+20-Feb-24 22:55:36 - Number of transcripts deemed as noise: 26111 - 6.81%
+20-Feb-24 22:55:36 - Number of transcripts kept after filtering: 220252 - 57.4%
+20-Feb-24 22:55:36 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 8282
+20-Feb-24 22:55:37 - Panel2_P3_H - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:55:37 - =====================
+20-Feb-24 22:55:37 - For sample Panel2_P3_H loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 22:55:37 - Generating background bins
+20-Feb-24 22:55:44 - Generating anndata from cells
+
+20-Feb-24 22:55:50 - Dataset: Panel2_P3_H - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 22:55:50 - Number of raw transcripts: 383691
+20-Feb-24 22:55:50 - Number of transcripts deemed as noise: 26757 - 6.97%
+20-Feb-24 22:55:50 - Number of transcripts kept after filtering: 267620 - 69.75%
+20-Feb-24 22:55:50 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 12243
+20-Feb-24 22:55:50 - Panel2_P3_H - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:55:50 - =====================
+20-Feb-24 22:55:50 - For sample Panel2_P3_H loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 22:55:51 - Generating background bins
+20-Feb-24 22:55:58 - Generating anndata from cells
+
+20-Feb-24 22:56:03 - Dataset: Panel2_P3_H - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 22:56:03 - Number of raw transcripts: 383691
+20-Feb-24 22:56:03 - Number of transcripts deemed as noise: 26989 - 7.03%
+20-Feb-24 22:56:03 - Number of transcripts kept after filtering: 273986 - 71.41%
+20-Feb-24 22:56:03 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 11364
+20-Feb-24 22:56:03 - Panel2_P3_H - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 22:56:03 - =====================
+20-Feb-24 22:56:03 - For sample Panel2_P3_H loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 22:56:04 - Generating background bins
+20-Feb-24 22:56:12 - Generating anndata from cells
+
+20-Feb-24 22:56:16 - Dataset: Panel2_P3_H - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 22:56:16 - Number of raw transcripts: 383691
+20-Feb-24 22:56:16 - Number of transcripts deemed as noise: 25628 - 6.68%
+20-Feb-24 22:56:16 - Number of transcripts kept after filtering: 249896 - 65.13%
+20-Feb-24 22:56:17 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 9027
+20-Feb-24 22:56:17 - Panel2_P3_H - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:56:17 - =====================
+20-Feb-24 22:56:17 - For sample Panel2_P3_H loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 22:56:18 - Generating background bins
+20-Feb-24 22:56:25 - Generating anndata from cells
+
+20-Feb-24 22:56:30 - Dataset: Panel2_P3_H - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 22:56:30 - Number of raw transcripts: 383691
+20-Feb-24 22:56:30 - Number of transcripts deemed as noise: 26689 - 6.96%
+20-Feb-24 22:56:30 - Number of transcripts kept after filtering: 265260 - 69.13%
+20-Feb-24 22:56:30 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 12383
+20-Feb-24 22:56:30 - Panel2_P3_H - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:56:30 - =====================
+20-Feb-24 22:56:30 - For sample Panel2_P3_H loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 22:56:31 - Generating background bins
+20-Feb-24 22:56:40 - Generating anndata from cells
+
+20-Feb-24 22:56:49 - Dataset: Panel2_P3_H - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 22:56:49 - Number of raw transcripts: 383691
+20-Feb-24 22:56:49 - Number of transcripts deemed as noise: 31418 - 8.19%
+20-Feb-24 22:56:49 - Number of transcripts kept after filtering: 245511 - 63.99%
+20-Feb-24 22:56:49 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 20499
+20-Feb-24 22:56:50 - Panel2_P3_H - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:56:50 - =====================
+20-Feb-24 22:56:50 - For sample Panel2_P3_H loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 22:56:51 - Generating background bins
+20-Feb-24 22:56:59 - Generating anndata from cells
+
+20-Feb-24 22:57:08 - Dataset: Panel2_P3_H - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 22:57:08 - Number of raw transcripts: 383691
+20-Feb-24 22:57:08 - Number of transcripts deemed as noise: 31404 - 8.18%
+20-Feb-24 22:57:08 - Number of transcripts kept after filtering: 273974 - 71.4%
+20-Feb-24 22:57:08 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 20158
+20-Feb-24 22:57:08 - Panel2_P3_H - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 22:57:08 - =====================
+20-Feb-24 22:57:08 - For sample Panel2_P3_H loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 22:57:09 - Generating background bins
+20-Feb-24 22:57:18 - Generating anndata from cells
+
+20-Feb-24 22:57:26 - Dataset: Panel2_P3_H - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 22:57:26 - Number of raw transcripts: 383691
+20-Feb-24 22:57:26 - Number of transcripts deemed as noise: 31129 - 8.11%
+20-Feb-24 22:57:26 - Number of transcripts kept after filtering: 288511 - 75.19%
+20-Feb-24 22:57:26 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 20393
+20-Feb-24 22:57:27 - Panel2_P3_H - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:57:27 - =====================
+20-Feb-24 22:57:27 - For sample Panel2_P3_H loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 22:57:28 - Generating background bins
+20-Feb-24 22:57:35 - Generating anndata from cells
+
+20-Feb-24 22:57:39 - Dataset: Panel2_P3_H - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 22:57:39 - Number of raw transcripts: 383691
+20-Feb-24 22:57:39 - Number of transcripts deemed as noise: 25836 - 6.73%
+20-Feb-24 22:57:39 - Number of transcripts kept after filtering: 274270 - 71.48%
+20-Feb-24 22:57:39 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 7786
+20-Feb-24 22:57:39 - Panel2_P3_H - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 22:57:39 - =====================
+20-Feb-24 22:57:39 - For sample Panel2_P3_H loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 22:57:40 - Generating background bins
+20-Feb-24 22:57:50 - Generating anndata from cells
+
+20-Feb-24 22:57:59 - Dataset: Panel2_P3_H - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 22:57:59 - Number of raw transcripts: 383691
+20-Feb-24 22:57:59 - Number of transcripts deemed as noise: 30979 - 8.07%
+20-Feb-24 22:57:59 - Number of transcripts kept after filtering: 286432 - 74.65%
+20-Feb-24 22:57:59 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 20285
+20-Feb-24 22:57:59 - Panel2_P3_H - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 22:57:59 - =====================
+20-Feb-24 22:57:59 - For sample Panel2_P4_D loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 22:58:02 - Generating background bins
+20-Feb-24 22:58:26 - Generating anndata from cells
+
+20-Feb-24 22:58:37 - Dataset: Panel2_P4_D - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 22:58:37 - Number of raw transcripts: 1331604
+20-Feb-24 22:58:38 - Number of transcripts deemed as noise: 145673 - 10.94%
+20-Feb-24 22:58:38 - Number of transcripts kept after filtering: 864263 - 64.9%
+20-Feb-24 22:58:38 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 25463
+20-Feb-24 22:58:38 - Panel2_P4_D - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 22:58:38 - =====================
+20-Feb-24 22:58:38 - For sample Panel2_P4_D loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 22:58:40 - Generating background bins
+20-Feb-24 22:59:07 - Generating anndata from cells
+
+20-Feb-24 22:59:16 - Dataset: Panel2_P4_D - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 22:59:16 - Number of raw transcripts: 1331604
+20-Feb-24 22:59:17 - Number of transcripts deemed as noise: 138532 - 10.4%
+20-Feb-24 22:59:17 - Number of transcripts kept after filtering: 901670 - 67.71%
+20-Feb-24 22:59:17 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 21776
+20-Feb-24 22:59:17 - Panel2_P4_D - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 22:59:17 - =====================
+20-Feb-24 22:59:17 - For sample Panel2_P4_D loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 22:59:20 - Generating background bins
+20-Feb-24 22:59:49 - Generating anndata from cells
+
+20-Feb-24 22:59:59 - Dataset: Panel2_P4_D - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 22:59:59 - Number of raw transcripts: 1331604
+20-Feb-24 22:59:59 - Number of transcripts deemed as noise: 141015 - 10.59%
+20-Feb-24 22:59:59 - Number of transcripts kept after filtering: 864237 - 64.9%
+20-Feb-24 22:59:59 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 20601
+20-Feb-24 23:00:00 - Panel2_P4_D - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 23:00:00 - =====================
+20-Feb-24 23:00:00 - For sample Panel2_P4_D loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 23:00:03 - Generating background bins
+20-Feb-24 23:00:35 - Generating anndata from cells
+
+20-Feb-24 23:00:48 - Dataset: Panel2_P4_D - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 23:00:48 - Number of raw transcripts: 1331604
+20-Feb-24 23:00:48 - Number of transcripts deemed as noise: 145048 - 10.89%
+20-Feb-24 23:00:48 - Number of transcripts kept after filtering: 902796 - 67.8%
+20-Feb-24 23:00:49 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 25658
+20-Feb-24 23:00:49 - Panel2_P4_D - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 23:00:49 - =====================
+20-Feb-24 23:00:49 - For sample Panel2_P4_D loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 23:00:53 - Generating background bins
+20-Feb-24 23:01:27 - Generating anndata from cells
+
+20-Feb-24 23:01:40 - Dataset: Panel2_P4_D - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 23:01:40 - Number of raw transcripts: 1331604
+20-Feb-24 23:01:40 - Number of transcripts deemed as noise: 149893 - 11.26%
+20-Feb-24 23:01:40 - Number of transcripts kept after filtering: 826232 - 62.05%
+20-Feb-24 23:01:40 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 22331
+20-Feb-24 23:01:41 - Panel2_P4_D - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 23:01:41 - =====================
+20-Feb-24 23:01:41 - For sample Panel2_P4_D loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 23:01:43 - Generating background bins
+20-Feb-24 23:02:12 - Generating anndata from cells
+
+20-Feb-24 23:02:22 - Dataset: Panel2_P4_D - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 23:02:22 - Number of raw transcripts: 1331604
+20-Feb-24 23:02:22 - Number of transcripts deemed as noise: 140443 - 10.55%
+20-Feb-24 23:02:22 - Number of transcripts kept after filtering: 904707 - 67.94%
+20-Feb-24 23:02:22 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 20788
+20-Feb-24 23:02:22 - Panel2_P4_D - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 23:02:22 - =====================
+20-Feb-24 23:02:22 - For sample Panel2_P4_D loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 23:02:26 - Generating background bins
+20-Feb-24 23:02:57 - Generating anndata from cells
+
+20-Feb-24 23:03:11 - Dataset: Panel2_P4_D - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 23:03:11 - Number of raw transcripts: 1331604
+20-Feb-24 23:03:11 - Number of transcripts deemed as noise: 143035 - 10.74%
+20-Feb-24 23:03:11 - Number of transcripts kept after filtering: 915159 - 68.73%
+20-Feb-24 23:03:12 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 26444
+20-Feb-24 23:03:12 - Panel2_P4_D - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 23:03:12 - =====================
+20-Feb-24 23:03:12 - For sample Panel2_P4_D loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 23:03:16 - Generating background bins
+20-Feb-24 23:03:49 - Generating anndata from cells
+
+20-Feb-24 23:04:08 - Dataset: Panel2_P4_D - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 23:04:08 - Number of raw transcripts: 1331604
+20-Feb-24 23:04:08 - Number of transcripts deemed as noise: 160345 - 12.04%
+20-Feb-24 23:04:08 - Number of transcripts kept after filtering: 831053 - 62.41%
+20-Feb-24 23:04:09 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 41501
+20-Feb-24 23:04:10 - Panel2_P4_D - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 23:04:10 - =====================
+20-Feb-24 23:04:10 - For sample Panel2_P4_D loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 23:04:14 - Generating background bins
+20-Feb-24 23:04:53 - Generating anndata from cells
+
+20-Feb-24 23:05:13 - Dataset: Panel2_P4_D - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 23:05:13 - Number of raw transcripts: 1331604
+20-Feb-24 23:05:13 - Number of transcripts deemed as noise: 164469 - 12.35%
+20-Feb-24 23:05:13 - Number of transcripts kept after filtering: 734800 - 55.18%
+20-Feb-24 23:05:13 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 38743
+20-Feb-24 23:05:14 - Panel2_P4_D - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 23:05:14 - =====================
+20-Feb-24 23:05:14 - For sample Panel2_P4_D loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 23:05:17 - Generating background bins
+20-Feb-24 23:05:51 - Generating anndata from cells
+
+20-Feb-24 23:06:13 - Dataset: Panel2_P4_D - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 23:06:13 - Number of raw transcripts: 1331604
+20-Feb-24 23:06:13 - Number of transcripts deemed as noise: 160334 - 12.04%
+20-Feb-24 23:06:13 - Number of transcripts kept after filtering: 866513 - 65.07%
+20-Feb-24 23:06:14 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 41582
+20-Feb-24 23:06:15 - Panel2_P4_D - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 23:06:15 - =====================
+20-Feb-24 23:06:15 - For sample Panel2_P4_D loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 23:06:17 - Generating background bins
+20-Feb-24 23:06:49 - Generating anndata from cells
+
+20-Feb-24 23:06:58 - Dataset: Panel2_P4_D - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 23:06:58 - Number of raw transcripts: 1331604
+20-Feb-24 23:06:58 - Number of transcripts deemed as noise: 144999 - 10.89%
+20-Feb-24 23:06:58 - Number of transcripts kept after filtering: 859517 - 64.55%
+20-Feb-24 23:06:58 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 16946
+20-Feb-24 23:06:59 - Panel2_P4_D - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 23:06:59 - =====================
+20-Feb-24 23:06:59 - For sample Panel2_P4_D loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 23:07:03 - Generating background bins
+20-Feb-24 23:07:41 - Generating anndata from cells
+
+20-Feb-24 23:08:02 - Dataset: Panel2_P4_D - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 23:08:02 - Number of raw transcripts: 1331604
+20-Feb-24 23:08:02 - Number of transcripts deemed as noise: 158218 - 11.88%
+20-Feb-24 23:08:02 - Number of transcripts kept after filtering: 891460 - 66.95%
+20-Feb-24 23:08:02 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 41945
+20-Feb-24 23:08:03 - Panel2_P4_D - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 23:08:03 - =====================
+20-Feb-24 23:08:03 - For sample Panel2_P4_H loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+20-Feb-24 23:08:06 - Generating background bins
+20-Feb-24 23:08:17 - Generating anndata from cells
+
+20-Feb-24 23:08:27 - Dataset: Panel2_P4_H - assignments_cellpose_baysor-CPn_scale_10_exp_0
+20-Feb-24 23:08:27 - Number of raw transcripts: 810982
+20-Feb-24 23:08:27 - Number of transcripts deemed as noise: 37264 - 4.59%
+20-Feb-24 23:08:27 - Number of transcripts kept after filtering: 479268 - 59.1%
+20-Feb-24 23:08:27 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 17933
+20-Feb-24 23:08:28 - Panel2_P4_H - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 23:08:28 - =====================
+20-Feb-24 23:08:28 - For sample Panel2_P4_H loading assignments_cellpose_baysor-CPc_scale_15_exp_0 
+
+20-Feb-24 23:08:30 - Generating background bins
+20-Feb-24 23:08:43 - Generating anndata from cells
+
+20-Feb-24 23:08:51 - Dataset: Panel2_P4_H - assignments_cellpose_baysor-CPc_scale_15_exp_0
+20-Feb-24 23:08:51 - Number of raw transcripts: 810982
+20-Feb-24 23:08:51 - Number of transcripts deemed as noise: 33347 - 4.11%
+20-Feb-24 23:08:51 - Number of transcripts kept after filtering: 564950 - 69.66%
+20-Feb-24 23:08:51 - cellpose_baysor-CPc_scale_15_exp_0: Number of cells - 14747
+20-Feb-24 23:08:52 - Panel2_P4_H - assignments_cellpose_baysor-CPc_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 23:08:52 - =====================
+20-Feb-24 23:08:52 - For sample Panel2_P4_H loading assignments_cellpose_baysor-CPn_scale_15_exp_0 
+
+20-Feb-24 23:08:54 - Generating background bins
+20-Feb-24 23:09:04 - Generating anndata from cells
+
+20-Feb-24 23:09:13 - Dataset: Panel2_P4_H - assignments_cellpose_baysor-CPn_scale_15_exp_0
+20-Feb-24 23:09:13 - Number of raw transcripts: 810982
+20-Feb-24 23:09:13 - Number of transcripts deemed as noise: 35102 - 4.33%
+20-Feb-24 23:09:13 - Number of transcripts kept after filtering: 476437 - 58.75%
+20-Feb-24 23:09:13 - cellpose_baysor-CPn_scale_15_exp_0: Number of cells - 13514
+20-Feb-24 23:09:14 - Panel2_P4_H - assignments_cellpose_baysor-CPn_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 23:09:14 - =====================
+20-Feb-24 23:09:14 - For sample Panel2_P4_H loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+20-Feb-24 23:09:16 - Generating background bins
+20-Feb-24 23:09:29 - Generating anndata from cells
+
+20-Feb-24 23:09:39 - Dataset: Panel2_P4_H - assignments_10x_baysor-10x_scale_10_exp_0
+20-Feb-24 23:09:39 - Number of raw transcripts: 810982
+20-Feb-24 23:09:39 - Number of transcripts deemed as noise: 35896 - 4.43%
+20-Feb-24 23:09:39 - Number of transcripts kept after filtering: 584923 - 72.13%
+20-Feb-24 23:09:39 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 18682
+20-Feb-24 23:09:39 - Panel2_P4_H - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 23:09:39 - =====================
+20-Feb-24 23:09:39 - For sample Panel2_P4_H loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+20-Feb-24 23:09:40 - Generating background bins
+20-Feb-24 23:09:49 - Generating anndata from cells
+
+20-Feb-24 23:09:57 - Dataset: Panel2_P4_H - assignments_no_segment_baysor-no_segmentation_scale_10
+20-Feb-24 23:09:57 - Number of raw transcripts: 810982
+20-Feb-24 23:09:57 - Number of transcripts deemed as noise: 36746 - 4.53%
+20-Feb-24 23:09:58 - Number of transcripts kept after filtering: 558560 - 68.87%
+20-Feb-24 23:09:58 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 16801
+20-Feb-24 23:09:58 - Panel2_P4_H - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+20-Feb-24 23:09:58 - =====================
+20-Feb-24 23:09:58 - For sample Panel2_P4_H loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+20-Feb-24 23:10:00 - Generating background bins
+20-Feb-24 23:10:14 - Generating anndata from cells
+
+20-Feb-24 23:10:23 - Dataset: Panel2_P4_H - assignments_10x_baysor-10x_scale_15_exp_0
+20-Feb-24 23:10:23 - Number of raw transcripts: 810982
+20-Feb-24 23:10:23 - Number of transcripts deemed as noise: 33847 - 4.17%
+20-Feb-24 23:10:23 - Number of transcripts kept after filtering: 567082 - 69.93%
+20-Feb-24 23:10:24 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 14332
+20-Feb-24 23:10:24 - Panel2_P4_H - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+20-Feb-24 23:10:24 - =====================
+20-Feb-24 23:10:24 - For sample Panel2_P4_H loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+20-Feb-24 23:10:27 - Generating background bins
+20-Feb-24 23:10:38 - Generating anndata from cells
+
+20-Feb-24 23:10:48 - Dataset: Panel2_P4_H - assignments_cellpose_baysor-CPc_scale_10_exp_0
+20-Feb-24 23:10:48 - Number of raw transcripts: 810982
+20-Feb-24 23:10:48 - Number of transcripts deemed as noise: 35429 - 4.37%
+20-Feb-24 23:10:48 - Number of transcripts kept after filtering: 589255 - 72.66%
+20-Feb-24 23:10:48 - cellpose_baysor-CPc_scale_10_exp_0: Number of cells - 18940
+20-Feb-24 23:10:49 - Panel2_P4_H - assignments_cellpose_baysor-CPc_scale_10_exp_0 saved as h5ad
+
+20-Feb-24 23:10:49 - =====================
+20-Feb-24 23:10:49 - For sample Panel2_P4_H loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+20-Feb-24 23:10:51 - Generating background bins
+20-Feb-24 23:11:06 - Generating anndata from cells
+
+20-Feb-24 23:11:22 - Dataset: Panel2_P4_H - assignments_cellpose_baysor-CPn_scale_5_exp_0
+20-Feb-24 23:11:22 - Number of raw transcripts: 810982
+20-Feb-24 23:11:22 - Number of transcripts deemed as noise: 44771 - 5.52%
+20-Feb-24 23:11:22 - Number of transcripts kept after filtering: 505471 - 62.33%
+20-Feb-24 23:11:22 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 31482
+20-Feb-24 23:11:23 - Panel2_P4_H - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 23:11:23 - =====================
+20-Feb-24 23:11:23 - For sample Panel2_P4_H loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+20-Feb-24 23:11:25 - Generating background bins
+20-Feb-24 23:11:40 - Generating anndata from cells
+
+20-Feb-24 23:11:52 - Dataset: Panel2_P4_H - assignments_no_segment_baysor-no_segmentation_scale_5
+20-Feb-24 23:11:52 - Number of raw transcripts: 810982
+20-Feb-24 23:11:52 - Number of transcripts deemed as noise: 45214 - 5.58%
+20-Feb-24 23:11:52 - Number of transcripts kept after filtering: 519817 - 64.1%
+20-Feb-24 23:11:53 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 30491
+20-Feb-24 23:11:53 - Panel2_P4_H - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+20-Feb-24 23:11:53 - =====================
+20-Feb-24 23:11:53 - For sample Panel2_P4_H loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+20-Feb-24 23:11:55 - Generating background bins
+20-Feb-24 23:12:09 - Generating anndata from cells
+
+20-Feb-24 23:12:25 - Dataset: Panel2_P4_H - assignments_10x_baysor-10x_scale_5_exp_0
+20-Feb-24 23:12:25 - Number of raw transcripts: 810982
+20-Feb-24 23:12:26 - Number of transcripts deemed as noise: 43809 - 5.4%
+20-Feb-24 23:12:26 - Number of transcripts kept after filtering: 599100 - 73.87%
+20-Feb-24 23:12:26 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 31460
+20-Feb-24 23:12:26 - Panel2_P4_H - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 23:12:26 - =====================
+20-Feb-24 23:12:26 - For sample Panel2_P4_H loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+20-Feb-24 23:12:28 - Generating background bins
+20-Feb-24 23:12:36 - Generating anndata from cells
+
+20-Feb-24 23:12:44 - Dataset: Panel2_P4_H - assignments_no_segment_baysor-no_segmentation_scale_15
+20-Feb-24 23:12:44 - Number of raw transcripts: 810982
+20-Feb-24 23:12:44 - Number of transcripts deemed as noise: 34548 - 4.26%
+20-Feb-24 23:12:44 - Number of transcripts kept after filtering: 580473 - 71.58%
+20-Feb-24 23:12:44 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 11557
+20-Feb-24 23:12:44 - Panel2_P4_H - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+20-Feb-24 23:12:44 - =====================
+20-Feb-24 23:12:44 - For sample Panel2_P4_H loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+20-Feb-24 23:12:47 - Generating background bins
+20-Feb-24 23:13:01 - Generating anndata from cells
+
+20-Feb-24 23:13:15 - Dataset: Panel2_P4_H - assignments_cellpose_baysor-CPc_scale_5_exp_0
+20-Feb-24 23:13:15 - Number of raw transcripts: 810982
+20-Feb-24 23:13:15 - Number of transcripts deemed as noise: 43566 - 5.37%
+20-Feb-24 23:13:15 - Number of transcripts kept after filtering: 609053 - 75.1%
+20-Feb-24 23:13:15 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 31247
+20-Feb-24 23:13:15 - Panel2_P4_H - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+20-Feb-24 23:13:15 - =====================

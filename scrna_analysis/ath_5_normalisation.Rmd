@@ -70,7 +70,7 @@ for (ref_genome in ref_genomes){
   
   
   #====== Apply acosh and (shifted log) transformation to the raw counts ============
-  ## If memory is enough ~ >64GB, on_disk can be set to TRUE -> calculation is much faster using memory
+  ## If memory is enough ~ >64GB, on_disk can be set to FALSE -> calculation is much faster using memory
   ## If memory is sparse, set on_disk=TRUE, this way there is no out-of-memory error, in exchange for slower speed
   assay(sce, withDimnames=FALSE,"acosh")=acosh_transform(assay(sce, "counts"),size_factors=size_factors,overdispersion=TRUE,on_disk = TRUE)
   #assay(sce, withDimnames=FALSE,"shifted_log")=shifted_log_transform(assay(sce,"counts"),size_factors=size_factors,overdispersion=TRUE,on_disk=TRUE)

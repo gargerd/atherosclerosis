@@ -215,12 +215,14 @@ for (panel in c('Panel1','Panel2')){
 ```{r}
 #dat=readH5AD('../data/data_QC_all_genes.h5ad')
 proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
 
 for (panel in c('Panel1','Panel2')){
   print(panel)
   
   ## Load Panel adata
-  fn=paste0(proc_dir,'filtered_',panel,'_cells.h5ad')
+  fn=paste0(proc_dir,'filtered_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'.h5ad')
   adata=zellkonverter::readH5AD(file=fn,reader='python')
 
 if ('acosh' %in% names(adata@assays)){
@@ -261,9 +263,9 @@ for (panel in c('Panel1','Panel2')){
   meta_=adata@colData
   meta_[,'method']='xenium'
 
-  cols_to_factors=c( "method", "patient")
+  cols_to_factors=c("method", "patient")
   meta_=as.data.frame(meta_) %>%
-            mutate_at(vars(cols_to_factors_ts), as.factor)
+            mutate_at(vars(cols_to_factors), as.factor)
   
   ## Load acosh tranformed data
   acosh_trans=readRDS(paste0(proc_dir,'filtered_',panel,'_cells_acosh_norm.rds'))
@@ -297,7 +299,7 @@ for (panel in c('Panel1','Panel2')){
 ```
 
 
-## LOAD SYMPHONY OBJECTS COMPUTED ON THE CLUSTER
+## RUN CELLTYPE-PREDICTION WITH KNN-PREDICTOR
 ```{r}
 proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
 
@@ -310,27 +312,145 @@ for (panel in c('Panel1','Panel2')){
   ## Load query object
   query=readRDS(paste0(proc_dir,'symph_query_object_',panel,'.rds'))
   
-  knn_neighbors=15
   
-  ## Run KNN prediction of cell types
-  query_pred=knnPredict(query,       # query object
-                       reference,   # reference object
-                       reference$meta_data$free_annotation, # reference cell labels for training
-                       k=50,       # number of reference neighbors to use for prediction
-                       confidence = TRUE)
-  
-  ## Save query object
-  fn=paste0(proc_dir,'symph_query_object_',panel,'_label_pred_',knn_neighbors,'_neighbors.rds')
-  saveRDS(query_pred,fn)
-
+  for (knn_neighbors in c(15,30,50)){
+    
+    print(paste0('Knn-neighbours ',knn_neighbors))
+    ## Run KNN prediction of cell types
+    query_pred=knnPredict(query,       # query object
+                         reference,   # reference object
+                         reference$meta_data$free_annotation, # reference cell labels for training
+                         k=knn_neighbors,     # number of reference neighbors to use for prediction
+                         confidence = TRUE)
+    
+    ## Save query object
+    fn=paste0(proc_dir,'symph_query_object_',panel,'_label_pred_',knn_neighbors,'_neighbors.rds')
+    saveRDS(query_pred,fn)
+  }
 }
 ```
 
 
 
-```{r echo=FALSE,fig.width=7,fig.height=4}
+```{r echo=FALSE,fig.width=5,fig.height=9}
 proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
-knn_neighbors=15
+knn_neighbors=50
+library(dplyr)
+library(ggplot2)
+library(ggrepel)
+library(cowplot)
+
+for (panel in c('Panel1','Panel2')){
+  print(panel)
+
+  ## Load reference data
+  reference=readRDS(paste0(proc_dir,'ts_reference_object_',panel,'.rds'))
+  
+  plot_list_pred_uncert=list()
+  pred_uncert_plot_n=1
+  
+  for (knn_neighbors in c(15,30,50)){
+  
+    ## Load query object
+    query_pred=readRDS(paste0(proc_dir,'symph_query_object_',panel,'_label_pred_',knn_neighbors,'_neighbors.rds'))
+    
+    ## EXTRACT KNN PREDICTION CERTAINTY
+    p=ggplot(data=query_pred$meta_data,aes(x=cell_type_pred_knn_prob)) + geom_histogram(bins=20) +
+          ggtitle(paste(c(panel,paste0('Cell type probabilities - ',knn_neighbors,' neighbours')),collapse=' - ')) +
+          theme(plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
+    
+    plot_list_pred_uncert[pred_uncert_plot_n]=list(p)
+    pred_uncert_plot_n=pred_uncert_plot_n+1
+
+    unc_thr=0.8
+    
+    ## Init 2 new columns -> certain and uncertain
+    query_pred$meta_data$certain=NA
+    query_pred$meta_data$uncertain=NA
+    
+    ## For cells where knn_probability is >=unc_thr -> add cell label to 'certain' column
+    query_pred$meta_data[query_pred$meta_data$cell_type_pred_knn_prob>=unc_thr,'certain']=sapply(query_pred$meta_data[,'cell_type_pred_knn'][query_pred$meta_data$cell_type_pred_knn_prob>=unc_thr],as.character)
+    
+    ## For cells where knn_probability is < unc_thr -> add cell label to 'uncertain' column
+    query_pred$meta_data[query_pred$meta_data$cell_type_pred_knn_prob<unc_thr,'uncertain']=sapply(query_pred$meta_data[,'cell_type_pred_knn'][query_pred$meta_data$cell_type_pred_knn_prob<unc_thr],as.character)
+    
+    
+    ## PLOT TRANSFERRED LABEL ON UMAPS
+    # Sync the column names for both data frames
+    reference$meta_data$cell_type_pred_knn=reference$meta_data$free_annotation
+    reference$meta_data$cell_type_pred_knn_prob=NA
+    reference$meta_data$ref_query = 'Tabula Sapiens'
+    query_pred$meta_data$ref_query = 'Xenium'
+    query_pred$meta_data$donor=query_pred$meta_data$patient
+    
+    coln=c('cell_type_pred_knn','cell_type_pred_knn_prob','ref_query','donor','method')
+    
+    # Add the UMAP coordinates to the metadata
+    meta_data_combined = rbind(query_pred$meta_data[,coln], reference$meta_data[,coln])
+    umap_combined = rbind(query_pred$umap, reference$umap$embedding)
+    umap_combined_labels = cbind(meta_data_combined, umap_combined)
+    
+    plot_list_batch_corr=list()
+    plot_n=1
+    # Plot UMAPs of both query and reference side by side ==> CHECK THE BATCH CORRECTION FOR BOTH QUERY & REFERENCE INTERNALLY
+    for (coln in c('donor','method')){
+      p1=ggplot(data=umap_combined_labels,aes_string(x='UMAP1',y='UMAP2',colour=coln)) + 
+             geom_point(size=2,alpha = 0.1) + facet_grid(. ~ ref_query) + 
+            ggtitle(paste(c(panel,paste0(knn_neighbors,' neighbours')),collapse=' - '))
+      p1=p1+ theme(plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
+      
+      plot_list_batch_corr[plot_n]=list(p1)
+      plot_n=plot_n+1
+      #print(p1)
+    }    
+    
+    
+    plot_list_integr=list()
+    plot_n=1
+    ## PLot UMAPS WITH BOTH QUERY & REFERENCE ON SAME PLOT ==> CHECK HOW INTEGRATION OF THE TWO DATASETS WORKED
+    for (coln in c('ref_query','cell_type_pred_knn','cell_type_pred_knn_prob')){
+      p1=ggplot(data=umap_combined_labels,aes_string(x='UMAP1',y='UMAP2',colour=coln)) + 
+             geom_point(aes(shape=ref_query), size=2, alpha = 0.5) + #facet_grid(. ~ ref_query) + 
+            ggtitle(paste(c(panel,paste0(knn_neighbors,' neighbours')),collapse=' - '))
+      p1=p1+ theme(plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
+      
+      plot_list_integr[plot_n]=list(p1)
+      plot_n=plot_n+1
+      #print(p1)
+    }
+    
+    
+    ## PLOT ONLY QUERY VARIABLES
+    query_umap=cbind(query_pred$umap,query_pred$meta_data)
+    
+    plot_list_query_only=list()
+    plot_n=1
+    for (coln in c('cell_type_pred_knn','cell_type_pred_knn_prob','patient','condition')){
+    
+      p1=ggplot(data=query_umap,aes_string(x='UMAP1',y='UMAP2',colour=coln)) + 
+             geom_point(size=0.8) + ggtitle(paste(c(panel,paste0(knn_neighbors,' neighbours')),collapse=' - '))
+      p1=p1+ theme( plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
+      
+      plot_list_query_only[plot_n]=list(p1)
+      plot_n=plot_n+1
+      #print(p1)
+    }
+    
+    print(plot_grid(plotlist=plot_list_batch_corr,ncol=1))
+    print(plot_grid(plotlist=plot_list_integr,ncol=1))
+    print(plot_grid(plotlist=plot_list_query_only,ncol=1))
+  }
+  
+  print(plot_grid(plotlist=plot_list_pred_uncert,nrow=3))
+}
+```
+
+```{r}
+library(reshape2)
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+knn_neighbors=50
+marker_gene_sources=list(collaborator='score_all_coll',
+                         literature='score_all_lit')
 
 for (panel in c('Panel1','Panel2')){
   print(panel)
@@ -341,68 +461,22 @@ for (panel in c('Panel1','Panel2')){
   ## Load query object
   query_pred=readRDS(paste0(proc_dir,'symph_query_object_',panel,'_label_pred_',knn_neighbors,'_neighbors.rds'))
   
-  ## EXTRACT KNN PREDICTION CERTAINTY
-  hist(query_pred$meta_data$cell_type_pred_knn_prob,breaks=20)
-  unc_thr=0.8
   
-  ## Init 2 new columns -> certain and uncertain
-  query$meta_data$certain=NA
-  query$meta_data$uncertain=NA
-  
-  ## For cells where knn_probability is >=unc_thr -> add cell label to 'certain' column
-  query_pred$meta_data[query_pred$meta_data$cell_type_pred_knn_prob>=unc_thr,'certain']=sapply(query_pred$meta_data[,'cell_type_pred_knn'][query_pred$meta_data$cell_type_pred_knn_prob>=unc_thr],as.character)
-  
-  ## For cells where knn_probability is < unc_thr -> add cell label to 'uncertain' column
-  query_pred$meta_data[query_pred$meta_data$cell_type_pred_knn_prob<unc_thr,'uncertain']=sapply(query_pred$meta_data[,'cell_type_pred_knn'][query_pred$meta_data$cell_type_pred_knn_prob<unc_thr],as.character)
-  
-  
-  ## PLOT TRANSFERRED LABEL ON UMAPS
-  # Sync the column names for both data frames
-  reference$meta_data$cell_type_pred_knn=reference$meta_data$free_annotation
-  reference$meta_data$cell_type_pred_knn_prob=NA
-  reference$meta_data$ref_query = 'reference'
-  query_pred$meta_data$ref_query = 'query'
-  query_pred$meta_data$donor=query_pred$meta_data$patient
-  
-  coln=c('cell_type_pred_knn','cell_type_pred_knn_prob','ref_query','donor','method')
-  
-  # Add the UMAP coordinates to the metadata
-  meta_data_combined = rbind(query_pred$meta_data[,coln], reference$meta_data[,coln])
-  umap_combined = rbind(query_pred$umap, reference$umap$embedding)
-  umap_combined_labels = cbind(meta_data_combined, umap_combined)
-  
-  # Plot UMAPs of both query and reference side by side ==> CHECK THE BATCH CORRECTION FOR BOTH QUERY & REFERENCE INTERNALLY
-  for (coln in c('donor','method')){
-    p1=ggplot(data=umap_combined_labels,aes_string(x='UMAP1',y='UMAP2',colour=coln)) + 
-           geom_point(size=2,alpha = 0.1) + facet_grid(. ~ ref_query) + 
-          ggtitle(paste(c(panel,paste0(knn_neighbors,' neighbours')),collapse=' - '))
-    p1=p1+ theme(plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
-    print(p1)
-  }    
-  
-  ## PLot UMAPS WITH BOTH QUERY & REFERENCE ON SAME PLOT ==> CHECK HOW INTEGRATION OF THE TWO DATASETS WORKED
-  for (coln in c('ref_query','cell_type_pred_knn','cell_type_pred_knn_prob')){
-    p1=ggplot(data=umap_combined_labels,aes_string(x='UMAP1',y='UMAP2',colour=coln)) + 
-           geom_point(aes(shape=ref_query), size=2, alpha = 0.5) + #facet_grid(. ~ ref_query) + 
-          ggtitle(paste(c(panel,paste0(knn_neighbors,' neighbours')),collapse=' - '))
-    p1=p1+ theme(plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
-    print(p1)
-  }
-  
-  
-  ## PLOT ONLY QUERY VARIABLES
-  query_umap=cbind(query_pred$umap,query_pred$meta_data)
-  
-  for (coln in c('cell_type_pred_knn','cell_type_pred_knn_prob','patient','condition')){
-  
-    p3=ggplot(data=query_umap,aes_string(x='UMAP1',y='UMAP2',colour=coln)) + 
-           geom_point(size=0.8) + ggtitle(paste(c(panel,paste0(knn_neighbors,' neighbours')),collapse=' - '))
-    p3=p3+ theme( plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
-    print(p3)
+  for (leiden_merged in unique(query_pred$meta_data$leiden_merged)){
+      
+      df=query_pred$meta_data[query_pred$meta_data$leiden_merged==leiden_merged,]
+      cell_type_freqs=(as.data.frame(table(df$cell_type_pred_knn)))
+      
+      p=ggplot(data=df,aes(x=cell_type_pred_knn)) + geom_bar() + ggtitle(paste(c(panel,paste0('Leiden-cluster ',leiden_merged)),collapse=' - '))+
+              xlab(paste0('Predicted cell types'))
+      p=p+ theme(plot.title = element_text(face = "bold", hjust = 0.5),
+                axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+      print(p)
   }
 
-}
+}  
 ```
+
 
 
 ## PLot the previously calculated cell-score values for each transferred celltype label

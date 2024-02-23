@@ -113,14 +113,16 @@ get_leiden_marker_genes=function(dat,leiden_clust_colname,coldata,col_to_sum_by,
 #colnames(dat@colData)
 
 proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
 
 for (panel in c('Panel1','Panel2')){
   print(panel)
   
   ## Load Panel adata
-  fn=paste0(proc_dir,'filtered_',panel,'_cells.h5ad')
+  fn=paste0(proc_dir,'filtered_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'.h5ad')
   adata=zellkonverter::readH5AD(file=fn,reader='python')
-  
+
   meta=adata@colData
   
   ## Create a coldata dataframe containing the batch effect descriptors
@@ -156,7 +158,7 @@ for (panel in c('Panel1','Panel2')){
 
 ## Volcano plots of differentially expressed genes
 
-```{r echo=FALSE,fig.width=8,fig.height=10}
+```{r echo=FALSE,fig.width=8,fig.height=7}
 
 proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
 library(dplyr)
@@ -208,6 +210,79 @@ for (panel in c('Panel1','Panel2')){
     plotlist[leiden_clust+1]=list(p)
   }
   print(plot_grid(plotlist=plotlist,ncol=3))
+}
+
+```
+
+### LOAD MARKER GENES FROM COLLABORATORS AND FROM LITERATURE
+
+```{r}
+library("rjson")
+library(dplyr)
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+
+marker_gene_list=list()
+
+for (gene_dict_orig in c('marker_genes_from_collaborator','marker_genes_from_literature')){
+  json_file_path=paste0(proc_dir,gene_dict_orig,'.json')
+  json_data=fromJSON(file=json_file_path)
+  marker_gene_list[[gene_dict_orig]]=json_data
+} 
+
+
+
+### log2FC threshold for DE
+log2FC_thr=1
+
+celltype_results=list()
+
+for (panel in c('Panel1','Panel2')){
+  print(panel)
+  
+  ## Load concatenated data frame
+  deseq2_dirname=paste0(proc_dir,'dge_deseq2/')
+  fname=paste0(panel,'_leiden_clust_marker_genes.csv.gz')
+  file_path=paste0(deseq2_dirname,fname)
+  dge_df=read.csv(file_path)
+  
+  ## Set the thresholds for significantly differentially expressed genes
+  dge_df <- dge_df %>% 
+                  dplyr::mutate(threshold_dge=padj < 0.05 & abs(log2FC)>=log2FC_thr)
+  
+  d=sapply(unique(dge_df$cluster),function(x) NULL)
+  
+  for (leiden_clust in unique(dge_df$cluster)){
+    clust_df=dge_df[dge_df$cluster==leiden_clust,]
+    
+    d[[as.character(leiden_clust)]]=list()
+    
+    ## Add new column to collect the differentially expressed gene names
+    clust_df[,'DE_gene_names']=NA
+    clust_df[(clust_df$padj<0.05)&(clust_df$log2FC)>=log2FC_thr,'DE_gene_names']=clust_df[(clust_df$padj<0.05)&(clust_df$log2FC)>=log2FC_thr,'gene']
+    
+  
+    clust_mark_genes=unlist(clust_df[!is.na(clust_df$DE_gene_names),'DE_gene_names'])
+    
+    
+    
+    
+    for (gene_dict_orig in names(marker_gene_list)){
+      marker_gene_dict=marker_gene_list[[gene_dict_orig]]
+      
+      d[[as.character(leiden_clust)]][[gene_dict_orig]]=list()
+      
+      for (cell_type in names(marker_gene_dict)){
+        clust_pos_mark_genes=intersect(clust_mark_genes,unlist(marker_gene_dict[cell_type]))
+        #print(paste0(clust_mark_genes,marker_gene_dict[cell_type]))
+        if (length(clust_pos_mark_genes)>0){
+          d[[as.character(leiden_clust)]][[gene_dict_orig]][[cell_type]]=clust_pos_mark_genes
+        }
+        
+      }
+      #print(clust_mark_genes)
+    }
+  }
+  celltype_results[[panel]]=d
 }
 
 ```
