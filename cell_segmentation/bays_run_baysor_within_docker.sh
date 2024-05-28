@@ -82,14 +82,16 @@ set -euo pipefail #o
 #   2. PUBLIC BREAST CANCER DATA FROM 10X (https://www.10xgenomics.com/products/xenium-in-situ/preview-dataset-human-breast)
 
 dataset_type='atherosclerosis'
-dataset_type='breast_cancer'
+#dataset_type='breast_cancer'
 
 ### SETUP DATA FOLDER TO LOOP OVER
 if [ "$dataset_type" == "atherosclerosis" ]; then
     data_dir="/home/unimelb.edu.au/gargerd/data/Atherosclerosis/xenium_data"
     # Drop scratch folders that start with "._"
-    panel_dir_list=($(find "$data_dir" -maxdepth 1 -type d -name '*Panel*' -a ! -name '._*' | sort))
+    panel_dir_list=($(find "$data_dir" -maxdepth 1 -type d -name '*Panel2*' -a ! -name '._*' | sort))
     sample_name_list=('P1_H' 'P1_D' 'P2_H' 'P2_D' 'P3_H' 'P3_D' 'P4_H' 'P4_D') #
+    sample_name_list=('P7_D' 'P8_D' 'P9_D' 'P10_D' 'P11_D' 'P12_D') #'P5_D' 'P6_D' 
+ 
 fi    
     
 if [ "$dataset_type" == "breast_cancer" ]; then
@@ -104,7 +106,8 @@ fi
 segment_expansion_sizes_um=('0') #'4' '6' '10') 
 
 # Segmentation methods
-segment_methods=('no_segmentation' '10x') # 'cellpose') #''
+segment_methods=('no_segmentation' '10x' 'cellpose') #''
+
 
 ## Cellpose model types
 cellpose_model_types=('nuclei' 'cyto')
@@ -112,7 +115,7 @@ cellpose_model_types=('nuclei' 'cyto')
 
 ### BAYSOR PARAMETERS
 # Values for 'scale' parameter in Baysor => ~ expected RADIUS of cells in um-s
-baysor_scale_arr_um=('5' '10' '15') 
+baysor_scale_arr_um=('5' '10' '15')
 
 
 start=$(date +%s)

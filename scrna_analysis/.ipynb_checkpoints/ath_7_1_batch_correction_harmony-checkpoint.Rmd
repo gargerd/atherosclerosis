@@ -1,0 +1,116 @@
+
+```{r}
+#.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.2')
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+
+library(harmony)
+library(scran)
+library(transformGamPoi)
+library(SingleCellExperiment)
+library(zellkonverter)
+library(BiocParallel)
+library("readxl")
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(cowplot)
+library(umap)
+
+```
+
+## Load data and metadata
+```{r fig.width=11,fig.height=5}
+## Init list with reference genome names that were used for the 2 alignments
+ref_genomes=c('GRCh38-p14-Gencode_v44','GRCh38-p13-Gencode_v33')
+
+dat_list=list()
+for (ref_genome in ref_genomes){
+
+  
+  fname=paste0('../../data/',ref_genome,'_data_QC_norm.h5ad')
+  dat=zellkonverter::readH5AD(fname,reader='python')
+  print(ref_genome)
+  meta=read.csv(paste0('../../data/',ref_genome,'_adata_obs_with_metadata.csv'))
+  
+  ##=========== RUN harmony batch correction ================
+  ## Run PCA and then run Harmony batch correction (can only correct for categorical variables!)
+  ## Run PCA on normalised data
+  acosh_pca=fixedPCA(dat,rank=30,assay.type='acosh',subset.row=NULL)
+  pca_=reducedDim(acosh_pca,'PCA')
+  
+  ## Convert metadata to factors and add Age
+  meta_corr=as.data.frame(lapply(meta[,c("preparation_kit", "batch", "patient")], factor))
+  meta_corr['Age']=meta['Age']
+  
+  ## Run harmony batch correction
+  harmonized_pcs <- HarmonyMatrix(
+    data_mat  = reducedDim(acosh_pca,'PCA'),
+    meta_data = meta_corr,
+    vars_use  = c("batch"), # "preparation_kit", "batch",  multiple covariates
+    do_pca    = FALSE)
+  
+  
+  #============ PLOT PCA & UMAP OF BATCH CORRECTED DATA ==============
+  ## Plot raw PCA and batch corrected PCA
+  plot_df_raw_pca=cbind(as.data.frame(pca_),meta_corr)
+  plot_df_corr_pca=cbind(as.data.frame(harmonized_pcs),meta_corr)
+  
+  for (batch_eff in c( "batch", "patient",'Age')){
+    p1=ggplot(data=plot_df_raw_pca,aes_string(x='PC1',y='PC2',color=batch_eff))+
+              geom_point(size=0.5) + 
+              ggtitle(paste0(ref_genome,' - Raw PCA'))
+    
+    p2=ggplot(data=plot_df_corr_pca,aes_string(x='PC1',y='PC2',color=batch_eff))+
+              geom_point(size=0.5) + 
+              ggtitle(paste0(ref_genome,' - Batch corrected PCA'))
+    
+    print(cowplot::plot_grid(p1, p2, nrow = 1))
+  }
+    
+  ## Calculate UMAP for raw and corrected PCA
+  umap_raw=umap(pca_)
+  umap_raw_df <- umap_raw$layout %>%
+    as.data.frame()%>%
+    rename(UMAP1="V1",
+           UMAP2="V2")
+  
+  umap_corr=umap(harmonized_pcs)
+  umap_corr_df <- umap_corr$layout %>%
+    as.data.frame()%>%
+    rename(UMAP1="V1",
+           UMAP2="V2")
+  
+  
+  plot_df_raw_umap=cbind(as.data.frame(umap_raw_df),meta_corr)
+  plot_df_corr_umap=cbind(as.data.frame(umap_corr_df),meta_corr)
+  
+  
+  
+  ## PLot raw and corrected UMAP
+  for (batch_eff in c( "batch", "patient",'Age')){
+    p1=ggplot(data=plot_df_raw_umap,aes_string(x='UMAP1',y='UMAP2',color=batch_eff))+
+              geom_point(size=0.5) + 
+              ggtitle(paste0(ref_genome,' - Raw UMAP')) #+ theme(legend.position = "none")   
+    
+    p2=ggplot(data=plot_df_corr_umap,aes_string(x='UMAP1',y='UMAP2',color=batch_eff))+
+              geom_point(size=0.5) + 
+              ggtitle(paste0(ref_genome,' - Batch corrected UMAP'))
+    
+    print(cowplot::plot_grid(p1, p2, nrow = 1,rel_widths = c(1, 1)))
+    
+  }
+    #=========== SAVE BATCH CORRECTED PCA DATA ===============
+    fn2=paste0('../../data/',ref_genome,'_batch_corr_PCA_harmony.csv')
+    write.csv(harmonized_pcs,fn2)
+}
+  
+```
+
+
+
+
+

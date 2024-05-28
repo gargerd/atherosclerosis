@@ -17,6 +17,10 @@ library(muscat)
 library(SingleCellExperiment)
 library(scran)
 library(zellkonverter)
+library("rjson")
+library(dplyr)
+library(ggplot2)
+
 ```
 
 
@@ -125,11 +129,39 @@ get_leiden_marker_genes=function(dat,leiden_clust_colname,coldata,col_to_sum_by,
 fn='../../data/GSE159677_filtered_clustered.h5ad'
 adata=zellkonverter::readH5AD(file=fn,reader='python')
 
+## HVG selected by scanpy (4000 HVG) 
+hvg_genes=(adata@rowRanges@elementMetadata$ENSEMBL_ID)[adata@rowRanges@elementMetadata$highly_variable]
+
+
 ## Extract top 8000 HVG genes with Seurat and subset SCE with it
-seur_obj=as.Seurat(adata,counts='raw_counts', data='acosh')
-hvg_obj=FindVariableFeatures(object=seur_obj,nfeatures=8000)
-hvg_genes=hvg_obj@assays$originalexp@var.features
-adata_hvg=adata[hvg_genes,]
+#seur_obj=as.Seurat(adata,counts='raw_counts', data='acosh')
+#seur_obj=FindVariableFeatures(object=seur_obj,nfeatures=8000)
+#hvg_genes=seur_obj@assays$originalexp@var.features
+
+```
+
+## If marker genes are missing from the HVG genes, add them to the HVG gene list and SUBSET ADATA TO HVG + MARKER GENES
+
+```{r}
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+
+marker_gene_list=list()
+
+for (gene_dict_orig in c('high_level_ensem_gene_merged')){
+  json_file_path=paste0(proc_dir,gene_dict_orig,'.json')
+  json_data=fromJSON(file=json_file_path)
+  marker_gene_list[[gene_dict_orig]]=json_data
+} 
+
+for (gene_dict_orig in c('high_level_ensem_gene_merged')){
+    marker_gene_dict=marker_gene_list[[gene_dict_orig]]
+    
+    hvg_plus_marker_genes=unique(c(hvg_genes,unique(unname(unlist(marker_gene_dict)))))
+    print(length(hvg_plus_marker_genes))
+    
+}
+
+adata_hvg=adata[hvg_plus_marker_genes,]
 ```
 
 ### Run DGE with DESEq2
@@ -144,7 +176,7 @@ coldata=aggregate(x=meta[,c('patient','condition')],
 rownames(coldata)=coldata$sample_id
 
 ## Define parameters of DESeq
-leiden_clust_colname='leiden'
+leiden_clust_colname='scVI_leiden'#'leiden'
 col_to_sum_by='sample_id'
 cols_to_correct_for=c('patient','condition')
 
@@ -163,7 +195,7 @@ deseq2_dirname=paste0('../../data/','dge_deseq2/')
 if (!dir.exists(deseq2_dirname)) {
   dir.create(deseq2_dirname)}
 
-fname=paste0('GSE159677','_leiden_clust_marker_genes.csv.gz')
+fname=paste0('GSE159677','_leiden_clust_marker_genes.csv')
 file_path=paste0(deseq2_dirname,fname)
 write.csv(concatenated_df,file=file_path)
 
@@ -182,7 +214,7 @@ library(cowplot)
 
 
 ### log2FC threshold for DE
-log2FC_thr=1
+log2FC_thr=3
 
 
 
@@ -239,6 +271,9 @@ jaccard(c('a'),c('b','a'))
 
 library("rjson")
 library(dplyr)
+library(ggplot2)
+
+
 proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
 
 marker_gene_list=list()
@@ -265,6 +300,11 @@ fname=paste0('GSE159677','_leiden_clust_marker_genes.csv.gz')
 file_path=paste0(deseq2_dirname,fname)
 dge_df=read.csv(file_path)
 
+deseq2_dirname=paste0('../../data/','dge_deseq2/')
+fname=paste0('GSE159677','_leiden_clust_marker_genes.csv')
+file_path=paste0(deseq2_dirname,fname)
+write.csv(dge_df,file_path)
+
 ## Set the thresholds for significantly differentially expressed genes
 dge_df <- dge_df %>% 
                 dplyr::mutate(threshold_dge=padj < 0.05 & abs(log2FC)>=log2FC_thr)
@@ -278,29 +318,25 @@ for (gene_dict_orig in c('high_level_ensem_gene_merged')){
     
     for (leiden_clust in unique(dge_df$cluster)){
   
-    clust_df=dge_df[dge_df$cluster==leiden_clust,]
-    
-    #d[[as.character(leiden_clust)]]=list()
-    
-    ## Add new column to collect the differentially expressed gene names
-    clust_df[,'DE_gene_names']=NA
-    clust_df[(clust_df$padj<0.05)&(clust_df$log2FC)>=log2FC_thr,'DE_gene_names']=clust_df[(clust_df$padj<0.05)&(clust_df$log2FC)>=log2FC_thr,'gene']
-    
+      clust_df=dge_df[dge_df$cluster==leiden_clust,]
+      
+      ## Add new column to collect the differentially expressed gene names
+      clust_df[,'DE_gene_names']=NA
+      clust_df[(clust_df$padj<0.05)&(clust_df$log2FC)>=log2FC_thr,'DE_gene_names']=clust_df[(clust_df$padj<0.05)&(clust_df$log2FC)>=log2FC_thr,'gene']
+      
+      ## Extract marker genes of cluster
+      clust_mark_genes=unlist(clust_df[!is.na(clust_df$DE_gene_names),'DE_gene_names'])
+      
   
-    clust_mark_genes=unlist(clust_df[!is.na(clust_df$DE_gene_names),'DE_gene_names'])
-    
+      clust_pos_mark_genes=intersect(clust_mark_genes,marker_gene_dict[[cell_type]])
       
-      #d[[as.character(leiden_clust)]][[gene_dict_orig]]=list()
-      
+      #print(paste(cell_type,leiden_clust,length(clust_pos_mark_genes)))
 
-        clust_pos_mark_genes=intersect(clust_mark_genes,unlist(marker_gene_dict[cell_type]))
-        #print(paste0(clust_mark_genes,marker_gene_dict[cell_type]))
-        if (length(clust_pos_mark_genes)>0){
-          d[[gene_dict_orig]][['overlapping_genes']][[cell_type]][[as.character(leiden_clust)]]=clust_pos_mark_genes
-          d[[gene_dict_orig]][['num_of_overlapping_genes']][[cell_type]][[as.character(leiden_clust)]]=length(clust_pos_mark_genes)
-          d[[gene_dict_orig]][['ratio_overlapping_genes']][[cell_type]][[as.character(leiden_clust)]]=length(clust_pos_mark_genes)/length(intersect(hvg_genes,unlist(marker_gene_dict[cell_type])))
-          d[[gene_dict_orig]][['jaccard_index_overlapping_genes']][[cell_type]][[as.character(leiden_clust)]]=jaccard(unlist(marker_gene_dict[cell_type]),clust_pos_mark_genes)
-        }
+      d[[gene_dict_orig]][['overlapping_genes']][[cell_type]][[as.character(leiden_clust)]]=clust_pos_mark_genes
+      d[[gene_dict_orig]][['num_of_overlapping_genes']][[cell_type]][[as.character(leiden_clust)]]=length(clust_pos_mark_genes)
+      d[[gene_dict_orig]][['ratio_overlapping_genes']][[cell_type]][[as.character(leiden_clust)]]=length(clust_pos_mark_genes)/length(intersect(hvg_genes,unlist(marker_gene_dict[cell_type])))
+      d[[gene_dict_orig]][['jaccard_index_overlapping_genes']][[cell_type]][[as.character(leiden_clust)]]=jaccard(unlist(marker_gene_dict[cell_type]),clust_pos_mark_genes)
+    
         
       }
       #print(clust_mark_genes)
@@ -309,7 +345,26 @@ for (gene_dict_orig in c('high_level_ensem_gene_merged')){
   celltype_results=d
 
 }
+```
 
-df <- as.data.frame(do.call(cbind, d[[gene_dict_orig]][['ratio_overlapping_genes']]))
+```{r}
+df <- as.data.frame(do.call(rbind, d[[gene_dict_orig]][['ratio_overlapping_genes']]))
+
+numeric_dataframe <- as.data.frame(sapply(df, as.numeric))
+heatmap(as.matrix(numeric_dataframe), 
+        Rowv = NA,         # Don't reorder rows
+        Colv = NA,         # Don't reorder columns
+        col = cm.colors(256),  # Color palette (adjust as needed)
+        scale = "none",  # Scale the values by column
+        main = "Ratio of overlapping genes",
+        xlab = "CLusters",
+        ylab = "Cell types",
+        labRow = row.names(df),  # Use rownames as labels
+        labCol = colnames(df) ,  # Use colnames as labels
+        text = TRUE,  # Show text on tiles
+        cex.text = 1,  # Adjust text size as needed
+        #adj = c(0.5, 0.5)  # Center the text on tiles
+)
+
 ```
 

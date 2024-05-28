@@ -1,0 +1,525 @@
+```{r}
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+#install.packages('symphony')
+```
+
+
+```{r}
+library(scran)
+library(SingleCellExperiment)
+library(zellkonverter)
+library(MatrixGenerics)
+library(BiocParallel)
+library(symphony)
+library(scDblFinder)
+library(transformGamPoi)
+library(harmony)
+library(dplyr)
+library(irlba)
+library(ggplot2)
+set.seed(0)
+```
+
+
+## NORMALISE TS DATA
+## Calculate size factors for all cells with scran -> use Fastcluster clusters for this
+```{r}
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+
+## Check for which gene panels the acosh normalized, subsetted TS dataset is missing
+#  - If not missing load the subsetted datasets into a list
+#. - If missing, subset the dataset to the respective Panel genes, run acosh normalization and save the data as .h5ad files
+panels_without_norm_data=c()
+adata_ts_list=list()
+
+for (panel in c('Panel1','Panel2')){
+  print(panel)
+  
+  fn=paste0(proc_dir,'ts_blood_vasc_norm_',panel,'.h5ad')
+  if (file.exists(fn)){
+    print (paste0('Acosh normalised and subsetted data to',panel,'genes already exist! \n Loading normalised data!'))
+    ts_dat_panel=zellkonverter::readH5AD(file=fn,reader='python')
+    adata_ts_list[panel]=ts_dat_panel
+    
+   } else {
+   panels_without_norm_data=c(panels_without_norm_data,panel)}
+}
+
+## Subset TS data to the respective Panel genes and run acosh normalisation, if acosh normalisation hasn't been run yet
+
+if (length(panels_without_norm_data)>0){
+  print('Loading TS data')
+  #ts_dat=zellkonverter::readH5AD(file='../../data/ts_blood_vasc.h5ad',reader='python')
+  
+  if ('acosh' %in% names(ts_dat@assays)){
+    print('Acosh normalisation present in TS dataset, starting to subset to respective Panel genes!')
+    
+  } else {
+        print('Acosh normalisation layer not present in TS dataset ==> Running acosh normalisation')
+        print('Calculate Size Factors')
+        
+        ## Calculate Size Factors
+        ts_dat$fastcluster <- fastcluster(ts_dat)
+        input_groups=ts_dat@colData[,'fastcluster',drop=T]
+        data_mat=((assay(ts_dat,"counts")))
+        register(MulticoreParam(workers = 4))
+        size_factors = calculateSumFactors(data_mat, clusters=input_groups)
+        rm(data_mat)
+      
+        print('Run acosh normalization for TS data')
+        ## Apply acosh transformation to the raw counts
+        assay(ts_dat, withDimnames=FALSE,"acosh")=acosh_transform(assay(ts_dat,"raw_counts"),size_factors=size_factors,overdispersion=TRUE,
+                                                                  on_disk = FALSE)
+        ## Save file
+        fn='../../data/ts_blood_vasc.h5ad'
+        writeH5AD(ts_dat,file=fn,compression='gzip')
+        
+        print('Acosh normlaisation done! Starting subsetting TS data to Panel genes')}
+
+  for (panel in panels_without_norm_data){
+      print(paste0('Subsetting TS data with genes from ',panel))
+
+      ## Subset TS to common genes with Panel
+      fn=paste0(proc_dir,'filtered_',panel,'_cells.h5ad')
+      adata=zellkonverter::readH5AD(file=fn,reader='python')
+
+      comm_genes=intersect(rownames(adata),rownames(ts_dat))
+      ts_dat_panel=ts_dat[comm_genes,]
+
+
+      ## Save file
+      fn=paste0(proc_dir,'ts_blood_vasc_norm_',panel,'.h5ad')
+      writeH5AD(ts_dat_panel,file=fn,compression='gzip')
+
+      ## Add to list
+      #adata_ts_list[panel]=ts_dat_panel
+      }
+}  
+```
+
+## Prepare data necessary for Harmony batch correction of TS data
+## - Extract metadata of TS data
+## - Select veriable genes 
+## - Calculate PCA of TS data 
+```{r}
+
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+
+for (panel in c('Panel1','Panel2')){
+  
+  print(panel)
+  
+  fn=paste0(proc_dir,'ts_blood_vasc_norm_',panel,'.h5ad')
+  adata_ts_panel=zellkonverter::readH5AD(file=fn,reader='python')
+
+  
+  ## Convert metadata to factors
+  meta_ts=adata_ts_panel@colData
+  #rm(ts_dat)
+
+  cols_to_factors_ts=c( "method", "donor")
+  meta_ts_=as.data.frame(meta_ts) %>%
+            mutate_at(vars(cols_to_factors_ts), as.factor)
+
+
+
+  ## Extract normalised values of the reference data
+  ref_exp_full=as(assay(adata_ts_panel, "acosh"), "dgCMatrix")
+
+  #var_genes=vargenes_vst(ref_exp_full, groups = as.character(meta_ts_[['donor']]), topn = 10000)
+  var_genes=rownames(adata_ts_panel)
+  ref_exp=ref_exp_full[var_genes, ]
+
+
+  ## Calculate means and Std.Dev of the genes expressions
+  vargenes_means_sds = tibble(symbol = var_genes, mean = Matrix::rowMeans(ref_exp))
+  vargenes_means_sds$stddev = rowSDs(ref_exp, vargenes_means_sds$mean)
+  ref_exp_scaled = scaleDataWithStats(ref_exp, vargenes_means_sds$mean, vargenes_means_sds$stddev, 1)
+
+  ## Calculate PCA of scaled expression values and extract loadings
+  set.seed(0)
+  s = irlba(ref_exp_scaled, nv = 30)
+  Z_pca_ref = diag(s$d) %*% t(s$v) # [pcs by cells]
+  loadings = s$u
+
+
+  saveRDS(Z_pca_ref, paste0(proc_dir,'ts_harmonized_pcs_',panel,'.rds'))
+  saveRDS(s,  paste0(proc_dir,'ref_exp_scaled_PCA_',panel,'.rds'))
+  saveRDS(vargenes_means_sds,paste0(proc_dir,'vargenes_means_sds_',panel,'.rds'))
+}  
+```
+
+
+
+## Build reference symphony object from the TS harmonized data
+## 1. Run harmony Batch correction to get TS data Harmony object
+## 2. Create reference Symphony object from TS data Harmony object
+```{r}
+
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+
+for (panel in c('Panel1','Panel2')){
+  
+  print(panel)
+
+  ### Load previously created and saved PCA loading + MEtadata + Gene variance/mean dataframe
+  s=readRDS(paste0(proc_dir,'ref_exp_scaled_PCA_',panel,'.rds'))
+  loadings=s$u
+  vargenes_means_sds=readRDS(paste0(proc_dir,'vargenes_means_sds_',panel,'.rds'))
+  Z_pca_ref=readRDS(paste0(proc_dir,'ts_harmonized_pcs_',panel,'.rds'))
+  
+  ## Load TS adata subsetted to Panel genes and extract metadata
+  fn=paste0(proc_dir,'ts_blood_vasc_norm_',panel,'.h5ad')
+  adata_ts_panel=zellkonverter::readH5AD(file=fn,reader='python')
+
+  
+  ## Convert metadata to factors
+  meta_ts=adata_ts_panel@colData
+
+  cols_to_factors_ts=c( "method", "donor")
+  meta_ts_=as.data.frame(meta_ts) %>%
+            mutate_at(vars(cols_to_factors_ts), as.factor)
+  
+  ## Run harmony batch correction
+  ref_harmObj = harmony::HarmonyMatrix(
+          data_mat = t(Z_pca_ref),  ## PCA embedding matrix of cells
+          meta_data = meta_ts_, ## dataframe with cell labels
+          vars_use = cols_to_factors_ts,    ## variable to integrate out
+          return_object = TRUE,     ## return the full Harmony model object
+          do_pca = FALSE            ## don't recompute PCs
+          )
+  
+  
+  # Compress a Harmony object into a Symphony reference
+  reference = buildReferenceFromHarmonyObj(
+                          ref_harmObj,  # output object from HarmonyMatrix()
+                          meta_ts_,           # reference cell metadata
+                          vargenes_means_sds,     # gene names, means, and std devs for scaling
+                          loadings,               # genes x PCs matrix
+                          verbose=TRUE,         # verbose output
+                          do_umap=TRUE,         # set to TRUE to run UMAP
+                          save_uwot_path=paste0(proc_dir,'/testing_uwot_model_1')
+                          )
+  
+  saveRDS(reference, paste0(proc_dir,'ts_reference_object_',panel,'.rds'))
+}  
+
+```
+
+## NORMALISE QUERY (OUR) DATA
+## Calculate size factors for all cells with scran -> use Fastcluster clusters for this
+```{r}
+#dat=readH5AD('../data/data_QC_all_genes.h5ad')
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+for (panel in c('Panel1','Panel2')){
+  print(panel)
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'filtered_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+
+if ('acosh' %in% names(adata@assays)){
+  print ('Acosh normalisation already done!')
+  } else {
+  
+  #dat$fastcluster <- fastcluster(dat)
+  input_groups=adata@colData[,'leiden_merged',drop=T]
+  data_mat=((assay(adata)))
+  register(MulticoreParam(workers = 4))
+  size_factors = calculateSumFactors(data_mat, clusters=input_groups)
+  rm(data_mat)
+  
+  ## Apply acosh transformation to the raw counts
+  acosh_trans=acosh_transform(assay(adata, "raw_counts"),size_factors=size_factors,overdispersion=TRUE,
+                                                          on_disk = FALSE)
+  
+  ## Save file
+  fn=paste0(proc_dir,'filtered_',panel,'_cells_acosh_norm.rds')
+  saveRDS(acosh_trans, fn)
+  }
+}  
+```
+
+##  MAP OUR DATA (QUERY) TO REFERENCE (TS DATA)
+```{r}
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+
+for (panel in c('Panel1','Panel2')){
+  print(panel)
+
+  ## Load TS adata subsetted to Panel genes and extract metadata
+  fn=paste0(proc_dir,'filtered_',panel,'_cells.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+
+  
+  ## Convert metadata to factors
+  meta_=adata@colData
+  meta_[,'method']='xenium'
+
+  cols_to_factors=c("method", "patient")
+  meta_=as.data.frame(meta_) %>%
+            mutate_at(vars(cols_to_factors), as.factor)
+  
+  ## Load acosh tranformed data
+  acosh_trans=readRDS(paste0(proc_dir,'filtered_',panel,'_cells_acosh_norm.rds'))
+  
+  ## Load reference data
+  reference=readRDS(paste0(proc_dir,'ts_reference_object_',panel,'.rds'))
+
+  # Map query to reference dataset
+  query=mapQuery(acosh_trans,    # query gene expression (genes x cells)
+                   meta_,                 # query metadata (cells x attributes)
+                   reference,             # Symphony reference object
+                   vars=cols_to_factors,  # Query batch variable(s) to integrate over (column names in metadata)
+                   do_normalize = FALSE,  # perform log(CP10k) normalization on query
+                   do_umap = TRUE)        # project query cells into reference UMAP
+  
+  ## Run KNN prediction of cell types
+  # query = knnPredict(query,       # query object
+  #                    reference,   # reference object
+  #                    reference$meta_data$free_annotation, # reference cell labels for training
+  #                    k = 15,       # number of reference neighbors to use for prediction
+  #                    confidence = TRUE)
+  
+  ## Save symphony transferred labels as dataframe
+  fn=paste0(proc_dir,'symphony_transferred_labels_',panel,'.csv.gz')
+  write.csv(query$meta_data,fn)
+  
+  ## Save query object
+  fn=paste0(proc_dir,'symph_query_object_',panel,'.rds')
+  saveRDS(query,fn)
+}  
+```
+
+
+## RUN CELLTYPE-PREDICTION WITH KNN-PREDICTOR
+```{r}
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+
+for (panel in c('Panel1','Panel2')){
+  print(panel)
+  
+  ## Load reference data
+  reference=readRDS(paste0(proc_dir,'ts_reference_object_',panel,'.rds'))
+  
+  ## Load query object
+  query=readRDS(paste0(proc_dir,'symph_query_object_',panel,'.rds'))
+  
+  
+  for (knn_neighbors in c(15,30,50)){
+    
+    print(paste0('Knn-neighbours ',knn_neighbors))
+    ## Run KNN prediction of cell types
+    query_pred=knnPredict(query,       # query object
+                         reference,   # reference object
+                         reference$meta_data$free_annotation, # reference cell labels for training
+                         k=knn_neighbors,     # number of reference neighbors to use for prediction
+                         confidence = TRUE)
+    
+    ## Save query object
+    fn=paste0(proc_dir,'symph_query_object_',panel,'_label_pred_',knn_neighbors,'_neighbors.rds')
+    saveRDS(query_pred,fn)
+  }
+}
+```
+
+
+
+```{r echo=FALSE,fig.width=5,fig.height=9}
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+knn_neighbors=50
+library(dplyr)
+library(ggplot2)
+library(ggrepel)
+library(cowplot)
+
+for (panel in c('Panel1','Panel2')){
+  print(panel)
+
+  ## Load reference data
+  reference=readRDS(paste0(proc_dir,'ts_reference_object_',panel,'.rds'))
+  
+  plot_list_pred_uncert=list()
+  pred_uncert_plot_n=1
+  
+  for (knn_neighbors in c(15,30,50)){
+  
+    ## Load query object
+    query_pred=readRDS(paste0(proc_dir,'symph_query_object_',panel,'_label_pred_',knn_neighbors,'_neighbors.rds'))
+    
+    ## EXTRACT KNN PREDICTION CERTAINTY
+    p=ggplot(data=query_pred$meta_data,aes(x=cell_type_pred_knn_prob)) + geom_histogram(bins=20) +
+          ggtitle(paste(c(panel,paste0('Cell type probabilities - ',knn_neighbors,' neighbours')),collapse=' - ')) +
+          theme(plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
+    
+    plot_list_pred_uncert[pred_uncert_plot_n]=list(p)
+    pred_uncert_plot_n=pred_uncert_plot_n+1
+
+    unc_thr=0.8
+    
+    ## Init 2 new columns -> certain and uncertain
+    query_pred$meta_data$certain=NA
+    query_pred$meta_data$uncertain=NA
+    
+    ## For cells where knn_probability is >=unc_thr -> add cell label to 'certain' column
+    query_pred$meta_data[query_pred$meta_data$cell_type_pred_knn_prob>=unc_thr,'certain']=sapply(query_pred$meta_data[,'cell_type_pred_knn'][query_pred$meta_data$cell_type_pred_knn_prob>=unc_thr],as.character)
+    
+    ## For cells where knn_probability is < unc_thr -> add cell label to 'uncertain' column
+    query_pred$meta_data[query_pred$meta_data$cell_type_pred_knn_prob<unc_thr,'uncertain']=sapply(query_pred$meta_data[,'cell_type_pred_knn'][query_pred$meta_data$cell_type_pred_knn_prob<unc_thr],as.character)
+    
+    
+    ## PLOT TRANSFERRED LABEL ON UMAPS
+    # Sync the column names for both data frames
+    reference$meta_data$cell_type_pred_knn=reference$meta_data$free_annotation
+    reference$meta_data$cell_type_pred_knn_prob=NA
+    reference$meta_data$ref_query = 'Tabula Sapiens'
+    query_pred$meta_data$ref_query = 'Xenium'
+    query_pred$meta_data$donor=query_pred$meta_data$patient
+    
+    coln=c('cell_type_pred_knn','cell_type_pred_knn_prob','ref_query','donor','method')
+    
+    # Add the UMAP coordinates to the metadata
+    meta_data_combined = rbind(query_pred$meta_data[,coln], reference$meta_data[,coln])
+    umap_combined = rbind(query_pred$umap, reference$umap$embedding)
+    umap_combined_labels = cbind(meta_data_combined, umap_combined)
+    
+    plot_list_batch_corr=list()
+    plot_n=1
+    # Plot UMAPs of both query and reference side by side ==> CHECK THE BATCH CORRECTION FOR BOTH QUERY & REFERENCE INTERNALLY
+    for (coln in c('donor','method')){
+      p1=ggplot(data=umap_combined_labels,aes_string(x='UMAP1',y='UMAP2',colour=coln)) + 
+             geom_point(size=2,alpha = 0.1) + facet_grid(. ~ ref_query) + 
+            ggtitle(paste(c(panel,paste0(knn_neighbors,' neighbours')),collapse=' - '))
+      p1=p1+ theme(plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
+      
+      plot_list_batch_corr[plot_n]=list(p1)
+      plot_n=plot_n+1
+      #print(p1)
+    }    
+    
+    
+    plot_list_integr=list()
+    plot_n=1
+    ## PLot UMAPS WITH BOTH QUERY & REFERENCE ON SAME PLOT ==> CHECK HOW INTEGRATION OF THE TWO DATASETS WORKED
+    for (coln in c('ref_query','cell_type_pred_knn','cell_type_pred_knn_prob')){
+      p1=ggplot(data=umap_combined_labels,aes_string(x='UMAP1',y='UMAP2',colour=coln)) + 
+             geom_point(aes(shape=ref_query), size=2, alpha = 0.5) + #facet_grid(. ~ ref_query) + 
+            ggtitle(paste(c(panel,paste0(knn_neighbors,' neighbours')),collapse=' - '))
+      p1=p1+ theme(plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
+      
+      plot_list_integr[plot_n]=list(p1)
+      plot_n=plot_n+1
+      #print(p1)
+    }
+    
+    
+    ## PLOT ONLY QUERY VARIABLES
+    query_umap=cbind(query_pred$umap,query_pred$meta_data)
+    
+    plot_list_query_only=list()
+    plot_n=1
+    for (coln in c('cell_type_pred_knn','cell_type_pred_knn_prob','patient','condition')){
+    
+      p1=ggplot(data=query_umap,aes_string(x='UMAP1',y='UMAP2',colour=coln)) + 
+             geom_point(size=0.8) + ggtitle(paste(c(panel,paste0(knn_neighbors,' neighbours')),collapse=' - '))
+      p1=p1+ theme( plot.title = element_text(face = "bold", hjust = 0.5))  # Set font weight to bold and center the title
+      
+      plot_list_query_only[plot_n]=list(p1)
+      plot_n=plot_n+1
+      #print(p1)
+    }
+    
+    print(plot_grid(plotlist=plot_list_batch_corr,ncol=1))
+    print(plot_grid(plotlist=plot_list_integr,ncol=1))
+    print(plot_grid(plotlist=plot_list_query_only,ncol=1))
+  }
+  
+  print(plot_grid(plotlist=plot_list_pred_uncert,nrow=3))
+}
+```
+
+```{r}
+library(reshape2)
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+knn_neighbors=50
+marker_gene_sources=list(collaborator='score_all_coll',
+                         literature='score_all_lit')
+
+for (panel in c('Panel1','Panel2')){
+  print(panel)
+  
+  ## Load reference data
+  reference=readRDS(paste0(proc_dir,'ts_reference_object_',panel,'.rds'))
+  
+  ## Load query object
+  query_pred=readRDS(paste0(proc_dir,'symph_query_object_',panel,'_label_pred_',knn_neighbors,'_neighbors.rds'))
+  
+  
+  for (leiden_merged in unique(query_pred$meta_data$leiden_merged)){
+      
+      df=query_pred$meta_data[query_pred$meta_data$leiden_merged==leiden_merged,]
+      cell_type_freqs=(as.data.frame(table(df$cell_type_pred_knn)))
+      
+      p=ggplot(data=df,aes(x=cell_type_pred_knn)) + geom_bar() + ggtitle(paste(c(panel,paste0('Leiden-cluster ',leiden_merged)),collapse=' - '))+
+              xlab(paste0('Predicted cell types'))
+      p=p+ theme(plot.title = element_text(face = "bold", hjust = 0.5),
+                axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+      print(p)
+  }
+
+}  
+```
+
+
+
+## PLot the previously calculated cell-score values for each transferred celltype label
+
+```{r}
+library(reshape2)
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+knn_neighbors=50
+marker_gene_sources=list(collaborator='score_all_coll',
+                         literature='score_all_lit')
+
+for (panel in c('Panel1','Panel2')){
+  print(panel)
+  
+  ## Load reference data
+  reference=readRDS(paste0(proc_dir,'ts_reference_object_',panel,'.rds'))
+  
+  ## Load query object
+  query_pred=readRDS(paste0(proc_dir,'symph_query_object_',panel,'_label_pred_',knn_neighbors,'_neighbors.rds'))
+  
+  for (marker_gene_source in names(marker_gene_sources)){
+
+    for (pred_cell_type in unique(query_pred$meta_data$cell_type_pred_knn)){
+        df=query_pred$meta_data[query_pred$meta_data$cell_type_pred_knn==pred_cell_type,]
+        
+        score_colnames=colnames(df)[grep(marker_gene_sources[marker_gene_source],colnames(df))]
+        df=df[,score_colnames]
+        
+        colnames_split=unlist(lapply(colnames(df),function(x) unlist(strsplit(x, marker_gene_sources[marker_gene_source]))))
+        colnames(df)=colnames_split
+        
+        plot_df=melt(df, value='Celltype_score')
+        
+        p=ggplot(data=plot_df,aes(x=variable,y=value)) + geom_boxplot() + ggtitle(paste(c(panel,pred_cell_type),collapse=' - '))+
+                xlab(paste0('Marker genes by: ',marker_gene_source))
+        p=p+ theme(plot.title = element_text(face = "bold", hjust = 0.5),
+                  axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+        print(p)
+    }
+  }
+}  
+```
+```{r}
+df
+```
+

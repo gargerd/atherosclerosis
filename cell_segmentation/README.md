@@ -1,7 +1,7 @@
 1. Cell pre-segmentation
    - Run cs_2_run_cell_segm_benchm.sh to create binary masks of segmented cells with different cell segmentation methods (see first lines of .sh file), that can be used as input to Baysor
 2. Run baysor segmentation
-   - Run bays_stop_active_baysor_docker.sh file to create final cell segmentation using the pre-segmented binary masks + the transcipt coordinates (Xenium output)
+   - Run bays_run_baysor_within_docker.sh.sh file to create final cell segmentation using the pre-segmented binary masks + the transcipt coordinates (Xenium output)
 
 
 

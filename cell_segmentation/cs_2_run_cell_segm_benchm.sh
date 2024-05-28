@@ -34,6 +34,7 @@ data_dir="/home/unimelb.edu.au/gargerd/data/Atherosclerosis/xenium_data"
 panel_dir_list=($(find "$data_dir" -maxdepth 1 -type d -name '*Panel*' -a ! -name '._*' | sort))
 
 sample_name_list=('P1_H' 'P1_D' 'P2_H' 'P2_D' 'P3_H' 'P3_D' 'P4_H' 'P4_D')
+sample_name_list=('P5_D' 'P6_D' 'P7_D' 'P8_D' 'P9_D' 'P10_D' 'P11_D' 'P12_D') #
 
 
 ### SEGMENTATION PARAMETERS
@@ -41,7 +42,7 @@ sample_name_list=('P1_H' 'P1_D' 'P2_H' 'P2_D' 'P3_H' 'P3_D' 'P4_H' 'P4_D')
 segment_expansion_sizes_um=('0') # '4' '6' '10') 
 
 # Segmentation methods
-segment_methods=('cellpose') #'' 10x
+segment_methods=('10x') #''  cellpose
 
 ## Cellpose model types
 cellpose_model_types=('cyto' 'nuclei')
@@ -61,6 +62,7 @@ start=$(date +%s)
 for panel in "${panel_dir_list[@]}"; do
     #sample_name_list=($(find "$panel" -maxdepth 1 -type d -printf '%f\n' | sort))
 
+      
     ## Extract PanelX as the panel suffix
     panel_suffix=$(echo "$panel" | rev | cut -d'_' -f 1 | rev)
    
@@ -68,10 +70,10 @@ for panel in "${panel_dir_list[@]}"; do
     for sample_name in "${sample_name_list[@]}"; do
         # Create path of sample, where slide image can be found
         sample_dir="$panel/${panel_suffix}_${sample_name}"
-
-     	
+     
+        
     	if [[ -d "$sample_dir" ]]; then #&& [[ "$sample_dir" == *"P3_H"* ]]
-
+            
             ## Input filename of DAPI image
     	    input_fn="$sample_dir/morphology_mip.ome.tif"          
 
@@ -86,8 +88,7 @@ for panel in "${panel_dir_list[@]}"; do
             ## Create dirname of output files to save to (....cell_segmentation/PanelX_PX_X)
     	    sample_dirname="${panel_suffix}_${sample_name}"
     	    output_dir="${data_dir}/processed_data/cell_segmentation/$sample_dirname"
-  
-    
+
             ## Loop over segmentation methods
             for segm_method in "${segment_methods[@]}"; do
                 
@@ -116,8 +117,8 @@ for panel in "${panel_dir_list[@]}"; do
                         echo '============================'
                         
                     
-                done
-            fi
+                  done
+               fi
             
             ## OTHER SEGMENTATION METHODS
             if [ "$segm_method" == "10x" ]; then

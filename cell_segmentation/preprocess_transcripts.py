@@ -54,7 +54,7 @@ if __name__ == '__main__':
     ## Read the transcripts and FILTER LOW QUALITY READS
     tr_fn=os.path.join(sample_dir,'transcripts.csv.gz')
     transcripts=pd.read_csv(tr_fn) 
-    transcripts=transcripts.loc[transcripts['qv']>39,:]
+    transcripts=transcripts.loc[transcripts['qv']>20,:]
     logging.info('Dropping low quality reads')
 
     ## Check if mask already exists => if overwrite is not True, exit the script with saving the filtered transcript.csv
@@ -83,6 +83,7 @@ if __name__ == '__main__':
     transcripts['pixel_width']=pixel_width
     
     logging.info('Starting to save filtered transcript.csv.gz')
+    logging.info(f'Pixel width & height {pixel_width} , {pixel_height}')
     print('transcripts.shape',transcripts.shape)
     ## Save dataframe with converted coordinates
     transcripts.to_csv(output_fn,compression='gzip')
