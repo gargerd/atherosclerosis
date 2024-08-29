@@ -50,7 +50,7 @@ for (ref_genome in ref_genomes){
   harmonized_pcs <- HarmonyMatrix(
     data_mat  = reducedDim(acosh_pca,'PCA'),
     meta_data = meta_corr,
-    vars_use  = c("batch"), # "preparation_kit", "batch",  multiple covariates
+    vars_use  = c("batch",'patient'), # "preparation_kit", "batch",  multiple covariates
     do_pca    = FALSE)
   
   

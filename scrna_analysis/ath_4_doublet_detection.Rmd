@@ -35,7 +35,7 @@ for (ref_genome in ref_genomes){
   
   ###### Run scDblFinder ########
   ## Drop cells with low counts
-  n_counts_thr=50
+  n_counts_thr=100
   dat_=dat[,colData(dat)$n_cellbender>n_counts_thr]
 
   # Based on tutorials  (http://bioconductor.org/books/3.15/OSCA.advanced/doublet-detection.html,
