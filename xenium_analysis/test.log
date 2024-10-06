@@ -20550,3 +20550,2398 @@ Parameters: n_neighbors:1500, max_radius:800
 24-Mar-24 01:30:31 - Panel2_P12_D - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
 
 24-Mar-24 01:30:31 - =====================
+12-Jun-24 04:05:33 - For sample Panel2_P6_D loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+12-Jun-24 04:05:37 - Generating background bins
+12-Jun-24 04:06:06 - Generating anndata from cells
+
+12-Jun-24 04:06:21 - Dataset: Panel2_P6_D - assignments_cellpose_baysor-CPn_scale_10_exp_0
+12-Jun-24 04:06:21 - Number of raw transcripts: 2222038
+12-Jun-24 04:06:21 - Number of transcripts deemed as noise: 147906 - 6.66%
+12-Jun-24 04:06:21 - Number of transcripts kept after filtering: 1352797 - 60.88%
+12-Jun-24 04:06:21 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 37744
+12-Jun-24 04:06:22 - Panel2_P6_D - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+12-Jun-24 04:06:22 - =====================
+12-Jun-24 04:06:22 - For sample Panel2_P6_D loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+12-Jun-24 04:06:25 - Generating background bins
+12-Jun-24 04:06:55 - Generating anndata from cells
+
+12-Jun-24 04:07:10 - Dataset: Panel2_P6_D - assignments_10x_baysor-10x_scale_10_exp_0
+12-Jun-24 04:07:10 - Number of raw transcripts: 2222038
+12-Jun-24 04:07:10 - Number of transcripts deemed as noise: 143813 - 6.47%
+12-Jun-24 04:07:10 - Number of transcripts kept after filtering: 1637789 - 73.71%
+12-Jun-24 04:07:10 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 38039
+12-Jun-24 04:07:11 - Panel2_P6_D - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+12-Jun-24 04:07:11 - =====================
+12-Jun-24 04:07:11 - For sample Panel2_P6_D loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+12-Jun-24 04:07:14 - Generating background bins
+12-Jun-24 04:07:44 - Generating anndata from cells
+
+12-Jun-24 04:07:57 - Dataset: Panel2_P6_D - assignments_no_segment_baysor-no_segmentation_scale_10
+12-Jun-24 04:07:57 - Number of raw transcripts: 2222038
+12-Jun-24 04:07:57 - Number of transcripts deemed as noise: 146847 - 6.61%
+12-Jun-24 04:07:57 - Number of transcripts kept after filtering: 1653229 - 74.4%
+12-Jun-24 04:07:57 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 34055
+12-Jun-24 04:07:58 - Panel2_P6_D - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+12-Jun-24 04:07:58 - =====================
+12-Jun-24 04:07:58 - For sample Panel2_P6_D loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+12-Jun-24 04:08:01 - Generating background bins
+12-Jun-24 04:08:28 - Generating anndata from cells
+
+12-Jun-24 04:08:39 - Dataset: Panel2_P6_D - assignments_10x_baysor-10x_scale_15_exp_0
+12-Jun-24 04:08:39 - Number of raw transcripts: 2222038
+12-Jun-24 04:08:39 - Number of transcripts deemed as noise: 136861 - 6.16%
+12-Jun-24 04:08:39 - Number of transcripts kept after filtering: 1567125 - 70.53%
+12-Jun-24 04:08:40 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 27553
+12-Jun-24 04:08:40 - Panel2_P6_D - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+12-Jun-24 04:08:40 - =====================
+12-Jun-24 04:08:40 - For sample Panel2_P6_D loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+12-Jun-24 04:08:40 - For sample Panel2_P6_D loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+12-Jun-24 04:10:07 - Panel2_P6_D
+12-Jun-24 04:10:15 - Slide loaded
+12-Jun-24 04:10:15 - assignments_cellpose_baysor-CPn_scale_10_exp_0
+12-Jun-24 04:12:01 - Cellular polygon metrics calculated
+12-Jun-24 04:12:02 - Panel2_P6_D-assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as pickle
+
+12-Jun-24 04:12:02 - assignments_10x_baysor-10x_scale_10_exp_0
+12-Jun-24 04:13:45 - Cellular polygon metrics calculated
+12-Jun-24 04:13:46 - Panel2_P6_D-assignments_10x_baysor-10x_scale_10_exp_0 saved as pickle
+
+12-Jun-24 04:13:46 - assignments_no_segment_baysor-no_segmentation_scale_10
+12-Jun-24 04:15:33 - Cellular polygon metrics calculated
+12-Jun-24 04:15:33 - Panel2_P6_D-assignments_no_segment_baysor-no_segmentation_scale_10 saved as pickle
+
+12-Jun-24 04:15:33 - assignments_10x_baysor-10x_scale_15_exp_0
+12-Jun-24 04:17:25 - Cellular polygon metrics calculated
+12-Jun-24 04:17:25 - Panel2_P6_D-assignments_10x_baysor-10x_scale_15_exp_0 saved as pickle
+
+12-Jun-24 04:17:25 - assignments_cellpose_baysor-CPc_scale_10_exp_0
+12-Jun-24 04:17:25 - assignments_cellpose_baysor-CPn_scale_5_exp_0
+12-Jun-24 04:19:38 - Cellular polygon metrics calculated
+12-Jun-24 04:19:38 - Created directory: /data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/true_cell_filtering/baysor/Panel2_P6_D/assignments_cellpose_baysor-CPn_scale_5_exp_0
+12-Jun-24 04:19:39 - Panel2_P6_D-assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as pickle
+
+12-Jun-24 04:19:39 - assignments_no_segment_baysor-no_segmentation_scale_5
+12-Jun-24 04:21:47 - Cellular polygon metrics calculated
+12-Jun-24 04:21:47 - Created directory: /data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/true_cell_filtering/baysor/Panel2_P6_D/assignments_no_segment_baysor-no_segmentation_scale_5
+12-Jun-24 04:21:47 - Panel2_P6_D-assignments_no_segment_baysor-no_segmentation_scale_5 saved as pickle
+
+12-Jun-24 04:21:47 - assignments_10x_baysor-10x_scale_5_exp_0
+12-Jun-24 04:23:53 - Cellular polygon metrics calculated
+12-Jun-24 04:23:53 - Created directory: /data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/true_cell_filtering/baysor/Panel2_P6_D/assignments_10x_baysor-10x_scale_5_exp_0
+12-Jun-24 04:23:54 - Panel2_P6_D-assignments_10x_baysor-10x_scale_5_exp_0 saved as pickle
+
+12-Jun-24 04:23:54 - assignments_no_segment_baysor-no_segmentation_scale_15
+12-Jun-24 04:25:44 - Cellular polygon metrics calculated
+12-Jun-24 04:25:44 - Created directory: /data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/true_cell_filtering/baysor/Panel2_P6_D/assignments_no_segment_baysor-no_segmentation_scale_15
+12-Jun-24 04:25:44 - Panel2_P6_D-assignments_no_segment_baysor-no_segmentation_scale_15 saved as pickle
+
+12-Jun-24 04:25:44 - assignments_cellpose_baysor-CPc_scale_5_exp_0
+12-Jun-24 04:27:48 - Cellular polygon metrics calculated
+12-Jun-24 04:27:48 - Created directory: /data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/true_cell_filtering/baysor/Panel2_P6_D/assignments_cellpose_baysor-CPc_scale_5_exp_0
+12-Jun-24 04:27:48 - Panel2_P6_D-assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as pickle
+
+12-Jun-24 04:27:48 - =====================
+12-Jun-24 04:27:48 - Done!
+12-Jun-24 04:45:31 - For sample Panel2_P6_D loading assignments_cellpose_baysor-CPn_scale_10_exp_0 
+
+12-Jun-24 04:45:34 - Generating background bins
+12-Jun-24 04:46:04 - Generating anndata from cells
+
+12-Jun-24 04:46:19 - Dataset: Panel2_P6_D - assignments_cellpose_baysor-CPn_scale_10_exp_0
+12-Jun-24 04:46:19 - Number of raw transcripts: 2222038
+12-Jun-24 04:46:19 - Number of transcripts deemed as noise: 147906 - 6.66%
+12-Jun-24 04:46:19 - Number of transcripts kept after filtering: 1352797 - 60.88%
+12-Jun-24 04:46:20 - cellpose_baysor-CPn_scale_10_exp_0: Number of cells - 37744
+12-Jun-24 04:46:20 - Panel2_P6_D - assignments_cellpose_baysor-CPn_scale_10_exp_0 saved as h5ad
+
+12-Jun-24 04:46:20 - =====================
+12-Jun-24 04:46:20 - For sample Panel2_P6_D loading assignments_10x_baysor-10x_scale_10_exp_0 
+
+12-Jun-24 04:46:23 - Generating background bins
+12-Jun-24 04:46:53 - Generating anndata from cells
+
+12-Jun-24 04:47:08 - Dataset: Panel2_P6_D - assignments_10x_baysor-10x_scale_10_exp_0
+12-Jun-24 04:47:08 - Number of raw transcripts: 2222038
+12-Jun-24 04:47:08 - Number of transcripts deemed as noise: 143813 - 6.47%
+12-Jun-24 04:47:08 - Number of transcripts kept after filtering: 1637789 - 73.71%
+12-Jun-24 04:47:09 - 10x_baysor-10x_scale_10_exp_0: Number of cells - 38039
+12-Jun-24 04:47:09 - Panel2_P6_D - assignments_10x_baysor-10x_scale_10_exp_0 saved as h5ad
+
+12-Jun-24 04:47:09 - =====================
+12-Jun-24 04:47:09 - For sample Panel2_P6_D loading assignments_no_segment_baysor-no_segmentation_scale_10 
+
+12-Jun-24 04:47:12 - Generating background bins
+12-Jun-24 04:47:42 - Generating anndata from cells
+
+12-Jun-24 04:47:56 - Dataset: Panel2_P6_D - assignments_no_segment_baysor-no_segmentation_scale_10
+12-Jun-24 04:47:56 - Number of raw transcripts: 2222038
+12-Jun-24 04:47:56 - Number of transcripts deemed as noise: 146847 - 6.61%
+12-Jun-24 04:47:56 - Number of transcripts kept after filtering: 1653229 - 74.4%
+12-Jun-24 04:47:56 - no_segment_baysor-no_segmentation_scale_10: Number of cells - 34055
+12-Jun-24 04:47:57 - Panel2_P6_D - assignments_no_segment_baysor-no_segmentation_scale_10 saved as h5ad
+
+12-Jun-24 04:47:57 - =====================
+12-Jun-24 04:47:57 - For sample Panel2_P6_D loading assignments_10x_baysor-10x_scale_15_exp_0 
+
+12-Jun-24 04:48:00 - Generating background bins
+12-Jun-24 04:48:27 - Generating anndata from cells
+
+12-Jun-24 04:48:39 - Dataset: Panel2_P6_D - assignments_10x_baysor-10x_scale_15_exp_0
+12-Jun-24 04:48:39 - Number of raw transcripts: 2222038
+12-Jun-24 04:48:39 - Number of transcripts deemed as noise: 136861 - 6.16%
+12-Jun-24 04:48:39 - Number of transcripts kept after filtering: 1567125 - 70.53%
+12-Jun-24 04:48:39 - 10x_baysor-10x_scale_15_exp_0: Number of cells - 27553
+12-Jun-24 04:48:40 - Panel2_P6_D - assignments_10x_baysor-10x_scale_15_exp_0 saved as h5ad
+
+12-Jun-24 04:48:40 - =====================
+12-Jun-24 04:48:40 - For sample Panel2_P6_D loading assignments_cellpose_baysor-CPc_scale_10_exp_0 
+
+12-Jun-24 04:48:40 - For sample Panel2_P6_D loading assignments_cellpose_baysor-CPn_scale_5_exp_0 
+
+12-Jun-24 04:48:43 - Generating background bins
+12-Jun-24 04:49:19 - Generating anndata from cells
+
+12-Jun-24 04:49:46 - Dataset: Panel2_P6_D - assignments_cellpose_baysor-CPn_scale_5_exp_0
+12-Jun-24 04:49:46 - Number of raw transcripts: 2222038
+12-Jun-24 04:49:46 - Number of transcripts deemed as noise: 171170 - 7.7%
+12-Jun-24 04:49:46 - Number of transcripts kept after filtering: 1418362 - 63.83%
+12-Jun-24 04:49:46 - cellpose_baysor-CPn_scale_5_exp_0: Number of cells - 69229
+12-Jun-24 04:49:47 - Panel2_P6_D - assignments_cellpose_baysor-CPn_scale_5_exp_0 saved as h5ad
+
+12-Jun-24 04:49:47 - =====================
+12-Jun-24 04:49:47 - For sample Panel2_P6_D loading assignments_no_segment_baysor-no_segmentation_scale_5 
+
+12-Jun-24 04:49:50 - Generating background bins
+12-Jun-24 04:50:27 - Generating anndata from cells
+
+12-Jun-24 04:50:53 - Dataset: Panel2_P6_D - assignments_no_segment_baysor-no_segmentation_scale_5
+12-Jun-24 04:50:53 - Number of raw transcripts: 2222038
+12-Jun-24 04:50:53 - Number of transcripts deemed as noise: 173107 - 7.79%
+12-Jun-24 04:50:53 - Number of transcripts kept after filtering: 1463778 - 65.88%
+12-Jun-24 04:50:53 - no_segment_baysor-no_segmentation_scale_5: Number of cells - 66442
+12-Jun-24 04:50:54 - Panel2_P6_D - assignments_no_segment_baysor-no_segmentation_scale_5 saved as h5ad
+
+12-Jun-24 04:50:54 - =====================
+12-Jun-24 04:50:54 - For sample Panel2_P6_D loading assignments_10x_baysor-10x_scale_5_exp_0 
+
+12-Jun-24 04:50:57 - Generating background bins
+12-Jun-24 04:51:34 - Generating anndata from cells
+
+12-Jun-24 04:52:00 - Dataset: Panel2_P6_D - assignments_10x_baysor-10x_scale_5_exp_0
+12-Jun-24 04:52:00 - Number of raw transcripts: 2222038
+12-Jun-24 04:52:00 - Number of transcripts deemed as noise: 168674 - 7.59%
+12-Jun-24 04:52:00 - Number of transcripts kept after filtering: 1650112 - 74.26%
+12-Jun-24 04:52:01 - 10x_baysor-10x_scale_5_exp_0: Number of cells - 68054
+12-Jun-24 04:52:02 - Panel2_P6_D - assignments_10x_baysor-10x_scale_5_exp_0 saved as h5ad
+
+12-Jun-24 04:52:02 - =====================
+12-Jun-24 04:52:02 - For sample Panel2_P6_D loading assignments_no_segment_baysor-no_segmentation_scale_15 
+
+12-Jun-24 04:52:05 - Generating background bins
+12-Jun-24 04:52:33 - Generating anndata from cells
+
+12-Jun-24 04:52:42 - Dataset: Panel2_P6_D - assignments_no_segment_baysor-no_segmentation_scale_15
+12-Jun-24 04:52:42 - Number of raw transcripts: 2222038
+12-Jun-24 04:52:42 - Number of transcripts deemed as noise: 139026 - 6.26%
+12-Jun-24 04:52:42 - Number of transcripts kept after filtering: 1714877 - 77.18%
+12-Jun-24 04:52:42 - no_segment_baysor-no_segmentation_scale_15: Number of cells - 21628
+12-Jun-24 04:52:43 - Panel2_P6_D - assignments_no_segment_baysor-no_segmentation_scale_15 saved as h5ad
+
+12-Jun-24 04:52:43 - =====================
+12-Jun-24 04:52:43 - For sample Panel2_P6_D loading assignments_cellpose_baysor-CPc_scale_5_exp_0 
+
+12-Jun-24 04:52:46 - Generating background bins
+12-Jun-24 04:53:22 - Generating anndata from cells
+
+12-Jun-24 04:53:49 - Dataset: Panel2_P6_D - assignments_cellpose_baysor-CPc_scale_5_exp_0
+12-Jun-24 04:53:49 - Number of raw transcripts: 2222038
+12-Jun-24 04:53:49 - Number of transcripts deemed as noise: 166939 - 7.51%
+12-Jun-24 04:53:49 - Number of transcripts kept after filtering: 1675300 - 75.39%
+12-Jun-24 04:53:49 - cellpose_baysor-CPc_scale_5_exp_0: Number of cells - 67969
+12-Jun-24 04:53:50 - Panel2_P6_D - assignments_cellpose_baysor-CPc_scale_5_exp_0 saved as h5ad
+
+12-Jun-24 04:53:50 - =====================
+28-Jun-24 22:53:06 - Panel2_P6_D
+28-Jun-24 22:53:16 - Slide loaded
+28-Jun-24 22:53:16 - Done!
+29-Jun-24 00:42:37 - Panel2_P6_D
+29-Jun-24 00:42:44 - Panel2_P6_D
+29-Jun-24 00:42:54 - Slide loaded
+29-Jun-24 00:42:54 - Done!
+29-Jun-24 00:57:39 - Panel2_P6_D
+29-Jun-24 00:57:49 - Slide loaded
+29-Jun-24 00:57:49 - Done!
+29-Jun-24 01:40:08 - Panel2_P6_D
+29-Jun-24 01:40:17 - Slide loaded
+29-Jun-24 01:40:17 - Done!
+29-Jun-24 01:46:14 - Panel2_P6_D
+29-Jun-24 01:46:24 - Slide loaded
+29-Jun-24 01:46:24 - Done!
+29-Jun-24 01:47:27 - Panel2_P6_D
+29-Jun-24 01:47:36 - Slide loaded
+29-Jun-24 01:47:36 - Done!
+29-Jun-24 02:21:43 - Panel2_P6_D
+29-Jun-24 02:21:53 - Slide loaded
+29-Jun-24 02:21:53 - Done!
+29-Jun-24 02:28:12 - Panel2_P6_D
+29-Jun-24 02:28:21 - Slide loaded
+29-Jun-24 02:28:21 - Done!
+30-Jun-24 03:54:19 - Panel2_P6_D
+30-Jun-24 03:54:27 - Slide loaded
+30-Jun-24 03:54:27 - Done!
+30-Jun-24 22:01:10 - Panel2_P6_D
+30-Jun-24 22:01:20 - Slide loaded
+30-Jun-24 22:01:20 - Done!
+01-Jul-24 00:42:34 - Done!
+01-Jul-24 00:43:39 - Done!
+01-Jul-24 00:45:19 - Done!
+01-Jul-24 00:46:03 - Done!
+01-Jul-24 00:46:48 - Panel2_P5_D
+01-Jul-24 00:46:57 - Slide loaded
+01-Jul-24 00:46:57 - Done!
+01-Jul-24 01:14:32 - Panel2_P8_D
+01-Jul-24 01:14:43 - Slide loaded
+01-Jul-24 01:14:43 - Done!
+01-Jul-24 01:35:13 - Panel2_P8_D
+01-Jul-24 01:35:23 - Slide loaded
+01-Jul-24 01:35:23 - Done!
+01-Jul-24 01:42:16 - Panel2_P8_D
+01-Jul-24 01:42:26 - Slide loaded
+01-Jul-24 01:42:26 - Done!
+01-Jul-24 01:47:54 - Panel2_P8_D
+01-Jul-24 01:48:04 - Slide loaded
+01-Jul-24 01:48:04 - Done!
+01-Jul-24 18:15:44 - Panel2_P8_D
+01-Jul-24 18:15:53 - Slide loaded
+01-Jul-24 18:15:53 - Done!
+01-Jul-24 18:17:13 - Panel2_P8_D
+01-Jul-24 18:17:23 - Slide loaded
+01-Jul-24 18:17:23 - Done!
+01-Jul-24 21:46:26 - Panel2_P6_D
+01-Jul-24 21:46:34 - Slide loaded
+01-Jul-24 21:46:34 - Done!
+01-Jul-24 21:56:10 - Panel2_P8_D
+01-Jul-24 21:56:19 - Slide loaded
+01-Jul-24 21:56:19 - Done!
+02-Jul-24 17:34:47 - Panel2_P8_D
+02-Jul-24 17:34:57 - Slide loaded
+02-Jul-24 17:34:57 - Done!
+02-Jul-24 18:56:15 - Panel2_P8_D
+02-Jul-24 18:56:24 - Slide loaded
+02-Jul-24 18:56:24 - Done!
+02-Jul-24 18:59:12 - Panel2_P8_D
+02-Jul-24 18:59:20 - Slide loaded
+02-Jul-24 18:59:20 - Done!
+03-Jul-24 23:36:00 - Panel2_P8_D
+03-Jul-24 23:36:11 - Slide loaded
+03-Jul-24 23:36:11 - Done!
+03-Jul-24 23:44:50 - Panel2_P8_D
+03-Jul-24 23:44:59 - Slide loaded
+03-Jul-24 23:44:59 - Done!
+04-Jul-24 02:21:21 - Panel2_P6_D
+04-Jul-24 02:21:30 - Slide loaded
+04-Jul-24 02:21:30 - Done!
+04-Jul-24 17:43:04 - Panel2_P6_D
+04-Jul-24 17:43:14 - Slide loaded
+04-Jul-24 17:43:14 - Done!
+04-Jul-24 17:45:01 - Panel2_P6_D
+04-Jul-24 17:45:10 - Slide loaded
+04-Jul-24 17:45:10 - Done!
+04-Jul-24 18:04:17 - Panel2_P6_D
+04-Jul-24 18:04:28 - Slide loaded
+04-Jul-24 18:04:28 - Done!
+04-Jul-24 20:36:16 - Panel2_P8_D
+04-Jul-24 20:36:26 - Slide loaded
+04-Jul-24 20:36:26 - Done!
+04-Jul-24 20:53:04 - Panel2_P8_D
+04-Jul-24 20:53:28 - Panel2_P8_D
+04-Jul-24 20:54:18 - Panel1_P3_H
+04-Jul-24 20:54:18 - Panel1_P2_D
+04-Jul-24 20:54:18 - Panel1_P3_D
+04-Jul-24 20:54:18 - Panel1_P4_H
+04-Jul-24 20:54:18 - Panel1_P1_D
+04-Jul-24 20:54:18 - Panel1_P4_D
+04-Jul-24 20:54:18 - Panel1_P1_H
+04-Jul-24 20:54:18 - Panel1_P2_H
+04-Jul-24 20:54:18 - Panel2_P4_H
+04-Jul-24 20:54:18 - Panel2_P2_D
+04-Jul-24 20:54:18 - Panel2_P4_D
+04-Jul-24 20:54:18 - Panel2_P2_H
+04-Jul-24 20:54:18 - Panel2_P3_D
+04-Jul-24 20:54:18 - Panel2_P1_D
+04-Jul-24 20:54:18 - Panel2_P3_H
+04-Jul-24 20:54:18 - Panel2_P1_H
+04-Jul-24 20:54:18 - Panel1_P7_D
+04-Jul-24 20:54:18 - Panel1_P11_D
+04-Jul-24 20:54:18 - Panel1_P5_D
+04-Jul-24 20:54:18 - Panel1_P12_D
+04-Jul-24 20:54:18 - Panel1_P8_D
+04-Jul-24 20:54:18 - Panel1_P9_D
+04-Jul-24 20:54:18 - Panel1_P6_D
+04-Jul-24 20:54:18 - Panel1_P10_D
+04-Jul-24 20:54:18 - Panel2_P8_D
+04-Jul-24 20:54:18 - Panel2_P11_D
+04-Jul-24 20:54:18 - Panel2_P6_D
+04-Jul-24 20:54:18 - Panel2_P10_D
+04-Jul-24 20:54:18 - Panel2_P5_D
+04-Jul-24 20:54:18 - Panel2_P9_D
+04-Jul-24 20:54:18 - Panel2_P12_D
+04-Jul-24 20:54:18 - Panel2_P7_D
+04-Jul-24 20:54:35 - Panel1_P3_H
+04-Jul-24 20:54:35 - Panel1_P2_D
+04-Jul-24 20:54:35 - Panel1_P3_D
+04-Jul-24 20:54:35 - Panel1_P4_H
+04-Jul-24 20:54:35 - Panel1_P1_D
+04-Jul-24 20:54:35 - Panel1_P4_D
+04-Jul-24 20:54:35 - Panel1_P1_H
+04-Jul-24 20:54:35 - Panel1_P2_H
+04-Jul-24 20:54:35 - Panel2_P4_H
+04-Jul-24 20:54:35 - Panel2_P2_D
+04-Jul-24 20:54:35 - Panel2_P4_D
+04-Jul-24 20:54:35 - Panel2_P2_H
+04-Jul-24 20:54:35 - Panel2_P3_D
+04-Jul-24 20:54:35 - Panel2_P1_D
+04-Jul-24 20:54:35 - Panel2_P3_H
+04-Jul-24 20:54:35 - Panel2_P1_H
+04-Jul-24 20:54:35 - Panel1_P7_D
+04-Jul-24 20:54:35 - Panel1_P11_D
+04-Jul-24 20:54:35 - Panel1_P5_D
+04-Jul-24 20:54:35 - Panel1_P12_D
+04-Jul-24 20:54:35 - Panel1_P8_D
+04-Jul-24 20:54:35 - Panel1_P9_D
+04-Jul-24 20:54:35 - Panel1_P6_D
+04-Jul-24 20:54:35 - Panel1_P10_D
+04-Jul-24 20:54:35 - Panel2_P8_D
+04-Jul-24 20:54:35 - Panel2_P11_D
+04-Jul-24 20:54:35 - Panel2_P6_D
+04-Jul-24 20:54:35 - Panel2_P10_D
+04-Jul-24 20:54:35 - Panel2_P5_D
+04-Jul-24 20:54:35 - Panel2_P9_D
+04-Jul-24 20:54:35 - Panel2_P12_D
+04-Jul-24 20:54:35 - Panel2_P7_D
+04-Jul-24 21:11:29 - Panel1_P3_H
+04-Jul-24 21:11:34 - Slide loaded
+04-Jul-24 21:15:46 - Panel1_P3_H
+04-Jul-24 21:15:50 - Slide loaded
+04-Jul-24 21:21:32 - Panel1_P3_H
+04-Jul-24 21:21:36 - Slide loaded
+04-Jul-24 21:24:09 - Panel1_P2_D
+04-Jul-24 21:24:17 - Slide loaded
+04-Jul-24 21:25:58 - Panel1_P3_D
+04-Jul-24 21:26:05 - Slide loaded
+04-Jul-24 21:27:33 - Panel1_P4_H
+04-Jul-24 21:27:38 - Slide loaded
+04-Jul-24 21:29:51 - Panel1_P1_D
+04-Jul-24 21:29:56 - Slide loaded
+04-Jul-24 21:31:19 - Panel1_P4_D
+04-Jul-24 21:31:27 - Slide loaded
+04-Jul-24 21:33:25 - Panel1_P1_H
+04-Jul-24 21:33:28 - Slide loaded
+04-Jul-24 21:35:29 - Panel1_P2_H
+04-Jul-24 21:35:35 - Slide loaded
+04-Jul-24 21:37:02 - Panel2_P4_H
+04-Jul-24 21:37:06 - Slide loaded
+04-Jul-24 21:38:46 - Panel2_P2_D
+04-Jul-24 21:38:54 - Slide loaded
+04-Jul-24 21:40:30 - Panel2_P4_D
+04-Jul-24 21:40:39 - Slide loaded
+04-Jul-24 21:42:40 - Panel2_P2_H
+04-Jul-24 21:42:46 - Slide loaded
+04-Jul-24 21:44:24 - Panel2_P3_D
+04-Jul-24 21:44:30 - Slide loaded
+04-Jul-24 21:45:56 - Panel2_P1_D
+04-Jul-24 21:46:01 - Slide loaded
+04-Jul-24 21:47:23 - Panel2_P3_H
+04-Jul-24 21:47:27 - Slide loaded
+04-Jul-24 21:48:48 - Panel2_P1_H
+04-Jul-24 21:48:51 - Slide loaded
+04-Jul-24 21:49:58 - Panel1_P7_D
+04-Jul-24 21:50:04 - Slide loaded
+04-Jul-24 21:52:49 - Panel1_P11_D
+04-Jul-24 21:52:54 - Slide loaded
+04-Jul-24 21:54:12 - Panel1_P5_D
+04-Jul-24 21:54:20 - Slide loaded
+04-Jul-24 21:56:09 - Panel1_P12_D
+04-Jul-24 21:56:22 - Slide loaded
+04-Jul-24 21:58:37 - Panel1_P8_D
+04-Jul-24 21:58:47 - Slide loaded
+04-Jul-24 22:00:47 - Panel1_P9_D
+04-Jul-24 22:00:58 - Slide loaded
+04-Jul-24 22:03:05 - Panel1_P1_H
+04-Jul-24 22:04:17 - Panel1_P1_H
+04-Jul-24 22:04:20 - Slide loaded
+04-Jul-24 22:11:29 - Panel1_P1_H
+04-Jul-24 22:11:32 - Slide loaded
+04-Jul-24 22:15:08 - Panel1_P1_H
+04-Jul-24 22:15:11 - Slide loaded
+04-Jul-24 22:16:39 - Panel1_P2_H
+04-Jul-24 22:16:44 - Slide loaded
+04-Jul-24 22:18:08 - Panel2_P2_H
+04-Jul-24 22:18:14 - Slide loaded
+04-Jul-24 22:19:27 - Panel2_P1_H
+04-Jul-24 22:19:30 - Slide loaded
+04-Jul-24 22:41:25 - Panel1_P1_H
+04-Jul-24 22:41:28 - Slide loaded
+04-Jul-24 22:42:36 - Panel1_P2_H
+04-Jul-24 22:42:41 - Slide loaded
+04-Jul-24 22:45:14 - Panel2_P2_H
+04-Jul-24 22:45:20 - Slide loaded
+04-Jul-24 22:47:49 - Panel2_P1_H
+04-Jul-24 22:47:53 - Slide loaded
+04-Jul-24 22:57:11 - Panel1_P1_H
+04-Jul-24 22:57:14 - Slide loaded
+04-Jul-24 22:58:21 - Panel1_P2_H
+04-Jul-24 22:58:26 - Slide loaded
+04-Jul-24 23:00:58 - Panel2_P2_H
+04-Jul-24 23:01:03 - Slide loaded
+04-Jul-24 23:03:32 - Panel2_P1_H
+04-Jul-24 23:03:35 - Slide loaded
+05-Jul-24 00:29:08 - Panel1_P1_H
+05-Jul-24 00:29:11 - Slide loaded
+05-Jul-24 00:30:18 - Panel1_P2_H
+05-Jul-24 00:30:24 - Slide loaded
+05-Jul-24 00:32:58 - Panel2_P2_H
+05-Jul-24 00:33:03 - Slide loaded
+05-Jul-24 00:35:33 - Panel2_P1_H
+05-Jul-24 00:35:36 - Slide loaded
+05-Jul-24 00:40:00 - Panel1_P1_H
+05-Jul-24 00:40:04 - Slide loaded
+05-Jul-24 00:41:09 - Panel1_P2_H
+05-Jul-24 00:41:15 - Slide loaded
+05-Jul-24 00:44:15 - Panel2_P2_H
+05-Jul-24 00:44:20 - Slide loaded
+05-Jul-24 00:46:48 - Panel2_P1_H
+05-Jul-24 00:46:52 - Slide loaded
+06-Jul-24 17:53:14 - Panel1_P3_H
+06-Jul-24 17:53:20 - Slide loaded
+06-Jul-24 17:55:37 - Panel1_P4_H
+06-Jul-24 17:55:41 - Slide loaded
+06-Jul-24 17:57:37 - Panel2_P4_H
+06-Jul-24 17:57:42 - Slide loaded
+06-Jul-24 17:59:42 - Panel2_P3_H
+06-Jul-24 17:59:47 - Slide loaded
+06-Jul-24 18:04:24 - Panel1_P2_D
+06-Jul-24 18:04:33 - Slide loaded
+06-Jul-24 18:08:02 - Panel1_P1_D
+06-Jul-24 18:08:08 - Slide loaded
+06-Jul-24 18:10:17 - Panel2_P2_D
+06-Jul-24 18:10:25 - Slide loaded
+06-Jul-24 18:13:36 - Panel2_P1_D
+06-Jul-24 18:13:41 - Slide loaded
+08-Jul-24 21:05:49 - Panel1_P1_H
+08-Jul-24 21:05:53 - Slide loaded
+08-Jul-24 21:07:01 - Panel1_P2_H
+08-Jul-24 21:07:07 - Slide loaded
+08-Jul-24 21:10:21 - Panel2_P2_H
+08-Jul-24 21:10:27 - Slide loaded
+08-Jul-24 21:13:07 - Panel2_P1_H
+08-Jul-24 21:13:10 - Slide loaded
+11-Jul-24 17:38:02 - Panel1_P8_D
+11-Jul-24 17:38:11 - Slide loaded
+11-Jul-24 17:42:00 - Panel2_P8_D
+11-Jul-24 17:42:08 - Slide loaded
+23-Jul-24 18:38:42 - Panel1_P8_D
+23-Jul-24 18:38:53 - Slide loaded
+23-Jul-24 18:38:53 - Panel2_P8_D
+23-Jul-24 18:39:03 - Slide loaded
+23-Jul-24 19:05:26 - Panel1_P8_D
+23-Jul-24 19:05:38 - Slide loaded
+23-Jul-24 19:05:38 - Panel2_P8_D
+23-Jul-24 19:05:48 - Slide loaded
+23-Jul-24 19:18:21 - Panel1_P6_D
+23-Jul-24 19:18:31 - Slide loaded
+23-Jul-24 19:18:31 - Panel2_P6_D
+23-Jul-24 19:18:40 - Slide loaded
+23-Jul-24 19:50:59 - Panel1_P6_D
+23-Jul-24 19:51:08 - Slide loaded
+23-Jul-24 19:53:34 - Panel2_P6_D
+23-Jul-24 19:53:42 - Slide loaded
+23-Jul-24 21:20:20 - Panel1_P6_D
+23-Jul-24 21:20:54 - Slide loaded
+23-Jul-24 21:25:38 - Panel1_P6_D
+23-Jul-24 21:25:38 - Panel2_P6_D
+23-Jul-24 21:27:14 - Panel1_P6_D
+23-Jul-24 21:27:22 - Panel1_P6_D
+23-Jul-24 21:27:30 - Panel1_P6_D
+23-Jul-24 21:28:02 - Slide loaded
+23-Jul-24 21:47:53 - Panel1_P6_D
+23-Jul-24 21:48:28 - Slide loaded
+23-Jul-24 21:53:31 - Panel1_P6_D
+23-Jul-24 21:54:05 - Slide loaded
+23-Jul-24 22:23:46 - Panel1_P6_D
+23-Jul-24 22:24:20 - Slide loaded
+23-Jul-24 22:38:09 - Panel1_P6_D
+23-Jul-24 22:38:43 - Slide loaded
+23-Jul-24 23:01:22 - Panel1_P1_H
+23-Jul-24 23:01:33 - Slide loaded
+23-Jul-24 23:08:13 - Panel1_P4_D
+23-Jul-24 23:08:45 - Slide loaded
+23-Jul-24 23:22:35 - Panel1_P4_D
+23-Jul-24 23:23:08 - Slide loaded
+24-Jul-24 00:10:46 - Panel1_P4_D
+24-Jul-24 00:11:18 - Slide loaded
+24-Jul-24 00:25:54 - Panel1_P4_D
+24-Jul-24 00:26:24 - Slide loaded
+24-Jul-24 00:57:52 - Panel1_P1_H
+24-Jul-24 00:58:04 - Slide loaded
+24-Jul-24 16:53:30 - Panel1_P1_H
+24-Jul-24 16:53:34 - Slide loaded
+24-Jul-24 18:30:39 - Panel1_P4_D
+24-Jul-24 18:30:48 - Slide loaded
+24-Jul-24 18:34:26 - Panel1_P6_D
+24-Jul-24 18:34:35 - Slide loaded
+24-Jul-24 18:45:29 - Panel1_P8_D
+24-Jul-24 18:45:38 - Slide loaded
+24-Jul-24 21:35:26 - Panel1_P8_D
+24-Jul-24 21:35:37 - Slide loaded
+24-Jul-24 21:37:09 - Panel1_P8_D
+24-Jul-24 21:37:19 - Slide loaded
+24-Jul-24 21:38:03 - Panel1_P8_D
+24-Jul-24 21:38:13 - Slide loaded
+24-Jul-24 21:39:35 - Panel1_P8_D
+24-Jul-24 21:39:45 - Slide loaded
+24-Jul-24 21:40:25 - Panel1_P3_H
+24-Jul-24 21:40:30 - Slide loaded
+24-Jul-24 21:40:33 - Panel1_P2_D
+24-Jul-24 21:40:42 - Slide loaded
+24-Jul-24 21:40:47 - Panel1_P3_D
+24-Jul-24 21:40:54 - Slide loaded
+24-Jul-24 21:40:57 - Panel1_P4_H
+24-Jul-24 21:41:02 - Slide loaded
+24-Jul-24 21:41:04 - Panel1_P1_D
+24-Jul-24 21:41:10 - Slide loaded
+24-Jul-24 21:41:13 - Panel1_P4_D
+24-Jul-24 21:41:21 - Slide loaded
+24-Jul-24 21:41:27 - Panel1_P1_H
+24-Jul-24 21:41:30 - Slide loaded
+24-Jul-24 21:41:32 - Panel1_P2_H
+24-Jul-24 21:41:38 - Slide loaded
+24-Jul-24 21:41:42 - Panel1_P7_D
+24-Jul-24 21:41:48 - Slide loaded
+24-Jul-24 21:41:52 - Panel1_P11_D
+24-Jul-24 21:41:57 - Slide loaded
+24-Jul-24 21:42:00 - Panel1_P5_D
+24-Jul-24 21:42:08 - Slide loaded
+24-Jul-24 21:42:12 - Panel1_P12_D
+24-Jul-24 21:42:26 - Slide loaded
+24-Jul-24 21:42:33 - Panel1_P8_D
+24-Jul-24 21:42:42 - Slide loaded
+24-Jul-24 21:42:49 - Panel1_P9_D
+24-Jul-24 21:43:00 - Slide loaded
+24-Jul-24 21:43:06 - Panel1_P6_D
+24-Jul-24 21:43:16 - Slide loaded
+24-Jul-24 21:43:21 - Panel1_P10_D
+24-Jul-24 21:43:29 - Slide loaded
+24-Jul-24 21:54:49 - Panel1_P3_H
+24-Jul-24 21:54:53 - Slide loaded
+24-Jul-24 21:54:57 - Panel1_P2_D
+24-Jul-24 21:55:05 - Slide loaded
+24-Jul-24 21:55:09 - Panel1_P3_D
+24-Jul-24 21:55:16 - Slide loaded
+24-Jul-24 21:55:19 - Panel1_P4_H
+24-Jul-24 21:55:24 - Slide loaded
+24-Jul-24 21:55:26 - Panel1_P1_D
+24-Jul-24 21:55:32 - Slide loaded
+24-Jul-24 21:55:34 - Panel1_P4_D
+24-Jul-24 21:55:43 - Slide loaded
+24-Jul-24 21:55:48 - Panel1_P1_H
+24-Jul-24 21:55:51 - Slide loaded
+24-Jul-24 21:55:53 - Panel1_P2_H
+24-Jul-24 21:55:58 - Slide loaded
+24-Jul-24 21:56:03 - Panel1_P7_D
+24-Jul-24 21:56:08 - Slide loaded
+24-Jul-24 21:56:13 - Panel1_P11_D
+24-Jul-24 21:56:18 - Slide loaded
+24-Jul-24 21:56:20 - Panel1_P5_D
+24-Jul-24 21:56:28 - Slide loaded
+24-Jul-24 21:56:32 - Panel1_P12_D
+24-Jul-24 21:56:45 - Slide loaded
+24-Jul-24 21:56:52 - Panel1_P8_D
+24-Jul-24 21:57:02 - Slide loaded
+24-Jul-24 21:57:08 - Panel1_P9_D
+24-Jul-24 21:57:19 - Slide loaded
+24-Jul-24 21:57:25 - Panel1_P6_D
+24-Jul-24 21:57:34 - Slide loaded
+24-Jul-24 21:57:39 - Panel1_P10_D
+24-Jul-24 21:57:47 - Slide loaded
+24-Jul-24 22:03:29 - Panel1_P3_H
+24-Jul-24 22:03:34 - Slide loaded
+24-Jul-24 22:03:37 - Panel1_P2_D
+24-Jul-24 22:03:45 - Slide loaded
+24-Jul-24 22:03:50 - Panel1_P3_D
+24-Jul-24 22:03:57 - Slide loaded
+24-Jul-24 22:04:00 - Panel1_P4_H
+24-Jul-24 22:04:04 - Slide loaded
+24-Jul-24 22:04:07 - Panel1_P1_D
+24-Jul-24 22:04:12 - Slide loaded
+24-Jul-24 22:04:15 - Panel1_P4_D
+24-Jul-24 22:04:23 - Slide loaded
+24-Jul-24 22:04:29 - Panel1_P1_H
+24-Jul-24 22:04:32 - Slide loaded
+24-Jul-24 22:04:34 - Panel1_P2_H
+24-Jul-24 22:04:39 - Slide loaded
+24-Jul-24 22:04:43 - Panel1_P7_D
+24-Jul-24 22:04:49 - Slide loaded
+24-Jul-24 22:04:53 - Panel1_P11_D
+24-Jul-24 22:04:58 - Slide loaded
+24-Jul-24 22:05:01 - Panel1_P5_D
+24-Jul-24 22:05:09 - Slide loaded
+24-Jul-24 22:05:13 - Panel1_P12_D
+24-Jul-24 22:05:26 - Slide loaded
+24-Jul-24 22:05:33 - Panel1_P8_D
+24-Jul-24 22:05:43 - Slide loaded
+24-Jul-24 22:05:49 - Panel1_P9_D
+24-Jul-24 22:06:00 - Slide loaded
+24-Jul-24 22:06:06 - Panel1_P6_D
+24-Jul-24 22:06:15 - Slide loaded
+24-Jul-24 22:06:20 - Panel1_P10_D
+24-Jul-24 22:06:27 - Slide loaded
+24-Jul-24 22:13:48 - Panel1_P3_H
+24-Jul-24 22:13:52 - Slide loaded
+24-Jul-24 22:13:55 - Panel1_P2_D
+24-Jul-24 22:14:04 - Slide loaded
+24-Jul-24 22:14:08 - Panel1_P3_D
+24-Jul-24 22:14:15 - Slide loaded
+24-Jul-24 22:14:19 - Panel1_P4_H
+24-Jul-24 22:14:23 - Slide loaded
+24-Jul-24 22:14:26 - Panel1_P1_D
+24-Jul-24 22:14:31 - Slide loaded
+24-Jul-24 22:14:34 - Panel1_P4_D
+24-Jul-24 22:14:42 - Slide loaded
+24-Jul-24 22:14:47 - Panel1_P1_H
+24-Jul-24 22:14:50 - Slide loaded
+24-Jul-24 22:14:52 - Panel1_P2_H
+24-Jul-24 22:14:58 - Slide loaded
+24-Jul-24 22:15:02 - Panel1_P7_D
+24-Jul-24 22:15:08 - Slide loaded
+24-Jul-24 22:15:12 - Panel1_P11_D
+24-Jul-24 22:15:17 - Slide loaded
+24-Jul-24 22:15:20 - Panel1_P5_D
+24-Jul-24 22:15:28 - Slide loaded
+24-Jul-24 22:15:32 - Panel1_P12_D
+24-Jul-24 22:15:44 - Slide loaded
+24-Jul-24 22:15:52 - Panel1_P8_D
+24-Jul-24 22:16:01 - Slide loaded
+24-Jul-24 22:16:07 - Panel1_P9_D
+24-Jul-24 22:16:18 - Slide loaded
+24-Jul-24 22:16:24 - Panel1_P6_D
+24-Jul-24 22:16:33 - Slide loaded
+24-Jul-24 22:16:39 - Panel1_P10_D
+24-Jul-24 22:16:46 - Slide loaded
+24-Jul-24 22:18:08 - Panel2_P4_H
+24-Jul-24 22:18:12 - Slide loaded
+24-Jul-24 22:18:15 - Panel2_P2_D
+24-Jul-24 22:18:24 - Slide loaded
+24-Jul-24 22:18:28 - Panel2_P4_D
+24-Jul-24 22:18:37 - Slide loaded
+24-Jul-24 22:18:42 - Panel2_P2_H
+24-Jul-24 22:18:48 - Slide loaded
+24-Jul-24 22:18:52 - Panel2_P3_D
+24-Jul-24 22:18:59 - Slide loaded
+24-Jul-24 22:19:02 - Panel2_P1_D
+24-Jul-24 22:19:07 - Slide loaded
+24-Jul-24 22:19:11 - Panel2_P3_H
+24-Jul-24 22:19:16 - Slide loaded
+24-Jul-24 22:19:19 - Panel2_P1_H
+24-Jul-24 22:19:22 - Slide loaded
+24-Jul-24 22:19:24 - Panel2_P8_D
+24-Jul-24 22:19:34 - Slide loaded
+24-Jul-24 22:19:40 - Panel2_P11_D
+24-Jul-24 22:19:45 - Slide loaded
+24-Jul-24 22:19:48 - Panel2_P6_D
+24-Jul-24 22:19:57 - Slide loaded
+24-Jul-24 22:20:02 - Panel2_P10_D
+24-Jul-24 22:20:10 - Slide loaded
+24-Jul-24 22:20:15 - Panel2_P5_D
+24-Jul-24 22:20:23 - Slide loaded
+24-Jul-24 22:20:27 - Panel2_P9_D
+24-Jul-24 22:20:38 - Slide loaded
+24-Jul-24 22:20:44 - Panel2_P12_D
+24-Jul-24 22:20:57 - Slide loaded
+24-Jul-24 22:21:04 - Panel2_P7_D
+24-Jul-24 22:21:10 - Slide loaded
+24-Jul-24 22:27:46 - Panel2_P4_H
+24-Jul-24 22:27:51 - Slide loaded
+24-Jul-24 22:27:54 - Panel2_P2_D
+24-Jul-24 22:28:02 - Slide loaded
+24-Jul-24 22:28:06 - Panel2_P4_D
+24-Jul-24 22:28:14 - Slide loaded
+24-Jul-24 22:28:20 - Panel2_P2_H
+24-Jul-24 22:28:25 - Slide loaded
+24-Jul-24 22:28:29 - Panel2_P3_D
+24-Jul-24 22:28:35 - Slide loaded
+24-Jul-24 22:28:39 - Panel2_P1_D
+24-Jul-24 22:28:44 - Slide loaded
+24-Jul-24 22:28:47 - Panel2_P3_H
+24-Jul-24 22:28:52 - Slide loaded
+24-Jul-24 22:28:55 - Panel2_P1_H
+24-Jul-24 22:28:58 - Slide loaded
+24-Jul-24 22:29:00 - Panel2_P8_D
+24-Jul-24 22:29:09 - Slide loaded
+24-Jul-24 22:29:15 - Panel2_P11_D
+24-Jul-24 22:29:20 - Slide loaded
+24-Jul-24 22:29:23 - Panel2_P6_D
+24-Jul-24 22:29:31 - Slide loaded
+24-Jul-24 22:29:36 - Panel2_P10_D
+24-Jul-24 22:29:44 - Slide loaded
+24-Jul-24 22:29:48 - Panel2_P5_D
+24-Jul-24 22:29:57 - Slide loaded
+24-Jul-24 22:30:01 - Panel2_P9_D
+24-Jul-24 22:30:11 - Slide loaded
+24-Jul-24 22:30:17 - Panel2_P12_D
+24-Jul-24 22:30:30 - Slide loaded
+24-Jul-24 22:30:36 - Panel2_P7_D
+24-Jul-24 22:30:42 - Slide loaded
+24-Jul-24 23:05:17 - Panel1_P3_H
+24-Jul-24 23:05:22 - Slide loaded
+24-Jul-24 23:05:25 - Panel1_P2_D
+24-Jul-24 23:05:33 - Slide loaded
+24-Jul-24 23:05:38 - Panel1_P3_D
+24-Jul-24 23:05:44 - Slide loaded
+24-Jul-24 23:05:48 - Panel1_P4_H
+24-Jul-24 23:05:52 - Slide loaded
+24-Jul-24 23:05:55 - Panel1_P1_D
+24-Jul-24 23:06:00 - Slide loaded
+24-Jul-24 23:06:03 - Panel1_P4_D
+24-Jul-24 23:06:11 - Slide loaded
+24-Jul-24 23:06:16 - Panel1_P1_H
+24-Jul-24 23:06:19 - Slide loaded
+24-Jul-24 23:06:21 - Panel1_P2_H
+24-Jul-24 23:06:27 - Slide loaded
+24-Jul-24 23:06:30 - Panel1_P7_D
+24-Jul-24 23:06:36 - Slide loaded
+24-Jul-24 23:06:40 - Panel1_P11_D
+24-Jul-24 23:06:46 - Slide loaded
+24-Jul-24 23:06:48 - Panel1_P5_D
+24-Jul-24 23:06:56 - Slide loaded
+24-Jul-24 23:07:00 - Panel1_P12_D
+24-Jul-24 23:07:13 - Slide loaded
+24-Jul-24 23:07:20 - Panel1_P8_D
+24-Jul-24 23:07:30 - Slide loaded
+24-Jul-24 23:07:36 - Panel1_P9_D
+24-Jul-24 23:07:47 - Slide loaded
+24-Jul-24 23:07:52 - Panel1_P6_D
+24-Jul-24 23:08:02 - Slide loaded
+24-Jul-24 23:08:07 - Panel1_P10_D
+24-Jul-24 23:08:15 - Slide loaded
+24-Jul-24 23:38:15 - Panel1_P1_D
+24-Jul-24 23:38:20 - Slide loaded
+24-Jul-24 23:40:44 - Panel1_P1_D
+24-Jul-24 23:40:49 - Slide loaded
+24-Jul-24 23:41:27 - Panel1_P1_D
+24-Jul-24 23:41:32 - Slide loaded
+24-Jul-24 23:41:56 - Panel1_P1_D
+24-Jul-24 23:42:01 - Slide loaded
+24-Jul-24 23:42:27 - Panel1_P1_D
+24-Jul-24 23:42:32 - Slide loaded
+24-Jul-24 23:43:14 - Panel1_P1_D
+24-Jul-24 23:43:19 - Slide loaded
+24-Jul-24 23:44:41 - Panel1_P1_D
+24-Jul-24 23:44:46 - Slide loaded
+24-Jul-24 23:49:40 - Panel1_P1_D
+24-Jul-24 23:49:45 - Slide loaded
+24-Jul-24 23:50:05 - Panel1_P1_D
+24-Jul-24 23:50:10 - Slide loaded
+24-Jul-24 23:50:46 - Panel1_P1_D
+24-Jul-24 23:50:51 - Slide loaded
+24-Jul-24 23:51:19 - Panel1_P1_D
+24-Jul-24 23:51:24 - Slide loaded
+24-Jul-24 23:51:53 - Panel1_P1_D
+24-Jul-24 23:51:58 - Slide loaded
+24-Jul-24 23:53:28 - Panel1_P1_D
+24-Jul-24 23:53:33 - Slide loaded
+24-Jul-24 23:54:18 - Panel1_P1_D
+24-Jul-24 23:54:23 - Slide loaded
+24-Jul-24 23:55:46 - Panel1_P1_D
+24-Jul-24 23:55:51 - Slide loaded
+24-Jul-24 23:59:27 - Panel1_P1_D
+24-Jul-24 23:59:32 - Slide loaded
+24-Jul-24 23:59:48 - Panel1_P1_D
+24-Jul-24 23:59:53 - Slide loaded
+25-Jul-24 00:00:59 - Panel1_P1_D
+25-Jul-24 00:01:04 - Slide loaded
+25-Jul-24 00:01:20 - Panel1_P3_H
+25-Jul-24 00:01:25 - Slide loaded
+25-Jul-24 00:01:28 - Panel1_P2_D
+25-Jul-24 00:01:36 - Slide loaded
+25-Jul-24 00:01:41 - Panel1_P3_D
+25-Jul-24 00:01:48 - Slide loaded
+25-Jul-24 00:01:52 - Panel1_P4_H
+25-Jul-24 00:01:56 - Slide loaded
+25-Jul-24 00:01:59 - Panel1_P1_D
+25-Jul-24 00:02:04 - Slide loaded
+25-Jul-24 00:02:07 - Panel1_P4_D
+25-Jul-24 00:02:16 - Slide loaded
+25-Jul-24 00:02:21 - Panel1_P1_H
+25-Jul-24 00:02:24 - Slide loaded
+25-Jul-24 00:02:26 - Panel1_P2_H
+25-Jul-24 00:02:32 - Slide loaded
+25-Jul-24 00:02:36 - Panel1_P7_D
+25-Jul-24 00:02:42 - Slide loaded
+25-Jul-24 00:02:47 - Panel1_P11_D
+25-Jul-24 00:02:52 - Slide loaded
+25-Jul-24 00:02:55 - Panel1_P5_D
+25-Jul-24 00:03:02 - Slide loaded
+25-Jul-24 00:03:07 - Panel1_P12_D
+25-Jul-24 00:03:19 - Slide loaded
+25-Jul-24 00:03:27 - Panel1_P8_D
+25-Jul-24 00:03:37 - Slide loaded
+25-Jul-24 00:03:44 - Panel1_P9_D
+25-Jul-24 00:03:55 - Slide loaded
+25-Jul-24 00:04:00 - Panel1_P6_D
+25-Jul-24 00:04:09 - Slide loaded
+25-Jul-24 00:04:15 - Panel1_P10_D
+25-Jul-24 00:04:22 - Slide loaded
+25-Jul-24 00:06:13 - Panel1_P3_H
+25-Jul-24 00:06:17 - Slide loaded
+25-Jul-24 00:06:21 - Panel1_P2_D
+25-Jul-24 00:06:29 - Slide loaded
+25-Jul-24 00:06:34 - Panel1_P3_D
+25-Jul-24 00:06:40 - Slide loaded
+25-Jul-24 00:06:44 - Panel1_P4_H
+25-Jul-24 00:06:48 - Slide loaded
+25-Jul-24 00:06:51 - Panel1_P1_D
+25-Jul-24 00:06:56 - Slide loaded
+25-Jul-24 00:06:59 - Panel1_P4_D
+25-Jul-24 00:07:07 - Slide loaded
+25-Jul-24 00:07:13 - Panel1_P1_H
+25-Jul-24 00:07:16 - Slide loaded
+25-Jul-24 00:07:17 - Panel1_P2_H
+25-Jul-24 00:07:23 - Slide loaded
+25-Jul-24 00:07:27 - Panel1_P7_D
+25-Jul-24 00:07:33 - Slide loaded
+25-Jul-24 00:07:37 - Panel1_P11_D
+25-Jul-24 00:07:43 - Slide loaded
+25-Jul-24 00:07:45 - Panel1_P5_D
+25-Jul-24 00:07:53 - Slide loaded
+25-Jul-24 00:07:57 - Panel1_P12_D
+25-Jul-24 00:08:10 - Slide loaded
+25-Jul-24 00:08:17 - Panel1_P8_D
+25-Jul-24 00:08:27 - Slide loaded
+25-Jul-24 00:08:33 - Panel1_P9_D
+25-Jul-24 00:08:44 - Slide loaded
+25-Jul-24 00:08:50 - Panel1_P6_D
+25-Jul-24 00:08:59 - Slide loaded
+25-Jul-24 00:09:04 - Panel1_P10_D
+25-Jul-24 00:09:12 - Slide loaded
+25-Jul-24 00:11:26 - Panel1_P3_H
+25-Jul-24 00:11:31 - Slide loaded
+25-Jul-24 00:11:34 - Panel1_P2_D
+25-Jul-24 00:11:42 - Slide loaded
+25-Jul-24 00:11:47 - Panel1_P3_D
+25-Jul-24 00:11:53 - Slide loaded
+25-Jul-24 00:11:57 - Panel1_P4_H
+25-Jul-24 00:12:02 - Slide loaded
+25-Jul-24 00:12:05 - Panel1_P1_D
+25-Jul-24 00:12:10 - Slide loaded
+25-Jul-24 00:12:12 - Panel1_P4_D
+25-Jul-24 00:12:21 - Slide loaded
+25-Jul-24 00:12:26 - Panel1_P1_H
+25-Jul-24 00:12:29 - Slide loaded
+25-Jul-24 00:12:31 - Panel1_P2_H
+25-Jul-24 00:12:36 - Slide loaded
+25-Jul-24 00:12:41 - Panel1_P7_D
+25-Jul-24 00:12:47 - Slide loaded
+25-Jul-24 00:12:51 - Panel1_P11_D
+25-Jul-24 00:12:56 - Slide loaded
+25-Jul-24 00:12:59 - Panel1_P5_D
+25-Jul-24 00:13:06 - Slide loaded
+25-Jul-24 00:13:10 - Panel1_P12_D
+25-Jul-24 00:13:23 - Slide loaded
+25-Jul-24 00:13:30 - Panel1_P8_D
+25-Jul-24 00:13:40 - Slide loaded
+25-Jul-24 00:13:46 - Panel1_P9_D
+25-Jul-24 00:13:57 - Slide loaded
+25-Jul-24 00:14:03 - Panel1_P6_D
+25-Jul-24 00:14:12 - Slide loaded
+25-Jul-24 00:14:16 - Panel1_P10_D
+25-Jul-24 00:14:22 - Slide loaded
+25-Jul-24 00:15:34 - Panel1_P3_H
+25-Jul-24 00:15:37 - Slide loaded
+25-Jul-24 00:15:40 - Panel1_P2_D
+25-Jul-24 00:15:46 - Slide loaded
+25-Jul-24 00:15:50 - Panel1_P3_D
+25-Jul-24 00:15:56 - Slide loaded
+25-Jul-24 00:15:59 - Panel1_P4_H
+25-Jul-24 00:16:02 - Slide loaded
+25-Jul-24 00:16:04 - Panel1_P1_D
+25-Jul-24 00:16:08 - Slide loaded
+25-Jul-24 00:16:11 - Panel1_P4_D
+25-Jul-24 00:16:17 - Slide loaded
+25-Jul-24 00:16:22 - Panel1_P1_H
+25-Jul-24 00:16:24 - Slide loaded
+25-Jul-24 00:16:26 - Panel1_P2_H
+25-Jul-24 00:16:30 - Slide loaded
+25-Jul-24 00:16:33 - Panel1_P7_D
+25-Jul-24 00:16:38 - Slide loaded
+25-Jul-24 00:16:41 - Panel1_P11_D
+25-Jul-24 00:16:45 - Slide loaded
+25-Jul-24 00:16:48 - Panel1_P5_D
+25-Jul-24 00:16:54 - Slide loaded
+25-Jul-24 00:16:57 - Panel1_P12_D
+25-Jul-24 00:17:07 - Slide loaded
+25-Jul-24 00:17:13 - Panel1_P8_D
+25-Jul-24 00:17:20 - Slide loaded
+25-Jul-24 00:17:26 - Panel1_P9_D
+25-Jul-24 00:17:34 - Slide loaded
+25-Jul-24 00:17:39 - Panel1_P6_D
+25-Jul-24 00:17:46 - Slide loaded
+25-Jul-24 00:17:50 - Panel1_P10_D
+25-Jul-24 00:17:56 - Slide loaded
+25-Jul-24 00:22:56 - Panel1_P3_H
+25-Jul-24 00:23:00 - Slide loaded
+25-Jul-24 00:24:02 - Panel1_P2_D
+25-Jul-24 00:24:08 - Slide loaded
+25-Jul-24 00:25:31 - Panel1_P3_D
+25-Jul-24 00:25:37 - Slide loaded
+25-Jul-24 00:26:47 - Panel1_P3_H
+25-Jul-24 00:26:51 - Slide loaded
+25-Jul-24 00:26:54 - Panel1_P2_D
+25-Jul-24 00:27:00 - Slide loaded
+25-Jul-24 00:27:04 - Panel1_P3_D
+25-Jul-24 00:27:09 - Slide loaded
+25-Jul-24 00:27:12 - Panel1_P4_H
+25-Jul-24 00:27:15 - Slide loaded
+25-Jul-24 00:27:17 - Panel1_P1_D
+25-Jul-24 00:27:21 - Slide loaded
+25-Jul-24 00:27:24 - Panel1_P4_D
+25-Jul-24 00:27:30 - Slide loaded
+25-Jul-24 00:27:34 - Panel1_P1_H
+25-Jul-24 00:27:37 - Slide loaded
+25-Jul-24 00:27:38 - Panel1_P2_H
+25-Jul-24 00:27:42 - Slide loaded
+25-Jul-24 00:27:46 - Panel1_P7_D
+25-Jul-24 00:27:50 - Slide loaded
+25-Jul-24 00:27:54 - Panel1_P11_D
+25-Jul-24 00:27:58 - Slide loaded
+25-Jul-24 00:28:00 - Panel1_P5_D
+25-Jul-24 00:28:06 - Slide loaded
+25-Jul-24 00:28:09 - Panel1_P12_D
+25-Jul-24 00:28:19 - Slide loaded
+25-Jul-24 00:28:25 - Panel1_P8_D
+25-Jul-24 00:28:32 - Slide loaded
+25-Jul-24 00:28:37 - Panel1_P9_D
+25-Jul-24 00:28:46 - Slide loaded
+25-Jul-24 00:28:51 - Panel1_P6_D
+25-Jul-24 00:28:58 - Slide loaded
+25-Jul-24 00:29:02 - Panel1_P10_D
+25-Jul-24 00:29:08 - Slide loaded
+25-Jul-24 00:34:32 - Panel1_P1_D
+25-Jul-24 00:34:35 - Slide loaded
+25-Jul-24 00:34:48 - Panel1_P1_D
+25-Jul-24 00:34:52 - Slide loaded
+25-Jul-24 00:35:04 - Panel1_P1_D
+25-Jul-24 00:35:07 - Slide loaded
+25-Jul-24 00:35:47 - Panel1_P1_D
+25-Jul-24 00:35:51 - Slide loaded
+25-Jul-24 00:37:16 - Panel1_P1_D
+25-Jul-24 00:37:20 - Slide loaded
+25-Jul-24 00:37:41 - Panel1_P3_H
+25-Jul-24 00:37:45 - Slide loaded
+25-Jul-24 00:37:48 - Panel1_P2_D
+25-Jul-24 00:37:54 - Slide loaded
+25-Jul-24 00:37:58 - Panel1_P3_D
+25-Jul-24 00:38:03 - Slide loaded
+25-Jul-24 00:38:06 - Panel1_P4_H
+25-Jul-24 00:38:09 - Slide loaded
+25-Jul-24 00:38:11 - Panel1_P1_D
+25-Jul-24 00:38:15 - Slide loaded
+25-Jul-24 00:38:18 - Panel1_P4_D
+25-Jul-24 00:38:24 - Slide loaded
+25-Jul-24 00:38:28 - Panel1_P1_H
+25-Jul-24 00:38:31 - Slide loaded
+25-Jul-24 00:38:32 - Panel1_P2_H
+25-Jul-24 00:38:36 - Slide loaded
+25-Jul-24 00:38:40 - Panel1_P7_D
+25-Jul-24 00:38:44 - Slide loaded
+25-Jul-24 00:38:48 - Panel1_P11_D
+25-Jul-24 00:38:52 - Slide loaded
+25-Jul-24 00:38:54 - Panel1_P5_D
+25-Jul-24 00:39:00 - Slide loaded
+25-Jul-24 00:39:03 - Panel1_P12_D
+25-Jul-24 00:39:13 - Slide loaded
+25-Jul-24 00:39:19 - Panel1_P8_D
+25-Jul-24 00:39:27 - Slide loaded
+25-Jul-24 00:39:32 - Panel1_P9_D
+25-Jul-24 00:39:40 - Slide loaded
+25-Jul-24 00:39:45 - Panel1_P6_D
+25-Jul-24 00:39:52 - Slide loaded
+25-Jul-24 00:39:56 - Panel1_P10_D
+25-Jul-24 00:40:02 - Slide loaded
+25-Jul-24 00:41:52 - Panel1_P6_D
+25-Jul-24 00:41:59 - Slide loaded
+25-Jul-24 01:07:59 - Panel1_P6_D
+25-Jul-24 01:08:06 - Slide loaded
+25-Jul-24 01:10:26 - Panel1_P6_D
+25-Jul-24 01:10:33 - Slide loaded
+25-Jul-24 01:20:17 - Panel1_P6_D
+25-Jul-24 01:20:24 - Slide loaded
+25-Jul-24 01:22:33 - Panel1_P6_D
+25-Jul-24 01:22:40 - Slide loaded
+25-Jul-24 01:27:19 - Panel1_P6_D
+25-Jul-24 01:27:26 - Slide loaded
+25-Jul-24 01:28:21 - Panel1_P3_H
+25-Jul-24 01:28:24 - Slide loaded
+25-Jul-24 01:28:27 - Panel1_P2_D
+25-Jul-24 01:28:34 - Slide loaded
+25-Jul-24 01:28:37 - Panel1_P3_D
+25-Jul-24 01:28:42 - Slide loaded
+25-Jul-24 01:28:45 - Panel1_P4_H
+25-Jul-24 01:28:48 - Slide loaded
+25-Jul-24 01:28:51 - Panel1_P1_D
+25-Jul-24 01:28:55 - Slide loaded
+25-Jul-24 01:28:57 - Panel1_P4_D
+25-Jul-24 01:29:04 - Slide loaded
+25-Jul-24 01:29:08 - Panel1_P1_H
+25-Jul-24 01:29:11 - Slide loaded
+25-Jul-24 01:29:12 - Panel1_P2_H
+25-Jul-24 01:29:16 - Slide loaded
+25-Jul-24 01:29:20 - Panel1_P7_D
+25-Jul-24 01:29:24 - Slide loaded
+25-Jul-24 01:29:28 - Panel1_P11_D
+25-Jul-24 01:29:32 - Slide loaded
+25-Jul-24 01:29:34 - Panel1_P5_D
+25-Jul-24 01:29:40 - Slide loaded
+25-Jul-24 01:29:43 - Panel1_P12_D
+25-Jul-24 01:29:53 - Slide loaded
+25-Jul-24 01:29:59 - Panel1_P8_D
+25-Jul-24 01:30:07 - Slide loaded
+25-Jul-24 01:30:12 - Panel1_P9_D
+25-Jul-24 01:30:20 - Slide loaded
+25-Jul-24 01:30:25 - Panel1_P6_D
+25-Jul-24 01:30:32 - Slide loaded
+25-Jul-24 01:30:36 - Panel1_P10_D
+25-Jul-24 01:30:42 - Slide loaded
+25-Jul-24 01:33:35 - Panel1_P3_H
+25-Jul-24 01:33:38 - Slide loaded
+25-Jul-24 01:33:41 - Panel1_P2_D
+25-Jul-24 01:33:47 - Slide loaded
+25-Jul-24 01:33:51 - Panel1_P3_D
+25-Jul-24 01:33:56 - Slide loaded
+25-Jul-24 01:33:59 - Panel1_P4_H
+25-Jul-24 01:34:03 - Slide loaded
+25-Jul-24 01:34:05 - Panel1_P1_D
+25-Jul-24 01:34:09 - Slide loaded
+25-Jul-24 01:34:11 - Panel1_P4_D
+25-Jul-24 01:34:18 - Slide loaded
+25-Jul-24 01:34:22 - Panel1_P1_H
+25-Jul-24 01:34:24 - Slide loaded
+25-Jul-24 01:34:26 - Panel1_P2_H
+25-Jul-24 01:34:30 - Slide loaded
+25-Jul-24 01:34:33 - Panel1_P7_D
+25-Jul-24 01:34:38 - Slide loaded
+25-Jul-24 01:34:42 - Panel1_P11_D
+25-Jul-24 01:34:46 - Slide loaded
+25-Jul-24 01:34:48 - Panel1_P5_D
+25-Jul-24 01:34:54 - Slide loaded
+25-Jul-24 01:34:57 - Panel1_P12_D
+25-Jul-24 01:35:07 - Slide loaded
+25-Jul-24 01:35:13 - Panel1_P8_D
+25-Jul-24 01:35:20 - Slide loaded
+25-Jul-24 01:35:25 - Panel1_P9_D
+25-Jul-24 01:35:34 - Slide loaded
+25-Jul-24 01:35:39 - Panel1_P6_D
+25-Jul-24 01:35:46 - Slide loaded
+25-Jul-24 01:35:50 - Panel1_P10_D
+25-Jul-24 01:35:56 - Slide loaded
+25-Jul-24 01:37:22 - Panel1_P3_H
+25-Jul-24 01:37:26 - Slide loaded
+25-Jul-24 01:37:29 - Panel1_P2_D
+25-Jul-24 01:37:35 - Slide loaded
+25-Jul-24 01:37:39 - Panel1_P3_D
+25-Jul-24 01:37:44 - Slide loaded
+25-Jul-24 01:37:47 - Panel1_P4_H
+25-Jul-24 01:37:50 - Slide loaded
+25-Jul-24 01:37:52 - Panel1_P1_D
+25-Jul-24 01:37:56 - Slide loaded
+25-Jul-24 01:37:59 - Panel1_P4_D
+25-Jul-24 01:38:05 - Slide loaded
+25-Jul-24 01:38:10 - Panel1_P1_H
+25-Jul-24 01:38:12 - Slide loaded
+25-Jul-24 01:38:13 - Panel1_P2_H
+25-Jul-24 01:38:18 - Slide loaded
+25-Jul-24 01:38:21 - Panel1_P7_D
+25-Jul-24 01:38:26 - Slide loaded
+25-Jul-24 01:38:29 - Panel1_P11_D
+25-Jul-24 01:38:33 - Slide loaded
+25-Jul-24 01:38:35 - Panel1_P5_D
+25-Jul-24 01:38:41 - Slide loaded
+25-Jul-24 01:38:44 - Panel1_P12_D
+25-Jul-24 01:38:54 - Slide loaded
+25-Jul-24 01:39:00 - Panel1_P8_D
+25-Jul-24 01:39:08 - Slide loaded
+25-Jul-24 01:39:13 - Panel1_P9_D
+25-Jul-24 01:39:21 - Slide loaded
+25-Jul-24 01:39:26 - Panel1_P6_D
+25-Jul-24 01:39:33 - Slide loaded
+25-Jul-24 01:39:37 - Panel1_P10_D
+25-Jul-24 01:39:43 - Slide loaded
+25-Jul-24 01:51:36 - Panel1_P3_H
+25-Jul-24 01:51:40 - Slide loaded
+25-Jul-24 01:51:42 - Panel1_P2_D
+25-Jul-24 01:51:49 - Slide loaded
+25-Jul-24 01:51:52 - Panel1_P3_D
+25-Jul-24 01:51:58 - Slide loaded
+25-Jul-24 01:52:01 - Panel1_P4_H
+25-Jul-24 01:52:04 - Slide loaded
+25-Jul-24 01:52:06 - Panel1_P1_D
+25-Jul-24 01:52:10 - Slide loaded
+25-Jul-24 01:52:13 - Panel1_P4_D
+25-Jul-24 01:52:19 - Slide loaded
+25-Jul-24 01:52:23 - Panel1_P1_H
+25-Jul-24 01:52:26 - Slide loaded
+25-Jul-24 01:52:27 - Panel1_P2_H
+25-Jul-24 01:52:31 - Slide loaded
+25-Jul-24 01:53:02 - Panel1_P3_H
+25-Jul-24 01:53:06 - Slide loaded
+25-Jul-24 01:53:09 - Panel1_P2_D
+25-Jul-24 01:53:15 - Slide loaded
+25-Jul-24 01:53:19 - Panel1_P3_D
+25-Jul-24 01:53:24 - Slide loaded
+25-Jul-24 01:53:27 - Panel1_P4_H
+25-Jul-24 01:53:30 - Slide loaded
+25-Jul-24 01:53:33 - Panel1_P1_D
+25-Jul-24 01:53:37 - Slide loaded
+25-Jul-24 01:53:39 - Panel1_P4_D
+25-Jul-24 01:53:45 - Slide loaded
+25-Jul-24 01:53:50 - Panel1_P1_H
+25-Jul-24 01:53:52 - Slide loaded
+25-Jul-24 01:53:53 - Panel1_P2_H
+25-Jul-24 01:53:58 - Slide loaded
+25-Jul-24 01:54:01 - Panel1_P7_D
+25-Jul-24 01:54:06 - Slide loaded
+25-Jul-24 01:54:09 - Panel1_P11_D
+25-Jul-24 01:54:13 - Slide loaded
+25-Jul-24 01:54:15 - Panel1_P5_D
+25-Jul-24 01:54:21 - Slide loaded
+25-Jul-24 01:54:25 - Panel1_P12_D
+25-Jul-24 01:54:35 - Slide loaded
+25-Jul-24 01:54:40 - Panel1_P8_D
+25-Jul-24 01:54:48 - Slide loaded
+25-Jul-24 01:54:53 - Panel1_P9_D
+25-Jul-24 01:55:02 - Slide loaded
+25-Jul-24 01:55:06 - Panel1_P6_D
+25-Jul-24 01:55:14 - Slide loaded
+25-Jul-24 01:55:18 - Panel1_P10_D
+25-Jul-24 01:55:24 - Slide loaded
+25-Jul-24 01:57:34 - Panel1_P3_H
+25-Jul-24 01:57:37 - Slide loaded
+25-Jul-24 01:57:40 - Panel1_P2_D
+25-Jul-24 01:57:46 - Slide loaded
+25-Jul-24 01:57:50 - Panel1_P3_D
+25-Jul-24 01:57:55 - Slide loaded
+25-Jul-24 01:57:58 - Panel1_P4_H
+25-Jul-24 01:58:02 - Slide loaded
+25-Jul-24 01:58:04 - Panel1_P1_D
+25-Jul-24 01:58:08 - Slide loaded
+25-Jul-24 02:00:30 - Panel1_P3_H
+25-Jul-24 02:00:34 - Slide loaded
+25-Jul-24 02:00:37 - Panel1_P2_D
+25-Jul-24 02:00:43 - Slide loaded
+25-Jul-24 02:00:47 - Panel1_P3_D
+25-Jul-24 02:00:52 - Slide loaded
+25-Jul-24 02:00:56 - Panel1_P4_H
+25-Jul-24 02:00:59 - Slide loaded
+25-Jul-24 02:01:01 - Panel1_P1_D
+25-Jul-24 02:01:05 - Slide loaded
+25-Jul-24 02:01:08 - Panel1_P4_D
+25-Jul-24 02:01:14 - Slide loaded
+25-Jul-24 02:01:19 - Panel1_P1_H
+25-Jul-24 02:01:21 - Slide loaded
+25-Jul-24 02:01:22 - Panel1_P2_H
+25-Jul-24 02:01:27 - Slide loaded
+25-Jul-24 02:01:30 - Panel1_P7_D
+25-Jul-24 02:01:35 - Slide loaded
+25-Jul-24 02:01:38 - Panel1_P11_D
+25-Jul-24 02:01:42 - Slide loaded
+25-Jul-24 02:01:45 - Panel1_P5_D
+25-Jul-24 02:01:51 - Slide loaded
+25-Jul-24 02:01:54 - Panel1_P12_D
+25-Jul-24 02:02:04 - Slide loaded
+25-Jul-24 02:02:10 - Panel1_P8_D
+25-Jul-24 02:02:18 - Slide loaded
+25-Jul-24 02:02:23 - Panel1_P9_D
+25-Jul-24 02:02:32 - Slide loaded
+25-Jul-24 02:02:36 - Panel1_P6_D
+25-Jul-24 02:02:43 - Slide loaded
+25-Jul-24 02:02:48 - Panel1_P10_D
+25-Jul-24 02:02:54 - Slide loaded
+25-Jul-24 17:44:40 - Panel1_P3_H
+25-Jul-24 17:44:47 - Slide loaded
+25-Jul-24 17:44:51 - Panel1_P2_D
+25-Jul-24 17:45:01 - Slide loaded
+25-Jul-24 17:45:07 - Panel1_P3_D
+25-Jul-24 17:45:14 - Slide loaded
+25-Jul-24 17:45:19 - Panel1_P4_H
+25-Jul-24 17:45:24 - Slide loaded
+25-Jul-24 17:45:27 - Panel1_P1_D
+25-Jul-24 17:45:34 - Slide loaded
+25-Jul-24 17:45:37 - Panel1_P4_D
+25-Jul-24 17:45:49 - Slide loaded
+25-Jul-24 17:45:55 - Panel1_P1_H
+25-Jul-24 17:45:59 - Slide loaded
+25-Jul-24 17:46:01 - Panel1_P2_H
+25-Jul-24 17:46:08 - Slide loaded
+25-Jul-24 17:46:14 - Panel1_P7_D
+25-Jul-24 17:46:23 - Slide loaded
+25-Jul-24 17:46:28 - Panel1_P11_D
+25-Jul-24 17:46:35 - Slide loaded
+25-Jul-24 17:46:38 - Panel1_P5_D
+25-Jul-24 17:46:50 - Slide loaded
+25-Jul-24 17:46:55 - Panel1_P12_D
+25-Jul-24 17:47:12 - Slide loaded
+25-Jul-24 17:47:21 - Panel1_P8_D
+25-Jul-24 17:47:34 - Slide loaded
+25-Jul-24 17:47:42 - Panel1_P9_D
+25-Jul-24 17:47:56 - Slide loaded
+25-Jul-24 17:48:03 - Panel1_P6_D
+25-Jul-24 17:48:15 - Slide loaded
+25-Jul-24 17:48:22 - Panel1_P10_D
+25-Jul-24 17:48:32 - Slide loaded
+25-Jul-24 18:02:58 - Panel1_P3_D
+25-Jul-24 18:03:06 - Slide loaded
+25-Jul-24 18:03:11 - Panel1_P4_D
+25-Jul-24 18:03:21 - Slide loaded
+25-Jul-24 18:03:28 - Panel1_P1_H
+25-Jul-24 18:03:31 - Slide loaded
+25-Jul-24 18:03:34 - Panel1_P7_D
+25-Jul-24 18:03:41 - Slide loaded
+25-Jul-24 18:03:46 - Panel1_P8_D
+25-Jul-24 18:03:58 - Slide loaded
+25-Jul-24 18:10:30 - Panel1_P3_D
+25-Jul-24 18:10:37 - Slide loaded
+25-Jul-24 18:10:42 - Panel1_P4_D
+25-Jul-24 18:10:52 - Slide loaded
+25-Jul-24 18:10:59 - Panel1_P1_H
+25-Jul-24 18:11:02 - Slide loaded
+25-Jul-24 18:11:05 - Panel1_P7_D
+25-Jul-24 18:11:12 - Slide loaded
+25-Jul-24 18:11:18 - Panel1_P8_D
+25-Jul-24 18:11:29 - Slide loaded
+25-Jul-24 18:15:31 - Panel1_P4_D
+25-Jul-24 18:15:41 - Slide loaded
+25-Jul-24 18:18:37 - Panel1_P4_D
+25-Jul-24 18:18:47 - Slide loaded
+25-Jul-24 18:23:30 - Panel1_P4_D
+25-Jul-24 18:23:41 - Slide loaded
+25-Jul-24 18:24:32 - Panel1_P3_D
+25-Jul-24 18:24:40 - Slide loaded
+25-Jul-24 18:24:44 - Panel1_P4_D
+25-Jul-24 18:24:54 - Slide loaded
+25-Jul-24 18:25:01 - Panel1_P1_H
+25-Jul-24 18:25:05 - Slide loaded
+25-Jul-24 18:25:07 - Panel1_P7_D
+25-Jul-24 18:25:14 - Slide loaded
+25-Jul-24 18:25:19 - Panel1_P8_D
+25-Jul-24 18:25:31 - Slide loaded
+25-Jul-24 18:28:16 - Panel1_P3_D
+25-Jul-24 18:28:23 - Slide loaded
+25-Jul-24 18:28:28 - Panel1_P4_D
+25-Jul-24 18:28:38 - Slide loaded
+25-Jul-24 18:28:45 - Panel1_P1_H
+25-Jul-24 18:28:48 - Slide loaded
+25-Jul-24 18:28:50 - Panel1_P2_H
+25-Jul-24 18:28:57 - Slide loaded
+25-Jul-24 18:29:02 - Panel1_P7_D
+25-Jul-24 18:29:09 - Slide loaded
+25-Jul-24 18:29:15 - Panel1_P8_D
+25-Jul-24 18:29:26 - Slide loaded
+25-Jul-24 18:31:46 - Panel1_P3_D
+25-Jul-24 18:31:54 - Slide loaded
+25-Jul-24 18:31:59 - Panel1_P4_D
+25-Jul-24 18:32:08 - Slide loaded
+25-Jul-24 18:32:15 - Panel1_P1_H
+25-Jul-24 18:32:19 - Slide loaded
+25-Jul-24 18:32:21 - Panel1_P2_H
+25-Jul-24 18:32:28 - Slide loaded
+25-Jul-24 18:32:33 - Panel1_P7_D
+25-Jul-24 18:32:40 - Slide loaded
+25-Jul-24 18:32:45 - Panel1_P8_D
+25-Jul-24 18:32:57 - Slide loaded
+25-Jul-24 18:35:33 - Panel1_P2_H
+25-Jul-24 18:35:40 - Slide loaded
+25-Jul-24 18:59:49 - Panel1_P2_H
+25-Jul-24 18:59:56 - Slide loaded
+25-Jul-24 19:00:16 - Panel1_P2_H
+25-Jul-24 19:00:23 - Slide loaded
+25-Jul-24 19:08:26 - Panel1_P2_H
+25-Jul-24 19:08:32 - Slide loaded
+25-Jul-24 19:09:02 - Panel1_P2_H
+25-Jul-24 19:09:08 - Slide loaded
+25-Jul-24 19:25:23 - Panel1_P2_H
+25-Jul-24 19:25:29 - Slide loaded
+25-Jul-24 19:26:11 - Panel1_P2_H
+25-Jul-24 19:26:18 - Slide loaded
+25-Jul-24 19:26:43 - Panel1_P3_D
+25-Jul-24 19:26:51 - Slide loaded
+25-Jul-24 19:26:56 - Panel1_P4_D
+25-Jul-24 19:27:06 - Slide loaded
+25-Jul-24 19:27:13 - Panel1_P1_H
+25-Jul-24 19:27:16 - Slide loaded
+25-Jul-24 19:27:19 - Panel1_P2_H
+25-Jul-24 19:27:25 - Slide loaded
+25-Jul-24 19:27:31 - Panel1_P7_D
+25-Jul-24 19:27:38 - Slide loaded
+25-Jul-24 19:27:43 - Panel1_P8_D
+25-Jul-24 19:27:55 - Slide loaded
+25-Jul-24 19:29:19 - Panel1_P3_D
+25-Jul-24 19:29:27 - Slide loaded
+25-Jul-24 19:29:32 - Panel1_P4_D
+25-Jul-24 19:29:42 - Slide loaded
+25-Jul-24 19:29:49 - Panel1_P1_H
+25-Jul-24 19:29:53 - Slide loaded
+25-Jul-24 19:29:55 - Panel1_P2_H
+25-Jul-24 19:30:02 - Slide loaded
+25-Jul-24 19:30:07 - Panel1_P7_D
+25-Jul-24 19:30:14 - Slide loaded
+25-Jul-24 19:30:19 - Panel1_P8_D
+25-Jul-24 19:30:31 - Slide loaded
+25-Jul-24 19:36:30 - Panel1_P3_D
+25-Jul-24 19:36:38 - Slide loaded
+25-Jul-24 19:36:42 - Panel1_P4_D
+25-Jul-24 19:36:53 - Slide loaded
+25-Jul-24 19:37:00 - Panel1_P1_H
+25-Jul-24 19:37:03 - Slide loaded
+25-Jul-24 19:37:06 - Panel1_P2_H
+25-Jul-24 19:37:12 - Slide loaded
+25-Jul-24 19:37:17 - Panel1_P7_D
+25-Jul-24 19:37:24 - Slide loaded
+25-Jul-24 19:37:29 - Panel1_P8_D
+25-Jul-24 19:37:41 - Slide loaded
+25-Jul-24 19:44:08 - Panel1_P2_H
+25-Jul-24 19:44:15 - Slide loaded
+25-Jul-24 19:44:40 - Panel1_P3_D
+25-Jul-24 19:44:47 - Slide loaded
+25-Jul-24 19:44:52 - Panel1_P4_D
+25-Jul-24 19:45:02 - Slide loaded
+25-Jul-24 19:45:08 - Panel1_P1_H
+25-Jul-24 19:45:11 - Slide loaded
+25-Jul-24 19:45:14 - Panel1_P2_H
+25-Jul-24 19:45:20 - Slide loaded
+25-Jul-24 19:45:25 - Panel1_P7_D
+25-Jul-24 19:45:32 - Slide loaded
+25-Jul-24 19:45:37 - Panel1_P8_D
+25-Jul-24 19:45:48 - Slide loaded
+25-Jul-24 19:50:31 - Panel1_P3_D
+25-Jul-24 19:50:39 - Slide loaded
+25-Jul-24 19:50:44 - Panel1_P4_D
+25-Jul-24 19:50:53 - Slide loaded
+25-Jul-24 19:51:00 - Panel1_P1_H
+25-Jul-24 19:51:03 - Slide loaded
+25-Jul-24 19:51:05 - Panel1_P2_H
+25-Jul-24 19:51:12 - Slide loaded
+25-Jul-24 19:51:17 - Panel1_P7_D
+25-Jul-24 19:51:25 - Slide loaded
+25-Jul-24 19:51:31 - Panel1_P8_D
+25-Jul-24 19:51:42 - Slide loaded
+25-Jul-24 20:26:20 - Panel1_P3_D
+25-Jul-24 20:26:27 - Slide loaded
+25-Jul-24 20:26:53 - Panel1_P3_D
+25-Jul-24 20:27:01 - Slide loaded
+25-Jul-24 20:27:38 - Panel1_P3_D
+25-Jul-24 20:27:46 - Slide loaded
+25-Jul-24 20:27:51 - Panel1_P4_D
+25-Jul-24 20:28:01 - Slide loaded
+25-Jul-24 20:28:08 - Panel1_P1_H
+25-Jul-24 20:28:12 - Slide loaded
+25-Jul-24 20:28:14 - Panel1_P2_H
+25-Jul-24 20:28:21 - Slide loaded
+25-Jul-24 20:28:26 - Panel1_P7_D
+25-Jul-24 20:28:33 - Slide loaded
+25-Jul-24 20:28:38 - Panel1_P8_D
+25-Jul-24 20:28:50 - Slide loaded
+25-Jul-24 20:33:03 - Panel1_P3_D
+25-Jul-24 20:33:11 - Slide loaded
+25-Jul-24 20:33:15 - Panel1_P4_D
+25-Jul-24 20:33:25 - Slide loaded
+25-Jul-24 20:33:32 - Panel1_P1_H
+25-Jul-24 20:33:36 - Slide loaded
+25-Jul-24 20:33:38 - Panel1_P2_H
+25-Jul-24 20:33:45 - Slide loaded
+25-Jul-24 20:33:50 - Panel1_P7_D
+25-Jul-24 20:33:57 - Slide loaded
+25-Jul-24 20:34:03 - Panel1_P8_D
+25-Jul-24 20:34:14 - Slide loaded
+25-Jul-24 20:34:55 - Panel1_P3_D
+25-Jul-24 20:35:03 - Slide loaded
+25-Jul-24 20:35:07 - Panel1_P4_D
+25-Jul-24 20:35:17 - Slide loaded
+25-Jul-24 20:35:23 - Panel1_P1_H
+25-Jul-24 20:35:26 - Slide loaded
+25-Jul-24 20:35:29 - Panel1_P2_H
+25-Jul-24 20:35:35 - Slide loaded
+25-Jul-24 20:35:41 - Panel1_P7_D
+25-Jul-24 20:35:48 - Slide loaded
+25-Jul-24 20:35:53 - Panel1_P8_D
+25-Jul-24 20:36:04 - Slide loaded
+25-Jul-24 20:56:43 - Panel1_P6_D
+25-Jul-24 20:56:54 - Slide loaded
+25-Jul-24 21:02:49 - Panel1_P3_H
+25-Jul-24 21:02:55 - Slide loaded
+25-Jul-24 21:02:59 - Panel1_P2_D
+25-Jul-24 21:03:09 - Slide loaded
+25-Jul-24 21:03:16 - Panel1_P3_D
+25-Jul-24 21:03:23 - Slide loaded
+25-Jul-24 21:03:28 - Panel1_P4_H
+25-Jul-24 21:03:33 - Slide loaded
+25-Jul-24 21:03:37 - Panel1_P1_D
+25-Jul-24 21:03:43 - Slide loaded
+25-Jul-24 21:03:47 - Panel1_P4_D
+25-Jul-24 21:03:57 - Slide loaded
+25-Jul-24 21:04:04 - Panel1_P1_H
+25-Jul-24 21:04:08 - Slide loaded
+25-Jul-24 21:04:10 - Panel1_P2_H
+25-Jul-24 21:04:17 - Slide loaded
+25-Jul-24 21:04:22 - Panel1_P7_D
+25-Jul-24 21:04:29 - Slide loaded
+25-Jul-24 21:04:33 - Panel1_P11_D
+25-Jul-24 21:04:39 - Slide loaded
+25-Jul-24 21:04:42 - Panel1_P5_D
+25-Jul-24 21:04:51 - Slide loaded
+25-Jul-24 21:04:56 - Panel1_P12_D
+25-Jul-24 21:05:11 - Slide loaded
+25-Jul-24 21:05:20 - Panel1_P8_D
+25-Jul-24 21:05:32 - Slide loaded
+25-Jul-24 21:05:39 - Panel1_P9_D
+25-Jul-24 21:05:51 - Slide loaded
+25-Jul-24 21:05:58 - Panel1_P6_D
+25-Jul-24 21:06:08 - Slide loaded
+25-Jul-24 21:06:14 - Panel1_P10_D
+25-Jul-24 21:06:23 - Slide loaded
+25-Jul-24 21:11:18 - Panel1_P6_D
+25-Jul-24 21:11:28 - Slide loaded
+25-Jul-24 21:44:29 - Panel1_P3_H
+25-Jul-24 21:44:34 - Slide loaded
+25-Jul-24 21:44:38 - Panel1_P2_D
+25-Jul-24 21:44:47 - Slide loaded
+25-Jul-24 21:44:53 - Panel1_P3_D
+25-Jul-24 21:45:01 - Slide loaded
+25-Jul-24 21:53:30 - Panel1_P3_H
+25-Jul-24 21:53:35 - Slide loaded
+25-Jul-24 21:53:39 - Panel1_P2_D
+25-Jul-24 21:53:49 - Slide loaded
+25-Jul-24 21:53:54 - Panel1_P3_D
+25-Jul-24 21:54:02 - Slide loaded
+25-Jul-24 21:54:06 - Panel1_P4_H
+25-Jul-24 21:54:11 - Slide loaded
+25-Jul-24 21:54:14 - Panel1_P1_D
+25-Jul-24 21:54:19 - Slide loaded
+25-Jul-24 21:54:23 - Panel1_P4_D
+25-Jul-24 21:54:32 - Slide loaded
+25-Jul-24 21:54:38 - Panel1_P1_H
+25-Jul-24 21:54:42 - Slide loaded
+25-Jul-24 21:54:44 - Panel1_P2_H
+25-Jul-24 21:54:51 - Slide loaded
+25-Jul-24 21:54:56 - Panel1_P7_D
+25-Jul-24 21:55:03 - Slide loaded
+25-Jul-24 21:55:07 - Panel1_P11_D
+25-Jul-24 21:55:13 - Slide loaded
+25-Jul-24 21:55:16 - Panel1_P5_D
+25-Jul-24 21:55:24 - Slide loaded
+25-Jul-24 21:55:29 - Panel1_P12_D
+25-Jul-24 21:55:44 - Slide loaded
+25-Jul-24 21:55:53 - Panel1_P8_D
+25-Jul-24 21:56:04 - Slide loaded
+25-Jul-24 22:05:42 - Panel1_P8_D
+25-Jul-24 22:05:53 - Slide loaded
+25-Jul-24 22:06:24 - Panel1_P8_D
+25-Jul-24 22:06:35 - Slide loaded
+25-Jul-24 22:08:05 - Panel1_P8_D
+25-Jul-24 22:08:16 - Slide loaded
+25-Jul-24 22:14:39 - Panel1_P8_D
+25-Jul-24 22:14:51 - Slide loaded
+25-Jul-24 22:17:21 - Panel1_P8_D
+25-Jul-24 22:17:32 - Slide loaded
+25-Jul-24 22:18:25 - Panel1_P8_D
+25-Jul-24 22:18:38 - Slide loaded
+25-Jul-24 22:19:08 - Panel1_P3_H
+25-Jul-24 22:19:15 - Slide loaded
+25-Jul-24 22:19:19 - Panel1_P2_D
+25-Jul-24 22:19:29 - Slide loaded
+25-Jul-24 22:19:34 - Panel1_P3_D
+25-Jul-24 22:19:41 - Slide loaded
+25-Jul-24 22:19:46 - Panel1_P4_H
+25-Jul-24 22:19:51 - Slide loaded
+25-Jul-24 22:19:54 - Panel1_P1_D
+25-Jul-24 22:20:00 - Slide loaded
+25-Jul-24 22:20:03 - Panel1_P4_D
+25-Jul-24 22:20:13 - Slide loaded
+25-Jul-24 22:20:19 - Panel1_P1_H
+25-Jul-24 22:20:22 - Slide loaded
+25-Jul-24 22:20:25 - Panel1_P2_H
+25-Jul-24 22:20:31 - Slide loaded
+25-Jul-24 22:20:35 - Panel1_P7_D
+25-Jul-24 22:20:42 - Slide loaded
+25-Jul-24 22:20:47 - Panel1_P11_D
+25-Jul-24 22:20:53 - Slide loaded
+25-Jul-24 22:20:56 - Panel1_P5_D
+25-Jul-24 22:21:04 - Slide loaded
+25-Jul-24 22:21:09 - Panel1_P12_D
+25-Jul-24 22:21:24 - Slide loaded
+25-Jul-24 22:21:31 - Panel1_P8_D
+25-Jul-24 22:21:43 - Slide loaded
+25-Jul-24 22:21:50 - Panel1_P9_D
+25-Jul-24 22:22:02 - Slide loaded
+25-Jul-24 22:22:08 - Panel1_P6_D
+25-Jul-24 22:22:18 - Slide loaded
+25-Jul-24 22:22:24 - Panel1_P10_D
+25-Jul-24 22:22:33 - Slide loaded
+25-Jul-24 23:03:29 - Panel1_P3_H
+25-Jul-24 23:03:34 - Slide loaded
+25-Jul-24 23:03:37 - Panel1_P2_D
+25-Jul-24 23:03:46 - Slide loaded
+25-Jul-24 23:03:52 - Panel1_P3_D
+25-Jul-24 23:03:59 - Slide loaded
+25-Jul-24 23:04:03 - Panel1_P4_H
+25-Jul-24 23:04:08 - Slide loaded
+25-Jul-24 23:04:11 - Panel1_P1_D
+25-Jul-24 23:04:17 - Slide loaded
+25-Jul-24 23:04:20 - Panel1_P4_D
+25-Jul-24 23:04:29 - Slide loaded
+25-Jul-24 23:04:35 - Panel1_P1_H
+25-Jul-24 23:04:39 - Slide loaded
+25-Jul-24 23:04:41 - Panel1_P2_H
+25-Jul-24 23:04:47 - Slide loaded
+25-Jul-24 23:04:52 - Panel1_P7_D
+25-Jul-24 23:04:59 - Slide loaded
+25-Jul-24 23:05:04 - Panel1_P11_D
+25-Jul-24 23:05:10 - Slide loaded
+25-Jul-24 23:05:13 - Panel1_P5_D
+25-Jul-24 23:05:22 - Slide loaded
+25-Jul-24 23:05:27 - Panel1_P12_D
+25-Jul-24 23:05:43 - Slide loaded
+25-Jul-24 23:05:51 - Panel1_P8_D
+25-Jul-24 23:06:02 - Slide loaded
+25-Jul-24 23:06:09 - Panel1_P9_D
+25-Jul-24 23:06:24 - Slide loaded
+25-Jul-24 23:06:30 - Panel1_P6_D
+25-Jul-24 23:06:40 - Slide loaded
+25-Jul-24 23:06:46 - Panel1_P10_D
+25-Jul-24 23:06:55 - Slide loaded
+25-Jul-24 23:10:30 - Panel1_P3_H
+25-Jul-24 23:10:35 - Slide loaded
+25-Jul-24 23:10:39 - Panel1_P2_D
+25-Jul-24 23:10:48 - Slide loaded
+25-Jul-24 23:10:53 - Panel1_P3_D
+25-Jul-24 23:11:01 - Slide loaded
+25-Jul-24 23:11:05 - Panel1_P4_H
+25-Jul-24 23:11:10 - Slide loaded
+25-Jul-24 23:11:13 - Panel1_P1_D
+25-Jul-24 23:11:20 - Slide loaded
+25-Jul-24 23:11:23 - Panel1_P4_D
+25-Jul-24 23:11:33 - Slide loaded
+25-Jul-24 23:11:39 - Panel1_P1_H
+25-Jul-24 23:11:42 - Slide loaded
+25-Jul-24 23:11:44 - Panel1_P2_H
+25-Jul-24 23:11:50 - Slide loaded
+25-Jul-24 23:11:55 - Panel1_P7_D
+25-Jul-24 23:12:02 - Slide loaded
+25-Jul-24 23:12:06 - Panel1_P11_D
+25-Jul-24 23:12:12 - Slide loaded
+25-Jul-24 23:12:15 - Panel1_P5_D
+25-Jul-24 23:12:24 - Slide loaded
+25-Jul-24 23:12:29 - Panel1_P12_D
+25-Jul-24 23:12:43 - Slide loaded
+25-Jul-24 23:12:51 - Panel1_P8_D
+25-Jul-24 23:13:02 - Slide loaded
+25-Jul-24 23:13:09 - Panel1_P9_D
+25-Jul-24 23:13:22 - Slide loaded
+25-Jul-24 23:13:28 - Panel1_P6_D
+25-Jul-24 23:13:38 - Slide loaded
+25-Jul-24 23:13:44 - Panel1_P10_D
+25-Jul-24 23:13:53 - Slide loaded
+25-Jul-24 23:46:21 - Panel1_P8_D
+25-Jul-24 23:46:32 - Slide loaded
+26-Jul-24 00:36:16 - Panel1_P8_D
+26-Jul-24 00:36:27 - Slide loaded
+26-Jul-24 01:25:06 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+26-Jul-24 01:25:50 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+26-Jul-24 01:26:04 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+26-Jul-24 03:39:51 - Panel1_P8_D
+26-Jul-24 03:40:02 - Slide loaded
+26-Jul-24 04:15:18 - Panel1_P8_D
+26-Jul-24 04:15:29 - Slide loaded
+26-Jul-24 05:10:34 - Panel1_P8_D
+26-Jul-24 05:10:45 - Slide loaded
+26-Jul-24 05:16:19 - Panel1_P8_D
+26-Jul-24 05:16:29 - Slide loaded
+26-Jul-24 05:18:02 - Panel1_P8_D
+26-Jul-24 05:18:13 - Slide loaded
+26-Jul-24 16:47:37 - Panel1_P8_D
+26-Jul-24 16:47:48 - Slide loaded
+26-Jul-24 17:53:38 - Panel1_P8_D
+26-Jul-24 17:53:48 - Slide loaded
+26-Jul-24 20:14:35 - Panel1_P8_D
+26-Jul-24 20:14:43 - Slide loaded
+26-Jul-24 20:16:26 - Panel1_P3_H
+26-Jul-24 20:16:30 - Slide loaded
+26-Jul-24 20:19:22 - Panel1_P2_D
+26-Jul-24 20:19:29 - Slide loaded
+26-Jul-24 20:24:03 - Panel1_P3_D
+26-Jul-24 20:24:09 - Slide loaded
+26-Jul-24 20:24:19 - Panel1_P4_H
+26-Jul-24 20:24:23 - Slide loaded
+26-Jul-24 20:26:43 - Panel1_P1_D
+26-Jul-24 20:26:48 - Slide loaded
+26-Jul-24 20:30:49 - Panel1_P4_D
+26-Jul-24 20:30:56 - Slide loaded
+26-Jul-24 20:31:18 - Panel1_P1_H
+26-Jul-24 20:31:20 - Slide loaded
+26-Jul-24 20:31:24 - Panel1_P2_H
+26-Jul-24 20:31:29 - Slide loaded
+26-Jul-24 20:31:37 - Panel1_P7_D
+26-Jul-24 20:31:43 - Slide loaded
+26-Jul-24 20:31:55 - Panel1_P11_D
+26-Jul-24 20:31:59 - Slide loaded
+26-Jul-24 20:34:47 - Panel1_P5_D
+26-Jul-24 20:34:53 - Slide loaded
+26-Jul-24 20:38:48 - Panel1_P12_D
+26-Jul-24 20:38:59 - Slide loaded
+26-Jul-24 21:01:33 - Panel1_P8_D
+26-Jul-24 21:01:41 - Slide loaded
+26-Jul-24 21:02:00 - Panel1_P9_D
+26-Jul-24 21:02:10 - Slide loaded
+26-Jul-24 21:08:16 - Panel1_P6_D
+26-Jul-24 21:08:24 - Slide loaded
+26-Jul-24 21:14:52 - Panel1_P10_D
+26-Jul-24 21:14:59 - Slide loaded
+26-Jul-24 22:43:10 - Panel1_P3_D
+26-Jul-24 22:43:16 - Slide loaded
+26-Jul-24 22:43:26 - Panel1_P4_D
+26-Jul-24 22:43:33 - Slide loaded
+26-Jul-24 22:43:54 - Panel1_P1_H
+26-Jul-24 22:43:56 - Slide loaded
+26-Jul-24 22:44:00 - Panel1_P2_H
+26-Jul-24 22:44:04 - Slide loaded
+26-Jul-24 22:44:12 - Panel1_P7_D
+26-Jul-24 22:44:17 - Slide loaded
+26-Jul-24 22:44:30 - Panel1_P8_D
+26-Jul-24 22:44:38 - Slide loaded
+26-Jul-24 22:44:57 - Panel1_P6_D
+26-Jul-24 22:45:05 - Slide loaded
+26-Jul-24 23:33:39 - Panel1_P3_D
+26-Jul-24 23:33:44 - Slide loaded
+26-Jul-24 23:33:55 - Panel1_P4_D
+26-Jul-24 23:34:01 - Slide loaded
+26-Jul-24 23:34:23 - Panel1_P1_H
+26-Jul-24 23:34:25 - Slide loaded
+26-Jul-24 23:34:29 - Panel1_P2_H
+26-Jul-24 23:34:34 - Slide loaded
+26-Jul-24 23:34:42 - Panel1_P7_D
+26-Jul-24 23:34:47 - Slide loaded
+26-Jul-24 23:34:59 - Panel1_P8_D
+26-Jul-24 23:35:07 - Slide loaded
+26-Jul-24 23:35:26 - Panel1_P6_D
+26-Jul-24 23:35:33 - Slide loaded
+26-Jul-24 23:43:50 - Panel1_P3_D
+26-Jul-24 23:43:55 - Slide loaded
+26-Jul-24 23:44:06 - Panel1_P4_D
+26-Jul-24 23:44:13 - Slide loaded
+26-Jul-24 23:44:34 - Panel1_P1_H
+26-Jul-24 23:44:36 - Slide loaded
+26-Jul-24 23:44:40 - Panel1_P2_H
+26-Jul-24 23:44:45 - Slide loaded
+26-Jul-24 23:44:53 - Panel1_P7_D
+26-Jul-24 23:44:58 - Slide loaded
+26-Jul-24 23:45:11 - Panel1_P8_D
+26-Jul-24 23:45:19 - Slide loaded
+26-Jul-24 23:46:21 - Panel1_P6_D
+26-Jul-24 23:46:28 - Slide loaded
+26-Jul-24 23:51:07 - Panel1_P6_D
+26-Jul-24 23:51:18 - Slide loaded
+26-Jul-24 23:54:07 - Panel1_P3_D
+26-Jul-24 23:54:14 - Slide loaded
+27-Jul-24 00:02:52 - Panel1_P3_D
+27-Jul-24 00:02:58 - Slide loaded
+27-Jul-24 00:04:31 - Panel1_P3_D
+27-Jul-24 00:04:37 - Slide loaded
+27-Jul-24 00:06:17 - Panel1_P3_H
+27-Jul-24 00:06:22 - Slide loaded
+27-Jul-24 00:06:32 - Panel1_P2_D
+27-Jul-24 00:06:40 - Slide loaded
+27-Jul-24 00:06:59 - Panel1_P3_D
+27-Jul-24 00:07:05 - Slide loaded
+27-Jul-24 00:07:19 - Panel1_P4_H
+27-Jul-24 00:07:24 - Slide loaded
+27-Jul-24 00:07:33 - Panel1_P1_D
+27-Jul-24 00:07:39 - Slide loaded
+27-Jul-24 00:10:19 - Panel1_P3_H
+27-Jul-24 00:10:24 - Slide loaded
+27-Jul-24 00:10:34 - Panel1_P2_D
+27-Jul-24 00:10:42 - Slide loaded
+27-Jul-24 00:11:01 - Panel1_P3_D
+27-Jul-24 00:11:07 - Slide loaded
+27-Jul-24 00:11:21 - Panel1_P4_H
+27-Jul-24 00:11:26 - Slide loaded
+27-Jul-24 00:11:35 - Panel1_P1_D
+27-Jul-24 00:11:40 - Slide loaded
+27-Jul-24 00:14:18 - Panel1_P3_H
+27-Jul-24 00:14:23 - Slide loaded
+27-Jul-24 00:14:32 - Extracting unannotated region coords
+27-Jul-24 00:14:33 - Done
+27-Jul-24 00:14:33 - Panel1_P2_D
+27-Jul-24 00:14:41 - Slide loaded
+27-Jul-24 00:14:58 - Extracting unannotated region coords
+27-Jul-24 00:14:59 - Done
+27-Jul-24 00:15:00 - Panel1_P3_D
+27-Jul-24 00:15:06 - Slide loaded
+27-Jul-24 00:15:19 - Extracting unannotated region coords
+27-Jul-24 00:15:20 - Done
+27-Jul-24 00:15:20 - Panel1_P4_H
+27-Jul-24 00:15:24 - Slide loaded
+27-Jul-24 00:15:33 - Extracting unannotated region coords
+27-Jul-24 00:15:34 - Done
+27-Jul-24 00:15:34 - Panel1_P1_D
+27-Jul-24 00:15:39 - Slide loaded
+27-Jul-24 00:16:54 - Panel1_P1_D
+27-Jul-24 00:17:00 - Slide loaded
+27-Jul-24 00:20:44 - Panel1_P1_D
+27-Jul-24 00:20:49 - Slide loaded
+27-Jul-24 00:20:52 - Finding largest countour
+27-Jul-24 00:20:52 - Found largest contour
+27-Jul-24 00:20:54 - Created pixel_df
+27-Jul-24 00:23:15 - Panel1_P1_D
+27-Jul-24 00:23:20 - Slide loaded
+27-Jul-24 00:23:23 - Finding largest countour
+27-Jul-24 00:23:23 - Found largest contour
+27-Jul-24 00:23:24 - Created pixel_df
+27-Jul-24 00:23:24 - Media checking pixels in region
+27-Jul-24 00:27:27 - Panel1_P1_D
+27-Jul-24 00:27:32 - Slide loaded
+27-Jul-24 00:27:35 - Finding largest countour
+27-Jul-24 00:27:35 - Found largest contour
+27-Jul-24 00:27:37 - Created pixel_df
+27-Jul-24 00:27:37 - checking pixels in largest contour
+27-Jul-24 00:30:54 - Panel1_P1_D
+27-Jul-24 00:31:00 - Slide loaded
+27-Jul-24 00:31:02 - Finding largest countour
+27-Jul-24 00:31:02 - Found largest contour
+27-Jul-24 00:31:04 - Created pixel_df
+27-Jul-24 00:47:50 - Panel1_P3_D
+27-Jul-24 00:47:56 - Slide loaded
+27-Jul-24 00:47:59 - Finding largest countour
+27-Jul-24 00:47:59 - Found largest contour
+27-Jul-24 00:48:01 - Created pixel_df
+27-Jul-24 00:48:48 - Panel1_P3_D
+27-Jul-24 00:48:54 - Slide loaded
+27-Jul-24 00:48:57 - Finding largest countour
+27-Jul-24 00:48:57 - Found largest contour
+27-Jul-24 00:48:59 - Created pixel_df
+27-Jul-24 00:48:59 - checking pixels in largest contour
+27-Jul-24 00:49:00 - Media checking pixels in region
+27-Jul-24 00:49:02 - Done
+27-Jul-24 00:49:02 - Intima checking pixels in region
+27-Jul-24 00:49:02 - Done
+27-Jul-24 00:49:02 - FC checking pixels in region
+27-Jul-24 00:49:04 - Done
+27-Jul-24 00:49:04 - Lumen checking pixels in region
+27-Jul-24 00:49:05 - Done
+27-Jul-24 00:49:05 - Extracting unannotated region coords
+27-Jul-24 00:49:05 - Done
+27-Jul-24 00:50:48 - Panel1_P1_H
+27-Jul-24 00:50:51 - Slide loaded
+27-Jul-24 00:50:52 - Finding largest countour
+27-Jul-24 00:50:52 - Found largest contour
+27-Jul-24 00:50:54 - Created pixel_df
+27-Jul-24 00:50:54 - checking pixels in largest contour
+27-Jul-24 00:50:55 - Intima checking pixels in region
+27-Jul-24 00:50:55 - Done
+27-Jul-24 00:50:55 - Lumen checking pixels in region
+27-Jul-24 00:50:55 - Done
+27-Jul-24 00:50:55 - Extracting unannotated region coords
+27-Jul-24 00:50:56 - Done
+27-Jul-24 00:51:24 - Panel1_P5_D
+27-Jul-24 00:51:32 - Slide loaded
+27-Jul-24 00:51:35 - Finding largest countour
+27-Jul-24 00:51:35 - Found largest contour
+27-Jul-24 00:51:37 - Created pixel_df
+27-Jul-24 00:51:37 - checking pixels in largest contour
+27-Jul-24 00:52:46 - Panel1_P5_D
+27-Jul-24 00:52:54 - Slide loaded
+27-Jul-24 00:52:57 - Finding largest countour
+27-Jul-24 00:52:57 - Found largest contour
+27-Jul-24 00:53:00 - Created pixel_df
+27-Jul-24 00:57:02 - Panel1_P5_D
+27-Jul-24 00:57:10 - Slide loaded
+27-Jul-24 00:57:13 - Finding largest countour
+27-Jul-24 00:57:13 - Found largest contour
+27-Jul-24 00:57:15 - Created pixel_df
+27-Jul-24 01:08:01 - Panel1_P5_D
+27-Jul-24 01:08:09 - Slide loaded
+27-Jul-24 01:08:12 - Finding largest countour
+27-Jul-24 01:08:12 - Found largest contour
+27-Jul-24 01:08:15 - Created pixel_df
+27-Jul-24 01:08:15 - checking pixels in largest contour
+27-Jul-24 01:08:22 - Intima checking pixels in region
+27-Jul-24 01:08:23 - Done
+27-Jul-24 01:08:23 - NC checking pixels in region
+27-Jul-24 01:08:24 - Done
+27-Jul-24 01:08:24 - FC checking pixels in region
+27-Jul-24 01:08:25 - Done
+27-Jul-24 01:08:25 - Lumen checking pixels in region
+27-Jul-24 01:08:26 - Done
+27-Jul-24 01:08:26 - Extracting unannotated region coords
+27-Jul-24 01:08:27 - Done
+27-Jul-24 01:09:13 - Panel1_P1_D
+27-Jul-24 01:09:18 - Slide loaded
+27-Jul-24 01:09:21 - Finding largest countour
+27-Jul-24 01:09:21 - Found largest contour
+27-Jul-24 01:09:22 - Created pixel_df
+27-Jul-24 01:09:22 - checking pixels in largest contour
+27-Jul-24 01:09:27 - Media checking pixels in region
+27-Jul-24 01:09:30 - Done
+27-Jul-24 01:09:30 - Intima checking pixels in region
+27-Jul-24 01:09:31 - Done
+27-Jul-24 01:09:31 - FC checking pixels in region
+27-Jul-24 01:09:32 - Done
+27-Jul-24 01:09:32 - Lumen checking pixels in region
+27-Jul-24 01:09:33 - Done
+27-Jul-24 01:09:33 - Extracting unannotated region coords
+27-Jul-24 01:09:34 - Done
+27-Jul-24 01:13:10 - Panel1_P1_D
+27-Jul-24 01:13:15 - Slide loaded
+27-Jul-24 01:13:19 - checking pixels in largest contour
+27-Jul-24 01:13:24 - Media checking pixels in region
+27-Jul-24 01:13:27 - Done
+27-Jul-24 01:13:27 - Intima checking pixels in region
+27-Jul-24 01:13:28 - Done
+27-Jul-24 01:13:28 - FC checking pixels in region
+27-Jul-24 01:13:29 - Done
+27-Jul-24 01:13:29 - Lumen checking pixels in region
+27-Jul-24 01:13:30 - Done
+27-Jul-24 01:13:30 - Extracting unannotated region coords
+27-Jul-24 01:13:31 - Done
+27-Jul-24 01:18:16 - Panel1_P1_D
+27-Jul-24 01:18:20 - Slide loaded
+27-Jul-24 01:18:25 - checking pixels in largest contour
+27-Jul-24 01:18:35 - Extracting unannotated region coords
+27-Jul-24 01:18:36 - Done
+27-Jul-24 01:19:06 - Panel1_P1_D
+27-Jul-24 01:19:10 - Slide loaded
+27-Jul-24 01:19:15 - checking pixels in largest contour
+27-Jul-24 01:19:26 - Extracting unannotated region coords
+27-Jul-24 01:19:26 - Done
+27-Jul-24 01:26:03 - Panel1_P3_H
+27-Jul-24 01:26:07 - Slide loaded
+27-Jul-24 01:26:12 - checking pixels in largest contour
+27-Jul-24 01:26:19 - Panel1_P2_D
+27-Jul-24 01:26:27 - Slide loaded
+27-Jul-24 01:26:33 - checking pixels in largest contour
+27-Jul-24 01:26:47 - Panel1_P3_D
+27-Jul-24 01:26:54 - Slide loaded
+27-Jul-24 01:26:59 - checking pixels in largest contour
+27-Jul-24 01:27:05 - Panel1_P4_H
+27-Jul-24 01:27:09 - Slide loaded
+27-Jul-24 01:27:13 - checking pixels in largest contour
+27-Jul-24 01:27:22 - Panel1_P1_D
+27-Jul-24 01:27:26 - Slide loaded
+27-Jul-24 01:27:31 - checking pixels in largest contour
+27-Jul-24 01:27:42 - Panel1_P4_D
+27-Jul-24 01:27:50 - Slide loaded
+27-Jul-24 01:27:58 - checking pixels in largest contour
+27-Jul-24 01:28:16 - Panel1_P1_H
+27-Jul-24 01:28:19 - Slide loaded
+27-Jul-24 01:28:22 - checking pixels in largest contour
+27-Jul-24 01:28:24 - Panel1_P2_H
+27-Jul-24 01:28:29 - Slide loaded
+27-Jul-24 01:28:35 - checking pixels in largest contour
+27-Jul-24 01:28:39 - Panel1_P7_D
+27-Jul-24 01:28:45 - Slide loaded
+27-Jul-24 01:28:51 - checking pixels in largest contour
+27-Jul-24 01:28:59 - Panel1_P11_D
+27-Jul-24 01:29:04 - Slide loaded
+27-Jul-24 01:29:08 - checking pixels in largest contour
+27-Jul-24 01:29:16 - Panel1_P5_D
+27-Jul-24 01:29:23 - Slide loaded
+27-Jul-24 01:29:29 - checking pixels in largest contour
+27-Jul-24 01:29:42 - Panel1_P12_D
+27-Jul-24 01:29:54 - Slide loaded
+27-Jul-24 01:30:04 - checking pixels in largest contour
+27-Jul-24 01:30:58 - Panel1_P8_D
+27-Jul-24 01:31:08 - Slide loaded
+27-Jul-24 01:31:17 - checking pixels in largest contour
+27-Jul-24 01:31:30 - Panel1_P9_D
+27-Jul-24 01:31:41 - Slide loaded
+27-Jul-24 01:31:49 - checking pixels in largest contour
+27-Jul-24 01:32:04 - Panel1_P6_D
+27-Jul-24 01:32:12 - Slide loaded
+27-Jul-24 01:32:20 - checking pixels in largest contour
+27-Jul-24 01:32:38 - Panel1_P10_D
+27-Jul-24 01:32:46 - Slide loaded
+27-Jul-24 01:32:52 - checking pixels in largest contour
+27-Jul-24 01:39:20 - Panel1_P1_H
+27-Jul-24 01:39:23 - Slide loaded
+27-Jul-24 01:39:25 - checking pixels in largest contour
+27-Jul-24 01:45:58 - Panel1_P1_H
+27-Jul-24 01:46:00 - Slide loaded
+27-Jul-24 01:46:03 - checking pixels in largest contour
+27-Jul-24 01:47:08 - Panel1_P1_H
+27-Jul-24 01:47:11 - Slide loaded
+27-Jul-24 01:47:13 - checking pixels in largest contour
+27-Jul-24 01:47:49 - Panel1_P1_H
+27-Jul-24 01:47:52 - Slide loaded
+27-Jul-24 01:48:15 - Panel1_P1_H
+27-Jul-24 01:48:18 - Slide loaded
+27-Jul-24 01:48:20 - checking pixels in largest contour
+27-Jul-24 01:49:46 - Panel1_P1_H
+27-Jul-24 01:49:49 - Slide loaded
+27-Jul-24 01:49:52 - checking pixels in largest contour
+27-Jul-24 01:50:07 - Panel1_P1_H
+27-Jul-24 01:50:09 - Slide loaded
+27-Jul-24 01:50:12 - checking pixels in largest contour
+27-Jul-24 01:51:54 - Panel1_P1_H
+27-Jul-24 01:51:57 - Slide loaded
+27-Jul-24 01:54:08 - Panel1_P1_H
+27-Jul-24 01:54:10 - Slide loaded
+27-Jul-24 02:04:00 - Panel1_P1_H
+27-Jul-24 02:04:03 - Slide loaded
+27-Jul-24 02:04:47 - Panel1_P3_H
+27-Jul-24 02:04:51 - Slide loaded
+27-Jul-24 02:05:04 - Panel1_P2_D
+27-Jul-24 02:05:12 - Slide loaded
+27-Jul-24 02:05:34 - Panel1_P3_D
+27-Jul-24 02:05:40 - Slide loaded
+27-Jul-24 02:05:52 - Panel1_P4_H
+27-Jul-24 02:05:57 - Slide loaded
+27-Jul-24 02:06:09 - Panel1_P1_D
+27-Jul-24 02:06:14 - Slide loaded
+27-Jul-24 02:06:31 - Panel1_P4_D
+27-Jul-24 02:06:39 - Slide loaded
+27-Jul-24 02:07:07 - Panel1_P1_H
+27-Jul-24 02:07:09 - Slide loaded
+27-Jul-24 02:07:15 - Panel1_P2_H
+27-Jul-24 02:07:20 - Slide loaded
+27-Jul-24 02:07:31 - Panel1_P7_D
+27-Jul-24 02:07:36 - Slide loaded
+27-Jul-24 02:07:51 - Panel1_P11_D
+27-Jul-24 02:07:56 - Slide loaded
+27-Jul-24 02:08:08 - Panel1_P5_D
+27-Jul-24 02:08:16 - Slide loaded
+27-Jul-24 02:08:35 - Panel1_P12_D
+27-Jul-24 02:08:47 - Slide loaded
+27-Jul-24 02:09:53 - Panel1_P8_D
+27-Jul-24 02:10:03 - Slide loaded
+27-Jul-24 02:10:25 - Panel1_P9_D
+27-Jul-24 02:10:36 - Slide loaded
+27-Jul-24 02:10:59 - Panel1_P6_D
+27-Jul-24 02:11:08 - Slide loaded
+27-Jul-24 02:11:34 - Panel1_P10_D
+27-Jul-24 02:11:42 - Slide loaded
+27-Jul-24 02:30:45 - Panel1_P7_D
+27-Jul-24 02:30:51 - Slide loaded
+27-Jul-24 02:37:17 - Panel1_P7_D
+27-Jul-24 02:37:22 - Slide loaded
+27-Jul-24 02:38:47 - Panel1_P7_D
+27-Jul-24 02:38:53 - Slide loaded
+27-Jul-24 02:40:34 - Panel1_P7_D
+27-Jul-24 02:40:40 - Slide loaded
+27-Jul-24 02:42:04 - Panel1_P4_D
+27-Jul-24 02:42:11 - Slide loaded
+27-Jul-24 02:43:19 - Panel1_P2_D
+27-Jul-24 02:43:26 - Slide loaded
+27-Jul-24 02:44:47 - Panel1_P3_H
+27-Jul-24 02:44:51 - Slide loaded
+27-Jul-24 02:45:03 - Panel1_P2_D
+27-Jul-24 02:45:10 - Slide loaded
+27-Jul-24 02:45:30 - Panel1_P3_D
+27-Jul-24 02:45:37 - Slide loaded
+27-Jul-24 02:45:48 - Panel1_P4_H
+27-Jul-24 02:45:52 - Slide loaded
+27-Jul-24 02:46:04 - Panel1_P1_D
+27-Jul-24 02:46:08 - Slide loaded
+27-Jul-24 02:46:24 - Panel1_P4_D
+27-Jul-24 02:46:31 - Slide loaded
+27-Jul-24 02:46:58 - Panel1_P1_H
+27-Jul-24 02:47:01 - Slide loaded
+27-Jul-24 02:47:05 - Panel1_P2_H
+27-Jul-24 02:47:10 - Slide loaded
+27-Jul-24 02:47:21 - Panel1_P7_D
+27-Jul-24 02:47:26 - Slide loaded
+27-Jul-24 02:47:40 - Panel1_P11_D
+27-Jul-24 02:47:44 - Slide loaded
+27-Jul-24 02:47:56 - Panel1_P5_D
+27-Jul-24 02:48:03 - Slide loaded
+27-Jul-24 02:48:21 - Panel1_P12_D
+27-Jul-24 02:48:32 - Slide loaded
+27-Jul-24 02:49:35 - Panel1_P8_D
+27-Jul-24 02:49:44 - Slide loaded
+27-Jul-24 02:50:05 - Panel1_P9_D
+27-Jul-24 02:50:15 - Slide loaded
+27-Jul-24 02:50:37 - Panel1_P6_D
+27-Jul-24 02:50:45 - Slide loaded
+27-Jul-24 02:51:10 - Panel1_P10_D
+27-Jul-24 02:51:17 - Slide loaded
+27-Jul-24 02:53:28 - Panel1_P2_D
+27-Jul-24 02:53:35 - Slide loaded
+27-Jul-24 02:54:58 - Panel1_P3_H
+27-Jul-24 02:55:02 - Slide loaded
+27-Jul-24 02:55:14 - Panel1_P2_D
+27-Jul-24 02:55:21 - Slide loaded
+27-Jul-24 02:55:42 - Panel1_P4_H
+27-Jul-24 02:55:45 - Slide loaded
+27-Jul-24 02:58:53 - Panel1_P4_H
+27-Jul-24 02:58:57 - Slide loaded
+27-Jul-24 03:02:13 - Panel1_P4_H
+27-Jul-24 03:02:17 - Slide loaded
+27-Jul-24 03:05:33 - Panel1_P4_H
+27-Jul-24 03:05:36 - Slide loaded
+27-Jul-24 03:06:52 - Panel1_P4_H
+27-Jul-24 03:06:56 - Slide loaded
+27-Jul-24 03:08:26 - Panel1_P4_H
+27-Jul-24 03:08:30 - Slide loaded
+27-Jul-24 03:09:35 - Panel1_P4_H
+27-Jul-24 03:09:39 - Slide loaded
+27-Jul-24 03:09:51 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:13:25 - Panel1_P4_H
+27-Jul-24 03:13:29 - Slide loaded
+27-Jul-24 03:14:29 - Panel1_P4_H
+27-Jul-24 03:14:33 - Slide loaded
+27-Jul-24 03:14:45 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:16:06 - Panel1_P3_H
+27-Jul-24 03:16:10 - Slide loaded
+27-Jul-24 03:16:21 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:16:21 - Panel1_P2_D
+27-Jul-24 03:16:29 - Slide loaded
+27-Jul-24 03:16:49 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:16:49 - Panel1_P3_D
+27-Jul-24 03:16:55 - Slide loaded
+27-Jul-24 03:17:06 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:17:06 - Panel1_P4_H
+27-Jul-24 03:17:10 - Slide loaded
+27-Jul-24 03:17:22 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:17:22 - Panel1_P1_D
+27-Jul-24 03:17:26 - Slide loaded
+27-Jul-24 03:17:41 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:17:41 - Panel1_P4_D
+27-Jul-24 03:17:49 - Slide loaded
+27-Jul-24 03:18:15 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:18:15 - Panel1_P1_H
+27-Jul-24 03:18:17 - Slide loaded
+27-Jul-24 03:18:22 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:18:22 - Panel1_P2_H
+27-Jul-24 03:18:26 - Slide loaded
+27-Jul-24 03:18:36 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:18:36 - Panel1_P7_D
+27-Jul-24 03:18:42 - Slide loaded
+27-Jul-24 03:18:55 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:18:55 - Panel1_P11_D
+27-Jul-24 03:19:00 - Slide loaded
+27-Jul-24 03:19:11 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:19:11 - Panel1_P5_D
+27-Jul-24 03:19:18 - Slide loaded
+27-Jul-24 03:19:36 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:19:36 - Panel1_P12_D
+27-Jul-24 03:19:47 - Slide loaded
+27-Jul-24 03:20:49 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:20:49 - Panel1_P8_D
+27-Jul-24 03:20:58 - Slide loaded
+27-Jul-24 03:21:19 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:21:19 - Panel1_P9_D
+27-Jul-24 03:21:29 - Slide loaded
+27-Jul-24 03:21:51 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:21:51 - Panel1_P6_D
+27-Jul-24 03:21:59 - Slide loaded
+27-Jul-24 03:22:24 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:22:24 - Panel1_P10_D
+27-Jul-24 03:22:31 - Slide loaded
+27-Jul-24 03:22:49 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:28:54 - Panel1_P2_D
+27-Jul-24 03:29:01 - Slide loaded
+27-Jul-24 03:29:20 - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+27-Jul-24 03:31:10 - Panel1_P2_D
+27-Jul-24 03:31:17 - Slide loaded
+27-Jul-24 03:33:45 - Panel1_P3_H
+27-Jul-24 03:33:49 - Slide loaded
+27-Jul-24 03:34:01 - Panel1_P2_D
+27-Jul-24 03:34:08 - Slide loaded
+27-Jul-24 03:40:03 - Panel1_P2_D
+27-Jul-24 03:40:10 - Slide loaded
+27-Jul-24 03:44:18 - Panel1_P2_D
+27-Jul-24 03:44:25 - Slide loaded
+27-Jul-24 03:51:51 - Panel1_P2_D
+27-Jul-24 03:51:58 - Slide loaded
+27-Jul-24 03:53:19 - Panel1_P2_D
+27-Jul-24 03:53:26 - Slide loaded
+27-Jul-24 04:03:01 - Panel1_P2_D
+27-Jul-24 04:03:08 - Slide loaded
+27-Jul-24 04:04:27 - Panel1_P2_D
+27-Jul-24 04:04:34 - Slide loaded
+27-Jul-24 04:06:55 - Panel1_P2_D
+27-Jul-24 04:07:02 - Slide loaded
+27-Jul-24 04:08:11 - Panel1_P2_D
+27-Jul-24 04:08:18 - Slide loaded
+27-Jul-24 04:09:20 - Panel1_P3_H
+27-Jul-24 04:09:24 - Slide loaded
+27-Jul-24 04:09:36 - Panel1_P2_D
+27-Jul-24 04:09:43 - Slide loaded
+27-Jul-24 04:13:08 - Panel1_P3_H
+27-Jul-24 04:13:12 - Slide loaded
+27-Jul-24 04:13:23 - Panel1_P2_D
+27-Jul-24 04:13:30 - Slide loaded
+27-Jul-24 04:15:37 - Panel1_P3_H
+27-Jul-24 04:15:41 - Slide loaded
+27-Jul-24 04:15:50 - Panel1_P2_D
+27-Jul-24 04:15:57 - Slide loaded
+27-Jul-24 04:17:33 - Panel1_P3_H
+27-Jul-24 04:17:38 - Slide loaded
+27-Jul-24 04:17:47 - Panel1_P2_D
+27-Jul-24 04:17:54 - Slide loaded
+27-Jul-24 04:18:43 - Panel1_P3_H
+27-Jul-24 04:18:47 - Slide loaded
+27-Jul-24 04:18:56 - Panel1_P2_D
+27-Jul-24 04:19:03 - Slide loaded
+27-Jul-24 04:20:04 - Panel1_P3_H
+27-Jul-24 04:20:08 - Slide loaded
+27-Jul-24 04:20:17 - Panel1_P2_D
+27-Jul-24 04:20:25 - Slide loaded
+27-Jul-24 04:21:44 - Panel1_P3_H
+27-Jul-24 04:21:48 - Slide loaded
+27-Jul-24 04:21:57 - Panel1_P2_D
+27-Jul-24 04:22:04 - Slide loaded
+27-Jul-24 04:24:18 - Panel1_P3_H
+27-Jul-24 04:24:22 - Slide loaded
+27-Jul-24 04:24:32 - Panel1_P2_D
+27-Jul-24 04:24:39 - Slide loaded
+27-Jul-24 04:26:21 - Panel1_P2_D
+27-Jul-24 04:26:32 - Panel1_P2_D
+27-Jul-24 04:26:39 - Slide loaded
+27-Jul-24 04:28:41 - Panel1_P3_H
+27-Jul-24 04:28:45 - Slide loaded
+27-Jul-24 04:28:53 - Panel1_P2_D
+27-Jul-24 04:29:00 - Slide loaded
+27-Jul-24 04:30:27 - Panel1_P3_H
+27-Jul-24 04:30:31 - Slide loaded
+27-Jul-24 04:30:39 - Panel1_P2_D
+27-Jul-24 04:30:46 - Slide loaded
+27-Jul-24 04:31:02 - Panel1_P3_D
+27-Jul-24 04:31:07 - Slide loaded
+27-Jul-24 04:31:20 - Panel1_P4_H
+27-Jul-24 04:31:23 - Slide loaded
+27-Jul-24 04:31:32 - Panel1_P1_D
+27-Jul-24 04:31:36 - Slide loaded
+27-Jul-24 04:31:49 - Panel1_P4_D
+27-Jul-24 04:31:56 - Slide loaded
+27-Jul-24 04:32:23 - Panel1_P1_H
+27-Jul-24 04:32:26 - Slide loaded
+27-Jul-24 04:32:30 - Panel1_P2_H
+27-Jul-24 04:32:35 - Slide loaded
+27-Jul-24 04:32:44 - Panel1_P7_D
+27-Jul-24 04:32:49 - Slide loaded
+27-Jul-24 04:33:02 - Panel1_P11_D
+27-Jul-24 04:33:06 - Slide loaded
+27-Jul-24 04:33:18 - Panel1_P5_D
+27-Jul-24 04:33:24 - Slide loaded
+27-Jul-24 04:33:37 - Panel1_P12_D
+27-Jul-24 04:33:48 - Slide loaded
+27-Jul-24 04:34:35 - Panel1_P8_D
+27-Jul-24 04:34:43 - Slide loaded
+27-Jul-24 04:35:05 - Panel1_P9_D
+27-Jul-24 04:35:14 - Slide loaded
+27-Jul-24 04:35:28 - Panel1_P6_D
+27-Jul-24 04:35:36 - Slide loaded
+27-Jul-24 04:35:50 - Panel1_P10_D
+27-Jul-24 04:35:56 - Slide loaded
+27-Jul-24 04:38:52 - Panel1_P1_D
+27-Jul-24 04:38:57 - Slide loaded
+27-Jul-24 04:39:44 - Panel1_P1_D
+27-Jul-24 04:39:48 - Slide loaded
+27-Jul-24 04:40:33 - Panel1_P1_D
+27-Jul-24 04:40:37 - Slide loaded
+27-Jul-24 04:43:26 - Panel1_P1_D
+27-Jul-24 04:43:31 - Slide loaded
+27-Jul-24 04:44:14 - Panel1_P1_D
+27-Jul-24 04:44:18 - Slide loaded
+27-Jul-24 04:45:31 - Panel1_P1_D
+27-Jul-24 04:45:35 - Slide loaded
+27-Jul-24 04:48:37 - Panel1_P1_D
+27-Jul-24 04:48:41 - Slide loaded
+12-Aug-24 18:30:44 - Panel1_P3_H
+12-Aug-24 18:30:49 - Slide loaded
+12-Aug-24 18:30:59 - Panel1_P2_D
+12-Aug-24 18:31:10 - Slide loaded
+12-Aug-24 18:31:28 - Panel1_P3_D
+12-Aug-24 18:31:35 - Slide loaded
+12-Aug-24 18:31:49 - Panel1_P4_H
+12-Aug-24 18:31:54 - Slide loaded
+12-Aug-24 18:32:03 - Panel1_P1_D
+12-Aug-24 18:32:09 - Slide loaded
+12-Aug-24 18:32:26 - Panel1_P4_D
+12-Aug-24 18:32:35 - Slide loaded
+12-Aug-24 18:33:05 - Panel1_P1_H
+12-Aug-24 18:33:09 - Slide loaded
+12-Aug-24 18:33:14 - Panel1_P2_H
+12-Aug-24 18:33:20 - Slide loaded
+12-Aug-24 18:33:31 - Panel1_P7_D
+12-Aug-24 18:33:39 - Slide loaded
+12-Aug-24 18:33:54 - Panel1_P11_D
+12-Aug-24 18:34:01 - Slide loaded
+12-Aug-24 18:34:14 - Panel1_P5_D
+12-Aug-24 18:34:22 - Slide loaded
+12-Aug-24 18:34:36 - Panel1_P12_D
+12-Aug-24 18:34:48 - Slide loaded
+12-Aug-24 18:35:40 - Panel1_P8_D
+12-Aug-24 18:35:50 - Slide loaded
+12-Aug-24 18:36:16 - Panel1_P9_D
+12-Aug-24 18:36:28 - Slide loaded
+12-Aug-24 18:36:44 - Panel1_P6_D
+12-Aug-24 18:36:53 - Slide loaded
+12-Aug-24 18:37:09 - Panel1_P10_D
+12-Aug-24 18:37:19 - Slide loaded
+13-Aug-24 21:57:11 - Panel1_P3_H
+13-Aug-24 21:57:16 - Slide loaded
+13-Aug-24 21:57:25 - Panel1_P4_H
+13-Aug-24 21:57:29 - Slide loaded
+13-Aug-24 21:57:38 - Panel1_P1_H
+13-Aug-24 21:57:41 - Slide loaded
+13-Aug-24 21:57:45 - Panel1_P2_H
+13-Aug-24 21:57:50 - Slide loaded
+13-Aug-24 22:33:17 - Panel1_P3_H
+13-Aug-24 22:33:21 - Slide loaded
+13-Aug-24 22:35:15 - Panel1_P3_H
+13-Aug-24 22:35:19 - Slide loaded
+13-Aug-24 22:35:49 - Panel1_P3_H
+13-Aug-24 22:35:54 - Slide loaded
+13-Aug-24 22:36:02 - Panel1_P4_H
+13-Aug-24 22:36:06 - Slide loaded
+13-Aug-24 22:36:15 - Panel1_P1_H
+13-Aug-24 22:36:18 - Slide loaded
+13-Aug-24 22:36:23 - Panel1_P2_H
+13-Aug-24 22:36:28 - Slide loaded
+13-Aug-24 23:46:46 - Panel1_P3_H
+13-Aug-24 23:46:50 - Slide loaded
+13-Aug-24 23:46:59 - Panel1_P4_H
+13-Aug-24 23:47:03 - Slide loaded
+13-Aug-24 23:47:13 - Panel1_P1_H
+13-Aug-24 23:47:16 - Slide loaded
+13-Aug-24 23:47:20 - Panel1_P2_H
+13-Aug-24 23:47:25 - Slide loaded
+14-Aug-24 00:00:26 - Panel1_P2_D
+14-Aug-24 00:00:35 - Slide loaded
+14-Aug-24 00:01:56 - Panel1_P2_D
+14-Aug-24 00:02:04 - Slide loaded
+14-Aug-24 00:02:21 - Panel1_P3_D
+14-Aug-24 00:02:28 - Slide loaded
+14-Aug-24 00:02:41 - Panel1_P1_D
+14-Aug-24 00:02:46 - Slide loaded
+14-Aug-24 00:03:03 - Panel1_P4_D
+14-Aug-24 00:03:11 - Slide loaded
+14-Aug-24 00:03:41 - Panel1_P7_D
+14-Aug-24 00:03:47 - Slide loaded
+14-Aug-24 00:04:01 - Panel1_P11_D
+14-Aug-24 00:04:07 - Slide loaded
+14-Aug-24 00:04:19 - Panel1_P5_D
+14-Aug-24 00:04:27 - Slide loaded
+14-Aug-24 00:04:41 - Panel1_P12_D
+14-Aug-24 00:04:53 - Slide loaded
+14-Aug-24 00:05:45 - Panel1_P8_D
+14-Aug-24 00:05:54 - Slide loaded
+14-Aug-24 00:06:19 - Panel1_P9_D
+14-Aug-24 00:06:29 - Slide loaded
+14-Aug-24 00:06:44 - Panel1_P6_D
+14-Aug-24 00:06:53 - Slide loaded
+14-Aug-24 00:07:09 - Panel1_P10_D
+14-Aug-24 00:07:16 - Slide loaded
+14-Aug-24 02:39:46 - Panel1_P4_D
+14-Aug-24 02:39:53 - Slide loaded
+14-Aug-24 02:45:02 - Panel1_P4_D
+14-Aug-24 02:45:09 - Slide loaded
+14-Aug-24 02:56:22 - Panel1_P2_D
+14-Aug-24 02:56:29 - Slide loaded
+14-Aug-24 02:56:46 - Panel1_P3_D
+14-Aug-24 02:56:51 - Slide loaded
+14-Aug-24 02:57:04 - Panel1_P1_D
+14-Aug-24 02:57:09 - Slide loaded
+14-Aug-24 02:57:24 - Panel1_P4_D
+14-Aug-24 02:57:32 - Slide loaded
+14-Aug-24 02:57:59 - Panel1_P7_D
+14-Aug-24 02:58:05 - Slide loaded
+14-Aug-24 02:58:19 - Panel1_P11_D
+14-Aug-24 02:58:23 - Slide loaded
+14-Aug-24 02:58:36 - Panel1_P5_D
+14-Aug-24 02:58:42 - Slide loaded
+14-Aug-24 02:58:55 - Panel1_P12_D
+14-Aug-24 02:59:06 - Slide loaded
+14-Aug-24 02:59:56 - Panel1_P8_D
+14-Aug-24 03:00:05 - Slide loaded
+14-Aug-24 03:00:27 - Panel1_P9_D
+14-Aug-24 03:00:37 - Slide loaded
+14-Aug-24 03:00:52 - Panel1_P6_D
+14-Aug-24 03:01:00 - Slide loaded
+14-Aug-24 03:01:14 - Panel1_P10_D
+14-Aug-24 03:01:21 - Slide loaded
+14-Aug-24 03:21:30 - Panel1_P3_H
+14-Aug-24 03:21:34 - Slide loaded
+14-Aug-24 03:23:58 - Panel1_P3_H
+14-Aug-24 03:24:02 - Slide loaded
+14-Aug-24 03:24:11 - Panel1_P2_D
+14-Aug-24 03:24:18 - Slide loaded
+14-Aug-24 03:24:35 - Panel1_P3_D
+14-Aug-24 03:24:40 - Slide loaded
+14-Aug-24 03:24:53 - Panel1_P4_H
+14-Aug-24 03:24:57 - Slide loaded
+14-Aug-24 03:25:05 - Panel1_P1_D
+14-Aug-24 03:25:10 - Slide loaded
+14-Aug-24 03:25:26 - Panel1_P4_D
+14-Aug-24 03:25:33 - Slide loaded
+14-Aug-24 03:26:00 - Panel1_P1_H
+14-Aug-24 03:26:03 - Slide loaded
+14-Aug-24 03:26:08 - Panel1_P2_H
+14-Aug-24 03:26:12 - Slide loaded
+14-Aug-24 03:26:22 - Panel1_P7_D
+14-Aug-24 03:26:27 - Slide loaded
+14-Aug-24 03:26:41 - Panel1_P11_D
+14-Aug-24 03:26:45 - Slide loaded
+14-Aug-24 03:26:58 - Panel1_P5_D
+14-Aug-24 03:27:04 - Slide loaded
+14-Aug-24 03:27:17 - Panel1_P12_D
+14-Aug-24 03:27:28 - Slide loaded
+14-Aug-24 03:28:17 - Panel1_P8_D
+14-Aug-24 03:28:26 - Slide loaded
+14-Aug-24 03:28:49 - Panel1_P9_D
+14-Aug-24 03:28:58 - Slide loaded
+14-Aug-24 03:29:17 - Panel1_P6_D
+14-Aug-24 03:29:25 - Slide loaded
+14-Aug-24 03:29:40 - Panel1_P10_D
+14-Aug-24 03:29:48 - Slide loaded
+14-Aug-24 19:02:49 - Panel1_P3_H
+14-Aug-24 19:02:54 - Slide loaded
+14-Aug-24 19:03:04 - Panel1_P2_D
+14-Aug-24 19:03:12 - Slide loaded
+14-Aug-24 19:03:31 - Panel1_P3_D
+14-Aug-24 19:03:37 - Slide loaded
+14-Aug-24 19:03:50 - Panel1_P4_H
+14-Aug-24 19:03:55 - Slide loaded
+14-Aug-24 19:04:04 - Panel1_P1_D
+14-Aug-24 19:04:09 - Slide loaded
+14-Aug-24 19:04:26 - Panel1_P4_D
+14-Aug-24 19:04:34 - Slide loaded
+14-Aug-24 19:05:04 - Panel1_P1_H
+14-Aug-24 19:05:07 - Slide loaded
+14-Aug-24 19:05:12 - Panel1_P2_H
+14-Aug-24 19:05:17 - Slide loaded
+14-Aug-24 19:05:26 - Panel1_P7_D
+14-Aug-24 19:05:33 - Slide loaded
+14-Aug-24 19:05:48 - Panel1_P11_D
+14-Aug-24 19:05:53 - Slide loaded
+14-Aug-24 19:06:06 - Panel1_P5_D
+14-Aug-24 19:06:14 - Slide loaded
+14-Aug-24 19:06:28 - Panel1_P12_D
+14-Aug-24 19:06:40 - Slide loaded
+14-Aug-24 19:07:31 - Panel1_P8_D
+14-Aug-24 19:07:41 - Slide loaded
+14-Aug-24 19:08:05 - Panel1_P9_D
+14-Aug-24 19:08:17 - Slide loaded
+14-Aug-24 19:08:33 - Panel1_P6_D
+14-Aug-24 19:08:41 - Slide loaded
+14-Aug-24 19:08:56 - Panel1_P10_D
+14-Aug-24 19:09:04 - Slide loaded

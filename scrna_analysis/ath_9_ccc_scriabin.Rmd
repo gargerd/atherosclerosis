@@ -1,0 +1,63 @@
+```{r}
+#.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.2')
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+```{r}
+
+#devtools::install_github("BlishLab/scriabin", ref = "main")
+#install.packages('ggplot2')
+#devtools::install_github("cellgeni/sceasy")
+
+library(sceasy)
+suppressPackageStartupMessages({
+library(Seurat)
+library(SingleCellExperiment)
+#library(SeuratData)
+library(scriabin)
+library(tidyverse)
+library(ComplexHeatmap)
+library(cowplot)
+library(magrittr)
+})
+```
+
+```{r}
+scriabin::load_nichenet_database()
+```
+
+```{r}
+convert_h5ad_to_seurat=function(adata){
+  seurat_obj <- as.Seurat(adata, counts = "X",data=NULL)
+  seurat_obj[["raw"]] <- CreateAssayObject(counts = assay(adata, "raw"))
+  seurat_obj[["acosh"]] <- CreateAssayObject(counts = assay(adata, "acosh"))
+  seurat_obj[["cellbender"]] <- CreateAssayObject(counts = assay(adata, "cellbender"))
+ 
+  return (seurat_obj)
+}
+```
+  
+  
+```{r}
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/data/'
+ref_genomes=c('GRCh38-p14-Gencode_v44','GRCh38-p13-Gencode_v33')
+
+
+for (ref_genome in ref_genomes[1:1]){
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,ref_genome,'_filtered_batch_corrected_clustered_annotated.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  adata=convert_h5ad_to_seurat(adata)
+}
+
+```
+  
+```{r}
+Embeddings(adata,'scpoli_repr')
+colnames(adata@meta.data)
+adata = BinDatasets(adata, split.by = "patient", dims = 1:20, snn.reduction='scpoli_repr',
+                    #coarse_cell_types = "final_high_level_celltypes", 
+                    sigtest_cell_types='final_low_level_celltypes')
+```
+

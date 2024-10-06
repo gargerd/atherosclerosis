@@ -1,0 +1,170 @@
+```{r}
+#.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.2')
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+#install.packages('stringr')
+suppressPackageStartupMessages({
+library(SingleCellExperiment)
+#library(SeuratData)
+library(tidyverse)
+library(CellChat)
+library(patchwork)
+options(stringsAsFactors = FALSE)
+})
+```
+
+
+Based on: https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/blob/master/tutorial/CellChat-vignette.html
+```{r}
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/data/'
+ref_genomes=c('GRCh38-p14-Gencode_v44','GRCh38-p13-Gencode_v33')
+
+split_by_colnames=c('condition')
+
+#unique(adata@colData$Stability)
+
+for (ref_genome in ref_genomes[1:1]){
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,ref_genome,'_filtered_batch_corrected_clustered_annotated.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  
+  for ( split_by_coln in split_by_colnames){
+    
+    for (split_by_coln_var in unlist(unique(adata@colData[,split_by_coln]))){
+      print(paste0(c('Running cellchat split by:',split_by_coln,'with variable:',split_by_coln_var)))
+      
+      adata_split=adata[,as.character(adata@colData[,split_by_coln])==split_by_coln_var]
+      
+      ## Create CellcChat obejct
+      meta <- as.data.frame(colData(adata_split)) # extract a dataframe of the cell labels
+      meta$labels <- meta[["final_low_level_celltypes"]]
+      meta$samples <- meta[["original_sample"]]
+      cellchat <- createCellChat(object = adata_split, meta=meta,assay ='acosh', group.by = "final_low_level_celltypes")
+      
+      ## Subset CellCHat database
+      # Use all CellChatDB except for "Non-protein Signaling" for cell-cell communication analysis
+      cellchat@DB <- subsetDB(CellChatDB.human)
+        
+      
+      ## Subset the expression data of signaling genes for saving computation cost
+      rownames(cellchat@data)=adata_split@rowRanges@elementMetadata$HGNC_NAME
+      cellchat <- subsetData(cellchat) # This step is necessary even if using the whole database
+      
+      ## Infer interactions
+      future::plan("multisession", workers = 4) # do parallel
+      cellchat <- identifyOverExpressedGenes(cellchat)
+      cellchat <- identifyOverExpressedInteractions(cellchat)
+      
+      ## Compute the communication probability and infer cellular communication network
+      ## Type: 
+      cellchat <- computeCommunProb(cellchat, type = "triMean",population.size = TRUE)
+      
+      ## Infer the cell-cell communication at a signaling pathway level
+      cellchat <- computeCommunProbPathway(cellchat)
+      
+      # Calculate the aggregated cell-cell communication network
+      cellchat <- aggregateNet(cellchat)
+      
+      fn=paste0(proc_dir,ref_genome,'_',split_by_coln,'_',split_by_coln_var,'_CellChat_object.rds')
+      saveRDS(cellchat, file = fn)
+    }
+  
+  }
+  
+}
+```
+
+```{r}
+for (ref_genome in ref_genomes[1:1]){
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,ref_genome,'_filtered_batch_corrected_clustered_annotated.h5ad')
+  #adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  
+  cellchat_obj_list=list()
+  for (split_by_coln in split_by_colnames){
+    
+ 
+    for (split_by_coln_var in unlist(unique(adata@colData[,split_by_coln]))){
+      print(paste0(c('Running cellchat split by:',split_by_coln,'with variable:',split_by_coln_var)))
+      
+      
+      fn=paste0(proc_dir,ref_genome,'_',split_by_coln,'_',split_by_coln_var,'_CellChat_object.rds')
+      cellchat = readRDS(file = fn)
+      cellchat_obj_list[[split_by_coln]][[split_by_coln_var]]=cellchat
+      
+      
+    }
+    cellchat <- mergeCellChat(cellchat_obj_list[[split_by_coln]], add.names = names(cellchat_obj_list[[split_by_coln]]))
+  
+  }
+  
+}
+
+
+```
+
+```{r}
+gg1 <- compareInteractions(cellchat, show.legend = F)
+gg2 <- compareInteractions(cellchat, show.legend = F, measure = "weight")
+#gg1 + gg2
+gg1
+gg2
+```
+```{r fig.width=12, fig.height=8)}
+par(mfrow = c(1,2), xpd=TRUE)
+netVisual_diffInteraction(cellchat, weight.scale = T)
+netVisual_diffInteraction(cellchat, weight.scale = T, measure = "weight")
+```
+```{r}
+my_function_code <- getAnywhere(CellChat::netVisual_heatmap)
+trace(CellChat::netVisual_heatmap, edit = TRUE)
+
+names(cellchat_obj_list[[split_by_coln]])
+```
+
+
+```{r fig.width=12, fig.height=15)}
+
+library(CellChat)
+widht=3
+height=1.9
+gg1 <- netVisual_heatmap(cellchat, width=widht, comparison = c(1,2),height = height)
+
+#> Do heatmap based on a merged object
+gg2 <- netVisual_heatmap(cellchat,  width =widht, comparison = c(1,2),height=height,measure = "weight")
+
+gg1
+gg2
+#gg1 + gg2 + plot_layout(widths = c(1, 1), heights = unit(c(10, 1), c('cm', 'null')))
+```
+
+```{r}
+weight.max <- getMaxWeight(cellchat_obj_list[[split_by_coln]], attribute = c("idents","count"))
+par(mfrow = c(1,2), xpd=TRUE)
+for (i in 1:length(cellchat_obj_list[[split_by_coln]])) {
+  netVisual_circle(cellchat_obj_list[[split_by_coln]][[i]]@net$count, weight.scale = T, label.edge= F, edge.weight.max = weight.max[2], edge.width.max = 12, title.name = paste0("Number of interactions - ", names(cellchat_obj_list[[split_by_coln]])[i]))
+}
+```
+
+```{r}
+
+object.list=cellchat_obj_list[[split_by_coln]]
+
+num.link <- sapply(object.list, function(x) {rowSums(x@net$count) + colSums(x@net$count)-diag(x@net$count)})
+weight.MinMax <- c(min(num.link), max(num.link)) # control the dot size in the different datasets
+gg <- list()
+for (i in 1:length(object.list)) {
+  gg[[i]] <- netAnalysis_signalingRole_scatter(object.list[[i]], title = names(object.list)[i], weight.MinMax = weight.MinMax)
+}
+#> Signaling role analysis on the aggregated cell-cell communication network from all signaling pathways
+#> Signaling role analysis on the aggregated cell-cell communication network from all signaling pathways
+patchwork::wrap_plots(plots = gg)
+```
+

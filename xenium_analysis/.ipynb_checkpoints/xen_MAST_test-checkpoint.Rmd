@@ -1,0 +1,257 @@
+```{r}
+#.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.2')
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+suppressPackageStartupMessages({
+library('MAST')
+library(data.table)
+library(transformGamPoi)
+library(BiocParallel)
+library(scran)
+library(SingleCellExperiment)
+library(Matrix)
+})
+
+#options(mc.cores = parallelly::availableCores() - 1) 
+```
+
+```{r}
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+cellt_var='manual_res_deseq2_annot_low_level_celltype'
+coln_for_dge='stability'
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  sce=adata
+  
+  #====== Calculate size factors for all cells with scran -> use Fastcluster clusters for this ===========
+  #sce$fastcluster<-fastcluster(sce, iter.max=100)
+  input_groups=sce@colData[,cellt_var,drop=T]
+  data_mat=((assay(sce,'raw_counts')))
+  register(MulticoreParam(workers = 4))
+  size_factors = calculateSumFactors(data_mat, clusters=input_groups)
+  rm(data_mat)
+  
+  #size_factors=sce@colData$cell_mask_area_um2
+  assay(sce, withDimnames=FALSE,"acosh")=acosh_transform(assay(sce, "raw_counts"),size_factors=size_factors,overdispersion=TRUE,on_disk = FALSE)
+  
+  sparse_matrix <- Matrix(assay(sce, withDimnames=FALSE,"acosh"), sparse = TRUE)
+  fn=paste0(proc_dir,'filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_acosh.mtx')
+  writeMM(sparse_matrix, file = fn)
+
+}
+```
+
+
+
+## Load data and metadata
+
+## Tutorial: https://bioconductor.org/packages/release/bioc/vignettes/MAST/inst/doc/MAITAnalysis.html
+```{r fig.width=11,fig.height=5}
+## Init list with reference genome names that were used for the 2 alignments
+
+
+
+dat_list=list()
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+cellt_var='manual_res_deseq2_annot_low_level_celltype'
+coln_for_dge='stability'
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  
+  ## Load acosh matrix 
+  fn=paste0(proc_dir,'filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_acosh.mtx')
+  acosh_matrix <- readMM(fn)
+  
+  
+  # Replace the original assay with the transformed data
+  assay(adata, 'logCounts',withDimnames=FALSE) <- acosh_matrix
+  
+  sce=adata
+  
+  # Keep only diseased samples
+  sce=sce[,sce@colData$condition=='D']
+  
+  # assays(sce) <- assays(sce)['norm_by_area']
+  # 
+  # # Extract the assay data
+  # counts_matrix <- assay(sce, 'norm_by_area')
+  # 
+  # # Apply log2(x + 1) transformation
+  # log_counts_matrix <- log2(counts_matrix + 1)
+  # 
+ 
+  k=list()
+  for (sample_region in c('FC','NC','Intima','Media')){
+    print(sample_region)
+    sce_=sce[, !is.na(sce@colData$sample_region) & sce@colData$sample_region==sample_region]
+    #sce_=sce[, ]
+    
+    l=list()
+    for (celltype in unique(sce_@colData[,cellt_var])){ #c("VSMC-contr")){ 
+        
+        sce_dge=sce_[,sce_@colData[,cellt_var]==celltype]
+        
+        colData(sce_dge)$cngeneson <- scale(colSums(assay(sce_dge,'logCounts')>0))
+        
+        sca=SceToSingleCellAssay(sce_dge, class = "SingleCellAssay", check_sanity = TRUE)
+        
+        
+        ### Mixed model
+        
+        # Check if the grouping factor has more than one level
+        # skip_celltype=FALSE
+        # for (var in c(coln_for_dge,'patient')){
+        #   if (length(unique(sce_dge@colData[,var])) < length(unique(sce@colData[,var]))) {
+        #       warning(paste("Skipping celltype", celltype, "- not enough levels in",var,"variable for mixed model analysis."))
+        #       skip_celltype=TRUE
+        #       break  # Skip to the next celltype
+        #     }
+        #  }
+        # 
+        # if (skip_celltype==TRUE){
+        #     next  # Skip to the next iteration of the celltype loop
+        # }
+        # formula_string=paste("~",coln_for_dge) #coln_for_dge)
+        # formula_string <- paste(formula_string, paste(c('cngeneson','(1|patient)'), collapse=" + "), sep=" + ")
+        # design_form=as.formula(formula_string)
+        # 
+        # zlmCond <- zlm(design_form , sca,method='glmer',ebayes = F,
+        #                strictConvergence = FALSE)
+
+        
+        ### bayesGLM
+        
+        # Check if the grouping factor has more than one level
+        skip_celltype=FALSE
+        for (var in c(coln_for_dge)){
+          if (length(unique(sce_dge@colData[,var])) <=1 ) { #
+              skip_celltype=TRUE
+              warning(paste("Skipping celltype", celltype, "- not enough levels in ",var," variable for BayesGLM model analysis."))
+              break  # Skip to the next celltype
+            }
+        }
+
+        if (skip_celltype==TRUE){
+            next  # Skip to the next iteration of the celltype loop
+        }
+
+        formula_string=paste("~", coln_for_dge)
+        formula_string <- paste(formula_string, paste(c('cngeneson','patient'), collapse=" + "), sep=" + ")
+        design_form=as.formula(formula_string)
+
+        zlmCond <- zlm(design_form , sca,method='bayesglm',ebayes = T)
+        
+        
+
+        ## Concatenate the name of the column for dge + all its factor levels (except for the baseline factor)
+        #. MAST::summary(doLRT=) expects the levels of the factors to check for LRT (likelihod-ratio test)
+        lrt_levels=paste0(coln_for_dge, unique(levels(sce_dge@colData[,coln_for_dge]))[-1])
+        
+        summaryCond <- MAST::summary(zlmCond, doLRT=lrt_levels)
+        summaryDt <- summaryCond$datatable
+
+
+        fcHurdle <- merge(summaryDt[contrast %in% lrt_levels & component=='H',.(primerid, `Pr(>Chisq)`)], #hurdle P values
+                              summaryDt[contrast %in% lrt_levels & component=='logFC', .(primerid, coef, ci.hi, ci.lo)], by='primerid') #logFC coefficients
+
+
+        FCTHRESHOLD <- log2(0.5)
+
+        fcHurdle[,fdr:=p.adjust(`Pr(>Chisq)`, 'fdr')]
+        fcHurdleSig <- merge(fcHurdle[fdr<.05 & abs(coef)>FCTHRESHOLD], as.data.table(mcols(sca)), by='primerid')
+        setorder(fcHurdleSig, fdr)
+
+
+        l[[celltype]]=fcHurdleSig
+
+    }
+  
+  k[[sample_region]]=l  
+    
+  }
+
+}
+
+```
+
+
+
+
+```{r}
+library(ggplot2)
+
+#hist((assay(sce, 'acosh')[assay(sce, 'acosh') >0] ))
+#hist(assay(sce, 'logCounts')[assay(sce, 'logCounts') >0])
+
+for (area in names(k)){
+  cc=k[[area]]
+  cat(paste('====\n',area,'\n'))
+  
+  for (celltype in names(cc)){
+      
+      a=cc[[celltype]]
+      #print(dim(a[coef>0.5,]))
+      log2fc_thr=0.5
+      
+      if (dim(a[abs(a$coef)>log2fc_thr,])[1]>0){
+        print(paste(c(celltype,dim(a[abs(a$coef)>log2fc_thr,])[1])))
+        print(a[abs(a$coef)>log2fc_thr,])
+        }
+      
+  }
+
+}
+
+```
+
+
+```{r}
+
+library(data.table)
+
+summaryCond <- MAST::summary(zlmCond, doLRT=TRUE)
+summaryDt <- summaryCond$datatable
+
+
+a=summaryDt[summaryDt$contrast=='stabilityunstable',]
+
+
+fcHurdle <- merge(summaryDt[contrast=='stabilityunstable' & component=='H',.(primerid, `Pr(>Chisq)`)], #hurdle P values
+                      summaryDt[contrast=='stabilityunstable' & component=='logFC', .(primerid, coef, ci.hi, ci.lo)], by='primerid') #logFC coefficients
+
+
+FCTHRESHOLD <- log2(0.5)
+
+fcHurdle[,fdr:=p.adjust(`Pr(>Chisq)`, 'fdr')]
+fcHurdleSig <- merge(fcHurdle[fdr<.05 & abs(coef)>FCTHRESHOLD], as.data.table(mcols(sca)), by='primerid')
+setorder(fcHurdleSig, fdr)
+
+
+fcHurdleSig
+
+
+```
+

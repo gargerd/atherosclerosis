@@ -1,0 +1,122 @@
+```{r}
+#.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.2')
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+#BiocManager::install("mistyR")
+#install.packages('future')
+# MISTy
+library(mistyR)
+library(future)
+
+# data manipulation
+library(dplyr)
+library(purrr)
+library(distances)
+
+# plotting
+library(ggplot2)
+
+plan(multisession)
+
+```
+
+
+## Load data and metadata
+```{r fig.width=11,fig.height=5}
+## Init list with reference genome names that were used for the 2 alignments
+
+dat_list=list()
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'filtered_batch_corr_annotated_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  for (orig_sample in unique(adata@colData$original_sample)){
+    
+    adata_sample=adata[,adata@colData$original_sample==orig_sample]
+    
+  }
+  
+}
+  
+```
+
+```{r}
+## Extract celltype, x & y coordinate as metadata
+meta=adata_sample@colData
+meta[,c('x','y','manual_res_deseq2_annot_low_level_celltype')]
+
+## Extract expression matrix as dataframe
+expr_matrix=adata_sample@assays@data$norm_by_area
+expr_df=as.data.frame(t(as.matrix(expr_matrix)))
+rownames(expr_df) <- colnames(adata_sample)
+colnames(expr_df) <- rownames(adata_sample) #adata_sample@rowRanges@elementMetadata@listData$HGNC
+```
+
+```{r}
+misty.intra <- create_initial_view(expr_df)
+
+# Convert columns to numeric if they are not already
+meta$x_um <- as.numeric(meta$x)* 0.2125
+meta$y_um <- as.numeric(meta$y)* 0.2125
+
+# Multiply the subset by the float number
+coords_um <- meta[, c('x_um', 'y_um')] 
+
+misty.views <- misty.intra %>% add_paraview(coords_um, l = 100)
+
+
+# Specify the directory path
+res_folder=paste0(proc_dir,'misty/',orig_sample)
+
+# Check if the directory exists
+if (!dir.exists(res_folder)) {
+  # Create the directory if it does not exist
+  dir.create(res_folder, recursive = TRUE)} 
+
+
+misty.views %>% run_misty(results.folder=res_folder)
+
+misty.results <- collect_results(res_folder)
+```
+
+```{r}
+colnames(expr_df)
+
+
+misty.results %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_improvement_stats("gain.RMSE")
+
+
+misty.results$improvements %>%
+  filter(measure == "p.R2") %>%
+  group_by(target) %>% 
+  summarize(mean.p = mean(value)) %>%
+  arrange(mean.p)
+
+
+
+misty.results %>% plot_view_contributions()
+
+misty.results %>% plot_interaction_heatmap(view = "intra", cutoff = 0.8)
+
+misty.results %>% plot_interaction_heatmap(view = "para.100", cutoff = 0.1)
+
+misty.results %>% plot_contrast_heatmap("intra", "para.100", cutoff = 0.5)
+
+misty.results %>% plot_interaction_communities("intra")
+
+misty.results %>% plot_interaction_communities("para.100", cutoff = 8)
+```
+

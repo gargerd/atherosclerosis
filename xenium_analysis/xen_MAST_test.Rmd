@@ -1,0 +1,1949 @@
+```{r}
+#.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.2')
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+suppressPackageStartupMessages({
+library('MAST')
+library(data.table)
+library(transformGamPoi)
+library(BiocParallel)
+library(scran)
+library(SingleCellExperiment)
+library(Matrix)
+library(ggplot2)
+library(patchwork)
+library(ggrepel)
+library(ggtext)
+})
+
+#options(mc.cores = parallelly::availableCores() - 1) 
+```
+
+
+
+### FUNCTION FOR VOLCANO-PLOTS
+
+```{r}
+
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+## VOLCANO PLOT FUNCTION 
+volcano_plot <- function(df, celltype, log2fc_thr, fdr_thr,contrast_1,contrast_2) {
+  
+  subtitle_str=paste(c((contrast_1),' vs. ',(contrast_2)),collapse='')
+  
+  ggplot(df, aes(x = log2FC, y = -log10(fdr))) +
+    geom_point(aes(color = abs(log2FC) > log2fc_thr & fdr < fdr_thr)) +
+    geom_text_repel(
+      data = df[abs(df$log2FC) > log2fc_thr & df$fdr < fdr_thr, ],
+      aes(label = HGNC),
+      size = 3,
+      box.padding = 0.3,
+      point.padding = 0.3,
+      segment.color = 'grey50'
+    ) +
+    geom_vline(xintercept = c(-log2fc_thr, log2fc_thr), linetype = "dashed", color = "red") +
+    geom_hline(yintercept = -log10(fdr_thr), linetype = "dashed", color = "red") +
+    scale_color_manual(values = c("black", "red")) +
+    #theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5, size = 12, face = "bold"),  # Center the title
+      plot.subtitle = element_text(hjust = 0.5, size = 10)  # Center the subtitle
+    ) +
+    labs(title = celltype,subtitle=subtitle_str,x = "Log2 Fold Change", y = "-log10 Adjusted p-value") +
+    theme(legend.position = "none")
+}
+
+
+##### ==========================================
+## MAST saves the condition name and the name of the condition variable, that is being compared to the base level variable, concatenated as one string. 
+#. i.e. cond: stability; base level: stable; comparison: unstable vs. stable  ==> contrast: stabilityunstable)
+#  ==> Create new column, where the comparsion is obvious and easy to follow 
+#. ==> i.e new column named 'contrast', containing : "unstable vs. stable"
+extract_condition_comparisons=function(df){
+
+  # Split 'contrast' column by the unique value in 'coln_for_dge' and take the last element
+  df$comparison <- mapply(function(contrast, base_level, dge) {
+    
+                    # Extract unique value from 'coln_for_dge'
+                    unique_value <- unique(dge)
+                    # Split the contrast value based on the unique dge value
+                    cond_compared_to_base <- unlist(strsplit(as.character(contrast), unique_value))
+                    
+                    # Concatenate the base level with the last part of the split contrast
+                    paste( tail(cond_compared_to_base, 1),"vs.",  base_level, sep=" ")
+                  }, df$contrast, df$coln_for_dge_base_level, df$coln_for_dge)
+  
+  ## Keep final important columns                  
+  df=df[,c("ENSEMBL_ID" ,"log2FC" ,"fdr","HGNC","coln_for_dge","comparison")]
+  #print(df)
+  return (df)
+}
+
+
+```
+
+
+#   DGE: STABLE VS. UNSTABLE PER CELLTYPE ON ALL CELLS
+## - CELLS INVOLVED IN DGE COMPARISON: ALL CELLS PER CONDITION (STABLE VS. UNSTABLE)
+## - FOR EACH CELLTYPE, RUN DGE BETWEEN STABLE VS. UNSTABLE 
+
+## Tutorial: https://bioconductor.org/packages/release/bioc/vignettes/MAST/inst/doc/MAITAnalysis.html
+```{r fig.width=11,fig.height=5}
+## Init list with reference genome names that were used for the 2 alignments
+
+
+## LOAD DATA + LOAD PREVIOUSLY CALCULATED ACOSH NORMALISED COUNT MATRIX
+dat_list=list()
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+cellt_var='manual_res_deseq2_annot_low_level_celltype'
+#coln_for_dge='stability'
+
+colnames_for_dge=c('stability','symptomatic')
+
+mast_methods=c('bayesglm','glmer')
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  
+  ## Load acosh matrix 
+  fn=paste0(proc_dir,'filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_acosh.mtx')
+  acosh_matrix <- readMM(fn)
+  
+  
+  # Replace the original assay with the transformed data
+  assay(adata, 'logCounts',withDimnames=FALSE) <- acosh_matrix
+  
+  sce=adata
+  
+  # Keep only diseased samples
+  sce=sce[,sce@colData$condition=='D']
+  
+  l=list()
+  
+  for (coln_for_dge in colnames_for_dge){
+    print(coln_for_dge)
+    
+    for (mast_method in mast_methods[1:1]){
+      print(mast_method)
+      
+      for (celltype in unique(sce@colData[,cellt_var])){ #c("VSMC-contr")){ 
+          
+          sce_dge=sce[,sce@colData[,cellt_var]==celltype]
+          
+          ## Get binary variable describing if gene is turned on or not
+          colData(sce_dge)$cngeneson <- scale(colSums(assay(sce_dge,'logCounts')>0))
+          
+          ## Convert sce to sca, the correct format for MAST
+          sca=SceToSingleCellAssay(sce_dge, class = "SingleCellAssay", check_sanity = TRUE)
+          
+          
+          ### SELECT WHICH GLM METHOD TO USE & RUN MAST GLM
+          ##  Mixed model
+          if (mast_method=='glmer'){
+              
+              # Check if the grouping factor has more than one level ==> if not, MAST will throw an error, skip celltype
+              skip_celltype=FALSE
+              for (var in c(coln_for_dge,'patient')){
+                if (length(unique(sce_dge@colData[,var])) < length(unique(sce@colData[,var]))) {
+                    warning(paste("Skipping celltype", celltype, "- not enough levels in",var,"variable for mixed model analysis."))
+                    skip_celltype=TRUE
+                    break  # Skip to the next celltype
+                  }
+               }
+    
+              if (skip_celltype==TRUE){
+                  next  # Skip to the next iteration of the celltype loop
+              }
+              
+              ## Create formula with correcting for coln_for_dge + expressed genes (cngeneson) + random intercept for patient (1|patient)
+              formula_string=paste("~",coln_for_dge) #coln_for_dge)
+              formula_string <- paste(formula_string, paste(c('cngeneson','(1|patient)'), collapse=" + "), sep=" + ")
+              design_form=as.formula(formula_string)
+    
+              zlmCond <- zlm(design_form , sca,method='glmer',ebayes = F,
+                             strictConvergence = FALSE)
+           }
+          
+          ## bayesGLM
+          if (mast_method=='bayesglm'){
+              
+              # Check if the grouping factor has more than one level  ==> if not, MAST will throw an error, skip celltype
+              skip_celltype=FALSE
+              for (var in c(coln_for_dge)){
+                if (length(unique(sce_dge@colData[,var])) <=1 ) { #
+                    skip_celltype=TRUE
+                    warning(paste("Skipping celltype", celltype, "- not enough levels in ",var," variable for BayesGLM model analysis."))
+                    break  # Skip to the next celltype
+                  }
+              }
+      
+              if (skip_celltype==TRUE){
+                  next  # Skip to the next iteration of the celltype loop
+              }
+              
+              ## Create formula with correcting for coln_for_dge + expressed genes (cngeneson) + fixed effect for patient (patient)
+              formula_string=paste("~", coln_for_dge)
+              formula_string <- paste(formula_string, paste(c('cngeneson','patient'), collapse=" + "), sep=" + ")
+              design_form=as.formula(formula_string)
+              
+              ## Turn on ebayes for variance estimation
+              zlmCond <- zlm(design_form , sca,method='bayesglm',ebayes = T)
+            }
+          
+          
+          ### EXTRACT RESULTS OF GLM &  SAVE THEM
+          
+          ## Concatenate the name of the column for dge + all its factor levels (except for the baseline factor)
+          #. MAST::summary(doLRT=) expects the levels of the factors to check for LRT (likelihod-ratio test)
+          lrt_levels=paste0(coln_for_dge, unique(levels(sce_dge@colData[,coln_for_dge]))[-1])
+          
+          ## Performing LRT, which results in p-values and log2FC values between the contrasts
+          summaryCond <- MAST::summary(zlmCond, doLRT=lrt_levels)
+          
+          ## Extract results as data frame & extract log2FC values of 
+          summaryDt <- summaryCond$datatable
+          fcHurdle <- merge(summaryDt[contrast %in% lrt_levels & component=='H',.(primerid, `Pr(>Chisq)`)], # H ==> hurdle P values
+                                summaryDt[contrast %in% lrt_levels & component=='logFC', .(primerid, contrast,coef, ci.hi, ci.lo)], by='primerid') #logFC coefficients
+          
+          ## Drop genes with non-significant FDR
+          fcHurdle[,fdr:=p.adjust(`Pr(>Chisq)`, 'fdr')]
+          
+          ## Merge DGE results with sca ==> adding HGNC names and PC vars to the DGE results
+          fcHurdleSig <- merge(fcHurdle[fdr<.05],as.data.table(mcols(sca)), by='primerid')
+          
+          ## Convert lnFC (acosh normalisation is ln normalised) to log2FC values by dividing it with ln(2) (==log(2))
+          fcHurdleSig$log2FC=fcHurdleSig$coef / log(2)
+          
+          ## Add name of column that was used for contrast + base level of the levels of this variable
+          fcHurdleSig[,'coln_for_dge']=coln_for_dge
+          fcHurdleSig[,'coln_for_dge_base_level']=unique(levels(sce_dge@colData[,coln_for_dge]))[1]
+          
+          setorder(fcHurdleSig, fdr)
+    
+          ## Add result to list
+          l[[celltype]]=fcHurdleSig
+  
+      }
+    
+    ## Save results
+    fn= fn=paste0(proc_dir,'/',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_all_cells_',coln_for_dge,'_DGE.Rds')
+    saveRDS(l, file = fn)
+    }
+  
+  }
+  
+}
+
+```
+
+
+## PLOT DGE STABLE VS. UNSTABLE PER CELLTYPE ON ALL CELLS
+
+```{r fig.width=3.5,fig.height=3.5}
+
+
+
+colnames_for_dge=c('stability','symptomatic')
+
+mast_methods=c('bayesglm','glmer')
+
+      
+log2fc_thr=0.5
+fdr_thr=0.05
+ncols=2
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  for (coln_for_dge in colnames_for_dge[2:2]){
+    print(coln_for_dge)
+    
+    for (mast_method in mast_methods[1:1]){
+      print(mast_method)
+      
+      fn= fn=paste0(proc_dir,'/',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_all_cells_',coln_for_dge,'_DGE.Rds')
+      dge_list=readRDS(file = fn)
+
+
+      plots <- list()
+      dge_result_list=list()    
+  
+      for (celltype in names(dge_list)){
+          
+          celltype_dge_df=dge_list[[celltype]]
+          
+          ## Check if log2FC not in result df, transform the lnFC to log2FC values
+          if (!("log2FC" %in% colnames(celltype_dge_df))) {
+            
+            # Code to execute if "text" is not in variable
+            celltype_dge_df$log2FC=celltype_dge_df$coef / log(2)}
+          
+          print(celltype)
+          print(dim(celltype_dge_df))
+          
+          if (dim(celltype_dge_df[abs(celltype_dge_df$log2FC)>log2fc_thr,])[1]>0){
+              print(paste(c(celltype,dim(celltype_dge_df[abs(celltype_dge_df$log2FC)>log2fc_thr,])[1])))
+              #print(celltype_dge_df[abs(celltype_dge_df$log2FC)>log2fc_thr,])
+      
+              
+              contrast_str=unique(celltype_dge_df$contrast)
+              
+              # Use sub to extract the part after 'coln_for_dge'
+              contrast_1=sub(paste0(".*", coln_for_dge), "", contrast_str)
+              contrast_2=unique(celltype_dge_df$coln_for_dge_base_level)
+  
+              ## Create Volcano-plot
+              p <- volcano_plot(celltype_dge_df, celltype, log2fc_thr, fdr_thr,contrast_1,contrast_2)
+              plots[[celltype]] <- p
+              
+              ## Extract most important column of the DGE dataframe, rename primerid to ENSEMBL_ID & save DGE result 
+              celltype_dge_df_to_save=celltype_dge_df[,c('primerid',"contrast","log2FC","fdr","HGNC","coln_for_dge" ,"coln_for_dge_base_level")]
+              colnames(celltype_dge_df_to_save)[1]='ENSEMBL_ID'
+              
+              
+              ## Extract the conditions factors that have been compared in a new column
+              celltype_dge_df_to_save = extract_condition_comparisons(celltype_dge_df_to_save)
+              celltype_dge_df_to_save[,'celltype']=celltype
+              
+              dge_result_list[[celltype]]=celltype_dge_df_to_save
+            
+
+            }
+      
+      }
+      
+      
+      ### SAVE DGE RESULT DATA FRAME
+      # Create the directory and necessary parent directories
+      res_dir_path=file.path(proc_dir, 'MAST_DGE_results')
+      dir.create(res_dir_path, showWarnings = FALSE, recursive = TRUE)
+      
+      ## Generate the file name & save DGE result
+      # Concatenate the DGE result dataframes row-wise
+      dge_result_concat <- do.call(rbind, dge_result_list)
+      
+      fn=paste0(panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_all_cells_',coln_for_dge,'_DGE.csv')
+      fn=file.path(res_dir_path, fn)
+      write.csv(dge_result_concat, file = fn, row.names = FALSE)
+  
+    
+
+      ### PLOT & SAVE VOLCANO-PLOTS
+      
+      final_plot=list()
+      # Combine the plots for this area
+      if (length(plots) > 0) {
+        combined_plot <- wrap_plots(plots, ncol = 2)
+        final_plot[['final']] <- plots
+      }
+      
+      # Determine the plot size dynamically
+      plot_width_per_col <- 4  # Width per column
+      plot_height_per_row <- 3  # Height per row
+      
+      # Display the plots for each area with a centered figure title and dynamic size
+      #for (area in names(final_plot)) {
+      #num_plots <- length(plots[[area]]$layout$nrow * 2)  # 2 plots per row
+      num_plots <- length(final_plot[['final']])  # 2 plots per row
+      num_rows <- ceiling(num_plots / 2)
+      num_cols <- min(2, num_plots)  # max 2 columns
+      plot_width <- plot_width_per_col * num_cols
+      plot_height <- plot_height_per_row * num_rows
+      
+      # Generate the file name & save plot
+      fn=paste0(panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_all_cells_',coln_for_dge,'_DGE.png')
+      fn <- file.path(proc_dir, 'xenium_plots', 'MAST_DGE_volcano_plots', fn)
+      
+   
+  
+      ## IF ONLY ONE CELLTYPE HAS DE-GENES, CREATE A SIMPLE GGPLOT OBJECTM IF MULITPLE, CREATE A COMBINED PLOT WITH PATCHWORK
+      if (num_plots==1){
+            celltype_=names(final_plot[['final']])
+            subtitle_str <- paste0("<b>", celltype_, "</b><br>", contrast_1, " vs. ", contrast_2)
+  
+            title=paste(panel," - Region:", 'whole sample - ',mast_method)
+            
+            
+            combined_plot=final_plot[['final']][[celltype_]] + 
+                        labs(title = title,subtitle=subtitle_str) +
+                        theme(
+                            plot.title = element_text(hjust = 0.5, size = 12, face = "bold"),  # Center the title
+                            plot.subtitle = element_markdown(hjust = 0.5, size = 10)  # Center the subtitle
+                          ) }
+                
+           
+          if (num_plots>1){
+            combined_plot = wrap_plots(final_plot[['final']], ncol = ncols) +
+                            plot_annotation(
+                              title = paste(panel," - Region:", 'whole sample - ',mast_method),
+                              theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))}
+      
+      print(combined_plot)
+      ggsave(fn,plot=combined_plot, width = plot_width, height = plot_height, units = "in")
+   }  
+ }
+}  
+```
+
+
+
+#   DGE: STABLE VS. UNSTABLE PER CELLTYPE PER REGION 
+## - CELLS INVOLVED IN DGE COMPARISON: ALL CELLS PER CONDITION PER REGION (REGION STABLE VS. REGION UNSTABLE)
+## - FOR EACH CELLTYPE WITHIN GIVEN REGION, RUN DGE BETWEEN STABLE VS. UNSTABLE 
+
+```{r}
+## Init list with reference genome names that were used for the 2 alignments
+
+
+## LOAD DATA + LOAD PREVIOUSLY CALCULATED ACOSH NORMALISED COUNT MATRIX
+dat_list=list()
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+cellt_var='manual_res_deseq2_annot_low_level_celltype'
+#coln_for_dge='stability'
+colnames_for_dge=c('stability','symptomatic')
+mast_methods=c('bayesglm','glmer')
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'/filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  
+  ## Load acosh matrix 
+  fn=paste0(proc_dir,'/filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_acosh.mtx')
+  acosh_matrix <- readMM(fn)
+  
+  
+  # Replace the original assay with the transformed data
+  assay(adata, 'logCounts',withDimnames=FALSE) <- acosh_matrix
+  
+  sce=adata
+  
+  # Keep only diseased samples
+  sce=sce[,sce@colData$condition=='D']
+  
+  for (coln_for_dge in colnames_for_dge){
+    print(coln_for_dge)
+    
+    for (mast_method in mast_methods[1:1]){
+      print(mast_method)
+    
+      k=list()
+      
+      for (sample_region in c('FC','NC','Intima','Media')){
+        print(sample_region)
+        
+        ## Subset to cells from given region
+        sce_=sce[, !is.na(sce@colData$sample_region) & sce@colData$sample_region==sample_region]
+        
+        l=list()
+        
+        for (celltype in unique(sce_@colData[,cellt_var])){ #c("VSMC-contr")){ 
+            
+            sce_dge=sce_[,sce_@colData[,cellt_var]==celltype]
+            
+            ## Get binary variable describing if gene is turned on or not
+            colData(sce_dge)$cngeneson <- scale(colSums(assay(sce_dge,'logCounts')>0))
+            
+            ## Convert sce to sca, the correct format for MAST
+            sca=SceToSingleCellAssay(sce_dge, class = "SingleCellAssay", check_sanity = TRUE)
+            
+            
+            ### SELECT WHICH GLM METHOD TO USE & RUN MAST GLM
+            ##  Mixed model
+            if (mast_method=='glmer'){
+                
+                # Check if the grouping factor has more than one level ==> if not, MAST will throw an error, skip celltype
+                skip_celltype=FALSE
+                for (var in c(coln_for_dge,'patient')){
+                  if (length(unique(sce_dge@colData[,var])) < length(unique(sce@colData[,var]))) {
+                      warning(paste("Skipping celltype", celltype, "- not enough levels in",var,"variable for mixed model analysis."))
+                      skip_celltype=TRUE
+                      break  # Skip to the next celltype
+                    }
+                 }
+      
+                if (skip_celltype==TRUE){
+                    next  # Skip to the next iteration of the celltype loop
+                }
+                
+                ## Create formula with correcting for coln_for_dge + expressed genes (cngeneson) + random intercept for patient (1|patient)
+                formula_string=paste("~",coln_for_dge) #coln_for_dge)
+                formula_string <- paste(formula_string, paste(c('cngeneson','(1|patient)'), collapse=" + "), sep=" + ")
+                design_form=as.formula(formula_string)
+      
+                zlmCond <- zlm(design_form , sca,method='glmer',ebayes = F,
+                               strictConvergence = FALSE)
+             }
+            
+            ## bayesGLM
+            if (mast_method=='bayesglm'){
+                
+                # Check if the grouping factor has more than one level  ==> if not, MAST will throw an error, skip celltype
+                skip_celltype=FALSE
+                for (var in c(coln_for_dge)){
+                  if (length(unique(sce_dge@colData[,var])) <=1 ) { #
+                      skip_celltype=TRUE
+                      warning(paste("Skipping celltype", celltype, "- not enough levels in ",var," variable for BayesGLM model analysis."))
+                      break  # Skip to the next celltype
+                    }
+                }
+        
+                if (skip_celltype==TRUE){
+                    next  # Skip to the next iteration of the celltype loop
+                }
+                
+                ## Create formula with correcting for coln_for_dge + expressed genes (cngeneson) + fixed effect for patient (patient)
+                formula_string=paste("~", coln_for_dge)
+                formula_string <- paste(formula_string, paste(c('cngeneson','patient'), collapse=" + "), sep=" + ")
+                design_form=as.formula(formula_string)
+                
+                ## Turn on ebayes for variance estimation
+                zlmCond <- zlm(design_form , sca,method='bayesglm',ebayes = T)
+              }
+            
+            
+            ### EXTRACT RESULTS OF GLM &  SAVE THEM
+            
+            ## Concatenate the name of the column for dge + all its factor levels (except for the baseline factor)
+            #. MAST::summary(doLRT=) expects the levels of the factors to check for LRT (likelihod-ratio test)
+            lrt_levels=paste0(coln_for_dge, unique(levels(sce_dge@colData[,coln_for_dge]))[-1])
+            
+            ## Performing LRT, which results in p-values and log2FC values between the contrasts
+            summaryCond <- MAST::summary(zlmCond, doLRT=lrt_levels)
+            
+            ## Extract results as data frame & extract log2FC values of 
+            summaryDt <- summaryCond$datatable
+            fcHurdle <- merge(summaryDt[contrast %in% lrt_levels & component=='H',.(primerid, `Pr(>Chisq)`)], # H ==> hurdle P values
+                                  summaryDt[contrast %in% lrt_levels & component=='logFC', .(primerid, contrast,coef, ci.hi, ci.lo)], by='primerid') #logFC coefficients
+            
+            ## Drop genes with non-significant FDR
+            fcHurdle[,fdr:=p.adjust(`Pr(>Chisq)`, 'fdr')]
+            
+            ## Merge DGE results with sca ==> adding HGNC names and PC vars to the DGE results
+            fcHurdleSig <- merge(fcHurdle[fdr<.05],as.data.table(mcols(sca)), by='primerid')
+            
+            ## Convert lnFC (acosh normalisation is ln normalised) to log2FC values by dividing it with ln(2) (==log(2))
+            fcHurdleSig$log2FC=fcHurdleSig$coef / log(2)
+            
+            ## Add name of column that was used for contrast + base level of the levels of this variable
+            fcHurdleSig[,'coln_for_dge']=coln_for_dge
+            fcHurdleSig[,'coln_for_dge_base_level']=unique(levels(sce_dge@colData[,coln_for_dge]))[1]
+            
+            setorder(fcHurdleSig, fdr)
+    
+            ## Add result to list
+            l[[celltype]]=fcHurdleSig
+    
+        }
+      
+        ## Collect results of region to another list
+        k[[sample_region]]=l  
+        
+      }
+  
+    ## Save results
+    fn=paste0(proc_dir,'/',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_region_cells_',coln_for_dge,'_DGE.Rds')
+    saveRDS(k, file = fn)
+    }
+ }
+}
+
+```
+
+
+## PLOT DGE: STABLE VS. UNSTABLE PER CELLTYPE PER REGION 
+
+
+```{r}
+#fig.width=4,fig.height=3}
+library(ggplot2)
+library(patchwork)
+library(ggrepel)
+
+
+
+
+mast_methods=c('bayesglm','glmer')
+colnames_for_dge=c('stability','symptomatic')
+log2fc_thr=0.5
+fdr_thr=0.05
+ncols=2
+
+# Ensure the necessary directory exists for saving the plots
+dir.create(file.path(proc_dir, 'plots', 'MAST_DGE_volcano_plots'), showWarnings = FALSE, recursive = TRUE)
+
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  for (coln_for_dge in colnames_for_dge[1:2]){
+    print(coln_for_dge)
+    
+    for (mast_method in mast_methods[1:1]){
+      print(mast_method)
+      
+      fn=paste0(proc_dir,'/',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_region_cells_',coln_for_dge,'_DGE.Rds')
+      
+      dge_list=readRDS(file = fn)
+      
+      plots=list()
+      dge_result_list=list()   
+
+      for (area in names(dge_list)){
+        area_dge_list=dge_list[[area]]
+        cat(paste('====\n',area,'\n'))
+        
+        area_plots <- list()
+        
+        for (celltype in names(area_dge_list)){
+            
+            area_dge_df=area_dge_list[[celltype]]
+            #print(dim(a[coef>0.5,]))
+            
+            ## Check if log2FC not in result df, transform the lnFC to log2FC values
+            if (!("log2FC" %in% colnames(area_dge_df))) {
+              # Code to execute if "text" is not in variable
+              area_dge_df$log2FC=area_dge_df$coef / log(2)}
+      
+            
+            if (dim(area_dge_df[abs(area_dge_df$log2FC)>log2fc_thr,])[1]>0){
+              print(paste(c(celltype,dim(area_dge_df[abs(area_dge_df$log2FC)>log2fc_thr,])[1])))
+              print(area_dge_df[abs(area_dge_df$log2FC)>log2fc_thr,])
+      
+              
+              contrast_str=unique(area_dge_df$contrast)
+              
+              # Use sub to extract the part after 'coln_for_dge'
+              contrast_1=sub(paste0(".*", coln_for_dge), "", contrast_str)
+              contrast_2=unique(area_dge_df$coln_for_dge_base_level)
+              
+              p <- volcano_plot(area_dge_df, celltype, log2fc_thr, fdr_thr,contrast_1,contrast_2)
+              area_plots[[celltype]] <- p
+              
+              ## Extract most important column of the DGE dataframe, rename primerid to ENSEMBL_ID & save DGE result 
+              area_dge_df_to_save=area_dge_df[,c('primerid',"contrast","log2FC","fdr","HGNC","coln_for_dge" ,"coln_for_dge_base_level")]
+              colnames(area_dge_df_to_save)[1]='ENSEMBL_ID'
+              
+              
+              ## Extract the conditions factors that have been compared in a new column
+              area_dge_df_to_save = extract_condition_comparisons(area_dge_df_to_save)
+              area_dge_df_to_save$celltype=celltype
+              area_dge_df_to_save$region=area
+              
+              dge_result_list[[area]][[celltype]]=area_dge_df_to_save
+              
+            
+              }
+        
+          }
+       
+        
+        # Combine the plots for this area
+        if (length(area_plots) > 0) {
+          plots[[area]] <-area_plots  
+        }
+      
+      }
+      
+      ### SAVE DGE RESULT DATA FRAME
+      # Create the directory and necessary parent directories
+      res_dir_path=file.path(proc_dir, 'MAST_DGE_results')
+      dir.create(res_dir_path, showWarnings = FALSE, recursive = TRUE)
+      
+      # Flatten the nested list of DGE resulst & concatenate the DGE result dataframes row-wise
+      dge_result_flat_list <- unlist(dge_result_list, recursive = FALSE)
+      dge_result_concat <- do.call(rbind, dge_result_flat_list)
+      
+      ## Generate the file name & save DGE result
+      fn=paste0(panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_region_cells_',coln_for_dge,'_DGE.csv')
+      fn=file.path(res_dir_path, fn)
+      write.csv(dge_result_concat, file = fn, row.names = FALSE)
+
+      
+      # Determine the plot size dynamically
+      plot_width_per_col <- 4  # Width per column
+      plot_height_per_row <- 3  # Height per row
+      
+      # Display the plots for each area with a centered figure title and dynamic size
+      for (area in names(plots)) {
+        num_plots <- length(plots[[area]])  # 2 plots per row
+        num_rows <- ceiling(num_plots / 2)
+        num_cols <- min(2, num_plots)  # max 2 columns
+        plot_width <- plot_width_per_col * num_cols
+        plot_height <- plot_height_per_row * num_rows
+        
+        
+        
+        # Generate the file name & save plot
+        fn=paste0(panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_region_cells_',area,'_',coln_for_dge,'_DGE.png')
+        fn <- file.path(proc_dir, 'xenium_plots', 'MAST_DGE_volcano_plots', fn)
+
+ 
+
+        ## IF ONLY ONE CELLTYPE HAS DE-GENES, CREATE A SIMPLE GGPLOT OBJECTM IF MULITPLE, CREATE A COMBINED PLOT WITH PATCHWORK
+        if (num_plots==1){
+          celltype_=names(plots[[area]])
+          subtitle_str <- paste0("<b>", celltype_, "</b><br>", contrast_1, " vs. ", contrast_2)
+
+          title=paste(panel," - Region:", area,' - ',mast_method)
+          
+          
+          combined_plot=plots[[area]][[celltype_]] + 
+                      labs(title = title,subtitle=subtitle_str) +
+                      theme(
+                          plot.title = element_text(hjust = 0.5, size = 12, face = "bold"),  # Center the title
+                          plot.subtitle = element_markdown(hjust = 0.5, size = 10)  # Center the subtitle
+                        ) }
+              
+         
+        if (num_plots>1){
+          combined_plot = wrap_plots(plots[[area]], ncol = ncols) +
+                          plot_annotation(
+                            title = paste(panel," - Region:", area,' - ',mast_method),
+                            theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))}
+        print(combined_plot)
+        ggsave(fn, plot = combined_plot, width = plot_width, height = plot_height, units = "in")
+      }
+   }
+  }
+}
+```
+
+
+#   DGE: HEALTHY VS. DISEASED PER CELLTYPE ON ALL CELLS IN P1-P4
+## - CELLS INVOLVED IN DGE COMPARISON: ALL CELLS PER CONDITION (HEALTHY VS. DISEASED)
+## - FOR EACH CELLTYPE, RUN DGE BETWEEN HEALTHY VS. DISEASED 
+
+## Tutorial: https://bioconductor.org/packages/release/bioc/vignettes/MAST/inst/doc/MAITAnalysis.html
+```{r fig.width=11,fig.height=5}
+## Init list with reference genome names that were used for the 2 alignments
+
+
+## LOAD DATA + LOAD PREVIOUSLY CALCULATED ACOSH NORMALISED COUNT MATRIX
+dat_list=list()
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+cellt_var='manual_res_deseq2_annot_low_level_celltype'
+#coln_for_dge='stability'
+
+colnames_for_dge=c('condition')
+
+mast_methods=c('bayesglm','glmer')
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'/filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  
+  ## Load acosh matrix 
+  fn=paste0(proc_dir,'/filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_acosh.mtx')
+  acosh_matrix <- readMM(fn)
+  
+  
+  # Replace the original assay with the transformed data
+  assay(adata, 'logCounts',withDimnames=FALSE) <- acosh_matrix
+  
+  sce=adata
+  
+  # Keep only samples from P1-P4
+  sce=sce[,sce@colData$patient %in% c('P1','P2','P3','P4')]
+  
+  l=list()
+  
+  for (coln_for_dge in colnames_for_dge){
+    print(coln_for_dge)
+    
+    for (mast_method in mast_methods[1:1]){
+      print(mast_method)
+      
+      for (celltype in unique(sce@colData[,cellt_var])){ #c("VSMC-contr")){ 
+          
+          sce_dge=sce[,sce@colData[,cellt_var]==celltype]
+          
+          ## Get binary variable describing if gene is turned on or not
+          colData(sce_dge)$cngeneson <- scale(colSums(assay(sce_dge,'logCounts')>0))
+          
+          ## Convert sce to sca, the correct format for MAST
+          sca=SceToSingleCellAssay(sce_dge, class = "SingleCellAssay", check_sanity = TRUE)
+          
+          
+          ### SELECT WHICH GLM METHOD TO USE & RUN MAST GLM
+          ##  Mixed model
+          if (mast_method=='glmer'){
+              
+              # Check if the grouping factor has more than one level ==> if not, MAST will throw an error, skip celltype
+              skip_celltype=FALSE
+              for (var in c(coln_for_dge,'patient')){
+                if (length(unique(sce_dge@colData[,var])) < length(unique(sce@colData[,var]))) {
+                    warning(paste("Skipping celltype", celltype, "- not enough levels in",var,"variable for mixed model analysis."))
+                    skip_celltype=TRUE
+                    break  # Skip to the next celltype
+                  }
+               }
+    
+              if (skip_celltype==TRUE){
+                  next  # Skip to the next iteration of the celltype loop
+              }
+              
+              ## Create formula with correcting for coln_for_dge + expressed genes (cngeneson) + random intercept for patient (1|patient)
+              formula_string=paste("~",coln_for_dge) #coln_for_dge)
+              formula_string <- paste(formula_string, paste(c('cngeneson','(1|patient)'), collapse=" + "), sep=" + ")
+              design_form=as.formula(formula_string)
+    
+              zlmCond <- zlm(design_form , sca,method='glmer',ebayes = F,
+                             strictConvergence = FALSE)
+           }
+          
+          ## bayesGLM
+          if (mast_method=='bayesglm'){
+              
+              # Check if the grouping factor has more than one level  ==> if not, MAST will throw an error, skip celltype
+              skip_celltype=FALSE
+              for (var in c(coln_for_dge)){
+                if (length(unique(sce_dge@colData[,var])) <=1 ) { #
+                    skip_celltype=TRUE
+                    warning(paste("Skipping celltype", celltype, "- not enough levels in ",var," variable for BayesGLM model analysis."))
+                    break  # Skip to the next celltype
+                  }
+              }
+      
+              if (skip_celltype==TRUE){
+                  next  # Skip to the next iteration of the celltype loop
+              }
+              
+              ## Create formula with correcting for coln_for_dge + expressed genes (cngeneson) + fixed effect for patient (patient)
+              formula_string=paste("~", coln_for_dge)
+              formula_string <- paste(formula_string, paste(c('cngeneson','patient'), collapse=" + "), sep=" + ")
+              design_form=as.formula(formula_string)
+              
+              ## Turn on ebayes for variance estimation
+              zlmCond <- zlm(design_form , sca,method='bayesglm',ebayes = T)
+            }
+          
+          
+          ### EXTRACT RESULTS OF GLM &  SAVE THEM
+          
+          ## Concatenate the name of the column for dge + all its factor levels (except for the baseline factor)
+          #. MAST::summary(doLRT=) expects the levels of the factors to check for LRT (likelihod-ratio test)
+          lrt_levels=paste0(coln_for_dge, unique(levels(sce_dge@colData[,coln_for_dge]))[-1])
+          
+          ## Performing LRT, which results in p-values and log2FC values between the contrasts
+          summaryCond <- MAST::summary(zlmCond, doLRT=lrt_levels)
+          
+          ## Extract results as data frame & extract log2FC values of 
+          summaryDt <- summaryCond$datatable
+          fcHurdle <- merge(summaryDt[contrast %in% lrt_levels & component=='H',.(primerid, `Pr(>Chisq)`)], # H ==> hurdle P values
+                                summaryDt[contrast %in% lrt_levels & component=='logFC', .(primerid, contrast,coef, ci.hi, ci.lo)], by='primerid') #logFC coefficients
+          
+          ## Drop genes with non-significant FDR
+          fcHurdle[,fdr:=p.adjust(`Pr(>Chisq)`, 'fdr')]
+          
+          ## Merge DGE results with sca ==> adding HGNC names and PC vars to the DGE results
+          fcHurdleSig <- merge(fcHurdle[fdr<.05],as.data.table(mcols(sca)), by='primerid')
+          
+          ## Convert lnFC (acosh normalisation is ln normalised) to log2FC values by dividing it with ln(2) (==log(2))
+          fcHurdleSig$log2FC=fcHurdleSig$coef / log(2)
+          
+          ## Add name of column that was used for contrast + base level of the levels of this variable
+          fcHurdleSig[,'coln_for_dge']=coln_for_dge
+          fcHurdleSig[,'coln_for_dge_base_level']=unique(levels(sce_dge@colData[,coln_for_dge]))[1]
+          
+          setorder(fcHurdleSig, fdr)
+    
+          ## Add result to list
+          l[[celltype]]=fcHurdleSig
+  
+      }
+    
+    ## Save results
+    fn= fn=paste0(proc_dir,'/',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_all_cells_',coln_for_dge,'_DGE.Rds')
+    saveRDS(l, file = fn)
+    }
+  
+  }
+  
+}
+
+```
+
+
+## PLOT DGE HEALTHY VS. DISEASED PER CELLTYPE ON ALL CELLS IN P1-P4
+
+```{r fig.width=3.5,fig.height=3.5}
+library(ggplot2)
+library(patchwork)
+library(ggrepel)
+
+colnames_for_dge=c('condition')
+
+mast_methods=c('bayesglm','glmer')
+
+      
+log2fc_thr=0.5
+fdr_thr=0.05
+ncols=2
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  for (coln_for_dge in colnames_for_dge){
+    print(coln_for_dge)
+    
+    for (mast_method in mast_methods[1:1]){
+      print(mast_method)
+      
+      fn=paste0(proc_dir,'/',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_all_cells_',coln_for_dge,'_DGE.Rds')
+      
+      dge_list=readRDS(file = fn)
+
+
+      plots <- list()
+      dge_result_list=list() 
+    
+ 
+      for (celltype in names(dge_list)){
+          
+          celltype_dge_df=dge_list[[celltype]]
+          
+          ## Check if log2FC not in result df, transform the lnFC to log2FC values
+          if (!("log2FC" %in% colnames(celltype_dge_df))) {
+            # Code to execute if "text" is not in variable
+            celltype_dge_df$log2FC=celltype_dge_df$coef / log(2)}
+    
+          
+          if (dim(celltype_dge_df[abs(celltype_dge_df$log2FC)>log2fc_thr,])[1]>0){
+            #print(paste(c(celltype,dim(celltype_dge_df[abs(celltype_dge_df$log2FC)>log2fc_thr,])[1])))
+            #print(celltype_dge_df[abs(celltype_dge_df$log2FC)>log2fc_thr,])
+    
+            
+            contrast_str=unique(celltype_dge_df$contrast)
+            
+            # Use sub to extract the part after 'coln_for_dge'
+            contrast_1=sub(paste0(".*", coln_for_dge), "", contrast_str)
+            contrast_2=unique(celltype_dge_df$coln_for_dge_base_level)
+            
+            p <- volcano_plot(celltype_dge_df, celltype, log2fc_thr, fdr_thr,contrast_1,contrast_2)
+            plots[[celltype]] <- p
+            
+            
+            
+            ## Extract most important column of the DGE dataframe, rename primerid to ENSEMBL_ID & save DGE result 
+            celltype_dge_df_to_save=celltype_dge_df[,c('primerid',"contrast","log2FC","fdr","HGNC","coln_for_dge" ,"coln_for_dge_base_level")]
+            colnames(celltype_dge_df_to_save)[1]='ENSEMBL_ID'
+            
+            
+            ## Extract the conditions factors that have been compared in a new column
+            celltype_dge_df_to_save = extract_condition_comparisons(celltype_dge_df_to_save)
+            celltype_dge_df_to_save[,'celltype']=celltype
+            
+            dge_result_list[[celltype]]=celltype_dge_df_to_save
+            
+            
+            
+            }
+      
+      }
+      
+      ### SAVE DGE RESULT DATA FRAME
+      # Create the directory and necessary parent directories
+      res_dir_path=file.path(proc_dir, 'MAST_DGE_results')
+      dir.create(res_dir_path, showWarnings = FALSE, recursive = TRUE)
+      
+      ## Generate the file name & save DGE result
+      # Concatenate the DGE result dataframes row-wise
+      dge_result_concat <- do.call(rbind, dge_result_list)
+      
+      ## Generate the file name & save DGE result
+      fn=paste0(panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_all_cells_',coln_for_dge,'_DGE.csv')
+      fn=file.path(res_dir_path, fn)
+      write.csv(dge_result_concat, file = fn, row.names = FALSE)
+      
+      
+      ### PLOT & SAVE VOLCANO-PLOTS
+      
+      final_plot=list()
+      # Combine the plots for this area
+      if (length(plots) > 0) {
+        combined_plot <- wrap_plots(plots, ncol = 2)
+        final_plot[['final']] <- plots
+      }
+    
+    
+      # Determine the plot size dynamically
+      plot_width_per_col <- 4  # Width per column
+      plot_height_per_row <- 3  # Height per row
+      
+      # Display the plots for each area with a centered figure title and dynamic size
+      #for (area in names(final_plot)) {
+      #num_plots <- length(plots[[area]]$layout$nrow * 2)  # 2 plots per row
+      num_plots <- length(final_plot[['final']])  # 2 plots per row
+      num_rows <- ceiling(num_plots / 2)
+      num_cols <- min(2, num_plots)  # max 2 columns
+      plot_width <- plot_width_per_col * num_cols
+      plot_height <- plot_height_per_row * num_rows
+      
+      # Generate the file name & save plot
+      fn=paste0(panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_all_cells_',coln_for_dge,'_DGE.png')
+      fn <- file.path(proc_dir, 'xenium_plots', 'MAST_DGE_volcano_plots', fn)
+      
+   
+  
+      
+       ## IF ONLY ONE CELLTYPE HAS DE-GENES, CREATE A SIMPLE GGPLOT OBJECTM IF MULITPLE, CREATE A COMBINED PLOT WITH PATCHWORK
+      if (num_plots==1){
+            celltype_=names(final_plot[['final']])
+            subtitle_str <- paste0("<b>", celltype_, "</b><br>", contrast_1, " vs. ", contrast_2)
+  
+            title=paste(panel," - Region:", area,' - ',mast_method)
+            
+            
+            combined_plot=final_plot[['final']][[celltype_]] + 
+                        labs(title = title,subtitle=subtitle_str) +
+                        theme(
+                            plot.title = element_text(hjust = 0.5, size = 12, face = "bold"),  # Center the title
+                            plot.subtitle = element_markdown(hjust = 0.5, size = 10)  # Center the subtitle
+                          ) }
+                
+           
+        if (num_plots>1){
+          combined_plot = wrap_plots(final_plot[['final']], ncol = ncols) +
+                          plot_annotation(
+                            title = paste(panel," - Region:", 'whole sample - ',mast_method),
+                            theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))}
+      
+      print(combined_plot)
+      ggsave(fn,plot=combined_plot, width = plot_width, height = plot_height, units = "in")
+    } 
+  }
+}  
+```
+
+
+
+#   DGE: HEALTHY VS. DISEASED PER CELLTYPE PER REGION IN P1-P4
+## - CELLS INVOLVED IN DGE COMPARISON: ALL CELLS PER CONDITION PER REGION (REGION HEALTHY VS. REGION DISEASED)
+## - FOR EACH CELLTYPE WITHIN GIVEN REGION, RUN DGE BETWEEN HEALTHY VS. DISEASED
+
+```{r}
+## Init list with reference genome names that were used for the 2 alignments
+
+
+## LOAD DATA + LOAD PREVIOUSLY CALCULATED ACOSH NORMALISED COUNT MATRIX
+dat_list=list()
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+cellt_var='manual_res_deseq2_annot_low_level_celltype'
+#coln_for_dge='stability'
+colnames_for_dge=c('condition')
+mast_methods=c('bayesglm','glmer')
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'/filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  
+  ## Load acosh matrix 
+  fn=paste0(proc_dir,'/filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_acosh.mtx')
+  acosh_matrix <- readMM(fn)
+  
+  
+  # Replace the original assay with the transformed data
+  assay(adata, 'logCounts',withDimnames=FALSE) <- acosh_matrix
+  
+  sce=adata
+  
+  # Keep only samples from P1-P4
+  sce=sce[,sce@colData$patient %in% c('P1','P2','P3','P4')]
+  
+  for (coln_for_dge in colnames_for_dge){
+    print(coln_for_dge)
+    
+    for (mast_method in mast_methods[1:1]){
+      print(mast_method)
+    
+      k=list()
+      
+      for (sample_region in c('FC','NC','Intima','Media')){
+        print(sample_region)
+        
+        ## Subset to cells from given region
+        sce_=sce[, !is.na(sce@colData$sample_region) & sce@colData$sample_region==sample_region]
+        
+        l=list()
+        
+        for (celltype in unique(sce_@colData[,cellt_var])){ #c("VSMC-contr")){ 
+            
+            sce_dge=sce_[,sce_@colData[,cellt_var]==celltype]
+            
+            ## Get binary variable describing if gene is turned on or not
+            colData(sce_dge)$cngeneson <- scale(colSums(assay(sce_dge,'logCounts')>0))
+            
+            ## Convert sce to sca, the correct format for MAST
+            sca=SceToSingleCellAssay(sce_dge, class = "SingleCellAssay", check_sanity = TRUE)
+            
+            
+            ### SELECT WHICH GLM METHOD TO USE & RUN MAST GLM
+            ##  Mixed model
+            if (mast_method=='glmer'){
+                
+                # Check if the grouping factor has more than one level ==> if not, MAST will throw an error, skip celltype
+                skip_celltype=FALSE
+                for (var in c(coln_for_dge,'patient')){
+                  if (length(unique(sce_dge@colData[,var])) < length(unique(sce@colData[,var]))) {
+                      warning(paste("Skipping celltype", celltype, "- not enough levels in",var,"variable for mixed model analysis."))
+                      skip_celltype=TRUE
+                      break  # Skip to the next celltype
+                    }
+                 }
+      
+                if (skip_celltype==TRUE){
+                    next  # Skip to the next iteration of the celltype loop
+                }
+                
+                ## Create formula with correcting for coln_for_dge + expressed genes (cngeneson) + random intercept for patient (1|patient)
+                formula_string=paste("~",coln_for_dge) #coln_for_dge)
+                formula_string <- paste(formula_string, paste(c('cngeneson','(1|patient)'), collapse=" + "), sep=" + ")
+                design_form=as.formula(formula_string)
+      
+                zlmCond <- zlm(design_form , sca,method='glmer',ebayes = F,
+                               strictConvergence = FALSE)
+             }
+            
+            ## bayesGLM
+            if (mast_method=='bayesglm'){
+                
+                # Check if the grouping factor has more than one level  ==> if not, MAST will throw an error, skip celltype
+                skip_celltype=FALSE
+                for (var in c(coln_for_dge)){
+                  if (length(unique(sce_dge@colData[,var])) <=1 ) { #
+                      skip_celltype=TRUE
+                      warning(paste("Skipping celltype", celltype, "- not enough levels in ",var," variable for BayesGLM model analysis."))
+                      break  # Skip to the next celltype
+                    }
+                }
+        
+                if (skip_celltype==TRUE){
+                    next  # Skip to the next iteration of the celltype loop
+                }
+                
+                ## Create formula with correcting for coln_for_dge + expressed genes (cngeneson) + fixed effect for patient (patient)
+                formula_string=paste("~", coln_for_dge)
+                formula_string <- paste(formula_string, paste(c('cngeneson','patient'), collapse=" + "), sep=" + ")
+                design_form=as.formula(formula_string)
+                
+                ## Turn on ebayes for variance estimation
+                zlmCond <- zlm(design_form , sca,method='bayesglm',ebayes = T)
+              }
+            
+            
+            ### EXTRACT RESULTS OF GLM &  SAVE THEM
+            
+            ## Concatenate the name of the column for dge + all its factor levels (except for the baseline factor)
+            #. MAST::summary(doLRT=) expects the levels of the factors to check for LRT (likelihod-ratio test)
+            lrt_levels=paste0(coln_for_dge, unique(levels(sce_dge@colData[,coln_for_dge]))[-1])
+            
+            ## Performing LRT, which results in p-values and log2FC values between the contrasts
+            summaryCond <- MAST::summary(zlmCond, doLRT=lrt_levels)
+            
+            ## Extract results as data frame & extract log2FC values of 
+            summaryDt <- summaryCond$datatable
+            fcHurdle <- merge(summaryDt[contrast %in% lrt_levels & component=='H',.(primerid, `Pr(>Chisq)`)], # H ==> hurdle P values
+                                  summaryDt[contrast %in% lrt_levels & component=='logFC', .(primerid, contrast,coef, ci.hi, ci.lo)], by='primerid') #logFC coefficients
+            
+            ## Drop genes with non-significant FDR
+            fcHurdle[,fdr:=p.adjust(`Pr(>Chisq)`, 'fdr')]
+            
+            ## Merge DGE results with sca ==> adding HGNC names and PC vars to the DGE results
+            fcHurdleSig <- merge(fcHurdle[fdr<.05],as.data.table(mcols(sca)), by='primerid')
+            
+            ## Convert lnFC (acosh normalisation is ln normalised) to log2FC values by dividing it with ln(2) (==log(2))
+            fcHurdleSig$log2FC=fcHurdleSig$coef / log(2)
+            
+            ## Add name of column that was used for contrast + base level of the levels of this variable
+            fcHurdleSig[,'coln_for_dge']=coln_for_dge
+            fcHurdleSig[,'coln_for_dge_base_level']=unique(levels(sce_dge@colData[,coln_for_dge]))[1]
+            
+            setorder(fcHurdleSig, fdr)
+    
+            ## Add result to list
+            l[[celltype]]=fcHurdleSig
+    
+        }
+      
+        ## Collect results of region to another list
+        k[[sample_region]]=l  
+        
+      }
+  
+    ## Save results
+    fn=paste0(proc_dir,'/',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_region_cells_',coln_for_dge,'_DGE.Rds')
+    saveRDS(k, file = fn)
+    }
+ }
+}
+
+```
+
+
+## PLOT DGE: HEALTHY VS. DISEASED PER CELLTYPE PER REGION IN P1-P4
+
+
+```{r fig.width=4,fig.height=6}
+library(ggplot2)
+library(patchwork)
+library(ggrepel)
+
+
+colnames_for_dge=c('condition')
+mast_methods=c('bayesglm','glmer')
+
+log2fc_thr=0.5
+fdr_thr=0.05
+ncols=2
+
+# Ensure the necessary directory exists for saving the plots
+dir.create(file.path(proc_dir, 'plots', 'MAST_DGE_volcano_plots'), showWarnings = FALSE, recursive = TRUE)
+
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  for (coln_for_dge in colnames_for_dge[1:1]){
+    print(coln_for_dge)
+    
+    for (mast_method in mast_methods[1:1]){
+      print(mast_method)
+      
+      fn=paste0(proc_dir,'/',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_region_cells_',coln_for_dge,'_DGE.Rds')
+      
+      dge_list=readRDS(file = fn)
+      
+      plots=list()
+      dge_result_list=list()   
+
+      for (area in names(dge_list)){
+        area_dge_list=dge_list[[area]]
+        cat(paste('====\n',area,'\n'))
+        
+        area_plots <- list()
+        
+        for (celltype in names(area_dge_list)){
+            
+            area_dge_df=area_dge_list[[celltype]]
+            #print(dim(a[coef>0.5,]))
+            
+            ## Check if log2FC not in result df, transform the lnFC to log2FC values
+            if (!("log2FC" %in% colnames(area_dge_df))) {
+              # Code to execute if "text" is not in variable
+              area_dge_df$log2FC=area_dge_df$coef / log(2)}
+      
+            
+            if (dim(area_dge_df[abs(area_dge_df$log2FC)>log2fc_thr,])[1]>0){
+              print(paste(c(celltype,dim(area_dge_df[abs(area_dge_df$log2FC)>log2fc_thr,])[1])))
+              print(area_dge_df[abs(area_dge_df$log2FC)>log2fc_thr,])
+      
+              
+              contrast_str=unique(area_dge_df$contrast)
+              
+              # Use sub to extract the part after 'coln_for_dge'
+              contrast_1=sub(paste0(".*", coln_for_dge), "", contrast_str)
+              contrast_2=unique(area_dge_df$coln_for_dge_base_level)
+              
+              p <- volcano_plot(area_dge_df, celltype, log2fc_thr, fdr_thr,contrast_1,contrast_2)
+              area_plots[[celltype]] <- p
+              
+              
+              ## Extract most important column of the DGE dataframe, rename primerid to ENSEMBL_ID & save DGE result 
+              area_dge_df_to_save=area_dge_df[,c('primerid',"contrast","log2FC","fdr","HGNC","coln_for_dge" ,"coln_for_dge_base_level")]
+              colnames(area_dge_df_to_save)[1]='ENSEMBL_ID'
+              
+              
+              ## Extract the conditions factors that have been compared in a new column
+              area_dge_df_to_save = extract_condition_comparisons(area_dge_df_to_save)
+              area_dge_df_to_save$celltype=celltype
+              area_dge_df_to_save$region=area
+              
+              dge_result_list[[area]][[celltype]]=area_dge_df_to_save
+              
+            }
+        
+          }
+        # Combine the plots for this area
+        if (length(area_plots) > 0) {
+          plots[[area]] <-area_plots}
+        
+      }
+
+      ### SAVE DGE RESULT DATA FRAME
+      # Create the directory and necessary parent directories
+      res_dir_path=file.path(proc_dir, 'MAST_DGE_results')
+      dir.create(res_dir_path, showWarnings = FALSE, recursive = TRUE)
+      
+      # Flatten the nested list of DGE resulst & concatenate the DGE result dataframes row-wise
+      dge_result_flat_list <- unlist(dge_result_list, recursive = FALSE)
+      dge_result_concat <- do.call(rbind, dge_result_flat_list)
+      
+      ## Generate the file name & save DGE result
+      fn=paste0(panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_region_cells_',coln_for_dge,'_DGE.csv')
+      fn=file.path(res_dir_path, fn)
+      write.csv(dge_result_concat, file = fn, row.names = FALSE)
+      
+      
+      ### PLOT & SAVE VOLCANO-PLOTS
+      
+      # Determine the plot size dynamically
+      plot_width_per_col <- 4  # Width per column
+      plot_height_per_row <- 3  # Height per row
+      
+      # Display the plots for each area with a centered figure title and dynamic size
+      for (area in names(plots)) {
+        num_plots <- length(plots[[area]])  # 2 plots per row
+        num_rows <- ceiling(num_plots / 2)
+        num_cols <- min(2, num_plots)  # max 2 columns
+        plot_width <- plot_width_per_col * num_cols
+        plot_height <- plot_height_per_row * num_rows
+        ncols_=max(1,ncols)
+        
+        
+        
+        # Generate the file name & save plot
+        fn=paste0(panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_region_cells_',area,'_',coln_for_dge,'_DGE.png')
+        fn <- file.path(proc_dir, 'xenium_plots', 'MAST_DGE_volcano_plots', fn)
+        
+        
+        
+        ## IF ONLY ONE CELLTYPE HAS DE-GENES, CREATE A SIMPLE GGPLOT OBJECTM IF MULITPLE, CREATE A COMBINED PLOT WITH PATCHWORK
+        if (num_plots==1){
+          celltype_=names(plots[[area]])
+          subtitle_str <- paste0("<b>", celltype_, "</b><br>", contrast_1, " vs. ", contrast_2)
+
+          title=paste(panel," - Region:", area,' - ',mast_method)
+          
+          
+          combined_plot=plots[[area]][[celltype_]] + 
+                      labs(title = title,subtitle=subtitle_str) +
+                      theme(
+                          plot.title = element_text(hjust = 0.5, size = 10, face = "bold"),  # Center the title
+                          plot.subtitle = element_markdown(hjust = 0.5, size = 10)  # Center the subtitle
+                        ) }
+              
+         
+        if (num_plots>1){
+          combined_plot = wrap_plots(plots[[area]], ncol = ncols_) +
+                          plot_annotation(
+                            title = paste(panel," - Region:", area,' - ',mast_method),
+                            theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))}
+        
+        print(combined_plot)
+        ggsave(fn, plot = combined_plot, width = plot_width, height = plot_height, units = "in")
+      }
+   }
+  }
+}
+```
+
+
+
+#   DGE: CELLTYPE PER GNN EMBEDDING CLUSTER ON ALL CELLS
+## - CELLS INVOLVED IN DGE COMPARISON: ALL CELLS PER CONDITION (EMBEDDING CLUST VS. REST)
+## - FOR EACH CELLTYPE, RUN DGE BETWEEN EMBEDDING CLUST VS. REST 
+
+## Tutorial: https://bioconductor.org/packages/release/bioc/vignettes/MAST/inst/doc/MAITAnalysis.html
+
+
+
+
+```{r fig.width=11,fig.height=5}
+## Init list with reference genome names that were used for the 2 alignments
+
+
+## LOAD DATA + LOAD PREVIOUSLY CALCULATED ACOSH NORMALISED COUNT MATRIX
+dat_list=list()
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+
+## CREATE colnames_for_dge with all the GNN-embedding parameteres (training KNN, embedding_knn)
+embed_num_neighbors_list=c(10,50) #c(5,10,15,30,50)[1:1]
+train_nns=c(10,100)[2:2]
+repr='GAT'
+
+train_nn=100
+num_neighbors=5
+colnames_for_dge=c()
+
+for (embed_num_neighbors in embed_num_neighbors_list){
+  for (train_nn in train_nns){
+    repr_key=paste(c(repr,'train_nn',train_nn,'embed_nn',embed_num_neighbors,'leiden'),collapse="_")
+    colnames_for_dge <- c(colnames_for_dge, repr_key)
+  }
+}
+
+cellt_var='manual_res_deseq2_annot_low_level_celltype'
+mast_methods=c('bayesglm','glmer')
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'/filtered_batch_corr_annotated_gnn_embeddings_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  
+  ## Load acosh matrix 
+  fn=paste0(proc_dir,'/filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_acosh.mtx')
+  acosh_matrix <- readMM(fn)
+  
+  
+  # Replace the original assay with the transformed data
+  assay(adata, 'logCounts',withDimnames=FALSE) <- acosh_matrix
+  
+  sce=adata
+  
+  # Keep only diseased samples
+  #sce=sce[,sce@colData$condition=='D']
+  
+  for (coln_for_dge in colnames_for_dge){
+    print(coln_for_dge)
+    
+    for (mast_method in mast_methods[1:1]){
+      print(mast_method)
+    
+      k=list()
+      
+      for (embed_clust in sort(unique(sce@colData[,coln_for_dge]))){
+        print(embed_clust)
+        
+        
+        ## Subset to cells from given region
+        #sce_=sce[, !is.na(sce@colData$sample_region) & sce@colData$sample_region==sample_region]
+        
+        ## Set all other embedding clusters as 'rest', for MAST to do a "one vs. base-level" comparison 
+        ## Set 'rest' as base level, as MAST runs in a "clust vs. rest" fashion
+        sce_=sce
+        
+        sce_@colData[, coln_for_dge] <- as.character(sce_@colData[, coln_for_dge])
+        sce_@colData[sce_@colData[,coln_for_dge]!=embed_clust,coln_for_dge]='rest'
+        sce_@colData[, coln_for_dge] <- factor(sce_@colData[, coln_for_dge])
+        sce_@colData[,coln_for_dge]=relevel(sce_@colData[,coln_for_dge],ref='rest')
+        
+        
+        l=list()
+        
+        for (celltype in unique(sce_@colData[,cellt_var])){ #c("VSMC-contr")){ 
+            print(celltype)
+            
+            sce_dge=sce_[,sce_@colData[,cellt_var]==celltype]
+            
+            ## Get binary variable describing if gene is turned on or not
+            colData(sce_dge)$cngeneson <- scale(colSums(assay(sce_dge,'logCounts')>0))
+            
+            ## Convert sce to sca, the correct format for MAST
+            sca=SceToSingleCellAssay(sce_dge, class = "SingleCellAssay", check_sanity = TRUE)
+            
+            
+            ### SELECT WHICH GLM METHOD TO USE & RUN MAST GLM
+            ##  Mixed model
+            if (mast_method=='glmer'){
+                
+                # Check if the grouping factor has more than one level ==> if not, MAST will throw an error, skip celltype
+                skip_celltype=FALSE
+                for (var in c(coln_for_dge,'patient')){
+                  if (length(unique(sce_dge@colData[,var])) < length(unique(sce@colData[,var]))) {
+                      warning(paste("Skipping celltype", celltype, "- not enough levels in",var,"variable for mixed model analysis."))
+                      skip_celltype=TRUE
+                      break  # Skip to the next celltype
+                    }
+                 }
+      
+                if (skip_celltype==TRUE){
+                    next  # Skip to the next iteration of the celltype loop
+                }
+                
+                ## Create formula with correcting for coln_for_dge + expressed genes (cngeneson) + random intercept for patient (1|patient)
+                formula_string=paste("~",coln_for_dge) #coln_for_dge)
+                formula_string <- paste(formula_string, paste(c('cngeneson','condition','(1|patient)'), collapse=" + "), sep=" + ")
+                design_form=as.formula(formula_string)
+      
+                zlmCond <- zlm(design_form , sca,method='glmer',ebayes = F,
+                               strictConvergence = FALSE)
+             }
+            
+            ## bayesGLM
+            if (mast_method=='bayesglm'){
+                
+                # Check if the grouping factor has more than one level  ==> if not, MAST will throw an error, skip celltype
+                skip_celltype=FALSE
+                for (var in c(coln_for_dge)){
+                  if (length(unique(sce_dge@colData[,var])) <=1 ) { #
+                      skip_celltype=TRUE
+                      warning(paste("Skipping celltype", celltype, "- not enough levels in ",var," variable for BayesGLM model analysis."))
+                      break  # Skip to the next celltype
+                    }
+                }
+        
+                if (skip_celltype==TRUE){
+                    next  # Skip to the next iteration of the celltype loop
+                }
+                
+                ## Create formula with correcting for coln_for_dge + expressed genes (cngeneson) + fixed effect for patient (patient)
+                formula_string=paste("~", coln_for_dge)
+                formula_string <- paste(formula_string, paste(c('cngeneson','condition','patient'), collapse=" + "), sep=" + ")
+                design_form=as.formula(formula_string)
+                
+                ## Turn on ebayes for variance estimation
+                zlmCond <- zlm(design_form , sca,method='bayesglm',ebayes = T)
+              }
+            
+            
+            ### EXTRACT RESULTS OF GLM &  SAVE THEM
+            
+            ## Concatenate the name of the column for dge + all its factor levels (except for the baseline factor)
+            #. MAST::summary(doLRT=) expects the levels of the factors to check for LRT (likelihod-ratio test)
+            lrt_levels=paste0(coln_for_dge, unique(levels(sce_dge@colData[,coln_for_dge]))[-1])
+            
+            ## Performing LRT, which results in p-values and log2FC values between the contrasts
+            summaryCond <- MAST::summary(zlmCond, doLRT=lrt_levels)
+            
+            ## Extract results as data frame & extract log2FC values of 
+            summaryDt <- summaryCond$datatable
+            fcHurdle <- merge(summaryDt[contrast %in% lrt_levels & component=='H',.(primerid, `Pr(>Chisq)`)], # H ==> hurdle P values
+                                  summaryDt[contrast %in% lrt_levels & component=='logFC', .(primerid, contrast,coef, ci.hi, ci.lo)], by='primerid') #logFC coefficients
+            
+            ## Drop genes with non-significant FDR
+            fcHurdle[,fdr:=p.adjust(`Pr(>Chisq)`, 'fdr')]
+            
+            
+            
+            ## Merge DGE results with sca ==> adding HGNC names and PC vars to the DGE results
+            fcHurdleSig <- merge(fcHurdle[fdr<.05],as.data.table(mcols(sca)), by='primerid')
+            
+            ## Convert lnFC (acosh normalisation is ln normalised) to log2FC values by dividing it with ln(2) (==log(2))
+            fcHurdleSig$log2FC=fcHurdleSig$coef / log(2)
+            
+            ## Add name of column that was used for contrast + base level of the levels of this variable
+            fcHurdleSig[,'coln_for_dge']=coln_for_dge
+            fcHurdleSig[,'coln_for_dge_base_level']=unique(levels(sce_dge@colData[,coln_for_dge]))[1]
+            
+            setorder(fcHurdleSig, fdr)
+    
+            ## Add result to list
+            l[[celltype]]=fcHurdleSig
+    
+        }
+      
+        ## Collect results of region to another list
+        k[[embed_clust]]=l  
+        
+      }
+  
+    ## Save results
+    fn=paste0(proc_dir,'/',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_region_cells_',coln_for_dge,'_DGE.Rds')
+    saveRDS(k, file = fn)
+    }
+ }
+}
+
+```
+
+```{r}
+sort(unique(adata@colData$GAT_train_nn_100_embed_nn_50_leiden))
+```
+
+
+## PLOT DGE: CELLTYPE PER GNN EMBEDDING CLUSTER ON ALL CELLS
+
+```{r fig.width=4,fig.height=5}
+
+
+plots <- list()
+
+
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+
+
+cellt_var='manual_res_deseq2_annot_low_level_celltype'
+#coln_for_dge=repr_key
+
+## CREATE colnames_for_dge with all the GNN-embedding parameteres (training KNN, embedding_knn)
+embed_num_neighbors_list=c(10,50) #c(5,10,15,30,50)[1:1]
+train_nns=c(10,100)[2:2]
+repr='GAT'
+
+colnames_for_dge=c()
+
+for (embed_num_neighbors in embed_num_neighbors_list){
+  for (train_nn in train_nns){
+    repr_key=paste(c(repr,'train_nn',train_nn,'embed_nn',embed_num_neighbors,'leiden'),collapse="_")
+    colnames_for_dge <- c(colnames_for_dge, repr_key)
+  }
+}
+
+mast_methods=c('bayesglm','glmer')
+
+log2fc_thr=0.5
+fdr_thr=0.05
+ncols=2
+
+# Ensure the necessary directory exists for saving the plots
+dir.create(file.path(proc_dir, 'xenium_plots', 'MAST_DGE_volcano_plots'), showWarnings = FALSE, recursive = TRUE)
+
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  for (coln_for_dge in colnames_for_dge[1:1]){
+    print(coln_for_dge)
+    
+    for (mast_method in mast_methods[1:1]){
+      print(mast_method)
+      
+      fn=paste0(proc_dir,'/',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_region_cells_',coln_for_dge,'_DGE.Rds')
+      
+      dge_list=readRDS(file = fn)
+      
+      plots=list()
+      dge_result_list=list()  
+
+      for (embed_clust in names(dge_list)){
+        embed_clust_dge_list=dge_list[[embed_clust]]
+        cat(paste('====\n',embed_clust,'\n'))
+        
+        embed_clust_plots <- list()
+        
+        for (celltype in names(embed_clust_dge_list)){
+            
+            embed_clust_dge_df=embed_clust_dge_list[[celltype]]
+            #print(dim(a[coef>0.5,]))
+      
+            
+            if (dim(embed_clust_dge_df[abs(embed_clust_dge_df$log2FC)>log2fc_thr,])[1]>0){
+              #print(paste(c(celltype,dim(embed_clust_dge_df[abs(embed_clust_dge_df$log2FC)>log2fc_thr,])[1])))
+              #print(embed_clust_dge_df[abs(embed_clust_dge_df$log2FC)>log2fc_thr,])
+      
+              
+              contrast_str=unique(embed_clust_dge_df$contrast)
+              
+              # Use sub to extract the part after 'coln_for_dge'
+              contrast_1=sub(paste0(".*", coln_for_dge), "", contrast_str)
+              contrast_2=unique(embed_clust_dge_df$coln_for_dge_base_level)
+              
+              p <- volcano_plot(embed_clust_dge_df, celltype, log2fc_thr, fdr_thr,contrast_1,contrast_2)
+              embed_clust_plots[[celltype]] <- p
+              
+              
+              ## Extract most important column of the DGE dataframe, rename primerid to ENSEMBL_ID & save DGE result 
+              embed_clust_dge_df_to_save=embed_clust_dge_df[,c('primerid',"contrast","log2FC","fdr","HGNC","coln_for_dge" ,"coln_for_dge_base_level")]
+              colnames(embed_clust_dge_df_to_save)[1]='ENSEMBL_ID'
+              
+              
+              ## Extract the conditions factors that have been compared in a new column
+              embed_clust_dge_df_to_save = extract_condition_comparisons(embed_clust_dge_df_to_save)
+              embed_clust_dge_df_to_save$celltype=celltype
+              embed_clust_dge_df_to_save$embedding_cluster=embed_clust
+              
+              dge_result_list[[embed_clust]][[celltype]]=embed_clust_dge_df_to_save
+              
+            
+              }
+        
+        }
+        # Combine the plots for this area
+        if (length(embed_clust_plots) > 0) {
+          plots[[embed_clust]] <-embed_clust_plots  
+        }
+      
+      }
+      
+      ### SAVE DGE RESULT DATA FRAME
+      # Create the directory and necessary parent directories
+      res_dir_path=file.path(proc_dir, 'MAST_DGE_results')
+      dir.create(res_dir_path, showWarnings = FALSE, recursive = TRUE)
+      
+      # Flatten the nested list of DGE resulst & concatenate the DGE result dataframes row-wise
+      dge_result_flat_list <- unlist(dge_result_list, recursive = FALSE)
+      dge_result_concat <- do.call(rbind, dge_result_flat_list)
+      
+      ## Generate the file name & save DGE result
+      fn=paste0(panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_embed_clust_cells_',coln_for_dge,'_DGE.csv')
+      fn=file.path(res_dir_path, fn)
+      write.csv(dge_result_concat, file = fn, row.names = FALSE)
+      
+      
+      ### PLOT & SAVE VOLCANO-PLOTS
+
+      
+      # Determine the plot size dynamically
+      plot_width_per_col <- 4  # Width per column
+      plot_height_per_row <- 3  # Height per row
+      
+      # Display the plots for each area with a centered figure title and dynamic size
+      for (embed_clust in names(plots)) {
+        num_plots <- length(plots[[embed_clust]])  # 2 plots per row
+        num_rows <- ceiling(num_plots / 2)
+        num_cols <- min(2, num_plots)  # max 2 columns
+        plot_width <- plot_width_per_col * num_cols
+        plot_height <- plot_height_per_row * num_rows
+        
+        
+        
+        # Generate the file name & save plot
+        fn=paste0(panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_MAST_',mast_method,'_per_embed_clust_cells_',embed_clust,'_',coln_for_dge,'_DGE.png')
+        fn <- file.path(proc_dir, 'xenium_plots', 'MAST_DGE_volcano_plots', fn)
+
+ 
+
+        ## IF ONLY ONE CELLTYPE HAS DE-GENES, CREATE A SIMPLE GGPLOT OBJECTM IF MULITPLE, CREATE A COMBINED PLOT WITH PATCHWORK
+        if (num_plots==1){
+          celltype_=names(plots[[embed_clust]])
+          subtitle_str <- paste0("<b>", celltype_, "</b><br>", contrast_1, " vs. ", contrast_2)
+
+          title=paste(panel," - ",coln_for_dge," - Embedding cluster:", embed_clust,' - ',mast_method)
+          
+          
+          combined_plot=plots[[embed_clust]][[celltype_]] + 
+                      labs(title = title,subtitle=subtitle_str) +
+                      theme(
+                          plot.title = element_text(hjust = 0.5, size = 12, face = "bold"),  # Center the title
+                          plot.subtitle = element_markdown(hjust = 0.5, size = 10)  # Center the subtitle
+                        ) }
+              
+         
+        if (num_plots>1){
+          combined_plot = wrap_plots(plots[[embed_clust]], ncol = ncols) +
+                          plot_annotation(
+                            title=paste(panel," - ",coln_for_dge," - Embedding cluster:", embed_clust,' - ',mast_method),
+                            theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))}
+        print(combined_plot)
+        ggsave(fn, plot = combined_plot, width = plot_width, height = plot_height, units = "in")
+      }
+   }
+  }
+}
+```
+
+
+```{r}
+a=lrTest(zlmCond,coln_for_dge)
+```
+
+```{r}
+sce@colData[sce@colData[,coln_for_dge]==embed_clust,coln_for_dge]
+#sort(unique(sce_@colData[,coln_for_dge]))
+```
+
+
+```{r}
+
+#install.packages("ggtext")
+
+library(ggtext)
+
+subtitle_str <- paste0("<b>", celltype, "</b><br>", contrast_1, " vs. ", contrast_2)
+
+title=paste(panel," - Region:", area)
+celltype=names(plots[[area]])
+
+combined_plot=plots[[area]][[celltype]] + 
+            labs(title = title,subtitle=subtitle_str) +
+            theme(
+                plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),  # Center the title
+                plot.subtitle = element_markdown(hjust = 0.5, size = 12)  # Center the subtitle
+              ) 
+    
+print(combined_plot)
+```
+
+
+```{r fig.width=3,fig.height=3}
+library(ggplot2)
+library(patchwork)
+library(ggrepel)
+
+
+
+plots <- list()
+
+
+log2fc_thr=0.5
+fdr_thr=0.05
+
+for (area in names(k)){
+  area_dge_list=k[[area]]
+  cat(paste('====\n',area,'\n'))
+  
+  area_plots <- list()
+  
+  for (celltype in names(area_dge_list)){
+      
+      area_dge_df=area_dge_list[[celltype]]
+      #print(dim(a[coef>0.5,]))
+
+      
+      if (dim(area_dge_df[abs(area_dge_df$log2FC)>log2fc_thr,])[1]>0){
+        #print(paste(c(celltype,dim(area_dge_df[abs(area_dge_df$coef)>log2fc_thr,])[1])))
+        #print(area_dge_df[abs(area_dge_df$coef)>log2fc_thr,])
+        
+        p <- volcano_plot(area_dge_df, celltype, log2fc_thr, fdr_thr)
+        area_plots[[celltype]] <- p
+        }
+      
+  }
+  # Combine the plots for this area
+  if (length(area_plots) > 0) {
+    combined_plot <- wrap_plots(area_plots, ncol = 2)
+    plots[[area]] <- combined_plot
+  }
+
+}
+
+# Display the plots for each area
+for (area in names(plots)) {
+  print(plots[[area]] + plot_annotation(title = paste("Sample region", area)))
+}
+
+```
+
+
+
+
+
+```
+
+```{r}
+sce@colData[sce@colData[,coln_for_dge]==embed_clust,coln_for_dge]
+#sort(unique(sce_@colData[,coln_for_dge]))
+```
+
+
+```{r}
+
+#install.packages("ggtext")
+
+library(ggtext)
+
+subtitle_str <- paste0("<b>", celltype, "</b><br>", contrast_1, " vs. ", contrast_2)
+
+title=paste(panel," - Region:", area)
+celltype=names(plots[[area]])
+
+combined_plot=plots[[area]][[celltype]] + 
+            labs(title = title,subtitle=subtitle_str) +
+            theme(
+                plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),  # Center the title
+                plot.subtitle = element_markdown(hjust = 0.5, size = 12)  # Center the subtitle
+              ) 
+    
+print(combined_plot)
+```
+
+
+```{r fig.width=3,fig.height=3}
+library(ggplot2)
+library(patchwork)
+library(ggrepel)
+
+
+volcano_plot <- function(df, celltype, log2fc_thr, fdr_thr) {
+  ggplot(df, aes(x = coef, y = -log10(fdr))) +
+    geom_point(aes(color = abs(coef) > log2fc_thr & fdr < fdr_thr)) +
+    geom_text_repel(
+      data = df[abs(df$coef) > log2fc_thr & df$fdr < fdr_thr, ],
+      aes(label = HGNC),
+      size = 3,
+      box.padding = 0.3,
+      point.padding = 0.3,
+      segment.color = 'grey50'
+    ) +
+    geom_vline(xintercept = c(-log2fc_thr, log2fc_thr), linetype = "dashed", color = "red") +
+    geom_hline(yintercept = -log10(fdr_thr), linetype = "dashed", color = "red") +
+    scale_color_manual(values = c("black", "red")) +
+    #theme_minimal() +
+    labs(title = celltype, x = "Log2 Fold Change", y = "-log10 Adjusted p-value") +
+    theme(legend.position = "none")
+}
+
+plots <- list()
+
+
+log2fc_thr=0.5
+fdr_thr=0.05
+
+for (area in names(k)){
+  area_dge_list=k[[area]]
+  cat(paste('====\n',area,'\n'))
+  
+  area_plots <- list()
+  
+  for (celltype in names(area_dge_list)){
+      
+      area_dge_df=area_dge_list[[celltype]]
+      #print(dim(a[coef>0.5,]))
+
+      
+      if (dim(area_dge_df[abs(area_dge_df$coef)>log2fc_thr,])[1]>0){
+        #print(paste(c(celltype,dim(area_dge_df[abs(area_dge_df$coef)>log2fc_thr,])[1])))
+        #print(area_dge_df[abs(area_dge_df$coef)>log2fc_thr,])
+        
+        p <- volcano_plot(area_dge_df, celltype, log2fc_thr, fdr_thr)
+        area_plots[[celltype]] <- p
+        }
+      
+  }
+  # Combine the plots for this area
+  if (length(area_plots) > 0) {
+    combined_plot <- wrap_plots(area_plots, ncol = 2)
+    plots[[area]] <- combined_plot
+  }
+
+}
+
+# Display the plots for each area
+for (area in names(plots)) {
+  print(plots[[area]] + plot_annotation(title = paste("Sample region", area)))
+}
+
+```
+
+
+
+

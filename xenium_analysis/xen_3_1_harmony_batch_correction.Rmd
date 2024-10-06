@@ -1,0 +1,74 @@
+
+```{r}
+#.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.2')
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+
+library(harmony)
+library(scran)
+library(transformGamPoi)
+library(SingleCellExperiment)
+library(zellkonverter)
+library(BiocParallel)
+library("readxl")
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(cowplot)
+library(umap)
+
+```
+
+
+## Load data and metadata
+```{r fig.width=11,fig.height=5}
+## Init list with reference genome names that were used for the 2 alignments
+
+dat_list=list()
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+for (panel in c('Panel1','Panel2')){
+  print(panel)
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'filtered_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  meta=adata@colData
+  
+  ##=========== RUN harmony batch correction ================
+  ## Run PCA and then run Harmony batch correction (can only correct for categorical variables!)
+  ## Run PCA on normalised data
+  #pca=fixedPCA(adata,rank=30,assay.type='norm_by_area_all',subset.row=NULL)
+  #pca_=assay(adata, "norm_by_area_all")
+  pca_=reducedDim(adata,'norm_by_area_all_pca')
+  
+  ## Convert metadata to factors and add Age
+  meta_corr=as.data.frame(lapply(meta[,c( "patient",'original_sample','condition')], factor))
+  #meta_corr['Age']=meta['Age']
+  
+  ## Run harmony batch correction
+  harmonized_pcs <- HarmonyMatrix(
+    data_mat  = pca_,
+    meta_data = meta_corr,
+    vars_use  = c("patient"), # "original_sample","preparation_kit", "batch",  multiple covariates
+    do_pca    = FALSE)
+  
+  
+    #=========== SAVE BATCH CORRECTED PCA DATA ===============
+    #fn2=paste0(proc_dir,'filtered_harmony_corr_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'.h5ad')
+    fn2=paste0(proc_dir,'filtered_harmony_corr_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'.csv')
+    write.csv(harmonized_pcs,fn2)
+}
+  
+```
+
+
+
+
+

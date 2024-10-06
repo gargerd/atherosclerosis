@@ -1,0 +1,55 @@
+```{r}
+#.libPaths('/data/gpfs/projects/punim2121/R_libs/4.1.2')
+.libPaths('/data/gpfs/projects/punim2121/R_libs/4.2.1')
+.libPaths()
+```
+
+```{r}
+suppressPackageStartupMessages({
+library('MAST')
+library(data.table)
+library(transformGamPoi)
+library(BiocParallel)
+library(scran)
+library(SingleCellExperiment)
+library(Matrix)
+})
+
+#options(mc.cores = parallelly::availableCores() - 1) 
+```
+
+```{r}
+proc_dir='/data/gpfs/projects/punim2121/Atherosclerosis/xenium_data/processed_data/baysor_processed_output/'
+scale_param='10'
+avg_assignment_conf_thr='0.75'
+
+cellt_var='manual_res_deseq2_annot_low_level_celltype'
+coln_for_dge='stability'
+
+for (panel in c('Panel1','Panel2')[1:1]){
+  print(panel)
+  
+  
+  ## Load Panel adata
+  fn=paste0(proc_dir,'filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_.h5ad')
+  adata=zellkonverter::readH5AD(file=fn,reader='python')
+  
+  sce=adata
+  
+  #====== Calculate size factors for all cells with scran -> use Fastcluster clusters for this ===========
+  #sce$fastcluster<-fastcluster(sce, iter.max=100)
+  input_groups=sce@colData[,cellt_var,drop=T]
+  data_mat=((assay(sce,'raw_counts')))
+  register(MulticoreParam(workers = 4))
+  size_factors = calculateSumFactors(data_mat, clusters=input_groups)
+  rm(data_mat)
+  
+  #size_factors=sce@colData$cell_mask_area_um2
+  assay(sce, withDimnames=FALSE,"acosh")=acosh_transform(assay(sce, "raw_counts"),size_factors=size_factors,overdispersion=TRUE,on_disk = FALSE)
+  
+  sparse_matrix <- Matrix(assay(sce, withDimnames=FALSE,"acosh"), sparse = TRUE)
+  fn=paste0(proc_dir,'filtered_batch_corr_annotated_metadata_',panel,'_cells_scale_',scale_param,'_asg_conf_',avg_assignment_conf_thr,'_acosh.mtx')
+  writeMM(sparse_matrix, file = fn)
+
+}
+```
